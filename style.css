@@ -408,13 +408,11 @@ img {
     letter-spacing: -0.03em; 
 }
 
-}
-
 .heading-accent {
     width: 60px;
     height: 4px;
     background: var(--dark);
-    margin: 20px 0 30px;
+    margin: 12px 0 20px; 
     border-radius: 2px;
 }
 
