@@ -4,144 +4,223 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio | Abidzar Algifary B.</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
     <link rel="stylesheet" href="style.css">
-    </head>
-<body id="body-container" class="theme-light">
+</head>
+<body id="body-container">
+
+    <div class="bg-elements">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="grid-pattern"></div>
+    </div>
 
     <header id="header" class="site-header">
         <div class="nav-container">
             <div class="logo-wrapper">
-                <img src="logo.png" alt="Adizarel Logo" id="nav-logo" class="logo-img">
+                <a href="#home" class="logo-text">ADIZAREL<span>.</span></a>
             </div>
 
             <nav id="main-nav" class="navigation">
                 <ul class="nav-list">
                     <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                    <li class="nav-item"><a href="#video-editing" class="nav-link">Video Editing</a></li>
+                    <li class="nav-item"><a href="#graphic-design" class="nav-link">Graphic Design</a></li>
                     <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
 
-            <div class="theme-toggle-wrapper">
-                <button id="theme-toggle-btn" class="btn-theme-toggle" type="button">
-                    Dark / Light Mode
+            <div class="nav-actions">
+                <button id="theme-toggle-btn" class="btn-theme-toggle" type="button" aria-label="Toggle Theme">
+                    <i class="ph ph-moon"></i>
+                </button>
+                <button id="hamburger-btn" class="hamburger-menu" aria-label="Menu">
+                    <span></span>
+                    <span></span>
                 </button>
             </div>
         </div>
     </header>
 
     <main id="main-content">
-
         <section id="home" class="section-hero">
             <div class="hero-content-wrapper">
-                <h1 id="hero-title" class="hero-heading">Hai, Aku Abidzar</h1>
-                <h2 id="hero-subtitle" class="hero-subheading">Video Editor & Designer</h2>
+                <div class="hero-text">
+                    <h2 class="hero-subheading">Video Editor & Designer</h2>
+                    <h1 class="hero-heading">Hai, Aku<br><span class="text-gradient">Abidzar.</span></h1>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn-primary">Lihat Karya</a>
+                        <a href="#contact" class="btn-secondary">Hubungi Saya</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="Untitled design.png" alt="Adizarel Hero" class="hero-img">
+                    <div class="floating-badge">
+                        <i class="ph-fill ph-star"></i>
+                        <span>Creative Creator</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-                      <section id="about" class="section-about">
-            <div class="about-container">
-                <div class="about-image-wrapper">
-                    <img src="Untitled design.png" alt="Foto Abidzar Algifary" id="profile-picture" class="img-profile aspect-ratio-4-5">
-                </div>
-
+        <section id="about" class="section-about">
+            <div class="about-container glass-card">
                 <div class="about-text-wrapper">
-                    <h2 id="about-title" class="about-heading" style="margin-bottom: 15px; font-size: 3.5rem; font-weight: bold;">Hai! Namaku..</h2>
-                    
-                    <p id="about-description" class="text-description" style="font-size: 1.2rem; line-height: 1.6;">
-                        Abidzar Algifary, atau dikenal sebagai Adizarel (Content Creator di TikTok). Aku duduk di bangku smp kelas 8. Umurku sebentar lagi 13 tahun dan aku yang sekarang memiliki ketertarikan sekaligus bakat dalam dunia editing dan desain.
+                    <h2 class="about-heading">Hai! Namaku..</h2>
+                    <div class="heading-accent"></div>
+                    <p class="text-description">
+                        Abidzar Algifary, atau dikenal sebagai <strong>Adizarel</strong> (Content Creator di TikTok). Aku duduk di bangku SMP kelas 8. Umurku sebentar lagi 13 tahun dan aku yang sekarang memiliki ketertarikan sekaligus bakat dalam dunia editing dan desain.
                     </p>
                 </div>
+                <div class="about-image-wrapper">
+                    <img src="Untitled design.png" alt="Foto Abidzar Algifary" class="img-profile">
+                </div>
             </div>
         </section>
 
+        <section id="video-editing" class="section-showcase">
+            <div class="section-header">
+                <h2 class="section-title">Video <span>Editing</span></h2>
+                <p class="section-subtitle">Aku juga sudah pernah membuat beberapa Typography/Mograph, dan ini beberapa video yang sudah ku buat.</p>
+            </div>
 
-        <section id="projects" class="section-projects">
-            <h2 class="section-title">Projects</h2>
+            <div class="showcase-container video-grid">
+                <a href="https://www.instagram.com/reel/DZ91lYPSzGQ/?igsh=MTM0b3F3dnptODZ0eQ==" target="_blank" class="showcase-card large-card">
+                    <div class="card-image">
+                        <img src="preview-ig-1.png" alt="Preview Typography 1">
+                        <div class="play-overlay"><i class="ph-fill ph-play-circle"></i></div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Tonton Reel Pertama</h3>
+                        <span class="view-project">Lihat Video <i class="ph ph-arrow-up-right"></i></span>
+                    </div>
+                </a>
 
-            <div class="projects-container">
+                <a href="https://www.instagram.com/reel/DRuWwDMkt60/?igsh=MTFzaDU4YmZkZDhsdQ==" target="_blank" class="showcase-card small-card">
+                    <div class="card-image">
+                        <img src="preview-ig-2.png" alt="Preview Typography 2">
+                        <div class="play-overlay"><i class="ph-fill ph-play-circle"></i></div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Tonton Reel Kedua</h3>
+                        <span class="view-project">Lihat Video <i class="ph ph-arrow-up-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="graphic-design" class="section-showcase">
+            <div class="section-header">
+                <h2 class="section-title">Graphic <span>Design</span></h2>
+                <p class="section-subtitle">Aku pernah mencoba untuk membuat desain Social Media saat duduk di bangku kelas 7, dan ini beberapa hasil yang telah ku buat.</p>
+            </div>
+
+            <div class="showcase-container design-grid">
+                <div class="showcase-card design-item">
+                    <div class="card-image">
+                        <img src="Arap.png" alt="Desain Poster Rasya">
+                    </div>
+                </div>
                 
-                <article id="project-poster" class="project-card">
-                    <header class="project-header">
-                        <h3 class="project-title">Social Media Poster</h3>
-                        <p class="project-description">
-                            Aku pernah mencoba untuk membuat desain Social Media saat duduk di bangku kelas 7, dan ini beberapa hasil yang telah ku buat.
-                        </p>
-                    </header>
-                    
-                    <div class="project-gallery gallery-poster">
-                        <figure class="gallery-item">
-                            <img src="Arap.png" alt="Desain Poster Rasya" class="img-project">
-                        </figure>
-                        <figure class="gallery-item">
-                            <img src="quality_restoration_20260707183213934.jpeg" alt="Desain Poster Juliant Azzam" class="img-project">
-                        </figure>
-                        <figure class="gallery-item">
-                            <img src="SEAN.png" alt="Desain Poster Sean" class="img-project">
-                        </figure>
+                <div class="showcase-card design-item">
+                    <div class="card-image">
+                        <img src="quality_restoration_20260707183213934.jpeg" alt="Desain Poster Juliant Azzam">
                     </div>
-                </article>
+                </div>
 
-                <article id="project-mograph" class="project-card">
-                    <header class="project-header">
-                        <h3 class="project-title">Typography/Mograph</h3>
-                        <p class="project-description">
-                            Aku juga sudah pernah membuat beberapa Typography/Mograph, dan ini beberapa video yang sudah ku buat.
-                        </p>
-                    </header>
-
-                    <div class="project-gallery gallery-mograph">
-                        <figure class="gallery-item video-preview">
-                            <a href="https://www.instagram.com/reel/DZ91lYPSzGQ/?igsh=MTM0b3F3dnptODZ0eQ==" target="_blank" rel="noopener noreferrer" class="link-preview">
-                                <img src="preview-ig-1.png" alt="Preview Typography Instagram 1" class="img-project img-preview">
-                                <figcaption class="caption-preview">Tonton Reel Pertama</figcaption>
-                            </a>
-                        </figure>
-                        <figure class="gallery-item video-preview">
-                            <a href="https://www.instagram.com/reel/DRuWwDMkt60/?igsh=MTFzaDU4YmZkZDhsdQ==" target="_blank" rel="noopener noreferrer" class="link-preview">
-                                <img src="preview-ig-2.png" alt="Preview Typography Instagram 2" class="img-project img-preview">
-                                <figcaption class="caption-preview">Tonton Reel Kedua</figcaption>
-                            </a>
-                        </figure>
+                <div class="showcase-card design-item featured-design">
+                    <div class="card-image">
+                        <img src="SEAN.png" alt="Desain Poster Sean">
                     </div>
-                </article>
-
+                </div>
             </div>
         </section>
 
         <section id="contact" class="section-contact">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-container">
-                <ul class="contact-list">
-                    <li class="contact-item">
-                        <span class="contact-icon phone-icon"></span>
-                        <a href="tel:+6289506727254" class="contact-link">+62 89506727254</a>
-                    </li>
-                    <li class="contact-item">
-                        <span class="contact-icon social-icon"></span>
-                        <span class="contact-text">@adizarel</span>
-                    </li>
-                    <li class="contact-item">
-                        <span class="contact-icon social-icon"></span>
-                        <span class="contact-text">@adiz4rel</span>
-                    </li>
-                    <li class="contact-item">
-                        <span class="contact-icon email-icon"></span>
-                        <a href="mailto:abidzaralgifaryy@gmail.com" class="contact-link">abidzaralgifaryy@gmail.com</a>
-                        
-                    </li>
-                </ul>
+            <div class="section-header">
+                <h2 class="section-title">Let's <span>Connect</span></h2>
+            </div>
+            
+            <div class="contact-grid">
+                <a href="tel:+6289506727254" class="contact-card primary-card">
+                    <i class="ph-fill ph-whatsapp-logo"></i>
+                    <div class="contact-details">
+                        <h4>WhatsApp</h4>
+                        <p>+62 89506727254</p>
+                    </div>
+                </a>
+
+                <a href="https://instagram.com/adizarel" target="_blank" class="contact-card">
+                    <i class="ph-fill ph-instagram-logo"></i>
+                    <div class="contact-details">
+                        <h4>Instagram</h4>
+                        <p>@adizarel</p>
+                    </div>
+                </a>
+
+                <a href="https://tiktok.com/@adiz4rel" target="_blank" class="contact-card">
+                    <i class="ph-fill ph-tiktok-logo"></i>
+                    <div class="contact-details">
+                        <h4>TikTok</h4>
+                        <p>@adiz4rel</p>
+                    </div>
+                </a>
+
+                <a href="mailto:abidzaralgifaryy@gmail.com" class="contact-card">
+                    <i class="ph-fill ph-envelope-simple"></i>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p>Kirim Pesan</p>
+                    </div>
+                </a>
             </div>
         </section>
-
     </main>
 
     <footer id="footer" class="site-footer">
         <div class="footer-container">
-            <p class="footer-copyright">&copy; 2026 Abidzar Algifary B. (Adizarel). All Rights Reserved.</p>
+            <a href="#home" class="footer-logo">ADIZAREL<span>.</span></a>
+            <p class="footer-copyright">&copy; 2026 Abidzar Algifary B. All Rights Reserved.</p>
         </div>
     </footer>
 
-    </body>
+    <script>
+        // Navbar Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Hamburger Menu
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('active');
+            mainNav.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+
+        // Close menu on link click (Mobile)
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('active');
+                mainNav.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+        });
+    </script>
+</body>
 </html>
