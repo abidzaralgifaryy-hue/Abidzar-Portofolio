@@ -401,10 +401,10 @@ img {
 }
 
 .about-heading {
-    font-size: clamp(1.5rem, 2.5vw, 2.2rem); 
-    font-weight: 700; 
+    font-size: clamp(1.8rem, 3vw, 2.6rem); 
+    font-weight: 800; /* Kita kembalikan ketebalannya agar tetap tegas sebagai judul */
     color: var(--primary);
-    line-height: 1.3;
+    line-height: 1.2;
 }
 
 .heading-accent {
