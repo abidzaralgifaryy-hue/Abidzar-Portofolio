@@ -1,133 +1,158 @@
 /* ==========================================================================
-   1. CORE VARIABLES & SETUP (Google Fonts & Reset)
+   1. INITIAL SETTINGS & VARIABLES
    ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    /* Color Palette - Light Mode (Default) */
-    --primary: #FF7A00;
-    --dark: #111111;
-    --secondary-dark: #1B1B1B;
-    --bg-color: #F8F8F8;
-    --card-bg: #FFFFFF;
-    --white: #FFFFFF;
-    --text-main: #111111;
-    --text-muted: #666666;
-    --border-color: rgba(0, 0, 0, 0.08);
-    --blur-bg: rgba(248, 248, 248, 0.8);
-    --glow: rgba(255, 122, 0, 0.15);
+    /* Color Palette */
+    --primary-color: #FF7A00;
+    --primary-glow: rgba(255, 122, 0, 0.15);
+    --primary-glow-intense: rgba(255, 122, 0, 0.4);
     
-    /* Layout Setup */
+    /* Light Mode Tokens */
+    --bg-main: #F8F8F8;
+    --bg-card: #FFFFFF;
+    --text-main: #111111;
+    --text-muted: #555555;
+    --navbar-bg: rgba(248, 248, 248, 0.8);
+    --border-color: rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.12);
+    
+    /* Layout Constants */
     --max-width: 1200px;
-    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Dark Mode Overrides (Triggered by .theme-dark on body) */
-#body-container.theme-dark {
-    --bg-color: #111111;
-    --card-bg: #1B1B1B;
+/* Dark Mode Tokens Override */
+.theme-dark {
+    --bg-main: #111111;
+    --bg-card: #1a1a1a;
     --text-main: #FFFFFF;
     --text-muted: #A0A0A0;
-    --border-color: rgba(255, 255, 255, 0.08);
-    --blur-bg: rgba(17, 17, 17, 0.8);
-    --glow: rgba(255, 122, 0, 0.25);
+    --navbar-bg: rgba(17, 17, 17, 0.8);
+    --border-color: rgba(255, 255, 255, 0.05);
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
 }
 
+/* Reset & Base Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-html {
     scroll-behavior: smooth;
-    font-size: 16px;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-color);
+    background-color: var(--bg-main);
     color: var(--text-main);
+    transition: var(--transition-smooth);
     overflow-x: hidden;
-    transition: var(--transition);
-    -webkit-font-smoothing: antialiased;
+    position: relative;
 }
 
-/* Global Typography & Image Rules */
-h1, h2, h3 {
-    font-weight: 700;
-    letter-spacing: -0.02em;
+/* Living Background Grid Pattern & Blur Shapes */
+body::before, body::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: var(--transition);
+body::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.4;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-    display: block;
+body::after {
+    top: 20%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: var(--primary-glow);
+    filter: blur(120px);
+    animation: floatingShape 12s infinite alternate ease-in-out;
+}
+
+@keyframes floatingShape {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-50px, 80px) scale(1.1); }
 }
 
 /* ==========================================================================
-   2. HEADER & NAVIGATION (Premium Glassmorphism)
+   2. HEADER & NAVIGATION
    ========================================================================== */
-#header {
+.site-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
+    transition: var(--transition-smooth);
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+}
+
+/* Class active yang akan dipicu via JS script saat window di-scroll */
+.site-header.scrolled {
+    background-color: var(--navbar-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid var(--border-color);
-    background-color: var(--blur-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    transition: var(--transition);
+    padding: 10px 0;
+    box-shadow: var(--shadow-sm);
 }
 
 .nav-container {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 20px 80px;
+    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.logo-wrapper {
-    display: flex;
-    align-items: center;
+.logo-img {
+    height: 40px;
+    object-fit: contain;
+    transition: var(--transition-smooth);
 }
 
-#nav-logo {
-    height: 32px;
-    width: auto;
-    object-fit: contain;
+.logo-img:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px var(--primary-color));
 }
 
 .nav-list {
     display: flex;
     list-style: none;
-    gap: 40px;
+    gap: 35px;
 }
 
 .nav-link {
-    font-size: 0.95rem;
+    text-decoration: none;
+    color: var(--text-main);
     font-weight: 500;
-    color: var(--text-muted);
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
     position: relative;
-    padding: 8px 0;
+    padding: 5px 0;
 }
 
-.nav-link:hover,
-.nav-link:focus {
-    color: var(--primary);
-}
-
-/* Modern Underline Interaction */
 .nav-link::after {
     content: '';
     position: absolute;
@@ -135,167 +160,225 @@ img {
     left: 0;
     width: 0;
     height: 2px;
-    background-color: var(--primary);
-    transition: var(--transition);
+    background-color: var(--primary-color);
+    transition: var(--transition-smooth);
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
 }
 
 .nav-link:hover::after {
     width: 100%;
 }
 
-/* Modern Dark/Light Toggle Button */
-#theme-toggle-btn {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
+/* Dark/Light Mode Button */
+.btn-theme-toggle {
+    background: transparent;
+    border: 1px solid var(--primary-color);
     color: var(--text-main);
-    padding: 10px 20px;
-    border-radius: 100px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 30px;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    transition: var(--transition);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
-#theme-toggle-btn:hover {
-    transform: translateY(-2px);
-    border-color: var(--primary);
-    color: var(--primary);
-    box-shadow: 0 6px 20px var(--glow);
+.btn-theme-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--primary-color);
+    z-index: -1;
+    transition: var(--transition-smooth);
+}
+
+.btn-theme-toggle:hover {
+    color: #FFFFFF;
+    box-shadow: 0 0 15px var(--primary-glow-intense);
+}
+
+.btn-theme-toggle:hover::before {
+    width: 100%;
 }
 
 /* ==========================================================================
-   3. HERO SECTION (Exquisite, Giant Typography & Glow)
+   3. HERO SECTION
    ========================================================================== */
-#home {
-    min-height: 100vh;
+.section-hero {
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 80px;
     position: relative;
-}
-
-/* Soft Ambient Radial Glow */
-#home::before {
-    content: '';
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, var(--glow) 0%, rgba(255,122,0,0) 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    pointer-events: none;
-    animation: pulseGlow 8s ease-in-out infinite alternate;
+    padding: 0 20px;
 }
 
 .hero-content-wrapper {
-    max-width: var(--max-width);
-    width: 100%;
     text-align: center;
+    max-width: var(--max-width);
     z-index: 2;
-    position: relative;
 }
 
-#hero-title {
-    font-size: 5rem;
+.hero-heading {
+    font-size: 4.5rem;
+    font-weight: 800;
     line-height: 1.1;
-    margin-bottom: 24px;
-    background: linear-gradient(180deg, var(--text-main) 0%, var(--text-muted) 100%);
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, var(--text-main) 60%, var(--primary-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-#hero-subtitle {
-    font-size: 1.5rem;
+.hero-subheading {
+    font-size: 1.8rem;
     font-weight: 500;
-    color: var(--primary);
+    color: var(--text-muted);
+    letter-spacing: 4px;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    display: inline-block;
+}
+
+/* Glow Effect Behind Hero Text */
+.section-hero::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: var(--primary-glow-intense);
+    filter: blur(150px);
+    border-radius: 50%;
+    z-index: 1;
 }
 
 /* ==========================================================================
-   4. ABOUT SECTION (Two-Column Micro-Interaction Card)
+   4. ABOUT SECTION
    ========================================================================== */
-#about {
-    padding: 100px 80px;
+.section-about {
+    padding: 120px 20px;
     max-width: var(--max-width);
     margin: 0 auto;
 }
 
 .about-container {
-    background-color: var(--card-bg);
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 24px;
-    padding: 60px;
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
+    border-radius: var(--radius-lg);
+    padding: 50px;
+    display: flex;
     gap: 60px;
     align-items: center;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.02);
-    transition: var(--transition);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
 }
 
-.about-container:hover {
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
-    transform: translateY(-2px);
+/* Decorative corner lines inside card */
+.about-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100px;
+    background: var(--primary-color);
 }
 
 .about-image-wrapper {
-    width: 100%;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    max-width: 380px;
+    position: relative;
 }
 
-#profile-picture {
-    width: 100%;
-    transition: var(--transition);
+.about-image-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    border: 2px dashed var(--primary-color);
+    border-radius: calc(var(--radius-md) + 4px);
+    z-index: -1;
+    opacity: 0.3;
+    transition: var(--transition-smooth);
 }
 
-/* Aspect Ratio 4:5 implementation safely */
-.aspect-ratio-4-5 {
-    aspect-ratio: 4 / 5;
+.about-image-wrapper:hover::after {
+    transform: rotate(3deg);
+    opacity: 0.7;
+}
+
+.img-profile {
+    width: 100%;
+    border-radius: var(--radius-md);
     object-fit: cover;
-}
-
-.about-container:hover #profile-picture {
-    transform: scale(1.03);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-smooth);
 }
 
 .about-text-wrapper {
-    display: flex;
-    flex-direction: column;
+    flex: 1.5;
 }
 
-/* Clean over-riding of hardcoded inline styles safely */
-#about-title {
-    color: var(--text-main);
+/* Custom modern accent border under custom sub-title template requirements */
+.about-heading {
+    color: var(--primary-color) !important;
+    position: relative;
+    display: inline-block;
 }
 
-#about-description {
+.about-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+.text-description {
     color: var(--text-muted);
+    margin-top: 25px;
 }
 
 /* ==========================================================================
-   5. PROJECTS SECTION (Advanced CSS Grid Studio Layout)
+   5. PROJECTS SECTION
    ========================================================================== */
-#projects {
-    padding: 100px 80px;
+.section-projects {
+    padding: 120px 20px;
     max-width: var(--max-width);
     margin: 0 auto;
 }
 
 .section-title {
-    font-size: 2.5rem;
-    margin-bottom: 50px;
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 60px;
+    text-align: center;
+    letter-spacing: -1px;
     position: relative;
-    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 5px;
+    background: var(--primary-color);
+    margin: 15px auto 0;
+    border-radius: 10px;
 }
 
 .projects-container {
@@ -305,31 +388,31 @@ img {
 }
 
 .project-card {
-    background-color: var(--card-bg);
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 24px;
-    padding: 40px;
+    border-radius: var(--radius-lg);
+    padding: 35px;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-smooth);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.01);
-    transition: var(--transition);
 }
 
 .project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
-    border-color: rgba(255, 122, 0, 0.2);
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px -15px var(--primary-glow-intense), var(--shadow-lg);
+    border-color: rgba(255, 122, 0, 0.3);
 }
 
 .project-header {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .project-title {
-    font-size: 1.6rem;
-    margin-bottom: 12px;
-    color: var(--text-main);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
 }
 
 .project-description {
@@ -338,35 +421,14 @@ img {
     line-height: 1.6;
 }
 
+/* Galleries & Images Settings */
 .project-gallery {
     display: grid;
-    gap: 16px;
-    width: 100%;
+    gap: 15px;
+    margin-top: auto;
 }
 
-.gallery-item {
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
-    background: #000;
-}
-
-.img-project {
-    width: 100%;
-    transition: var(--transition);
-}
-
-/* Graphic Design Configuration (4:5 Aspect Ratio) */
-.gallery-poster {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.gallery-poster .img-project {
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-}
-
-/* Video Editing Motion Graphics Configuration (16:9 Aspect Ratio) */
+/* Kategori Pertama: Typography/Mograph (Layout Video Preview 16:9) */
 .gallery-mograph {
     grid-template-columns: repeat(2, 1fr);
 }
@@ -376,17 +438,41 @@ img {
     object-fit: cover;
 }
 
-/* Hover Zoom Logic inside galleries */
-.project-card:hover .img-project {
-    transform: scale(1.05);
-    opacity: 0.85;
+/* Kategori Kedua: Social Media Poster (Layout Poster 4:5) */
+.gallery-poster {
+    grid-template-columns: repeat(3, 1fr);
 }
 
-/* Link Preview Card Video Overlays */
+.gallery-poster .img-project {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: #000;
+}
+
+.img-project {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transition: var(--transition-smooth);
+}
+
+/* Micro-interactions Zoom on hover */
+.gallery-item:hover .img-project {
+    transform: scale(1.08) rotate(1deg);
+    opacity: 0.8;
+}
+
+/* Link Preview Setup for Instagram Overlay */
 .link-preview {
+    text-decoration: none;
     display: block;
     position: relative;
-    width: 100%;
     height: 100%;
 }
 
@@ -395,15 +481,15 @@ img {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 15px;
     background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    color: #ffffff;
-    font-size: 0.8rem;
+    color: #FFFFFF;
+    padding: 15px 10px 10px;
+    font-size: 0.75rem;
     font-weight: 500;
     text-align: center;
     opacity: 0;
     transform: translateY(10px);
-    transition: var(--transition);
+    transition: var(--transition-smooth);
 }
 
 .gallery-item:hover .caption-preview {
@@ -412,71 +498,78 @@ img {
 }
 
 /* ==========================================================================
-   6. CONTACT SECTION (Minimal Luxury Contact List)
+   6. CONTACT SECTION
    ========================================================================== */
-#contact {
-    padding: 100px 80px;
-    max-width: var(--max-width);
+.section-contact {
+    padding: 120px 20px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
 .contact-container {
-    background: var(--card-bg);
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 24px;
-    padding: 50px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.01);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
 }
 
 .contact-list {
     list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .contact-item {
     display: flex;
-    flex-direction: column;
-    padding: 20px;
-    border-radius: 16px;
-    background: rgba(0, 0, 0, 0.02);
+    align-items: center;
+    gap: 20px;
+    padding: 15px 20px;
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+    transition: var(--transition-smooth);
     border: 1px solid transparent;
-    transition: var(--transition);
 }
 
-#body-container.theme-dark .contact-item {
-    background: rgba(255, 255, 255, 0.02);
-}
-
+/* Hover effect layout matching premium requirements */
 .contact-item:hover {
-    transform: translateY(-4px);
-    border-color: var(--primary);
-    background: var(--card-bg);
-    box-shadow: 0 15px 30px var(--glow);
+    transform: translateX(8px);
+    background: var(--bg-card);
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
 }
 
 .contact-link, .contact-text {
-    font-size: 1rem;
     font-weight: 500;
     color: var(--text-main);
-    word-break: break-all;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: var(--transition-smooth);
 }
 
-.contact-separator {
-    color: var(--primary);
-    margin: 5px 0;
-    font-weight: bold;
+.contact-link:hover {
+    color: var(--primary-color);
+}
+
+/* Styling Khusus untuk Baris WhatsApp / Phone Link agar menonjol */
+.contact-item:has(a[href^="tel:"]) {
+    background: linear-gradient(135deg, rgba(255, 122, 0, 0.1), transparent);
+    border: 1px dashed var(--primary-color);
+}
+
+.contact-item:has(a[href^="tel:"]) .contact-link {
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 /* ==========================================================================
-   7. FOOTER SECTION
+   7. FOOTER
    ========================================================================== */
-#footer {
-    background-color: #111111;
-    color: #FFFFFF;
-    padding: 40px 80px;
-    border-top: 1px solid rgba(255,255,255,0.05);
+.site-footer {
+    padding: 40px 20px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
 }
 
 .footer-container {
@@ -487,121 +580,73 @@ img {
 
 .footer-copyright {
     font-size: 0.9rem;
-    color: #A0A0A0;
-    letter-spacing: 0.05em;
+    color: var(--text-muted);
 }
 
 /* ==========================================================================
-   8. ANIMATIONS & MICRO-INTERACTIONS
+   8. RESPONSIVE DESIGN (BREAKPOINTS)
    ========================================================================== */
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes pulseGlow {
-    from {
-        transform: translate(-50%, -50%) scale(0.9);
-        opacity: 0.5;
-    }
-    to {
-        transform: translate(-50%, -50%) scale(1.1);
-        opacity: 0.8;
-    }
-}
-
-/* Decorative Section Indicators */
-.section-title::before {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 40px;
-    height: 4px;
-    background-color: var(--primary);
-    border-radius: 2px;
-}
-
-/* ==========================================================================
-   9. RESPONSIVE MEDIA QUERIES (Breakpoints Optimization)
-   ========================================================================== */
-
-/* Tablet Optimization (≤ 1024px to 768px) */
-@media (max-width: 1024px) {
-    .nav-container, #home, #about, #projects, #contact, #footer {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-    
-    #hero-title {
+@media (max-width: 992px) {
+    .hero-heading {
         font-size: 3.5rem;
     }
-    
     .about-container {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        padding: 40px 30px;
         gap: 40px;
-        padding: 40px;
     }
-    
     .about-image-wrapper {
-        max-width: 320px;
-        margin: 0 auto;
+        max-width: 300px;
+    }
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
+    .nav-list {
+        display: none; /* Idealnya digantikan oleh hamburger menu via JS */
+    }
+    .hero-heading {
+        font-size: 2.8rem;
+    }
+    .hero-subheading {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
     .projects-container {
         grid-template-columns: 1fr;
-        gap: 30px;
     }
-    
-    .nav-list {
-        gap: 20px;
+    .gallery-poster {
+        grid-template-columns: repeat(3, 1fr); /* Tetap menjaga grid agar seimbang */
     }
 }
 
-/* Mobile Custom Optimization (≤ 480px) */
-@media (max-width: 480px) {
-    .nav-container, #home, #about, #projects, #contact, #footer {
-        padding-left: 24px;
-        padding-right: 24px;
-    }
-    
-    .nav-container {
-        flex-direction: column;
-        gap: 15px;
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
-    
-    .nav-list {
-        gap: 15px;
-    }
-    
-    #hero-title {
-        font-size: 2.2rem;
-    }
-    
-    #hero-subtitle {
-        font-size: 1rem;
-    }
-    
-    .about-container, .project-card, .contact-container {
-        padding: 24px;
-        border-radius: 16px;
-    }
-    
-    .gallery-poster {
-        grid-template-columns: 1fr;
-    }
-    
-    .gallery-mograph {
-        grid-template-columns: 1fr;
-    }
+/* ==========================================================================
+   9. SCROLL ANIMATIONS CRITERIA (INTERSECTION OBSERVER TARGET CLASSES)
+   ========================================================================== */
+/* Mempersiapkan properti sebelum animasi berjalan (diatur via JavaScript class) */
+.animate-ready {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
+.animate-ready.fade-left {
+    transform: translateX(-40px);
+}
+
+.animate-ready.fade-right {
+    transform: translateX(40px);
+}
+
+/* Class aktif ketika element masuk viewport */
+.animate-active {
+    opacity: 1;
+    transform: translate(0) scale(1) !important;
+}
+
+/* Stagger delay bawaan CSS untuk list agar memicu efek bergantian */
+.projects-container > *:nth-child(1) { transition-delay: 0.1s; }
+.projects-container > *:nth-child(2) { transition-delay: 0.2s; }
