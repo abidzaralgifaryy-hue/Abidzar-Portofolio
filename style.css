@@ -401,10 +401,10 @@ img {
 }
 
 .about-heading {
-    font-size: clamp(2rem, 3.5vw, 3rem); 
-    font-weight: 800;
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem); 
+    font-weight: 700; 
     color: var(--primary);
-    line-height: 1.2;
+    line-height: 1.3;
 }
 
 .heading-accent {
