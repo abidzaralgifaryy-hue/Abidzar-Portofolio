@@ -401,8 +401,8 @@ img {
 }
 
 .about-heading {
-    font-size: clamp(1.8rem, 3vw, 2.6rem); 
-    font-weight: 800; /* Kita kembalikan ketebalannya agar tetap tegas sebagai judul */
+    font-size: clamp(2rem, 3.5vw, 3rem); 
+    font-weight: 800;
     color: var(--primary);
     line-height: 1.2;
 }
