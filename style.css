@@ -814,51 +814,65 @@ body.dark-mode .grid-pattern {
     }
     
 /* ==================================================
-   PUNYA ABIDZAR - PERBAIKAN TOTAL NAVBAR IPAD & HP
+   PERBAIKAN TOTAL NAVBAR (MOBILE & DARK MODE)
    ================================================== */
 
-/* 1. Kembalikan efek blur bawaan untuk HP dan iPad di Light Mode */
-.site-header .nav-container,
-#header .nav-container {
-    background: rgba(255, 255, 255, 0.7) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important; /* Wajib buat Safari iOS/HP/iPad */
+/* 1. Perbaikan Hamburger Menu di Dark Mode */
+body.dark-mode .hamburger-menu span {
+    background: #EEEEEE !important; /* Memastikan garis hamburger berubah jadi putih/terang */
 }
 
-/* 2. Saat di-scroll pada Light Mode */
-.site-header.scrolled .nav-container,
-#header.scrolled .nav-container {
-    background: rgba(255, 255, 255, 0.85) !important;
+/* 2. Perbaikan Background Menu Mobile saat Pop-up Aktif di Dark Mode */
+@media (max-width: 768px) {
+    body.dark-mode .navigation {
+        background: #111111 !important; /* Mengubah background menu full-screen jadi gelap */
+    }
 }
 
-/* 3. PAKSA DARK MODE (Untuk iPad & HP saat mode gelap aktif) */
-body.dark-mode #header .nav-container,
-body.dark-mode .site-header .nav-container {
-    background: rgba(17, 17, 17, 0.8) !important; /* Tetap transparan biar dapet efek blur */
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
+/* 3. Perbaikan Media Query 1024px & Efek Scroll yang Menabrak */
+@media (max-width: 1024px) {
+    .glow {
+        filter: blur(50px);
+        opacity: 0.3;
+    }
 
-/* 4. Saat di-scroll pada Dark Mode */
-body.dark-mode #header.scrolled .nav-container,
-body.dark-mode .site-header.scrolled .nav-container {
-    background: rgba(17, 17, 17, 0.95) !important;
-}
+    /* Base Navbar untuk Tablet/HP di Light Mode */
+    .site-header .nav-container,
+    #header .nav-container {
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+    }
 
-/* 5. Paksa teks menu, logo, dan ikon navigasi jadi terang di Dark Mode */
-body.dark-mode #header .nav-link,
-body.dark-mode .site-header .nav-link {
-    color: #EEEEEE !important;
-}
+    /* Saat Di-scroll di Light Mode */
+    .site-header.scrolled .nav-container,
+    #header.scrolled .nav-container {
+        background: rgba(255, 255, 255, 0.95) !important;
+    }
 
-body.dark-mode #header .logo,
-body.dark-mode .site-header .logo,
-body.dark-mode #theme-toggle-btn i,
-body.dark-mode #hamburger-btn i {
-    color: #EEEEEE !important;
-}
+    /* Base Navbar untuk Tablet/HP di Dark Mode */
+    body.dark-mode #header .nav-container,
+    body.dark-mode .site-header .nav-container {
+        background: rgba(17, 17, 17, 0.8) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
 
-body.dark-mode .nav-link:hover {
-    color: var(--primary) !important;
+    /* Saat Di-scroll di Dark Mode */
+    body.dark-mode #header.scrolled .nav-container,
+    body.dark-mode .site-header.scrolled .nav-container {
+        background: rgba(17, 17, 17, 0.95) !important;
+    }
+
+    /* Warna Teks & Ikon Navigasi di Dark Mode */
+    body.dark-mode .nav-link,
+    body.dark-mode .logo,
+    body.dark-mode .btn-theme-toggle {
+        color: #EEEEEE !important;
+    }
+
+    body.dark-mode .nav-link:hover {
+        color: var(--primary) !important;
+    }
 }
