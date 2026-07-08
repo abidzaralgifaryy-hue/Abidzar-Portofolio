@@ -758,8 +758,10 @@ img {
 } /* << KURUNG PENUTUP MEDIA QUERY HP ADA DI SINI SEKARANG */
 
 /* ==================================================
-   TRANSISI SMOOTH UNTUK DARK MODE (DI LUAR MEDIA QUERY)
+   TRANSISI SMOOTH UNTUK DARK MODE
    ================================================== */
+
+/* Paksa transisi menggunakan "all" agar iOS mau membaca perubahan variabel warna */
 body, 
 .site-header .nav-container, 
 .glass-card, 
@@ -768,13 +770,11 @@ body,
 .section-title,
 .hero-heading,
 .navigation {
-    transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 body.dark-mode {
+    background-color: #111111 !important; /* Paksa warna mentah biar iOS gak bingung */
     --background: #111111;
     --dark: #F8F8F8;
     --white: #1e1e1e;
