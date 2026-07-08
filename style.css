@@ -1028,7 +1028,7 @@ body {
         position: relative !important;   /* Menghalangi child element meloncat keluar */
     }
 
-        /* FIX HAMBURGER MUNGIL: Ukuran dikunci total biar gak overscale */
+        /* FIX HAMBURGER: Dipergede sedikit lagi agar pas dan mudah diklik */
     .hamburger-menu,
     .hamburger-menu.active {
         position: relative !important;
@@ -1039,9 +1039,9 @@ body {
         justify-content: space-between !important;
         align-self: center !important;
         
-        /* Setel ukuran super mungil di sini */
-        width: 18px !important;   /* Lebar garis diperkecil total */
-        height: 10px !important;  /* Tinggi kotak diperkecil total */
+        /* Ukuran baru yang sedikit lebih besar */
+        width: 26px !important;   
+        height: 16px !important;  
         
         margin: 0 !important;
         padding: 0 !important;
@@ -1049,14 +1049,16 @@ body {
         cursor: pointer !important;
     }
 
-    /* Mengatur ketebalan tiap garis biar tipis dan estetik */
+    /* Mengatur ketebalan tiap garis agar seimbang */
     .hamburger-menu span {
         display: block !important;
         width: 100% !important;
-        height: 1.5px !important; /* Garis dibuat lebih tipis biar elegan */
+        height: 2px !important; /* Ketebalan garis disesuaikan */
         background-color: var(--dark) !important;
         transition: all 0.3s ease !important;
     }
+}
+
 
 
 /* Sembunyikan tombol Read More jika dibuka di PC/Laptop/Tablet Lebar */
@@ -1069,23 +1071,33 @@ body {
 
 
 /* ==================================================
-   PERBAIKAN FINAL: DARK MODE VIA CSS VARIABLES
+   PERBAIKAN SYSTEM DARK MODE (TERANG JADI GELAP)
    ================================================== */
-
-/* Saat class dark-mode aktif, kita putar balik semua warna variabelnya */
 body.dark-mode {
     --background: #111111;
-    --white: #1E1E1E; /* Mengubah background card jadi gelap */
-    --dark: #EEEEEE; /* Mengubah teks & ikon hamburger jadi terang */
-    --text-main: #E0E0E0; /* Mengubah teks menu jadi terang */
+    --white: #1E1E1E;       /* Card otomatis jadi gelap pekat */
+    --dark: #EEEEEE;        /* Teks utama & hamburger otomatis jadi putih/terang */
+    --text-main: #E0E0E0;   /* Menu navigasi jadi terang */
     --text-muted: #A0A0A0;
-    --glass-bg: rgba(17, 17, 17, 0.95); /* Navbar otomatis jadi hitam! */
+    --glass-bg: rgba(17, 17, 17, 0.95); /* Navbar melayang jadi gelap transparan */
     --glass-border: rgba(255, 255, 255, 0.1);
 }
 
-/* Transisi smooth untuk semua elemen agar tidak kaku */
-body {
-    transition: background-color 0.4s ease, color 0.4s ease;
+/* Menghilangkan paksaan warna oranye pada WhatsApp khusus saat Dark Mode */
+body.dark-mode .primary-card {
+    background: var(--white) !important;
+    box-shadow: none !important;
+}
+
+body.dark-mode .primary-card i, 
+body.dark-mode .primary-card h4, 
+body.dark-mode .primary-card p {
+    color: var(--dark) !important;
+}
+
+/* Efek hover untuk card whatsapp saat dark mode agar tetap interaktif */
+body.dark-mode .primary-card:hover {
+    background: #252525 !important;
 }
 
 /* Memastikan menu tirai layar penuh di HP ikut menjadi hitam */
