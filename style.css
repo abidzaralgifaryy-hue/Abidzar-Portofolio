@@ -757,9 +757,7 @@ img {
     .contact-grid {
         grid-template-columns: 1fr;
     }
-}
-
-/* ==================================================
+   /* ==================================================
    TRANSISI SMOOTH UNTUK DARK MODE
    ================================================== */
 
@@ -793,113 +791,4 @@ body.dark-mode {
 body.dark-mode .grid-pattern {
     opacity: 0.02;
     filter: invert(1);
-}
-
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-    
-    .hero-text {
-        text-align: center;
-        order: 2;
-    }
-
-    .hero-cta {
-        justify-content: center;
-    }
-    
-    .hero-image-wrapper {
-        order: 1;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-
-    .floating-badge {
-        left: 10px;
-        bottom: 20px;
-    }
-
-    .video-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    /* Mobile Navbar */
-    .site-header {
-        width: 100%;
-        top: 0;
-        border-radius: 0;
-    }
-
-    .nav-container {
-        border-radius: 0;
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
-    }
-
-    .hamburger-menu {
-        display: block;
-    }
-
-    .navigation {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: var(--white);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        pointer-events: none;
-        transition: var(--transition);
-        z-index: 1000;
-    }
-
-    .navigation.active {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .nav-list {
-        flex-direction: column;
-        text-align: center;
-        gap: 40px;
-    }
-
-    .nav-link {
-        font-size: 1.5rem;
-    }
-
-    /* Mobile Layout Fixes */
-    .section-hero {
-        padding-top: 150px;
-    }
-    
-    .glass-card {
-        padding: 40px 20px;
-    }
-
-    .about-image-wrapper {
-        margin-top: 20px;
-    }
-
-    .design-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .featured-design {
-        grid-column: span 1;
-    }
-    
-    .featured-design .card-image,
-    .design-item .card-image {
-        aspect-ratio: auto;
-    }
-
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
 }
