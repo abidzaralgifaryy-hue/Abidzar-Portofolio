@@ -6,32 +6,34 @@ const themeToggleBtn = document.getElementById('theme-toggle-btn');
 const themeIcon = themeToggleBtn.querySelector('i');
 const bodyElement = document.body;
 
-// Fungsi untuk menerapkan tema (menambah/menghapus class .dark-mode)
+// Fungsi untuk menerapkan tema (Menghindari delay freeze di iOS)
 const setTheme = (theme) => {
     if (theme === 'dark') {
         bodyElement.classList.add('dark-mode');
         themeIcon.className = 'ph ph-sun'; // Ikon matahari saat gelap
-        localStorage.setItem('theme', 'dark');
-    } else {
-        bodyElement.classList.remove('dark-mode');
-        themeIcon.className = 'ph ph-moon'; // Ikon bulan saat terang
-        localStorage.setItem('theme', 'light');
-    }
-};
-
-// Cek tema yang sebelumnya disimpan di localStorage
-const setTheme = (theme) => {
-    if (theme === 'dark') {
-        bodyElement.classList.add('dark-mode');
-        themeIcon.className = 'ph ph-sun';
-        // Gunakan setTimeout kecil agar iOS tidak nge-freeze saat menulis memory
         setTimeout(() => localStorage.setItem('theme', 'dark'), 10);
     } else {
         bodyElement.classList.remove('dark-mode');
-        themeIcon.className = 'ph ph-moon';
+        themeIcon.className = 'ph ph-moon'; // Ikon bulan saat terang
         setTimeout(() => localStorage.setItem('theme', 'light'), 10);
     }
 };
+
+// Ambil data tema terakhir pas web pertama kali dibuka
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    setTheme(savedTheme);
+} else {
+    // Jika belum pernah disetel, ikuti mode default bawaan HP/iPad user
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(prefersDark ? 'dark' : 'light');
+}
+
+// Event listener klik tombol ganti tema
+themeToggleBtn.addEventListener('click', () => {
+    const isDark = bodyElement.classList.contains('dark-mode');
+    setTheme(isDark ? 'light' : 'dark');
+});
 
 
 
