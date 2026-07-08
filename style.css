@@ -644,9 +644,14 @@ img {
 @media (max-width: 992px) {
     .hero-content-wrapper,
     .glass-card { 
-}/* ==================================================
+       grid-template-columns: 1fr;
+       gap: 40x;
+    }
+}
+
+/* ==================================================
    TRANSISI SMOOTH UNTUK DARK MODE
-   ================================================== */
+================================================== */
 
 /* Berikan efek transisi ke semua elemen utama agar perubahan warna tidak kaku/delay */
 body, 
