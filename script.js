@@ -20,18 +20,19 @@ const setTheme = (theme) => {
 };
 
 // Cek tema yang sebelumnya disimpan di localStorage
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-    setTheme(savedTheme);
-} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    setTheme('dark');
-}
+const setTheme = (theme) => {
+    if (theme === 'dark') {
+        bodyElement.classList.add('dark-mode');
+        themeIcon.className = 'ph ph-sun';
+        // Gunakan setTimeout kecil agar iOS tidak nge-freeze saat menulis memory
+        setTimeout(() => localStorage.setItem('theme', 'dark'), 10);
+    } else {
+        bodyElement.classList.remove('dark-mode');
+        themeIcon.className = 'ph ph-moon';
+        setTimeout(() => localStorage.setItem('theme', 'light'), 10);
+    }
+};
 
-// Event klik untuk tombol ganti tema
-themeToggleBtn.addEventListener('click', () => {
-    const isDark = bodyElement.classList.contains('dark-mode');
-    setTheme(isDark ? 'light' : 'dark');
-});
 
 
 // ==================================================
