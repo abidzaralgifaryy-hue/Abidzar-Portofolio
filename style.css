@@ -920,60 +920,35 @@ body {
 @media (max-width: 768px) {
     /* ... kode mobile kamu yang lain ... */
 
-    /* 1. Perbaikan Posisi Hamburger & Nav Actions (Gak Bakal Goyang Pas Dipencet) */
+    /* Mengunci letak pembungkus ikon agar tidak hancur saat menu terbuka */
     .nav-actions {
         display: flex !important;
-        align-items: center !important;
+        align-items: center !important;   /* Mengunci posisi sejajar tengah vertikal */
         justify-content: flex-end !important;
         gap: 20px !important;
-        padding-right: 15px !important; /* Geser navbar agak ke kiri sedikit biar gak mepet */
+        padding-right: 15px !important;  /* Mendorong hamburger sedikit ke kiri biar pas */
         height: 100% !important;
+        position: relative !important;   /* Menghalangi child element meloncat keluar */
     }
 
-    /* Memastikan hamburger-menu biasa ATAU pas aktif (.active) posisinya tetep rigid di tengah vertikal */
+    /* Memaksa hamburger biasa MAUPUN pas aktif (.active) tetap di poros tengah vertikal */
     .hamburger-menu,
     .hamburger-menu.active {
+        position: static !important;     /* Menghapus absolute/fixed tersembunyi yang bikin melenceng */
         display: flex !important;
         flex-direction: column !important;
         justify-content: space-between !important;
-        align-self: center !important;
-        height: 16px !important; /* Ukuran tinggi kotak pas tirai */
-        width: 26px !important;  /* Lebar garis hamburger */
+        align-self: center !important;   /* Fix mutlak rata tengah */
+        width: 24px !important;
+        height: 16px !important;
         margin: 0 !important;
         padding: 0 !important;
-        z-index: 1002 !important; /* Di atas tirai menu navigasi */
+        z-index: 1005 !important;        /* Tetap berada di atas layar menu mobile */
     }
 
-    /* 2. Fitur Potong Teks & Tombol Read More khusus di HP */
-    .text-description {
-        font-size: 0.95rem !important;
-        line-height: 1.6 !important;
-        display: -webkit-box !important;
-        -webkit-line-clamp: 3 !important; /* Batasi awal 3 baris saja di HP */
-        -webkit-box-orient: vertical !important;
-        overflow: hidden !important;
-        transition: max-height 0.3s ease;
-    }
-
-    /* Ketika tombol dicentang/aktif, batasan baris dilepas */
-    .text-description.expanded {
-        display: block !important;
-        overflow: visible !important;
-        -webkit-line-clamp: unset !important;
-    }
-
-    /* Styling Tombol Lihat Selengkapnya */
-    .read-more-btn {
-        display: inline-block !important;
-        background: none;
-        border: none;
-        color: var(--primary);
-        font-weight: 600;
-        font-size: 0.9rem;
-        padding: 0;
-        margin-top: 8px;
-        cursor: pointer;
-        font-family: 'Poppins', sans-serif;
+    /* Memastikan bentuk garis X pas ditengah kotak hamburger */
+    .hamburger-menu.active span {
+        margin: 0 !important;
     }
 }
 
