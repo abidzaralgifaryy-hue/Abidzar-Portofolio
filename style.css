@@ -648,13 +648,18 @@ img {
         gap: 40px;
     }
     
+    /* Mengatur teks hero agar tetap rata kiri di tablet, sejajar dengan tombol */
     .hero-text {
-        text-align: center;
+        text-align: left; /* << DIUBAH JADI LEFT */
         order: 2;
     }
 
+    /* Mengatur posisi tombol agar sejajar lurus dengan teks di atasnya */
     .hero-cta {
-        justify-content: center;
+        display: flex;
+        justify-content: flex-start; /* << RATA KIRI */
+        gap: 20px;
+        margin: 0; /* << HAPUS MARGIN AUTO */
     }
     
     .hero-image-wrapper {
@@ -672,6 +677,7 @@ img {
         grid-template-columns: 1fr;
     }
 }
+
 
 @media (max-width: 768px) {
     /* Mobile Navbar */
