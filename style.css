@@ -765,16 +765,16 @@ img {
    FIX UNIVERSAL: ANTI-DELAY IPAD & GRID DIJAMIN AMAN
    ================================================== */
 
-/* Transisi singkat biar smooth tapi gak nge-freeze */
-body, .glass-card, .showcase-card, .contact-card {
-    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out !important;
+/* Transisi singkat biar smooth tapi gak nge-freeze di iPad */
+.glass-card, .showcase-card, .contact-card {
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
 h1, h2, h3, p, i, a {
-    transition: color 0.2s ease-in-out !important;
+    transition: color 0.2s ease-in-out;
 }
 
-/* Saat Dark Mode Aktif: Tembak warna solid langsung (Bukan variabel) */
+/* Saat Dark Mode Aktif */
 body.dark-mode {
     background-color: #111111 !important;
     color: #EEEEEE !important;
@@ -795,19 +795,24 @@ body.dark-mode p, body.dark-mode .text-muted {
     color: #A0A0A0 !important;
 }
 
-/* Grid Pattern Dipaksa Muncul dan Diubah Jadi Putih Tipis */
+/* 🔥 SOLUSI GRID: Mengubah warna grid jadi putih transparan saat Dark Mode aktif */
 body.dark-mode .grid-pattern {
-    display: block !important;
-    opacity: 0.03 !important;
-    filter: invert(1) !important;
-    mix-blend-mode: lighten !important;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    opacity: 0.4;
 }
 
-/* Sembunyikan bulatan glow yang membebani memori iPad */
-.glow-1, .glow-2 {
-    transition: opacity 0.3s ease !important;
-}
-body.dark-mode .glow-1,
-body.dark-mode .glow-2 {
-    opacity: 0 !important;
+/* Optimasi performa untuk iPad/iOS Safari agar tidak lag karena filter blur */
+@media (max-width: 1024px) {
+    .glow {
+        filter: blur(50px); /* Kurangi intensitas blur di tablet agar rendering ringan */
+        opacity: 0.3;
+    }
+    .site-header.scrolled .nav-container {
+        backdrop-filter: none; /* Matikan backdrop-filter blur di iPad jika masih terasa berat */
+        background: rgba(255, 255, 255, 0.95);
+    }
+    body.dark-mode .site-header.scrolled .nav-container {
+        background: rgba(20, 20, 20, 0.95);
+    }
 }
