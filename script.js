@@ -72,3 +72,22 @@ if (ctaPrimaryBtn) {
         }
     });
 }
+
+
+// ==================================================
+// 3. FITUR READ MORE DESKRIPSI (KHUSUS MOBILE)
+// ==================================================
+const readMoreBtn = document.getElementById('read-more-btn');
+const textDescription = document.querySelector('.text-description');
+
+if (readMoreBtn && textDescription) {
+    readMoreBtn.addEventListener('click', () => {
+        textDescription.classList.toggle('expanded');
+        
+        if (textDescription.classList.contains('expanded')) {
+            readMoreBtn.textContent = 'Sembunyikan';
+        } else {
+            readMoreBtn.textContent = 'Lihat Selengkapnya';
+        }
+    });
+}
