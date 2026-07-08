@@ -1028,26 +1028,36 @@ body {
         position: relative !important;   /* Menghalangi child element meloncat keluar */
     }
 
-    /* Memaksa hamburger biasa MAUPUN pas aktif (.active) tetap di poros tengah vertikal */
+        /* FIX HAMBURGER MUNGIL: Ukuran dikunci total biar gak overscale */
     .hamburger-menu,
     .hamburger-menu.active {
-        position: static !important;     /* Menghapus absolute/fixed tersembunyi yang bikin melenceng */
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: space-between !important;
-        align-self: center !important;   /* Fix mutlak rata tengah */
-        width: 24px !important;
-        height: 16px !important;
+        align-self: center !important;
+        
+        /* Setel ukuran super mungil di sini */
+        width: 18px !important;   /* Lebar garis diperkecil total */
+        height: 10px !important;  /* Tinggi kotak diperkecil total */
+        
         margin: 0 !important;
         padding: 0 !important;
-        z-index: 1005 !important;        /* Tetap berada di atas layar menu mobile */
+        z-index: 1005 !important;
+        cursor: pointer !important;
     }
 
-    /* Memastikan bentuk garis X pas ditengah kotak hamburger */
-    .hamburger-menu.active span {
-        margin: 0 !important;
+    /* Mengatur ketebalan tiap garis biar tipis dan estetik */
+    .hamburger-menu span {
+        display: block !important;
+        width: 100% !important;
+        height: 1.5px !important; /* Garis dibuat lebih tipis biar elegan */
+        background-color: var(--dark) !important;
+        transition: all 0.3s ease !important;
     }
-}
+
 
 /* Sembunyikan tombol Read More jika dibuka di PC/Laptop/Tablet Lebar */
 @media (min-width: 769px) {
