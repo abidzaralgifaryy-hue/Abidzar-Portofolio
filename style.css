@@ -814,34 +814,51 @@ body.dark-mode .grid-pattern {
     }
     
 /* ==================================================
-   PUNYA ABIDZAR - PERBAIKAN NAVBAR SUPER FORCE DARK
+   PUNYA ABIDZAR - PERBAIKAN TOTAL NAVBAR IPAD & HP
    ================================================== */
 
-/* Paksa background kontainer navbar jadi gelap pekat */
+/* 1. Kembalikan efek blur bawaan untuk HP dan iPad di Light Mode */
+.site-header .nav-container,
+#header .nav-container {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important; /* Wajib buat Safari iOS/HP/iPad */
+}
+
+/* 2. Saat di-scroll pada Light Mode */
+.site-header.scrolled .nav-container,
+#header.scrolled .nav-container {
+    background: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* 3. PAKSA DARK MODE (Untuk iPad & HP saat mode gelap aktif) */
 body.dark-mode #header .nav-container,
-body.dark-mode .site-header .nav-container,
-body.dark-mode .nav-container {
-    background-color: #111111 !important;
-    background: rgba(17, 17, 17, 0.95) !important;
+body.dark-mode .site-header .nav-container {
+    background: rgba(17, 17, 17, 0.8) !important; /* Tetap transparan biar dapet efek blur */
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* Paksa teks menu, logo, dan ikon navigasi jadi putih terang */
+/* 4. Saat di-scroll pada Dark Mode */
+body.dark-mode #header.scrolled .nav-container,
+body.dark-mode .site-header.scrolled .nav-container {
+    background: rgba(17, 17, 17, 0.95) !important;
+}
+
+/* 5. Paksa teks menu, logo, dan ikon navigasi jadi terang di Dark Mode */
 body.dark-mode #header .nav-link,
-body.dark-mode .site-header .nav-link,
-body.dark-mode .nav-link {
+body.dark-mode .site-header .nav-link {
     color: #EEEEEE !important;
 }
 
 body.dark-mode #header .logo,
 body.dark-mode .site-header .logo,
-body.dark-mode .logo,
 body.dark-mode #theme-toggle-btn i,
 body.dark-mode #hamburger-btn i {
     color: #EEEEEE !important;
 }
 
-/* Biar tombol menu hover-nya tetep orange */
 body.dark-mode .nav-link:hover {
     color: var(--primary) !important;
 }
