@@ -1,5 +1,5 @@
 // ==================================================
-// 1. SYSTEM DARK & LIGHT MODE (OPTIMASI IPAD)
+// 1. SYSTEM DARK & LIGHT MODE (OPTIMASI IPAD & INCOGNITO)
 // ==================================================
 
 const themeToggleBtn = document.getElementById('theme-toggle-btn');
@@ -7,7 +7,7 @@ const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
 const bodyElement = document.body;
 
 const setTheme = (theme) => {
-    // 1. Eksekusi perubahan tema utama
+    // 1. Eksekusi perubahan kelas warna
     if (theme === 'dark') {
         bodyElement.classList.add('dark-mode');
         if (themeIcon) themeIcon.className = 'ph ph-sun';
@@ -16,62 +16,36 @@ const setTheme = (theme) => {
         if (themeIcon) themeIcon.className = 'ph ph-moon';
     }
 
-    // 2. AMBLESIN LANGSUNG: Paksa iOS Safari repaint total elemen HTML
-    if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-        // Trik A: Ubah property CSS root secara acak agar browser mendeteksi perubahan data visual
-        document.documentElement.style.setProperty('--ios-force-repaint', Math.random());
-        
-        // Trik B: Paksa reflow dengan menyenggol offsetHeight body
-        const fixLag = bodyElement.offsetHeight;
-        
-        // Trik C: Trik scroll gaib 1 piksel di dalam frame berikutnya
-        requestAnimationFrame(() => {
-            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            window.scrollTo(0, currentScroll + 1);
-            
-            setTimeout(() => {
-                window.scrollTo(0, currentScroll);
-            }, 10);
-        });
+    // 2. Simpan ke localStorage dengan aman (Anti-Mogok di Incognito)
+    try {
+        localStorage.setItem('theme', theme);
+    } catch (e) {
+        console.log("Mode Incognito mendeteksi pemblokiran storage, aman.");
     }
-
-    // Tulis ke localStorage belakangan biar gak nahan render layar iPad
-    setTimeout(() => {
-        try {
-            localStorage.setItem('theme', theme);
-        } catch (e) {
-            console.error(e);
-        }
-    }, 50);
 };
-
-    setTimeout(() => {
-        try {
-            localStorage.setItem('theme', theme);
-        } catch (e) {
-            console.error(e);
-        }
-    }, 50);
-};
-
 
 // Ambil data tema terakhir pas web pertama kali dibuka
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-    setTheme(savedTheme);
-} else {
+try {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'light');
+    }
+} catch (e) {
+    // Pengaman jika localStorage diblokir saat pertama kali load di Incognito
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     setTheme(prefersDark ? 'dark' : 'light');
 }
 
-// Event listener klik tombol ganti tema (Pake tombol asli lo)
+// Event listener klik tombol ganti tema
 if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
         const isDark = bodyElement.classList.contains('dark-mode');
         setTheme(isDark ? 'light' : 'dark');
     });
 }
-
 
 
 // ==================================================
