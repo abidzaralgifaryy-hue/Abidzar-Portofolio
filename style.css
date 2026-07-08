@@ -812,10 +812,7 @@ body.dark-mode .grid-pattern {
         backdrop-filter: none; /* Matikan backdrop-filter blur di iPad jika masih terasa berat */
         background: rgba(255, 255, 255, 0.95);
     }
-    body.dark-mode .site-header.scrolled .nav-container {
-        background: rgba(20, 20, 20, 0.95);
-    }
-}
+    
 /* BARIS KODE LAMA KAMU DI ATAS... */
 
 
