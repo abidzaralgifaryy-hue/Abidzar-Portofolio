@@ -762,10 +762,10 @@ img {
    ================================================== */
 
 /* ==================================================
-   FIX DARK MODE UNIVERSAL (ANTI-DELAY IPAD & GRID AMAN)
+   FIX UNIVERSAL: ANTI-DELAY IPAD & GRID DIJAMIN AMAN
    ================================================== */
 
-/* 1. Transisi dibuat super singkat khusus background dan teks utama */
+/* Transisi singkat biar smooth tapi gak nge-freeze */
 body, .glass-card, .showcase-card, .contact-card {
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out !important;
 }
@@ -774,13 +774,12 @@ h1, h2, h3, p, i, a {
     transition: color 0.2s ease-in-out !important;
 }
 
-/* 2. Saat Dark Mode Aktif: Paksa warna solid (Bukan pake variabel) */
+/* Saat Dark Mode Aktif: Tembak warna solid langsung (Bukan variabel) */
 body.dark-mode {
     background-color: #111111 !important;
     color: #EEEEEE !important;
 }
 
-/* Tembak langsung background kartu agar berubah instan tanpa nunggu memori iPad */
 body.dark-mode .glass-card,
 body.dark-mode .showcase-card,
 body.dark-mode .contact-card {
@@ -788,28 +787,23 @@ body.dark-mode .contact-card {
     border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* Tembak langsung semua warna teks */
-body.dark-mode h1, 
-body.dark-mode h2, 
-body.dark-mode h3, 
-body.dark-mode .section-title, 
-body.dark-mode .hero-heading {
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode .section-title, body.dark-mode .hero-heading {
     color: #EEEEEE !important;
 }
 
-body.dark-mode p, 
-body.dark-mode .text-muted {
+body.dark-mode p, body.dark-mode .text-muted {
     color: #A0A0A0 !important;
 }
 
-/* 3. Grid Pattern Tetap Aman Terlihat */
+/* Grid Pattern Dipaksa Muncul dan Diubah Jadi Putih Tipis */
 body.dark-mode .grid-pattern {
+    display: block !important;
     opacity: 0.03 !important;
     filter: invert(1) !important;
-    mix-blend-mode: lighten;
+    mix-blend-mode: lighten !important;
 }
 
-/* 4. Matikan bulatan glow agar iPad tidak freeze */
+/* Sembunyikan bulatan glow yang membebani memori iPad */
 .glow-1, .glow-2 {
     transition: opacity 0.3s ease !important;
 }
