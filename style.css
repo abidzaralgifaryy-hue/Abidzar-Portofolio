@@ -819,7 +819,7 @@ body.dark-mode .grid-pattern {
    KHUSUS MOBILE / HP (Hamburger & Deskripsi Fixes)
    ================================================== */
 @media (max-width: 768px) {
-    /* Navbar tipis menggantung */
+    /* Navbar melayang tipis menggantung */
     .site-header {
         width: 92% !important;
         top: 12px !important;    
@@ -828,7 +828,7 @@ body.dark-mode .grid-pattern {
     }
 
     .nav-container {
-        padding: 8px 15px !important;
+        padding: 6px 12px !important; /* Diperkecil lagi biar makin slim navbar-nya */
         border-radius: 15px !important;
         border: 1px solid var(--glass-border) !important;
         background: var(--glass-bg) !important;
@@ -846,7 +846,7 @@ body.dark-mode .grid-pattern {
         height: 100% !important;
     }
 
-    /* FIX HAMBURGER: Tetap diam di tengah vertikal dan tidak melompat miring */
+    /* FIX HAMBURGER: Diperkecil ukurannya (Lebih mungil & pas tengah vertikal) */
     .hamburger-menu,
     .hamburger-menu.active {
         position: relative !important;
@@ -856,14 +856,50 @@ body.dark-mode .grid-pattern {
         flex-direction: column !important;
         justify-content: space-between !important;
         align-self: center !important;
-        width: 24px !important;
-        height: 14px !important;
+        width: 20px !important;   /* Diperkecil dari 24px biar gak kegedean */
+        height: 12px !important;  /* Diperkecil dari 14px agar pas proporsinya */
         margin: 0 !important;
         padding: 0 !important;
         z-index: 1005 !important;
     }
 
-    /* Mengatur teks deskripsi dipotong 3 baris di awal */
+    /* Garis tipis hamburger menu */
+    .hamburger-menu span {
+        display: block !important;
+        width: 100% !important;
+        height: 2px !important; /* Ketebalan garis menu */
+        background-color: var(--dark) !important;
+        transition: all 0.3s ease !important;
+    }
+
+    /* FIX MENU TIRAI: Memberikan background solid pas menu dibuka di HP */
+    .navigation {
+        background: var(--white) !important; /* Warna putih solid saat light mode */
+        backdrop-filter: none !important;
+    }
+
+    /* Saat menu aktif/dibuka di HP, pastikan layarnya menutup sempurna dengan warna solid */
+    .navigation.active {
+        background: var(--white) !important;
+        display: block !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100vh !important;
+        z-index: 1000 !important;
+        padding-top: 80px !important; /* Jarak agar menu teks tidak tertutup navbar atas */
+    }
+
+    /* Jika dalam kondisi DARK MODE, paksa background menu tirai jadi hitam pekat */
+    body.dark-mode .navigation,
+    body.dark-mode .navigation.active {
+        background: var(--background) !important; /* Ikut warna gelap sistem (#111111) */
+    }
+
+    /* ==================================================
+       FITUR READ MORE DESKRIPSI (POTONG TEKS MOBILE)
+       ================================================== */
     .text-description {
         font-size: 0.95rem !important;
         line-height: 1.6 !important;
@@ -873,14 +909,13 @@ body.dark-mode .grid-pattern {
         overflow: hidden !important;
     }
 
-    /* Saat klik Lihat Selengkapnya, teks kebuka penuh */
+    /* Saat tombol Lihat Selengkapnya diklik */
     .text-description.expanded {
         display: block !important;
         overflow: visible !important;
         -webkit-line-clamp: unset !important;
     }
 
-    /* Tombol Read More Modern */
     .read-more-btn {
         display: inline-block !important;
         background: none;
@@ -892,17 +927,6 @@ body.dark-mode .grid-pattern {
         margin-top: 6px;
         cursor: pointer;
         font-family: 'Poppins', sans-serif;
-    }
-
-    body.dark-mode .navigation {
-        background: var(--background);
-    }
-}
-
-/* Sembunyikan tombol selengkapnya kalau dibuka di laptop */
-@media (min-width: 769px) {
-    .read-more-btn {
-        display: none !important;
     }
 }
 
