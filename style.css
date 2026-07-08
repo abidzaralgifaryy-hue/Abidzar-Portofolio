@@ -813,32 +813,35 @@ body.dark-mode .grid-pattern {
         background: rgba(255, 255, 255, 0.95);
     }
     
-/* BARIS KODE LAMA KAMU DI ATAS... */
-
-
 /* ==================================================
-   PUNYA ABIDZAR - PERBAIKAN NAVBAR & GRID (JULI 2026)
+   PUNYA ABIDZAR - PERBAIKAN NAVBAR SUPER FORCE DARK
    ================================================== */
-body.dark-mode .site-header .nav-container {
-    background: rgba(20, 20, 20, 0.6) !important;
-    border-color: rgba(255, 255, 255, 0.05) !important;
-}
 
-body.dark-mode .site-header.scrolled .nav-container {
+/* Paksa background kontainer navbar jadi gelap pekat */
+body.dark-mode #header .nav-container,
+body.dark-mode .site-header .nav-container,
+body.dark-mode .nav-container {
+    background-color: #111111 !important;
     background: rgba(17, 17, 17, 0.95) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
+/* Paksa teks menu, logo, dan ikon navigasi jadi putih terang */
+body.dark-mode #header .nav-link,
+body.dark-mode .site-header .nav-link,
 body.dark-mode .nav-link {
     color: #EEEEEE !important;
 }
 
-body.dark-mode .nav-link:hover {
-    color: var(--primary) !important;
-}
-
-body.dark-mode .logo, 
-body.dark-mode #theme-toggle-btn i, 
+body.dark-mode #header .logo,
+body.dark-mode .site-header .logo,
+body.dark-mode .logo,
+body.dark-mode #theme-toggle-btn i,
 body.dark-mode #hamburger-btn i {
     color: #EEEEEE !important;
+}
+
+/* Biar tombol menu hover-nya tetep orange */
+body.dark-mode .nav-link:hover {
+    color: var(--primary) !important;
 }
