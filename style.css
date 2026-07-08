@@ -643,31 +643,136 @@ img {
    ================================================== */
 @media (max-width: 992px) {
     .hero-content-wrapper,
-    .glass-card { 
-       grid-template-columns: 1fr;
-       gap: 40x;
+    .glass-card {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .hero-text {
+        text-align: center;
+        order: 2;
+    }
+
+    .hero-cta {
+        justify-content: center;
+    }
+    
+    .hero-image-wrapper {
+        order: 1;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .floating-badge {
+        left: 10px;
+        bottom: 20px;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile Navbar */
+    .site-header {
+        width: 100%;
+        top: 0;
+        border-radius: 0;
+    }
+
+    .nav-container {
+        border-radius: 0;
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    .navigation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: var(--transition);
+        z-index: 1000;
+    }
+
+    .navigation.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .nav-link {
+        font-size: 1.5rem;
+    }
+
+    /* Mobile Layout Fixes */
+    .section-hero {
+        padding-top: 150px;
+    }
+    
+    .glass-card {
+        padding: 40px 20px;
+    }
+
+    .about-image-wrapper {
+        margin-top: 20px;
+    }
+
+    .design-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-design {
+        grid-column: span 1;
+    }
+    
+    .featured-design .card-image,
+    .design-item .card-image {
+        aspect-ratio: auto;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
     }
 }
 
 /* ==================================================
    TRANSISI SMOOTH UNTUK DARK MODE
-================================================== */
+   ================================================== */
 
-/* Berikan efek transisi ke semua elemen utama agar perubahan warna tidak kaku/delay */
+/* Efek transisi warna di semua elemen utama agar mengalir halus */
 body, 
 .site-header .nav-container, 
 .glass-card, 
 .showcase-card, 
 .contact-card,
 .section-title,
-.hero-heading {
+.hero-heading,
+.navigation {
     transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                 color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                 border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                 box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Ketika class .dark-mode aktif, override variabel warna asli */
+/* Mengubah variabel warna ketika class .dark-mode aktif */
 body.dark-mode {
     --background: #111111;
     --dark: #F8F8F8;
@@ -678,12 +783,11 @@ body.dark-mode {
     --glass-border: rgba(255, 255, 255, 0.1);
 }
 
-/* Sesuaikan grid pattern di background agar tidak terlalu terang */
+/* Menyesuaikan grid pattern latar belakang di mode gelap */
 body.dark-mode .grid-pattern {
     opacity: 0.02;
     filter: invert(1);
 }
-
 
         grid-template-columns: 1fr;
         gap: 40px;
