@@ -7,22 +7,25 @@ const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
 const bodyElement = document.body;
 
 const setTheme = (theme) => {
-    // 1. Eksekusi perubahan kelas warna
+    const logoImg = document.querySelector('.logo img'); // Cari element gambar logo
+    
     if (theme === 'dark') {
         bodyElement.classList.add('dark-mode');
         if (themeIcon) themeIcon.className = 'ph ph-sun';
+        
+        // JIKA GELAP: Gunakan logo yang terang (light) agar kontras kelihatan
+        if (logoImg) logoImg.src = 'assets/logo-light.png'; 
     } else {
         bodyElement.classList.remove('dark-mode');
         if (themeIcon) themeIcon.className = 'ph ph-moon';
+        
+        // JIKA TERANG: Gunakan logo yang gelap (dark) agar kontras kelihatan
+        if (logoImg) logoImg.src = 'assets/logo-dark.png'; 
     }
-
-    // 2. Simpan ke localStorage dengan aman (Anti-Mogok di Incognito)
-    try {
-        localStorage.setItem('theme', theme);
-    } catch (e) {
-        console.log("Mode Incognito mendeteksi pemblokiran storage, aman.");
-    }
+    
+    // ... sisa kode simpan localStorage kamu ...
 };
+
 
 // Ambil data tema terakhir pas web pertama kali dibuka
 try {
