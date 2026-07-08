@@ -786,22 +786,15 @@ body.dark-mode {
     --glass-border: rgba(255, 255, 255, 0.1);
 }
 
-/* Menyesuaikan grid pattern latar belakang di mode gelap */
-body.dark-mode .grid-pattern {
-    opacity: 0.02;
-    filter: invert(1);
-}
-
-/* ==================================================
-   OPTIMASI KHUSUS IOS & IPAD (ANTI-DELAY)
-   ================================================== */
-body, body * {
-    will-change: background-color, color;
-}
-
-/* Trik hardware acceleration: Paksa GPU iPad merender elemen glow agar super ringan */
+/* EFEK FADE SMOOTH UNTUK BULATAN GLOW DI IOS TANPA DELAY */
 .glow-1, .glow-2 {
-    transition: background 0.1s ease-in-out !important;
-    transform: translateZ(0); 
-    -webkit-transform: translateZ(0);
+    transition: opacity 0.4s ease, visibility 0.4s ease !important;
+    will-change: opacity;
+}
+
+/* Pas masuk mode gelap, bikin efeknya memudar pelan-pelan sampai hilang */
+body.dark-mode .glow-1,
+body.dark-mode .glow-2 {
+    opacity: 0 !important;
+    visibility: hidden !important;
 }
