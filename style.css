@@ -786,7 +786,22 @@ body.dark-mode {
     --glass-border: rgba(255, 255, 255, 0.1);
 }
 
+/* Menyesuaikan grid pattern latar belakang di mode gelap */
 body.dark-mode .grid-pattern {
     opacity: 0.02;
     filter: invert(1);
+}
+
+/* ==================================================
+   OPTIMASI KHUSUS IOS & IPAD (ANTI-DELAY)
+   ================================================== */
+body, body * {
+    will-change: background-color, color;
+}
+
+/* Trik hardware acceleration: Paksa GPU iPad merender elemen glow agar super ringan */
+.glow-1, .glow-2 {
+    transition: background 0.1s ease-in-out !important;
+    transform: translateZ(0); 
+    -webkit-transform: translateZ(0);
 }
