@@ -920,32 +920,37 @@ body {
 @media (max-width: 768px) {
     /* ... kode mobile kamu yang sudah ada sebelumnya ... */
 
-    /* 1. Memposisikan Hamburger Menu biar pas di tengah secara vertikal */
+    /* 1. Memposisikan Hamburger Menu & Tombol Tema agar bener-bener presisi */
     .nav-actions {
-        display: flex;
-        align-items: center; /* Memaksa tombol tema dan hamburger sejajar tengah */
-        justify-content: center;
+        display: flex !important;
+        align-items: center !important;    /* Paksa semua ikon sejajar lurus secara vertikal */
+        justify-content: flex-end !important;
+        gap: 20px !important;              /* Jarak antara tombol tema dan hamburger */
+        padding-right: 10px !important;    /* Menggeser tombol hamburger agar agak ke kiri (tidak terlalu mepet kanan layar) */
     }
 
     .hamburger-menu {
-        display: block;
-        margin: 0; /* Menghapus margin bawaan jika ada */
-        align-self: center; /* Memastikan hamburger bener-bener rata tengah vertikal */
-        top: -1px; /* Sedikit adjustment mikro jika dirasa kurang naik/turun */
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 18px !important;           /* Menyesuaikan tinggi agar sejajar pas di tengah */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
     }
 
-    /* 2. Mengecilkan ukuran teks deskripsi diri agar tidak kepanjangan di HP */
+    /* 2. Memotong Deskripsi Diri secara otomatis agar tidak kepanjangan di HP */
     .text-description {
-        font-size: 0.95rem !important; /* Mengecilkan ukuran font dari 1.15rem */
-        line-height: 1.5 !important;   /* Merapatkan sedikit jarak antar baris */
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
         max-width: 100% !important;
-        text-align: left;              /* Menjaga teks tetap rapi dibaca di HP */
-    }
-
-    /* Opsi tambahan: jika yang kamu maksud deskripsi sub-hero (di bawah nama besar) */
-    .hero-subheading {
-        font-size: 0.9rem !important;
-        margin-bottom: 10px !important;
+        text-align: left !important;
+        
+        /* Trik Clamp Baris: Membatasi teks hanya tampil maksimal 3 atau 4 baris di HP */
+        display: -webkit-box !important;
+        -webkit-line-clamp: 4 !important; /* Ganti angka 4 ini kalau mau lebih pendek lagi (misal: 3) */
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
     }
 }
 
