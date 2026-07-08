@@ -816,3 +816,32 @@ body.dark-mode .grid-pattern {
         background: rgba(20, 20, 20, 0.95);
     }
 }
+/* BARIS KODE LAMA KAMU DI ATAS... */
+
+
+/* ==================================================
+   PUNYA ABIDZAR - PERBAIKAN NAVBAR & GRID (JULI 2026)
+   ================================================== */
+body.dark-mode .site-header .nav-container {
+    background: rgba(20, 20, 20, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+body.dark-mode .site-header.scrolled .nav-container {
+    background: rgba(17, 17, 17, 0.95) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .nav-link {
+    color: #EEEEEE !important;
+}
+
+body.dark-mode .nav-link:hover {
+    color: var(--primary) !important;
+}
+
+body.dark-mode .logo, 
+body.dark-mode #theme-toggle-btn i, 
+body.dark-mode #hamburger-btn i {
+    color: #EEEEEE !important;
+}
