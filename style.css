@@ -761,7 +761,7 @@ img {
    TRANSISI SMOOTH UNTUK DARK MODE
    ================================================== */
 
-/* Paksa transisi menggunakan "all" agar iOS langsung menyegarkan seluruh layar tanpa delay */
+/* OPTIMASI IOS: Matikan transisi rumit, bikin perubahan warna langsung instan tanpa antrean memori */
 body, 
 .site-header, 
 .nav-container,
@@ -771,7 +771,7 @@ body,
 .section-title,
 .hero-heading,
 .navigation {
-    transition: all 0.2s ease-in-out !important;
+    transition: background-color 0.1s ease, color 0.1s ease !important;
 }
 
 
