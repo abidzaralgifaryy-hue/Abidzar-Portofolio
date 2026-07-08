@@ -816,10 +816,10 @@ body.dark-mode .grid-pattern {
 }
 
 /* ==================================================
-   KHUSUS MOBILE / HP (Lebih Kecil, Ngeblur, Melengkung)
+   KHUSUS MOBILE / HP (Hamburger & Deskripsi Fixes)
    ================================================== */
 @media (max-width: 768px) {
-    /* 1. Membuat navbar menggantung rapi di HP (tidak mentok kiri-kanan) */
+    /* Navbar tipis menggantung */
     .site-header {
         width: 92% !important;
         top: 12px !important;    
@@ -827,27 +827,100 @@ body.dark-mode .grid-pattern {
         transform: translateX(-50%) !important;
     }
 
-    /* 2. Membuat navbar lebih tipis, melengkung sudutnya, dan dipaksa ngeblur */
     .nav-container {
-        padding: 8px 20px !important; /* Lebih tipis/slim */
-        border-radius: 15px !important; /* Ada lengkungan di ujungnya */
+        padding: 8px 15px !important;
+        border-radius: 15px !important;
         border: 1px solid var(--glass-border) !important;
-        
-        /* Mengaktifkan efek blur transparan khusus di HP */
         background: var(--glass-bg) !important;
         backdrop-filter: blur(15px) !important; 
-        -webkit-backdrop-filter: blur(15px) !important; /* Wajib untuk iOS/Chrome Mobile */
+        -webkit-backdrop-filter: blur(15px) !important;
     }
 
-    /* Mengecilkan logo sedikit agar pas dengan navbar HP yang mengecil */
-    .logo img {
-        width: 75px !important;
+    /* Memaksa isi kanan navbar selalu pas di tengah secara vertikal */
+    .nav-actions {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 15px !important;
+        padding-right: 5px !important;
+        height: 100% !important;
     }
 
-    /* Memastikan menu tirai layar penuh di HP ikut menjadi hitam saat dark mode */
+    /* FIX HAMBURGER: Tetap diam di tengah vertikal dan tidak melompat miring */
+    .hamburger-menu,
+    .hamburger-menu.active {
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-self: center !important;
+        width: 24px !important;
+        height: 14px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        z-index: 1005 !important;
+    }
+
+    /* Mengatur teks deskripsi dipotong 3 baris di awal */
+    .text-description {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 3 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+
+    /* Saat klik Lihat Selengkapnya, teks kebuka penuh */
+    .text-description.expanded {
+        display: block !important;
+        overflow: visible !important;
+        -webkit-line-clamp: unset !important;
+    }
+
+    /* Tombol Read More Modern */
+    .read-more-btn {
+        display: inline-block !important;
+        background: none;
+        border: none;
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 0;
+        margin-top: 6px;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+    }
+
     body.dark-mode .navigation {
         background: var(--background);
     }
+}
+
+/* Sembunyikan tombol selengkapnya kalau dibuka di laptop */
+@media (min-width: 769px) {
+    .read-more-btn {
+        display: none !important;
+    }
+}
+
+/* ==================================================
+   PERBAIKAN SYSTEM DARK MODE
+   ================================================== */
+body.dark-mode {
+    --background: #111111;
+    --white: #1E1E1E;
+    --dark: #EEEEEE;
+    --text-main: #E0E0E0;
+    --text-muted: #A0A0A0;
+    --glass-bg: rgba(17, 17, 17, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* ==================================================
