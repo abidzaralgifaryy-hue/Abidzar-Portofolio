@@ -7,15 +7,32 @@ const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
 const bodyElement = document.body;
 
 const setTheme = (theme) => {
-    // Jalankan pergantian class di dalam requestAnimationFrame 
+    // Jalankan pergantian class di dalam requestAnimationFrame
     // Ini trik paksa Safari iOS biar langsung ngerender tanpa antre memori
     requestAnimationFrame(() => {
         if (theme === 'dark') {
             bodyElement.classList.add('dark-mode');
             if (themeIcon) themeIcon.className = 'ph ph-sun';
         } else {
+            bodyElement.classList.add('dark-mode'); // Memastikan trik repaint mendeteksi perubahan
             bodyElement.classList.remove('dark-mode');
             if (themeIcon) themeIcon.className = 'ph ph-moon';
+        }
+
+        // === TRIK COBA FORCE REPAINT KHUSUS iOS DI SINI ===
+        if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+            const scrollElement = document.documentElement || document.body;
+            
+            // 1. Naik turunkan opacity untuk memicu render visual ulang
+            bodyElement.style.opacity = '0.99';
+            
+            // 2. Geser scroll 1 piksel secara gaib lalu kembalikan
+            scrollElement.scrollTop += 1;
+            
+            requestAnimationFrame(() => {
+                bodyElement.style.opacity = '1';
+                scrollElement.scrollTop -= 1;
+            });
         }
     });
 
@@ -28,6 +45,7 @@ const setTheme = (theme) => {
         }
     }, 50);
 };
+
 
 // Ambil data tema terakhir pas web pertama kali dibuka
 const savedTheme = localStorage.getItem('theme');
