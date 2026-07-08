@@ -802,18 +802,72 @@ body.dark-mode .grid-pattern {
     opacity: 0.4;
 }
 
-/* Optimasi performa untuk iPad/iOS Safari agar tidak lag karena filter blur */
+/* Optimasi performa untuk iPad */
 @media (max-width: 1024px) {
     .glow {
-        filter: blur(50px); 
+        filter: blur(50px);
         opacity: 0.3;
     }
     .site-header.scrolled .nav-container {
-        backdrop-filter: none; 
-        /* PERBAIKAN: Gunakan variabel agar bisa berubah gelap/terang otomatis */
+        /* PERBAIKAN: Jangan pakai 'none' agar efek blur di HP tidak ikut mati */
+        backdrop-filter: blur(15px); 
+        -webkit-backdrop-filter: blur(15px);
         background: var(--glass-bg); 
     }
-} /* <--- INI DIA KURUNG PENUTUP YANG SEBELUMNYA HILANG! */
+}
+
+/* ==================================================
+   KHUSUS MOBILE / HP (Lebih Kecil, Ngeblur, Melengkung)
+   ================================================== */
+@media (max-width: 768px) {
+    /* 1. Membuat navbar menggantung rapi di HP (tidak mentok kiri-kanan) */
+    .site-header {
+        width: 92% !important;   
+        top: 12px !important;    
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+
+    /* 2. Membuat navbar lebih tipis, melengkung sudutnya, dan dipaksa ngeblur */
+    .nav-container {
+        padding: 8px 20px !important;     /* Lebih tipis/slim */
+        border-radius: 15px !important;   /* Ada lengkungan di ujungnya */
+        border: 1px solid var(--glass-border) !important; 
+        
+        /* Mengaktifkan efek blur transparan khusus di HP */
+        background: var(--glass-bg) !important; 
+        backdrop-filter: blur(15px) !important; 
+        -webkit-backdrop-filter: blur(15px) !important; /* Wajib untuk iOS/Chrome Mobile */
+    }
+
+    /* Mengecilkan logo sedikit agar pas dengan navbar HP yang mengecil */
+    .logo img {
+        width: 75px !important; 
+    }
+}
+
+/* ==================================================
+   PERBAIKAN FINAL: DARK MODE VIA CSS VARIABLES
+   ================================================== */
+body.dark-mode {
+    --background: #111111;
+    --white: #1E1E1E; 
+    --dark: #EEEEEE;
+    --text-main: #E0E0E0;
+    --text-muted: #A0A0A0;
+    --glass-bg: rgba(17, 17, 17, 0.85); /* Beri sedikit transparan saat dark mode biar kelihatan blurnya */
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+@media (max-width: 768px) {
+    body.dark-mode .navigation {
+        background: var(--background);
+    }
+}
 
 
 /* ==================================================
