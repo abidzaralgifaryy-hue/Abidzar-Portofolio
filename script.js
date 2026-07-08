@@ -7,24 +7,28 @@ const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
 const bodyElement = document.body;
 
 const setTheme = (theme) => {
-    const logoImg = document.querySelector('.logo img'); // Cari element gambar logo
-    
+    const logoImg = document.querySelector('.logo img');
+
     if (theme === 'dark') {
         bodyElement.classList.add('dark-mode');
         if (themeIcon) themeIcon.className = 'ph ph-sun';
-        
-        // JIKA GELAP: Gunakan logo yang terang (light) agar kontras kelihatan
-        if (logoImg) logoImg.src = 'assets/logo-light.png'; 
+        // JIKA DARK MODE: balikkan warna logo hitam jadi putih bersih otomatis!
+        if (logoImg) logoImg.style.filter = 'invert(1) brightness(2)';
     } else {
         bodyElement.classList.remove('dark-mode');
         if (themeIcon) themeIcon.className = 'ph ph-moon';
-        
-        // JIKA TERANG: Gunakan logo yang gelap (dark) agar kontras kelihatan
-        if (logoImg) logoImg.src = 'assets/logo-dark.png'; 
+        // JIKA LIGHT MODE: kembalikan logo ke warna hitam aslinya
+        if (logoImg) logoImg.style.filter = 'none';
+    }
+
+    try {
+        localStorage.setItem('theme', theme);
+    } catch (e) {
+        console.log("Storage blocked, safe.");
     }
     
-    // ... sisa kode simpan localStorage kamu ...
 };
+
 
 
 // Ambil data tema terakhir pas web pertama kali dibuka
