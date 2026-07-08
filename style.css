@@ -763,7 +763,8 @@ img {
 
 /* Paksa transisi menggunakan "all" agar iOS mau membaca perubahan variabel warna */
 body, 
-.site-header .nav-container, 
+.site-header, 
+.nav-container,
 .glass-card, 
 .showcase-card, 
 .contact-card,
@@ -772,6 +773,7 @@ body,
 .navigation {
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
+
 
 body.dark-mode {
     background-color: #111111 !important; /* Paksa warna mentah biar iOS gak bingung */
