@@ -814,43 +814,31 @@ body.dark-mode .grid-pattern {
     }
     
 /* ==================================================
-   SOLUSI PAMUNGKAS: FORCE DARK MODE NAVBAR ALL-IN-ONE
+   PERBAIKAN FINAL: DARK MODE VIA CSS VARIABLES
    ================================================== */
 
-/* 1. Paksa semua jenis header/navigasi jadi gelap gulita */
-.dark-mode header,
-.dark-mode nav,
-.dark-mode .site-header,
-.dark-mode .nav-container,
-.dark-mode [id*="header"] {
-    background: rgba(17, 17, 17, 0.95) !important;
-    background-color: #111111 !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+/* Saat class dark-mode aktif, kita putar balik semua warna variabelnya */
+body.dark-mode {
+    --background: #111111;
+    --white: #1E1E1E; /* Mengubah background card jadi gelap */
+    --dark: #EEEEEE; /* Mengubah teks & ikon hamburger jadi terang */
+    --text-main: #E0E0E0;
+    --text-muted: #A0A0A0;
+    --glass-bg: rgba(17, 17, 17, 0.8); /* Navbar otomatis jadi gelap transparan! */
+    --glass-border: rgba(255, 255, 255, 0.1);
 }
 
-/* 2. Paksa semua teks di dalam header jadi putih terang */
-.dark-mode header a,
-.dark-mode header span,
-.dark-mode header i,
-.dark-mode .site-header .nav-link,
-.dark-mode .site-header .logo {
-    color: #EEEEEE !important;
+/* Transisi smooth untuk semua elemen agar tidak kaku */
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* 3. Paksa tombol hamburger di HP/Tablet jadi putih */
-.dark-mode .hamburger-menu span,
-.dark-mode [class*="hamburger"] span {
-    background-color: #EEEEEE !important;
-    background: #EEEEEE !important;
-}
-
-/* 4. Pastikan menu tirai mobile/HP ikut hitam */
+/* 
+   Karena variabel --glass-bg dan --dark sudah otomatis berubah, 
+   kita cuma butuh perbaikan kecil untuk menu HP yang layarnya full putih 
+*/
 @media (max-width: 768px) {
-    .dark-mode .navigation,
-    .dark-mode [class*="navigation"] {
-        background: #111111 !important;
-        background-color: #111111 !important;
+    body.dark-mode .navigation {
+        background: var(--background); /* Pakai variabel background gelap */
     }
 }
