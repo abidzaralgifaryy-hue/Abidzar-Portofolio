@@ -680,7 +680,6 @@ img {
 }
 
 @media (max-width: 768px) {
-    /* Mobile Navbar */
     .site-header {
         width: 100%;
         top: 0;
@@ -728,7 +727,6 @@ img {
         font-size: 1.5rem;
     }
 
-    /* Mobile Layout Fixes */
     .section-hero {
         padding-top: 150px;
     }
@@ -757,11 +755,11 @@ img {
     .contact-grid {
         grid-template-columns: 1fr;
     }
-   /* ==================================================
-   TRANSISI SMOOTH UNTUK DARK MODE
-   ================================================== */
+} /* << KURUNG PENUTUP MEDIA QUERY HP ADA DI SINI SEKARANG */
 
-/* Efek transisi warna di semua elemen utama agar mengalir halus */
+/* ==================================================
+   TRANSISI SMOOTH UNTUK DARK MODE (DI LUAR MEDIA QUERY)
+   ================================================== */
 body, 
 .site-header .nav-container, 
 .glass-card, 
@@ -776,7 +774,6 @@ body,
                 box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Mengubah variabel warna ketika class .dark-mode aktif */
 body.dark-mode {
     --background: #111111;
     --dark: #F8F8F8;
@@ -787,7 +784,6 @@ body.dark-mode {
     --glass-border: rgba(255, 255, 255, 0.1);
 }
 
-/* Menyesuaikan grid pattern latar belakang di mode gelap */
 body.dark-mode .grid-pattern {
     opacity: 0.02;
     filter: invert(1);
