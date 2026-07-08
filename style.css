@@ -918,8 +918,34 @@ body {
 }
 
 @media (max-width: 768px) {
-    body.dark-mode .navigation {
-        background: var(--background);
+    /* ... kode mobile kamu yang sudah ada sebelumnya ... */
+
+    /* 1. Memposisikan Hamburger Menu biar pas di tengah secara vertikal */
+    .nav-actions {
+        display: flex;
+        align-items: center; /* Memaksa tombol tema dan hamburger sejajar tengah */
+        justify-content: center;
+    }
+
+    .hamburger-menu {
+        display: block;
+        margin: 0; /* Menghapus margin bawaan jika ada */
+        align-self: center; /* Memastikan hamburger bener-bener rata tengah vertikal */
+        top: -1px; /* Sedikit adjustment mikro jika dirasa kurang naik/turun */
+    }
+
+    /* 2. Mengecilkan ukuran teks deskripsi diri agar tidak kepanjangan di HP */
+    .text-description {
+        font-size: 0.95rem !important; /* Mengecilkan ukuran font dari 1.15rem */
+        line-height: 1.5 !important;   /* Merapatkan sedikit jarak antar baris */
+        max-width: 100% !important;
+        text-align: left;              /* Menjaga teks tetap rapi dibaca di HP */
+    }
+
+    /* Opsi tambahan: jika yang kamu maksud deskripsi sub-hero (di bawah nama besar) */
+    .hero-subheading {
+        font-size: 0.9rem !important;
+        margin-bottom: 10px !important;
     }
 }
 
