@@ -809,11 +809,65 @@ body.dark-mode .grid-pattern {
         opacity: 0.3;
     }
     .site-header.scrolled .nav-container {
-        /* PERBAIKAN: Jangan pakai 'none' agar efek blur di HP tidak ikut mati */
-        backdrop-filter: blur(15px); 
+        backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
         background: var(--glass-bg); 
     }
+}
+
+/* ==================================================
+   KHUSUS MOBILE / HP (Lebih Kecil, Ngeblur, Melengkung)
+   ================================================== */
+@media (max-width: 768px) {
+    /* 1. Membuat navbar menggantung rapi di HP (tidak mentok kiri-kanan) */
+    .site-header {
+        width: 92% !important;
+        top: 12px !important;    
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+
+    /* 2. Membuat navbar lebih tipis, melengkung sudutnya, dan dipaksa ngeblur */
+    .nav-container {
+        padding: 8px 20px !important; /* Lebih tipis/slim */
+        border-radius: 15px !important; /* Ada lengkungan di ujungnya */
+        border: 1px solid var(--glass-border) !important;
+        
+        /* Mengaktifkan efek blur transparan khusus di HP */
+        background: var(--glass-bg) !important;
+        backdrop-filter: blur(15px) !important; 
+        -webkit-backdrop-filter: blur(15px) !important; /* Wajib untuk iOS/Chrome Mobile */
+    }
+
+    /* Mengecilkan logo sedikit agar pas dengan navbar HP yang mengecil */
+    .logo img {
+        width: 75px !important;
+    }
+
+    /* Memastikan menu tirai layar penuh di HP ikut menjadi hitam saat dark mode */
+    body.dark-mode .navigation {
+        background: var(--background);
+    }
+}
+
+/* ==================================================
+   PERBAIKAN FINAL: DARK MODE VIA CSS VARIABLES
+   ================================================== */
+body.dark-mode {
+    --background: #111111;
+    --white: #1E1E1E; /* Mengubah background card jadi gelap */
+    --dark: #EEEEEE;  /* Mengubah teks & ikon hamburger jadi terang */
+    --text-main: #E0E0E0; /* Mengubah teks menu jadi terang */
+    --text-muted: #A0A0A0;
+    --glass-bg: rgba(17, 17, 17, 0.85); /* Navbar otomatis jadi hitam transparan agar kelihatan blurnya */
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Transisi smooth untuk semua elemen agar tidak kaku */
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
 }
 
 /* ==================================================
