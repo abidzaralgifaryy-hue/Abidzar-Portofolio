@@ -805,14 +805,17 @@ body.dark-mode .grid-pattern {
 /* Optimasi performa untuk iPad/iOS Safari agar tidak lag karena filter blur */
 @media (max-width: 1024px) {
     .glow {
-        filter: blur(50px); /* Kurangi intensitas blur di tablet agar rendering ringan */
+        filter: blur(50px); 
         opacity: 0.3;
     }
     .site-header.scrolled .nav-container {
-        backdrop-filter: none; /* Matikan backdrop-filter blur di iPad jika masih terasa berat */
-        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: none; 
+        /* PERBAIKAN: Gunakan variabel agar bisa berubah gelap/terang otomatis */
+        background: var(--glass-bg); 
     }
-    
+} /* <--- INI DIA KURUNG PENUTUP YANG SEBELUMNYA HILANG! */
+
+
 /* ==================================================
    PERBAIKAN FINAL: DARK MODE VIA CSS VARIABLES
    ================================================== */
@@ -822,9 +825,9 @@ body.dark-mode {
     --background: #111111;
     --white: #1E1E1E; /* Mengubah background card jadi gelap */
     --dark: #EEEEEE; /* Mengubah teks & ikon hamburger jadi terang */
-    --text-main: #E0E0E0;
+    --text-main: #E0E0E0; /* Mengubah teks menu jadi terang */
     --text-muted: #A0A0A0;
-    --glass-bg: rgba(17, 17, 17, 0.8); /* Navbar otomatis jadi gelap transparan! */
+    --glass-bg: rgba(17, 17, 17, 0.95); /* Navbar otomatis jadi hitam! */
     --glass-border: rgba(255, 255, 255, 0.1);
 }
 
@@ -833,12 +836,9 @@ body {
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* 
-   Karena variabel --glass-bg dan --dark sudah otomatis berubah, 
-   kita cuma butuh perbaikan kecil untuk menu HP yang layarnya full putih 
-*/
+/* Memastikan menu tirai layar penuh di HP ikut menjadi hitam */
 @media (max-width: 768px) {
     body.dark-mode .navigation {
-        background: var(--background); /* Pakai variabel background gelap */
+        background: var(--background); 
     }
 }
