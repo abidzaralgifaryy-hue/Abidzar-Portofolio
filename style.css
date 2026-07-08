@@ -761,38 +761,51 @@ img {
    TRANSISI SMOOTH UNTUK DARK MODE
    ================================================== */
 
-/* OPTIMASI IOS: Matikan transisi rumit, bikin perubahan warna langsung instan tanpa antrean memori */
+/* ==================================================
+   THEME OVERLAY: Solusi Fade Premium Anti-Delay iOS
+   ================================================== */
+.theme-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #111111; /* Warna tema gelap lo */
+    z-index: -1; /* Berada di belakang kartu tapi di atas background asli */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Saat dark mode aktif, overlay hitam memudar halus ke permukaan */
+body.dark-mode .theme-overlay {
+    opacity: 1;
+}
+
+/* Transisi untuk teks, ikon, dan kartu dibuat cepat agar iPad gak freeze, tapi tetep smooth */
 body, 
-.site-header, 
+.site-header,
 .nav-container,
 .glass-card, 
 .showcase-card, 
-.contact-card,
-.section-title,
+.contact-card, 
+.section-title, 
 .hero-heading,
 .navigation {
-    transition: background-color 0.1s ease, color 0.1s ease !important;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease !important;
 }
 
-
-body.dark-mode {
-    background-color: #111111 !important; /* Paksa warna mentah biar iOS gak bingung */
-    --background: #111111;
-    --dark: #F8F8F8;
-    --white: #1e1e1e;
-    --text-main: #EEEEEE;
-    --text-muted: #A0A0A0;
-    --glass-bg: rgba(30, 30, 30, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.1);
+body.dark-mode .grid-pattern {
+    opacity: 0.02;
+    filter: invert(1);
 }
 
-/* EFEK FADE SMOOTH UNTUK BULATAN GLOW DI IOS TANPA DELAY */
+/* Efek fade smooth untuk bulatan glow agar tidak membebani prosesor iPad */
 .glow-1, .glow-2 {
     transition: opacity 0.4s ease, visibility 0.4s ease !important;
     will-change: opacity;
 }
 
-/* Pas masuk mode gelap, bikin efeknya memudar pelan-pelan sampai hilang */
 body.dark-mode .glow-1,
 body.dark-mode .glow-2 {
     opacity: 0 !important;
