@@ -654,13 +654,12 @@ img {
         order: 2;
     }
 
-    /* Mengatur posisi tombol agar mengikuti alignment tengah teks hero */
+        /* Mengatur posisi tombol agar ditarik ke kiri sejajar lurus dengan huruf H */
     .hero-cta {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 20px;
-        width: 100%;
-        margin: 0 auto;
+        margin-left: -8px; /* << Tambahkan minus margin ini untuk ngakali shadow */
     }
     
     .hero-image-wrapper {
