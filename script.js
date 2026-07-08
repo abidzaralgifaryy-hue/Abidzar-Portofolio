@@ -4,7 +4,7 @@
 
 const themeToggleBtn = document.getElementById('theme-toggle-btn');
 const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
-const bodyElement = document.getElementById('body-container') || document.body;
+const bodyElement = document.body;
 
 const setTheme = (theme) => {
     // Jalankan pergantian class di dalam requestAnimationFrame 
