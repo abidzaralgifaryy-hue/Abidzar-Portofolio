@@ -1,20 +1,39 @@
 // ==================================================
-// 1. DARK & LIGHT MODE SYSTEM
+// 1. DARK & LIGHT MODE SYSTEM (Updated)
 // ==================================================
 
 const themeToggleBtn = document.getElementById('theme-toggle-btn');
 const themeIcon = themeToggleBtn.querySelector('i');
-const bodyContainer = document.getElementById('body-container');
 
-// Fungsi untuk menerapkan tema berdasarkan pilihan
-const setTheme = (theme) => {
+// Fungsi untuk menerapkan warna tema langsung ke variabel CSS
+const applyTheme = (theme) => {
+    const root = document.documentElement;
+    
     if (theme === 'dark') {
-        bodyContainer.classList.add('dark-mode');
-        themeIcon.className = 'ph ph-sun'; // Mengubah ikon menjadi matahari saat mode gelap
+        // Mengubah warna tema ke Dark Mode
+        root.style.setProperty('--background', '#111111');
+        root.style.setProperty('--dark', '#F8F8F8');
+        root.style.setProperty('--white', '#1e1e1e');
+        root.style.setProperty('--text-main', '#EEEEEE');
+        root.style.setProperty('--text-muted', '#A0A0A0');
+        root.style.setProperty('--glass-bg', 'rgba(30, 30, 30, 0.7)');
+        root.style.setProperty('--glass-border', 'rgba(255, 255, 255, 0.1)');
+        
+        // Ubah ikon ke matahari
+        themeIcon.className = 'ph ph-sun';
         localStorage.setItem('theme', 'dark');
     } else {
-        bodyContainer.classList.remove('dark-mode');
-        themeIcon.className = 'ph ph-moon'; // Mengubah ikon menjadi bulan saat mode terang
+        // Kembalikan ke warna Light Mode asli dari CSS kamu
+        root.style.setProperty('--background', '#F8F8F8');
+        root.style.setProperty('--dark', '#111111');
+        root.style.setProperty('--white', '#FFFFFF');
+        root.style.setProperty('--text-main', '#333333');
+        root.style.setProperty('--text-muted', '#666666');
+        root.style.setProperty('--glass-bg', 'rgba(255, 255, 255, 0.7)');
+        root.style.setProperty('--glass-border', 'rgba(255, 255, 255, 0.5)');
+        
+        // Ubah ikon ke bulan
+        themeIcon.className = 'ph ph-moon';
         localStorage.setItem('theme', 'light');
     }
 };
@@ -22,17 +41,16 @@ const setTheme = (theme) => {
 // Cek tema yang tersimpan di localStorage saat halaman dimuat
 const savedTheme = localStorage.getItem('theme');
 
-// Jika belum ada tema yang disimpan, sesuaikan dengan preferensi sistem perangkat user
 if (savedTheme) {
-    setTheme(savedTheme);
+    applyTheme(savedTheme);
 } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    setTheme('dark');
+    applyTheme('dark');
 }
 
-// Event listener untuk tombol switch tema
+// Event listener untuk tombol ganti tema
 themeToggleBtn.addEventListener('click', () => {
-    const isDark = bodyContainer.classList.contains('dark-mode');
-    setTheme(isDark ? 'light' : 'dark');
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(currentTheme === 'light' ? 'dark' : 'light');
 });
 
 
@@ -44,13 +62,12 @@ const ctaPrimaryBtn = document.querySelector('.btn-primary[href="#projects"]');
 
 if (ctaPrimaryBtn) {
     ctaPrimaryBtn.addEventListener('click', function(e) {
-        e.preventDefault(); // Mencegah lompatan instan bawaan anchor tag
+        e.preventDefault(); 
         
-        // Karena section projects menggunakan ID video-editing, targetkan ke sana
+        // Mengarahkan ke section Video Editing sebagai portofolio utama
         const targetSection = document.getElementById('video-editing');
         
         if (targetSection) {
-            // Mengambil posisi offset header agar scrolling tidak tertutup navbar yang melayang
             const headerOffset = 100; 
             const elementPosition = targetSection.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
