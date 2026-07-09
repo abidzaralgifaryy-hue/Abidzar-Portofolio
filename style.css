@@ -732,6 +732,10 @@ body.dark-mode .design-grid::-webkit-scrollbar-track {
         grid-template-columns: 1fr 1fr; 
         gap: 20px;
     }
+
+       .design-item {
+        width: 340px; /* Disesuaikan sedikit lebih kecil buat iPad */
+    }
 }
 
 /* --- MOBILE / HP (max-width: 768px) --- */
