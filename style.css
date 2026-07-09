@@ -392,6 +392,10 @@ img {
     box-shadow: var(--shadow-soft);
     position: relative;
     overflow: hidden;
+    
+    /* Tambahkan dua baris ini untuk proteksi centering */
+    width: 100%; 
+    margin: 0 auto; 
 }
 
 .about-heading {
