@@ -846,22 +846,14 @@ body.dark-mode .design-grid::-webkit-scrollbar-track {
         margin-top: 20px;
     }
 
-    /* KOREKSI GRAPHIC DESIGN: Hanya 1 kolom di HP agar UI tidak bocor ke samping */
-    .design-grid {
-        grid-template-columns: 1fr;
+        /* GANTI DENGAN INI (Di dalam @media max-width: 768px) */
+    .design-item {
+        width: 85%; /* Lebarnya 85% layar HP, ngasih sedikit 'hint' potongan card di sebelah kanan biar orang tau ini bisa digeser */
     }
 
-    .featured-design {
-        grid-column: span 1;
-    }
-    
-    .featured-design .card-image,
-    .design-item .card-image {
-        aspect-ratio: auto;
-    }
-
-    .contact-grid {
-        grid-template-columns: 1fr;
+    .design-item .card-image,
+    .featured-design .card-image {
+        aspect-ratio: 4/5; /* Menjaga rasio gambar tetap stabil di HP */
     }
 
     /* MENGEMBALIKAN KODE ASLI TOMBOL "LIHAT SELENGKAPNYA" */
