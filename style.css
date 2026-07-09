@@ -515,24 +515,49 @@ img {
     font-weight: 600;
 }
 
-/* Graphic Design Grid Specific */
+/* ==================================================
+   GRAPHIC DESIGN (HORIZONTAL SCROLL)
+   ================================================== */
 .design-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     gap: 30px;
+    padding-bottom: 25px; /* Memberi ruang di bawah agar scrollbar tidak nabrak card */
+    scroll-snap-type: x mandatory; /* Bikin efek snap (berhenti pas di tengah card) saat di-scroll */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Bikin scroll makin smooth di iPad & Mobile */
 }
 
-.featured-design {
-    grid-column: span 2;
+/* Custom Scrollbar biar makin estetik */
+.design-grid::-webkit-scrollbar {
+    height: 8px;
+}
+.design-grid::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+.design-grid::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+body.dark-mode .design-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
 }
 
-.design-item .card-image {
+/* Atur ukuran Card */
+.design-item {
+    flex: 0 0 auto; /* Mencegah card menciut kegencet */
+    width: 400px; /* Ukuran pas untuk Desktop/Laptop */
+    scroll-snap-align: start; /* Posisi berhentinya card saat di-scroll */
+}
+
+/* Samakan rasio gambar agar tingginya sejajar dan rapi saat digeser */
+.design-item .card-image,
+.featured-design .card-image {
     aspect-ratio: 4/5;
 }
 
-.featured-design .card-image {
-    aspect-ratio: 21/9;
-}
 
 /* ==================================================
    CONTACT SECTION
