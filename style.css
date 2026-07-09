@@ -521,16 +521,19 @@ img {
     overflow-x: auto;
     gap: 30px;
     
-    /* GANTI / TAMBAHKAN BAGIAN INI */
-    padding-top: 20px;    /* Ruang ekstra agar card tidak kepotong saat naik */
-    padding-bottom: 45px; /* Ruang ekstra untuk shadow/blur di bawah */
-    padding-left: 10px;   /* Ruang ekstra agar shadow samping tidak kepotong */
-    padding-right: 10px;
+    /* INI KUNCI PERBAIKANNYA (Menambahkan Ruang Bernafas) */
+    padding-top: 25px;    /* Mencegah bagian atas card kepotong saat naik */
+    padding-bottom: 70px; /* Mencegah blur/shadow 60px kepotong di bawah */
+    padding-left: 15px;   /* Mencegah blur kepotong di sisi kiri */
+    padding-right: 15px;  /* Mencegah blur kepotong di sisi kanan */
     
     scroll-snap-type: x mandatory;
+    /* Bikin efek snap (berhenti pas di tengah card) saat di-scroll */
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    /* Bikin scroll makin smooth di iPad & Mobile */
 }
+
 
 /* Custom Scrollbar biar makin estetik */
 .design-grid::-webkit-scrollbar {
