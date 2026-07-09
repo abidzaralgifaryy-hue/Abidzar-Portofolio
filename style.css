@@ -663,6 +663,19 @@ img {
         gap: 40px;
     }
     
+    /* Tambahan agar konten di dalam kartu about rapi saat mode responsive */
+    .glass-card {
+        padding: 40px 30px; /* Memperkecil padding di layar tablet/HP agar tidak memakan ruang */
+    }
+    
+    .about-image-wrapper {
+        max-width: 450px;
+        margin: 0 auto; /* Memastikan gambar potret abidzar ada di tengah */
+        width: 100%;
+    }
+}
+
+    
     /* Menjaga teks hero tetap rapi di tengah/kiri secara proporsional */
     .hero-text {
         text-align: left;
