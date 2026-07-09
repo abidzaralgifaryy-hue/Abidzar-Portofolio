@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twibbon | Al Azhar 18 Grand Wisata</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        /* ==================================================
+           CSS VARIABLES (DESIGN SYSTEM)
+           ================================================== */
+        :root {
+            --primary: #FF7A00;
+            --primary-hover: #e06c00;
+            --dark: #111111;
+            --background: #F8F8F8;
+            --white: #FFFFFF;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 30px 60px rgba(255, 122, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body.dark-mode {
+            --background: #111111;
+            --white: #1E1E1E;
+            --dark: #EEEEEE;
+            --text-main: #E0E0E0;
+            --text-muted: #A0A0A0;
+            --glass-bg: rgba(17, 17, 17, 0.95);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ==================================================
+           RESET & BASE
+           ================================================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+        a { text-decoration: none; color: inherit; }
+        button { font-family: inherit; cursor: pointer; border: none; }
+
+        /* Background Animasi */
+        .bg-elements {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1; overflow: hidden; pointer-events: none;
+        }
+        .glow { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.4; }
+        .glow-1 { width: 500px; height: 500px; background: radial-gradient(circle, var(--primary) 0%, transparent 70%); top: -10%; right: -5%; }
+        .glow-2 { width: 600px; height: 600px; background: radial-gradient(circle, #ffb366 0%, transparent 70%); bottom: -20%; left: -10%; }
+        .grid-pattern {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+            background-size: 40px 40px; opacity: 0.6;
+        }
+        body.dark-mode .grid-pattern {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+
+        /* Header Minimalis */
+        .site-header {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 1200px; z-index: 1000;
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 30px; border-radius: 20px;
+            background: var(--glass-bg); backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border); box-shadow: var(--shadow-soft);
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--dark); }
+        .logo span { color: var(--primary); }
+        .btn-theme-toggle { background: none; font-size: 1.5rem; color: var(--dark); transition: var(--transition); }
+        .btn-theme-toggle:hover { color: var(--primary); }
+
+        /* ==================================================
+           TWIBBON SECTION LAYOUT
+           ================================================== */
+        .section-twibbon { padding: 120px 5% 60px; max-width: 1100px; margin: 0 auto; }
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--dark); text-align: center; }
+        .section-title span { color: var(--primary); }
+        .section-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 50px; }
+        
+        .glass-card {
+            background: var(--white); border-radius: 30px; padding: 40px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .twibbon-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+        }
+        @media(max-width: 768px) { .twibbon-grid { grid-template-columns: 1fr; } }
+
+        /* Canvas Wrapper (Tempat Edit Foto) */
+        .canvas-wrapper {
+            position: relative; width: 100%; aspect-ratio: 1/1;
+            border-radius: 20px; background: #e0e0e0;
+            overflow: hidden; touch-action: none; cursor: grab;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        }
+        body.dark-mode .canvas-wrapper { background: #222; }
+        .canvas-wrapper:active { cursor: grabbing; }
+
+        .drag-hint {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            color: rgba(0,0,0,0.4); font-size: 1rem; font-weight: 600;
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            pointer-events: none; z-index: 1; transition: opacity 0.3s;
+        }
+        body.dark-mode .drag-hint { color: rgba(255,255,255,0.4); }
+        .drag-hint i { font-size: 2.5rem; }
+
+        /* Layer Foto User & Frame Twibbon */
+        #user-photo {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            z-index: 2; display: none; transform-origin: center;
+        }
+        #twibbon-frame {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 3; pointer-events: none; object-fit: cover;
+        }
+
+        /* Controls (Tombol Upload & Slider Zoom) */
+        .controls { display: flex; gap: 15px; margin-top: 20px; align-items: center; }
+        
+        .btn-primary {
+            background: var(--primary); color: #fff; padding: 14px 24px;
+            border-radius: 50px; font-weight: 600; display: inline-flex; align-items: center;
+            justify-content: center; gap: 8px; transition: var(--transition);
+        }
+        .btn-primary:hover {
+            background: var(--primary-hover); transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 122, 0, 0.3);
+        }
+        
+        .btn-secondary {
+            background: var(--background); color: var(--dark); padding: 14px 24px;
+            border-radius: 50px; font-weight: 600; display: inline-flex; align-items: center;
+            gap: 8px; border: 1px solid #ddd; transition: var(--transition);
+        }
+        body.dark-mode .btn-secondary { background: #222; border-color: #444; color: #fff; }
+        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-3px); }
+
+        .zoom-wrapper {
+            flex: 1; display: flex; align-items: center; gap: 10px;
+            background: var(--background); padding: 12px 15px;
+            border-radius: 50px; border: 1px solid var(--glass-border);
+        }
+        body.dark-mode .zoom-wrapper { background: rgba(0,0,0,0.2); border-color: #333; }
+        .zoom-wrapper input[type="range"] { flex: 1; accent-color: var(--primary); }
+        .zoom-wrapper i { color: var(--text-muted); }
+
+        .w-100 { width: 100%; margin-top: 15px; }
+
+        /* Caption & Tutorial */
+        .twibbon-right h3 { color: var(--dark); margin-bottom: 5px; font-size: 1.4rem; }
+        .caption-box {
+            background: var(--background); border: 1px solid var(--glass-border);
+            padding: 20px; border-radius: 15px; font-size: 0.95rem; color: var(--text-main);
+            white-space: pre-wrap; margin: 15px 0; line-height: 1.8;
+            max-height: 250px; overflow-y: auto;
+        }
+        body.dark-mode .caption-box { background: rgba(0,0,0,0.2); border-color: #333; }
+
+        .action-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+        .btn-ig {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white; padding: 14px 24px; border-radius: 50px; font-weight: 600;
+            display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); border: none;
+        }
+        .btn-ig:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(220, 39, 67, 0.3); }
+
+        .tutorial-box {
+            background: rgba(255, 122, 0, 0.05); border-left: 4px solid var(--primary);
+            padding: 20px; border-radius: 0 15px 15px 0; margin-top: 25px;
+        }
+        body.dark-mode .tutorial-box { background: rgba(255, 122, 0, 0.1); }
+        .tutorial-box h4 { color: var(--primary); margin-bottom: 10px; font-size: 1.1rem; }
+        .tutorial-box ol { padding-left: 20px; font-size: 0.9rem; color: var(--text-muted); }
+        .tutorial-box li { margin-bottom: 6px; }
+
+    </style>
+</head>
+<body id="body-container">
+
+    <div class="bg-elements">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="grid-pattern"></div>
+    </div>
+
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="#" class="logo">Twibbon<span>Generator</span></a>
+            <button id="theme-toggle-btn" class="btn-theme-toggle" type="button">
+                <i class="ph ph-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="section-twibbon">
+            <h1 class="section-title">Twibbon <span>Al Azhar 18</span></h1>
+            <p class="section-subtitle">Pasang foto terbaikmu, atur posisinya, dan bagikan momenmu!</p>
+
+            <div class="glass-card">
+                <div class="twibbon-grid">
+                    
+                    <div class="twibbon-left">
+                        <div class="canvas-wrapper" id="canvas-wrapper">
+                            <div class="drag-hint" id="drag-hint">
+                                <i class="ph ph-hand-grabbing"></i>
+                                <span>Pilih Foto & Geser</span>
+                            </div>
+                            <img id="user-photo" src="" alt="Foto Anda">
+                            
+                            <img id="twibbon-frame" src="https://via.placeholder.com/1080x1080.png?text=Frame+Twibbon+(Ganti+di+Code)" alt="Frame Twibbon" crossorigin="anonymous">
+                        </div>
+
+                        <div class="controls">
+                            <input type="file" id="upload-file" accept="image/*" hidden>
+                            <button class="btn-primary" onclick="document.getElementById('upload-file').click()">
+                                <i class="ph ph-upload-simple"></i> Pilih Foto
+                            </button>
+                            <div class="zoom-wrapper">
+                                <i class="ph ph-image"></i>
+                                <input type="range" id="zoom-slider" min="0.3" max="3" step="0.05" value="1">
+                                <i class="ph-fill ph-image"></i>
+                            </div>
+                        </div>
+
+                        <button id="download-btn" class="btn-primary w-100">
+                            <i class="ph ph-download-simple"></i> Download Hasil
+                        </button>
+                    </div>
+
+                    <div class="twibbon-right">
+                        <h3>Caption Instagram</h3>
+                        <p class="section-subtitle" style="text-align: left; margin-bottom:10px;">Gunakan caption di bawah ini untuk postingan kamu.</p>
+                        
+                        <div class="caption-box" id="caption-box">Assalamu'alaikum Warahmatullahi Wabarakatuh.
+Halo semuanya! Saya [Nama Kamu] siap dan bangga menjadi bagian dari keluarga besar SMP Islam Al Azhar 18 Grand Wisata. 
+
+Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai jumpa di sekolah!
+
+#AlAzhar18GrandWisata #BanggaJadiAlAzhar #SiswaBaruAlAzhar #GenerasiGemilang</div>
+                        
+                        <div class="action-buttons">
+                            <button class="btn-secondary" id="copy-btn">
+                                <i class="ph ph-copy"></i> <span>Copy Caption</span>
+                            </button>
+                            <a href="https://www.instagram.com/" target="_blank" class="btn-ig">
+                                <i class="ph ph-instagram-logo"></i> Buka Instagram
+                            </a>
+                        </div>
+                        
+                        <div class="tutorial-box">
+                            <h4><i class="ph-fill ph-info"></i> Cara Memposting:</h4>
+                            <ol>
+                                <li>Pilih foto terbaikmu dan atur posisi/zoom agar pas di bingkai.</li>
+                                <li>Klik tombol <b>Download Hasil</b>.</li>
+                                <li>Klik tombol <b>Copy Caption</b> untuk menyalin teks.</li>
+                                <li>Buka aplikasi Instagram dan buat Postingan Baru (Reels/Feed).</li>
+                                <li>Pilih foto yang baru saja didownload.</li>
+                                <li><b>Paste (Tempel)</b> caption di kolom teks, lalu sesuaikan nama kamu.</li>
+                                <li>Post dan bagikan!</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // ==========================================
+        // 1. DARK MODE SYSTEM
+        // ==========================================
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const themeIcon = themeToggleBtn.querySelector('i');
+        const bodyElement = document.body;
+
+        const setTheme = (theme) => {
+            if (theme === 'dark') {
+                bodyElement.classList.add('dark-mode');
+                themeIcon.className = 'ph ph-sun';
+            } else {
+                bodyElement.classList.remove('dark-mode');
+                themeIcon.className = 'ph ph-moon';
+            }
+            try { localStorage.setItem('theme', theme); } catch (e) {}
+        };
+
+        try {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                setTheme(prefersDark ? 'dark' : 'light');
+            }
+        } catch (e) {}
+
+        themeToggleBtn.addEventListener('click', () => {
+            const isDark = bodyElement.classList.contains('dark-mode');
+            setTheme(isDark ? 'light' : 'dark');
+        });
+
+        // ==========================================
+        // 2. TWIBBON LOGIC (PAN, ZOOM, UPLOAD, DOWNLOAD)
+        // ==========================================
+        const fileInput = document.getElementById('upload-file');
+        const userPhoto = document.getElementById('user-photo');
+        const canvasWrapper = document.getElementById('canvas-wrapper');
+        const zoomSlider = document.getElementById('zoom-slider');
+        const dragHint = document.getElementById('drag-hint');
+        const downloadBtn = document.getElementById('download-btn');
+        const twibbonFrame = document.getElementById('twibbon-frame');
+
+        let currentX = 0, currentY = 0, currentScale = 1;
+        let startX = 0, startY = 0, isDragging = false;
+
+        // Update Transform Foto
+        function updateTransform() {
+            userPhoto.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px)) scale(${currentScale})`;
+        }
+
+        // Upload File 
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    userPhoto.src = event.target.result;
+                    userPhoto.onload = function() {
+                        userPhoto.style.display = 'block';
+                        dragHint.style.display = 'none';
+                        
+                        // Set orientasi otomatis agar menutupi frame (object-fit: cover logic manual)
+                        const imgRatio = this.naturalWidth / this.naturalHeight;
+                        if(imgRatio > 1) {
+                            this.style.height = '100%'; this.style.width = 'auto';
+                        } else {
+                            this.style.width = '100%'; this.style.height = 'auto';
+                        }
+                        
+                        // Reset variabel
+                        currentX = 0; currentY = 0; currentScale = 1; zoomSlider.value = 1;
+                        updateTransform();
+                    }
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Fitur Zoom
+        zoomSlider.addEventListener('input', function() {
+            currentScale = this.value;
+            updateTransform();
+        });
+
+        // Fitur Geser (Mouse & Touch)
+        const startDrag = (e) => {
+            if(!userPhoto.src || userPhoto.src === location.href) return;
+            isDragging = true;
+            let clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            let clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            startX = clientX - currentX;
+            startY = clientY - currentY;
+            canvasWrapper.style.cursor = 'grabbing';
+        };
+
+        const doDrag = (e) => {
+            if (!isDragging) return;
+            e.preventDefault(); // Mencegah layar ikut ter-scroll di mobile
+            let clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            let clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            currentX = clientX - startX;
+            currentY = clientY - startY;
+            updateTransform();
+        };
+
+        const stopDrag = () => {
+            isDragging = false;
+            canvasWrapper.style.cursor = 'grab';
+        };
+
+        // Event Listeners Mouse
+        canvasWrapper.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', doDrag); // ditarik di window biar lebih mulus
+        window.addEventListener('mouseup', stopDrag);
+
+        // Event Listeners Touch (Mobile)
+        canvasWrapper.addEventListener('touchstart', startDrag, {passive: false});
+        window.addEventListener('touchmove', doDrag, {passive: false});
+        window.addEventListener('touchend', stopDrag);
+
+
+        // Download Hasil Canvas
+        downloadBtn.addEventListener('click', function() {
+            if (!userPhoto.src || userPhoto.src === location.href) {
+                alert('Silahkan pilih foto terlebih dahulu!');
+                return;
+            }
+
+            // Ubah teks tombol jadi loading
+            const originalText = downloadBtn.innerHTML;
+            downloadBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Memproses...';
+            
+            setTimeout(() => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                
+                // Set resolusi hasil download sesuai dengan resolusi mentahan twibbon (biasanya 1080x1080)
+                canvas.width = twibbonFrame.naturalWidth || 1080;
+                canvas.height = twibbonFrame.naturalHeight || 1080;
+                
+                // Background putih (jika pinggiran foto bolong)
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Skala kalkulasi antara tampilan web dan hasil aslinya di canvas
+                const scaleFactor = canvas.width / canvasWrapper.offsetWidth;
+                
+                // Dimensi render foto user
+                let renderW = userPhoto.offsetWidth * currentScale * scaleFactor;
+                let renderH = userPhoto.offsetHeight * currentScale * scaleFactor;
+                
+                // Hitung posisi (center offset)
+                let centerX = (canvas.width / 2) + (currentX * scaleFactor);
+                let centerY = (canvas.height / 2) + (currentY * scaleFactor);
+                
+                // Draw Foto User
+                ctx.drawImage(userPhoto, centerX - renderW / 2, centerY - renderH / 2, renderW, renderH);
+                
+                // Draw Frame Twibbon
+                ctx.drawImage(twibbonFrame, 0, 0, canvas.width, canvas.height);
+                
+                // Trigger Download
+                const link = document.createElement('a');
+                link.download = 'Twibbon-AlAzhar-18.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+
+                // Kembalikan tombol
+                downloadBtn.innerHTML = originalText;
+            }, 500); // delay untuk memberi efek loading kecil
+        });
+
+        // ==========================================
+        // 3. COPY CAPTION LOGIC
+        // ==========================================
+        const copyBtn = document.getElementById('copy-btn');
+        const captionBox = document.getElementById('caption-box');
+
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(captionBox.innerText).then(() => {
+                const iconSpan = copyBtn.querySelector('span');
+                const icon = copyBtn.querySelector('i');
+                
+                // Ubah Teks & Icon Sementara
+                iconSpan.innerText = 'Tersalin!';
+                icon.className = 'ph ph-check-circle';
+                copyBtn.style.borderColor = 'var(--primary)';
+                copyBtn.style.color = 'var(--primary)';
+                
+                setTimeout(() => {
+                    iconSpan.innerText = 'Copy Caption';
+                    icon.className = 'ph ph-copy';
+                    copyBtn.style.borderColor = '';
+                    copyBtn.style.color = '';
+                }, 2000);
+            });
+        });
+
+    </script>
+</body>
+</html>
