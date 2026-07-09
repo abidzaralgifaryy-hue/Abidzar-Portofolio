@@ -327,16 +327,23 @@ img {
     position: relative;
     border-radius: 30px;
     overflow: hidden;
-    box-shadow: var(--shadow-soft);
+    [span_4](start_span)box-shadow: var(--shadow-soft);[span_4](end_span)
+    
+    /* TAMBAHKAN 2 BARIS INI UNTUK MEMPERKECIL UKURAN UTAMA */
+    max-width: 420px;       /* Mengunci lebar maksimal foto (bisa kamu ganti ke 400px jika ingin lebih kecil) */
+    margin: 0 auto;        /* Memastikan posisi foto tetap rapi di tengah kolom grid-nya */
 }
 
 .hero-img {
     width: 100%;
     height: auto;
-    object-fit: cover;
-    aspect-ratio: 4/5;
-    transition: var(--transition);
+    [span_5](start_span)object-fit: cover;[span_5](end_span)
+    
+    /* UBAH RASIO DI SINI */
+    aspect-ratio: 1/1;     /* Ganti dari 4/5 menjadi 1/1 (kotak sempurna) atau 3/4 agar rasionya lebih pendek */
+    [span_6](start_span)transition: var(--transition);[span_6](end_span)
 }
+
 
 .hero-img:hover {
     transform: scale(1.03);
