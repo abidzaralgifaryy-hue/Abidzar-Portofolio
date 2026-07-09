@@ -971,7 +971,7 @@ body.dark-mode .primary-card:hover {
 
     /* Tambahan kode untuk memperbesar teks di HP */
     .hero-heading {
-        font-size: 4rem; /* Bawaannya 3rem. Bisa kamu ganti ke 4rem kalau kurang besar */
+        font-size: 4.5rem; /* Bawaannya 3rem. Bisa kamu ganti ke 4rem kalau kurang besar */
     }
 
        /* Mengecilkan kedua tombol (Lihat Karya & Hubungi) khusus di HP */
