@@ -450,8 +450,9 @@ img {
 }
 
 .showcase-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-10px) scale(1.03); /* Gabungkan efek naik dan membesar di sini */
     box-shadow: var(--shadow-hover);
+    z-index: 10; /* Menjaga agar card yang membesar berada di posisi paling atas */
 }
 
 .card-image {
