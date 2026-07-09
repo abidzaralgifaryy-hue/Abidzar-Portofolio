@@ -974,4 +974,9 @@ body.dark-mode .primary-card:hover {
         font-size: 4rem; /* Bawaannya 3rem. Bisa kamu ganti ke 4rem kalau kurang besar */
     }
 
+       /* Mengecilkan kedua tombol (Lihat Karya & Hubungi) khusus di HP */
+    .btn-primary, .btn-secondary {
+        padding: 12px 24px !important; /* Memperkecil bantalan atas-bawah dan kiri-kanan */
+        font-size: 0.85rem !important; /* Mengecilkan ukuran teksnya */
+    }
 }
