@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Twibbon | Al Azhar 18 Grand Wisata</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +25,6 @@
             --glass-bg: rgba(255, 255, 255, 0.7);
             --glass-border: rgba(255, 255, 255, 0.5);
             --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 30px 60px rgba(255, 122, 0, 0.15);
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -43,12 +42,18 @@
            RESET & BASE
            ================================================== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* FIX: Kunci lebar maksimal agar tidak ada scroll horizontal */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--background);
             color: var(--text-main);
             line-height: 1.6;
-            overflow-x: hidden;
             transition: background-color 0.4s ease, color 0.4s ease;
         }
         a { text-decoration: none; color: inherit; }
@@ -57,7 +62,7 @@
         /* Background Animasi */
         .bg-elements {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100vh; /* DIPERBAIKI: 100vw ke 100% */
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; overflow: hidden; pointer-events: none;
         }
         .glow { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.4; }
@@ -82,11 +87,11 @@
         .nav-container {
             display: flex;
             justify-content: space-between; align-items: center;
-            padding: 15px 30px; border-radius: 20px;
+            padding: 15px 25px; border-radius: 20px;
             background: var(--glass-bg); backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border); box-shadow: var(--shadow-soft);
         }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--dark); }
+        .logo { font-size: 1.2rem; font-weight: 800; color: var(--dark); }
         .logo span { color: var(--primary); }
         .btn-theme-toggle { background: none; font-size: 1.5rem; color: var(--dark); transition: var(--transition); }
         .btn-theme-toggle:hover { color: var(--primary); }
@@ -95,9 +100,9 @@
            TWIBBON SECTION LAYOUT
            ================================================== */
         .section-twibbon { padding: 120px 5% 60px; max-width: 1100px; margin: 0 auto; }
-        .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--dark); text-align: center; }
+        .section-title { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; color: var(--dark); text-align: center; }
         .section-title span { color: var(--primary); }
-        .section-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 50px; }
+        .section-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 40px; font-size: 0.95rem; }
         
         .glass-card {
             background: var(--white);
@@ -111,12 +116,11 @@
             display: grid;
             grid-template-columns: 1fr 1fr; gap: 40px;
         }
-        @media(max-width: 768px) { .twibbon-grid { grid-template-columns: 1fr; } }
 
         /* Canvas Wrapper (Tempat Edit Foto) */
         .canvas-wrapper {
             position: relative;
-            width: 100%; aspect-ratio: 4/5; /* DIPERBAIKI: Rasio 4:5 */
+            width: 100%; aspect-ratio: 4/5; /* Fix Rasio 4:5 */
             border-radius: 20px; background: #e0e0e0;
             overflow: hidden; touch-action: none; cursor: grab;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
@@ -135,7 +139,6 @@
         body.dark-mode .drag-hint { color: rgba(255,255,255,0.4); }
         .drag-hint i { font-size: 2.5rem; }
 
-        /* Layer Foto User & Frame Twibbon */
         #user-photo {
             position: absolute;
             top: 50%; left: 50%;
@@ -148,8 +151,11 @@
             z-index: 3; pointer-events: none; object-fit: cover;
         }
 
-        /* Controls (Tombol Upload & Slider Zoom) */
-        .controls { display: flex; gap: 15px; margin-top: 20px; align-items: center; }
+        /* FIX: Flex-wrap agar elemen turun ke bawah di layar kecil */
+        .controls { 
+            display: flex; gap: 15px; margin-top: 20px; 
+            align-items: center; flex-wrap: wrap; 
+        }
         
         .btn-primary {
             background: var(--primary);
@@ -167,14 +173,14 @@
             background: var(--background);
             color: var(--dark); padding: 14px 24px;
             border-radius: 50px; font-weight: 600; display: inline-flex; align-items: center;
-            gap: 8px; border: 1px solid #ddd;
-            transition: var(--transition);
+            justify-content: center; gap: 8px; border: 1px solid #ddd;
+            transition: var(--transition); flex: 1; min-width: 160px;
         }
         body.dark-mode .btn-secondary { background: #222; border-color: #444; color: #fff; }
         .btn-secondary:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-3px); }
 
         .zoom-wrapper {
-            flex: 1;
+            flex: 1; min-width: 150px;
             display: flex; align-items: center; gap: 10px;
             background: var(--background); padding: 12px 15px;
             border-radius: 50px; border: 1px solid var(--glass-border);
@@ -190,7 +196,7 @@
         .caption-box {
             background: var(--background);
             border: 1px solid var(--glass-border);
-            padding: 20px; border-radius: 15px; font-size: 0.95rem; color: var(--text-main);
+            padding: 20px; border-radius: 15px; font-size: 0.9rem; color: var(--text-main);
             white-space: pre-wrap; margin: 15px 0; line-height: 1.8;
             max-height: 250px; overflow-y: auto;
         }
@@ -200,7 +206,8 @@
         .btn-ig {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             color: white; padding: 14px 24px; border-radius: 50px; font-weight: 600;
-            display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); border: none;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px; 
+            transition: var(--transition); border: none; flex: 1; min-width: 160px;
         }
         .btn-ig:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(220, 39, 67, 0.3); }
 
@@ -210,9 +217,24 @@
             padding: 20px; border-radius: 0 15px 15px 0; margin-top: 25px;
         }
         body.dark-mode .tutorial-box { background: rgba(255, 122, 0, 0.1); }
-        .tutorial-box h4 { color: var(--primary); margin-bottom: 10px; font-size: 1.1rem; }
-        .tutorial-box ol { padding-left: 20px; font-size: 0.9rem; color: var(--text-muted); }
+        .tutorial-box h4 { color: var(--primary); margin-bottom: 10px; font-size: 1.05rem; }
+        .tutorial-box ol { padding-left: 20px; font-size: 0.85rem; color: var(--text-muted); }
         .tutorial-box li { margin-bottom: 6px; }
+
+        /* ==================================================
+           RESPONSIVE MOBILE FIXES
+           ================================================== */
+        @media(max-width: 768px) { 
+            .twibbon-grid { grid-template-columns: 1fr; gap: 30px; } 
+            
+            /* Kurangi padding card agar tidak bikin HP melebar */
+            .glass-card { padding: 25px 20px; } 
+            .section-twibbon { padding: 100px 5% 40px; }
+            
+            /* Tumpuk tombol dan slider agar tidak nyamping */
+            .controls { flex-direction: column; align-items: stretch; gap: 10px; }
+            .controls .btn-primary, .zoom-wrapper { width: 100%; margin: 0; }
+        }
 
     </style>
 </head>
@@ -226,7 +248,7 @@
 
     <header class="site-header">
         <div class="nav-container">
-            <a href="#" class="logo">Twibbon<span>Generator</span></a>
+            <a href="#" class="logo">Twibbon<span>Gen</span></a>
             <button id="theme-toggle-btn" class="btn-theme-toggle" type="button">
                 <i class="ph ph-moon"></i>
             </button>
@@ -248,7 +270,6 @@
                                 <span>Pilih Foto & Geser</span>
                             </div>
                             <img id="user-photo" src="" alt="Foto Anda">
-                            
                             <img id="twibbon-frame" src="twibbon.png" alt="Frame Twibbon">
                         </div>
 
@@ -273,31 +294,41 @@
                         <h3>Caption Instagram</h3>
                         <p class="section-subtitle" style="text-align: left; margin-bottom:10px;">Gunakan caption di bawah ini untuk postingan kamu.</p>
                         
-                        <div class="caption-box" id="caption-box">Assalamu'alaikum Warahmatullahi Wabarakatuh.
-Halo semuanya! Saya [Nama Kamu] siap dan bangga menjadi bagian dari keluarga besar SMP Islam Al Azhar 18 Grand Wisata. 
+                        <div class="caption-box" id="caption-box">⚽ THE WHISTLE HAS BLOWN! 🎉
 
-Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai jumpa di sekolah!
+No bench players. No spectators. Di sini, semua punya kesempatan jadi MVP. 🏆✨
 
-#AlAzhar18GrandWisata #BanggaJadiAlAzhar #SiswaBaruAlAzhar #GenerasiGemilang</div>
+Perkenalkan, Saya [Nama] dari kelompok [Nama kelompok]. Motivasi saya untuk menjadi juara adalah "[Kata-kata motivasi]."
+
+📣 I'M READY TO BE A PART OF SMA Islam Al Azhar 18 Grand Wisata❗️
+
+Datang sebagai peserta, pulang dengan cerita, pengalaman, dan persahabatan baru.
+
+The game starts now. See you on the field, Future Champions‼️ 👋🏻
+
+@smaia18.gw
+@osismpksmaia18
+
+#MPLS2026
+#MPLSALWIS2026</div>
                          
                         <div class="action-buttons">
                             <button class="btn-secondary" id="copy-btn">
                                 <i class="ph ph-copy"></i> <span>Copy Caption</span>
                             </button>
                             <a href="https://www.instagram.com/" target="_blank" class="btn-ig">
-                                <i class="ph ph-instagram-logo"></i> Buka Instagram
+                                <i class="ph ph-instagram-logo"></i> Buka IG
                             </a>
                         </div>
                         
                         <div class="tutorial-box">
                             <h4><i class="ph-fill ph-info"></i> Cara Memposting:</h4>
                             <ol>
-                                <li>Pilih foto terbaikmu dan atur posisi/zoom agar pas di bingkai.</li>
+                                <li>Pilih foto terbaikmu dan sesuaikan posisi/zoom.</li>
                                 <li>Klik tombol <b>Download Hasil</b>.</li>
-                                <li>Klik tombol <b>Copy Caption</b> untuk menyalin teks.</li>
-                                <li>Buka aplikasi Instagram dan buat Postingan Baru (Reels/Feed).</li>
-                                <li>Pilih foto yang baru saja didownload.</li>
-                                <li><b>Paste (Tempel)</b> caption di kolom teks, lalu sesuaikan nama kamu.</li>
+                                <li>Klik <b>Copy Caption</b> untuk menyalin teks.</li>
+                                <li>Buka Instagram dan buat Postingan Baru.</li>
+                                <li><b>Paste</b> caption dan ubah [Nama Kamu].</li>
                                 <li>Post dan bagikan!</li>
                             </ol>
                         </div>
@@ -356,12 +387,10 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
         let currentX = 0, currentY = 0, currentScale = 1;
         let startX = 0, startY = 0, isDragging = false;
 
-        // Update Transform Foto
         function updateTransform() {
             userPhoto.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px)) scale(${currentScale})`;
         }
 
-        // Upload File 
         fileInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
@@ -387,13 +416,11 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
             }
         });
 
-        // Fitur Zoom
         zoomSlider.addEventListener('input', function() {
             currentScale = this.value;
             updateTransform();
         });
 
-        // Fitur Geser (Mouse & Touch)
         const startDrag = (e) => {
             if(!userPhoto.src || userPhoto.src === location.href) return;
             isDragging = true;
@@ -427,7 +454,7 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
         window.addEventListener('touchmove', doDrag, {passive: false});
         window.addEventListener('touchend', stopDrag);
 
-        // Download Hasil Canvas
+        // Download logic disesuaikan ke resolusi standar portrait 4:5
         downloadBtn.addEventListener('click', function() {
             if (!userPhoto.src || userPhoto.src === location.href) {
                 alert('Silahkan pilih foto terlebih dahulu!');
@@ -441,7 +468,7 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
                 
-                // DIPERBAIKI: Fallback tinggi canvas disesuaikan rasio 4:5 (1350) jika gambar gagal load
+                // Fallback ukuran portrait 4:5 jika twibbon belum keload
                 canvas.width = twibbonFrame.naturalWidth || 1080;
                 canvas.height = twibbonFrame.naturalHeight || 1350; 
                 
@@ -458,7 +485,6 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
                 
                 ctx.drawImage(userPhoto, centerX - renderW / 2, centerY - renderH / 2, renderW, renderH);
                 
-                // Jika twibbon.png belum ada secara lokal saat kamu testing, canvas tetap akan menggambar putih dan foto kamu
                 if (twibbonFrame.naturalWidth > 0) {
                     ctx.drawImage(twibbonFrame, 0, 0, canvas.width, canvas.height);
                 }
@@ -469,7 +495,7 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
                     link.href = canvas.toDataURL('image/png');
                     link.click();
                 } catch (error) {
-                    alert('Gagal mendownload. Pastikan kamu menjalankan HTML ini menggunakan Local Server (seperti Live Server di VSCode) ya!');
+                    alert('Gagal mendownload. Pastikan buka file ini pakai Local Server (contoh: Live Server) untuk menghindari masalah keamanan browser.');
                     console.error(error);
                 }
 
@@ -501,7 +527,6 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
                 }, 2000);
              });
         });
-
     </script>
 </body>
 </html>
