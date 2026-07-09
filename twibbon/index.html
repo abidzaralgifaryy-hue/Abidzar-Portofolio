@@ -56,14 +56,16 @@
 
         /* Background Animasi */
         .bg-elements {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh; /* DIPERBAIKI: 100vw ke 100% */
             z-index: -1; overflow: hidden; pointer-events: none;
         }
         .glow { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.4; }
         .glow-1 { width: 500px; height: 500px; background: radial-gradient(circle, var(--primary) 0%, transparent 70%); top: -10%; right: -5%; }
         .glow-2 { width: 600px; height: 600px; background: radial-gradient(circle, #ffb366 0%, transparent 70%); bottom: -20%; left: -10%; }
         .grid-pattern {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
             background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
             background-size: 40px 40px; opacity: 0.6;
         }
@@ -73,11 +75,13 @@
 
         /* Header Minimalis */
         .site-header {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            position: fixed;
+            top: 20px; left: 50%; transform: translateX(-50%);
             width: 90%; max-width: 1200px; z-index: 1000;
         }
         .nav-container {
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex;
+            justify-content: space-between; align-items: center;
             padding: 15px 30px; border-radius: 20px;
             background: var(--glass-bg); backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border); box-shadow: var(--shadow-soft);
@@ -96,20 +100,23 @@
         .section-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 50px; }
         
         .glass-card {
-            background: var(--white); border-radius: 30px; padding: 40px;
+            background: var(--white);
+            border-radius: 30px; padding: 40px;
             box-shadow: var(--shadow-soft);
             border: 1px solid var(--glass-border);
             transition: var(--transition);
         }
 
         .twibbon-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr; gap: 40px;
         }
         @media(max-width: 768px) { .twibbon-grid { grid-template-columns: 1fr; } }
 
         /* Canvas Wrapper (Tempat Edit Foto) */
         .canvas-wrapper {
-            position: relative; width: 100%; aspect-ratio: 1/1;
+            position: relative;
+            width: 100%; aspect-ratio: 4/5; /* DIPERBAIKI: Rasio 4:5 */
             border-radius: 20px; background: #e0e0e0;
             overflow: hidden; touch-action: none; cursor: grab;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
@@ -118,9 +125,11 @@
         .canvas-wrapper:active { cursor: grabbing; }
 
         .drag-hint {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            position: absolute;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
             color: rgba(0,0,0,0.4); font-size: 1rem; font-weight: 600;
-            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            display: flex; flex-direction: column; align-items: center;
+            gap: 10px;
             pointer-events: none; z-index: 1; transition: opacity 0.3s;
         }
         body.dark-mode .drag-hint { color: rgba(255,255,255,0.4); }
@@ -128,12 +137,14 @@
 
         /* Layer Foto User & Frame Twibbon */
         #user-photo {
-            position: absolute; top: 50%; left: 50%;
+            position: absolute;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%) scale(1);
             z-index: 2; display: none; transform-origin: center;
         }
         #twibbon-frame {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: 3; pointer-events: none; object-fit: cover;
         }
 
@@ -141,25 +152,30 @@
         .controls { display: flex; gap: 15px; margin-top: 20px; align-items: center; }
         
         .btn-primary {
-            background: var(--primary); color: #fff; padding: 14px 24px;
+            background: var(--primary);
+            color: #fff; padding: 14px 24px;
             border-radius: 50px; font-weight: 600; display: inline-flex; align-items: center;
             justify-content: center; gap: 8px; transition: var(--transition);
         }
         .btn-primary:hover {
-            background: var(--primary-hover); transform: translateY(-3px);
+            background: var(--primary-hover);
+            transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(255, 122, 0, 0.3);
         }
         
         .btn-secondary {
-            background: var(--background); color: var(--dark); padding: 14px 24px;
+            background: var(--background);
+            color: var(--dark); padding: 14px 24px;
             border-radius: 50px; font-weight: 600; display: inline-flex; align-items: center;
-            gap: 8px; border: 1px solid #ddd; transition: var(--transition);
+            gap: 8px; border: 1px solid #ddd;
+            transition: var(--transition);
         }
         body.dark-mode .btn-secondary { background: #222; border-color: #444; color: #fff; }
         .btn-secondary:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-3px); }
 
         .zoom-wrapper {
-            flex: 1; display: flex; align-items: center; gap: 10px;
+            flex: 1;
+            display: flex; align-items: center; gap: 10px;
             background: var(--background); padding: 12px 15px;
             border-radius: 50px; border: 1px solid var(--glass-border);
         }
@@ -172,7 +188,8 @@
         /* Caption & Tutorial */
         .twibbon-right h3 { color: var(--dark); margin-bottom: 5px; font-size: 1.4rem; }
         .caption-box {
-            background: var(--background); border: 1px solid var(--glass-border);
+            background: var(--background);
+            border: 1px solid var(--glass-border);
             padding: 20px; border-radius: 15px; font-size: 0.95rem; color: var(--text-main);
             white-space: pre-wrap; margin: 15px 0; line-height: 1.8;
             max-height: 250px; overflow-y: auto;
@@ -188,7 +205,8 @@
         .btn-ig:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(220, 39, 67, 0.3); }
 
         .tutorial-box {
-            background: rgba(255, 122, 0, 0.05); border-left: 4px solid var(--primary);
+            background: rgba(255, 122, 0, 0.05);
+            border-left: 4px solid var(--primary);
             padding: 20px; border-radius: 0 15px 15px 0; margin-top: 25px;
         }
         body.dark-mode .tutorial-box { background: rgba(255, 122, 0, 0.1); }
@@ -231,8 +249,7 @@
                             </div>
                             <img id="user-photo" src="" alt="Foto Anda">
                             
-                            <!-- BAGIAN SINKRONISASI YANG SUDAH DIPERBAIKI -->
-                            <img id="twibbon-frame" src="twibbon.png" alt="Frame Twibbon" crossorigin="anonymous">
+                            <img id="twibbon-frame" src="twibbon.png" alt="Frame Twibbon">
                         </div>
 
                         <div class="controls">
@@ -262,7 +279,7 @@ Halo semuanya! Saya [Nama Kamu] siap dan bangga menjadi bagian dari keluarga bes
 Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai jumpa di sekolah!
 
 #AlAzhar18GrandWisata #BanggaJadiAlAzhar #SiswaBaruAlAzhar #GenerasiGemilang</div>
-                        
+                         
                         <div class="action-buttons">
                             <button class="btn-secondary" id="copy-btn">
                                 <i class="ph ph-copy"></i> <span>Copy Caption</span>
@@ -424,12 +441,13 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
                 
+                // DIPERBAIKI: Fallback tinggi canvas disesuaikan rasio 4:5 (1350) jika gambar gagal load
                 canvas.width = twibbonFrame.naturalWidth || 1080;
-                canvas.height = twibbonFrame.naturalHeight || 1080;
+                canvas.height = twibbonFrame.naturalHeight || 1350; 
                 
                 ctx.fillStyle = '#ffffff';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
+                 
                 const scaleFactor = canvas.width / canvasWrapper.offsetWidth;
                 
                 let renderW = userPhoto.offsetWidth * currentScale * scaleFactor;
@@ -440,12 +458,20 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
                 
                 ctx.drawImage(userPhoto, centerX - renderW / 2, centerY - renderH / 2, renderW, renderH);
                 
-                ctx.drawImage(twibbonFrame, 0, 0, canvas.width, canvas.height);
+                // Jika twibbon.png belum ada secara lokal saat kamu testing, canvas tetap akan menggambar putih dan foto kamu
+                if (twibbonFrame.naturalWidth > 0) {
+                    ctx.drawImage(twibbonFrame, 0, 0, canvas.width, canvas.height);
+                }
                 
-                const link = document.createElement('a');
-                link.download = 'Twibbon-AlAzhar-18.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
+                try {
+                    const link = document.createElement('a');
+                    link.download = 'Twibbon-AlAzhar-18.png';
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                } catch (error) {
+                    alert('Gagal mendownload. Pastikan kamu menjalankan HTML ini menggunakan Local Server (seperti Live Server di VSCode) ya!');
+                    console.error(error);
+                }
 
                 downloadBtn.innerHTML = originalText;
             }, 500); 
@@ -473,7 +499,7 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
                     copyBtn.style.borderColor = '';
                     copyBtn.style.color = '';
                 }, 2000);
-            });
+             });
         });
 
     </script>
