@@ -231,7 +231,8 @@
                             </div>
                             <img id="user-photo" src="" alt="Foto Anda">
                             
-                            <img id="twibbon-frame" src="https://via.placeholder.com/1080x1080.png?text=Frame+Twibbon+(Ganti+di+Code)" alt="Frame Twibbon" crossorigin="anonymous">
+                            <!-- BAGIAN SINKRONISASI YANG SUDAH DIPERBAIKI -->
+                            <img id="twibbon-frame" src="twibbon.png" alt="Frame Twibbon" crossorigin="anonymous">
                         </div>
 
                         <div class="controls">
@@ -354,7 +355,6 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
                         userPhoto.style.display = 'block';
                         dragHint.style.display = 'none';
                         
-                        // Set orientasi otomatis agar menutupi frame (object-fit: cover logic manual)
                         const imgRatio = this.naturalWidth / this.naturalHeight;
                         if(imgRatio > 1) {
                             this.style.height = '100%'; this.style.width = 'auto';
@@ -362,7 +362,6 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
                             this.style.width = '100%'; this.style.height = 'auto';
                         }
                         
-                        // Reset variabel
                         currentX = 0; currentY = 0; currentScale = 1; zoomSlider.value = 1;
                         updateTransform();
                     }
@@ -390,7 +389,7 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
 
         const doDrag = (e) => {
             if (!isDragging) return;
-            e.preventDefault(); // Mencegah layar ikut ter-scroll di mobile
+            e.preventDefault(); 
             let clientX = e.touches ? e.touches[0].clientX : e.clientX;
             let clientY = e.touches ? e.touches[0].clientY : e.clientY;
             currentX = clientX - startX;
@@ -403,16 +402,13 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
             canvasWrapper.style.cursor = 'grab';
         };
 
-        // Event Listeners Mouse
         canvasWrapper.addEventListener('mousedown', startDrag);
-        window.addEventListener('mousemove', doDrag); // ditarik di window biar lebih mulus
+        window.addEventListener('mousemove', doDrag); 
         window.addEventListener('mouseup', stopDrag);
 
-        // Event Listeners Touch (Mobile)
         canvasWrapper.addEventListener('touchstart', startDrag, {passive: false});
         window.addEventListener('touchmove', doDrag, {passive: false});
         window.addEventListener('touchend', stopDrag);
-
 
         // Download Hasil Canvas
         downloadBtn.addEventListener('click', function() {
@@ -421,7 +417,6 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
                 return;
             }
 
-            // Ubah teks tombol jadi loading
             const originalText = downloadBtn.innerHTML;
             downloadBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Memproses...';
             
@@ -429,40 +424,31 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
                 
-                // Set resolusi hasil download sesuai dengan resolusi mentahan twibbon (biasanya 1080x1080)
                 canvas.width = twibbonFrame.naturalWidth || 1080;
                 canvas.height = twibbonFrame.naturalHeight || 1080;
                 
-                // Background putih (jika pinggiran foto bolong)
                 ctx.fillStyle = '#ffffff';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 
-                // Skala kalkulasi antara tampilan web dan hasil aslinya di canvas
                 const scaleFactor = canvas.width / canvasWrapper.offsetWidth;
                 
-                // Dimensi render foto user
                 let renderW = userPhoto.offsetWidth * currentScale * scaleFactor;
                 let renderH = userPhoto.offsetHeight * currentScale * scaleFactor;
                 
-                // Hitung posisi (center offset)
                 let centerX = (canvas.width / 2) + (currentX * scaleFactor);
                 let centerY = (canvas.height / 2) + (currentY * scaleFactor);
                 
-                // Draw Foto User
                 ctx.drawImage(userPhoto, centerX - renderW / 2, centerY - renderH / 2, renderW, renderH);
                 
-                // Draw Frame Twibbon
                 ctx.drawImage(twibbonFrame, 0, 0, canvas.width, canvas.height);
                 
-                // Trigger Download
                 const link = document.createElement('a');
                 link.download = 'Twibbon-AlAzhar-18.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
 
-                // Kembalikan tombol
                 downloadBtn.innerHTML = originalText;
-            }, 500); // delay untuk memberi efek loading kecil
+            }, 500); 
         });
 
         // ==========================================
@@ -476,7 +462,6 @@ Mari bersama-sama mewujudkan generasi yang beradab, cerdas, dan kreatif. Sampai 
                 const iconSpan = copyBtn.querySelector('span');
                 const icon = copyBtn.querySelector('i');
                 
-                // Ubah Teks & Icon Sementara
                 iconSpan.innerText = 'Tersalin!';
                 icon.className = 'ph ph-check-circle';
                 copyBtn.style.borderColor = 'var(--primary)';
