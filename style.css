@@ -189,12 +189,10 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .showcase-sub { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; }
 
-.video-grid-retro { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
 /* ==================================================
-   HORIZONTAL SCROLL UNTUK GRAPHIC DESIGN
+   HORIZONTAL SCROLL UNTUK VIDEO & GRAPHIC DESIGN
    ================================================== */
-.graphic-scroll-container {
+.horizontal-scroll-container {
     display: flex;
     overflow-x: auto;
     gap: 20px;
@@ -202,21 +200,24 @@ img { max-width: 100%; height: auto; display: block; }
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
 }
-/* Kustomisasi Scrollbar agar estetik */
-.graphic-scroll-container::-webkit-scrollbar {
+.horizontal-scroll-container::-webkit-scrollbar {
     height: 8px;
 }
-.graphic-scroll-container::-webkit-scrollbar-track {
+.horizontal-scroll-container::-webkit-scrollbar-track {
     background: rgba(91, 110, 54, 0.1);
     border-radius: 10px;
 }
-.graphic-scroll-container::-webkit-scrollbar-thumb {
+.horizontal-scroll-container::-webkit-scrollbar-thumb {
     background: var(--army-main);
     border-radius: 10px;
 }
 
-.graphic-scroll-item {
-    flex: 0 0 240px; /* Ukuran lebar tiap kartu poster saat di-scroll */
+.scroll-item-video {
+    flex: 0 0 280px; /* Lebar kartu video saat digeser */
+    scroll-snap-align: start;
+}
+.scroll-item-graphic {
+    flex: 0 0 230px; /* Lebar kartu poster saat digeser */
     scroll-snap-align: start;
 }
 
@@ -232,8 +233,8 @@ img { max-width: 100%; height: auto; display: block; }
 .retro-item:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(91, 110, 54, 0.25); }
 
 .retro-img-box { position: relative; border-radius: 6px; overflow: hidden; }
-.video-grid-retro .retro-img-box { aspect-ratio: 16/10; }
-.graphic-scroll-item .retro-img-box { aspect-ratio: 4/5; }
+.scroll-item-video .retro-img-box { aspect-ratio: 16/10; }
+.scroll-item-graphic .retro-img-box { aspect-ratio: 4/5; }
 .retro-img-box img { width: 100%; height: 100%; object-fit: cover; }
 
 .retro-play-btn {
@@ -264,5 +265,4 @@ img { max-width: 100%; height: auto; display: block; }
    ================================================== */
 @media (max-width: 900px) {
     .retro-container { grid-template-columns: 1fr; }
-    .video-grid-retro { grid-template-columns: 1fr; }
 }
