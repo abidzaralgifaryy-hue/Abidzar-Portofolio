@@ -1,34 +1,38 @@
 /* ==================================================
-   DESIGN SYSTEM (Scrapbook Masterpiece - Custom Image Icons)
+   DESIGN SYSTEM (Modern Editor's Scrapbook)
    ================================================== */
 :root {
-    --bg-grass: #728D44; /* Warna hijau rumput/alam */
-    --folder-color: #F4EEDD; /* Warna map manila */
-    --paper-white: #F9F7F1;
-    --paper-grid: #FAFAFA;
-    --ink: #3D2D20;
-    --red-highlight: #A82C35; /* Warna teks penekanan (merah marun) */
+    --bg-desk: #1F221D;      /* Warna latar meja gelap (Dark Charcoal/Greenish) */
+    --folder-color: #F4F2EC; /* Warna kertas folder krem terang */
+    --paper-grid: #EAE6DB;   /* Warna kertas grid */
+    --paper-white: #FFFFFF;
     
-    --shadow-flat: 2px 4px 10px rgba(0,0,0,0.1);
-    --shadow-float: 5px 15px 30px rgba(0,0,0,0.25);
+    --ink-main: #2C2C2C;
+    --ink-light: #555555;
+    
+    --accent-orange: #D35400; /* Warna aksen utama (Terracotta) */
+    --accent-army: #5B6E36;   /* Warna hijau army Abidzar */
+    
+    --shadow-flat: 4px 6px 0px rgba(0,0,0,0.15);
+    --shadow-float: 10px 25px 50px rgba(0,0,0,0.3);
     
     --font-hand: 'Caveat', cursive;
     --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 
-/* Latar belakang hijau bertekstur ala rumput/alam */
+/* Latar Belakang Meja Editor Gelap bertekstur titik halus */
 body {
     font-family: var(--font-sans);
-    background-color: var(--bg-grass);
-    background-image: 
-        radial-gradient(rgba(0,0,0,0.08) 2px, transparent 2px);
-    background-size: 30px 30px;
-    color: var(--ink);
+    background-color: var(--bg-desk);
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1.5px, transparent 1.5px);
+    background-size: 25px 25px;
+    color: var(--ink-main);
     line-height: 1.6;
-    padding: 60px 2% 100px;
+    padding: 60px 3% 100px; /* Padding atas disesuaikan karena tidak ada navbar */
 }
 
 a { text-decoration: none; color: inherit; }
@@ -36,232 +40,213 @@ img { max-width: 100%; height: auto; display: block; }
 .handwritten { font-family: var(--font-hand); font-weight: 700; }
 
 /* ==================================================
-   DECORATIVE ORNAMENTS (PINS, BUGS, STARS)
+   DECORATIVE TAPE & STICKERS
    ================================================== */
-.deco { position: absolute; pointer-events: none; z-index: 50; }
-.deco-pin { font-size: 2.5rem; filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.3)); }
-.deco-star { font-size: 1.8rem; filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.2)); }
-.deco-bug { font-size: 1.5rem; filter: drop-shadow(1px 3px 3px rgba(0,0,0,0.3)); }
+.masking-tape {
+    position: absolute;
+    background: rgba(240, 235, 220, 0.85);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-left: 2px dashed rgba(0,0,0,0.15);
+    border-right: 2px dashed rgba(0,0,0,0.15);
+    backdrop-filter: blur(2px);
+    z-index: 20;
+}
+.tape-top-center { width: 100px; height: 28px; top: -14px; left: 50%; transform: translateX(-50%) rotate(-2deg); }
+.tape-corner-left { width: 80px; height: 25px; top: -10px; left: -25px; transform: rotate(-45deg); }
+.tape-corner-right { width: 80px; height: 25px; top: -10px; right: -25px; transform: rotate(45deg); }
 
 /* ==================================================
    MAIN FOLDER (HERO & ABOUT SECTION)
    ================================================== */
-.main-folder-container {
+.scrapbook-container {
     max-width: 1100px;
-    margin: 40px auto 0;
+    margin: 0 auto;
     position: relative;
-    filter: drop-shadow(8px 20px 40px rgba(0,0,0,0.3));
+    filter: drop-shadow(10px 25px 45px rgba(0,0,0,0.4));
 }
 
-/* Tab Folder di Atas */
 .folder-tab {
-    position: absolute;
-    top: -45px; left: 0;
-    width: 250px; height: 50px;
+    width: 220px; height: 45px;
     background-color: var(--folder-color);
-    border-radius: 16px 16px 0 0;
+    border-radius: 12px 12px 0 0;
     clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
+    display: flex; align-items: center; padding-left: 25px;
+    font-family: var(--font-hand); font-size: 1.5rem; color: var(--accent-orange);
+    position: relative; top: 1px;
 }
 
-/* Badan Folder Manila */
 .folder-body {
     background-color: var(--folder-color);
-    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.04"/></svg>');
-    border-radius: 0 24px 24px 24px;
+    border-radius: 0 20px 20px 20px;
     padding: 60px 50px;
     display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 50px;
+    grid-template-columns: 0.75fr 1.25fr; /* Rasio disesuaikan */
+    gap: 55px;
     position: relative;
     z-index: 5;
 }
 
-/* Label "About Me" di Pojok Kanan Atas Folder */
-.about-me-sticker {
-    position: absolute; top: -15px; right: 40px;
-    background: #FFF; padding: 10px 25px;
-    font-size: 2.2rem; transform: rotate(4deg);
-    box-shadow: 2px 4px 10px rgba(0,0,0,0.15);
-    border-radius: 2px;
-}
-.about-me-sticker .deco-pin { position: absolute; top: -15px; right: -15px; transform: rotate(15deg); }
+/* --- KIRI: FOTO & KONTAK GELAP --- */
+.left-column { display: flex; flex-direction: column; align-items: center; position: relative; }
 
-/* --- Kiri: Photo ID & Contact Card --- */
-.profile-section { position: relative; display: flex; flex-direction: column; align-items: center; }
-
-.id-photo-card {
-    background: #FFF; padding: 12px 12px 40px 12px;
+.polaroid-frame {
+    background: #FFF; padding: 14px 14px 45px 14px;
     border-radius: 4px; box-shadow: var(--shadow-flat);
     transform: rotate(-3deg); position: relative;
-    width: 100%; max-width: 280px; z-index: 10;
+    width: 100%; max-width: 300px; z-index: 10;
+    border: 1px solid rgba(0,0,0,0.05);
 }
-.id-photo-card img { border-radius: 3px; border: 1px solid rgba(0,0,0,0.05); }
+.polaroid-frame img { border-radius: 2px; aspect-ratio: 4/5; object-fit: cover; }
 
-/* Klip Logam di Atas Foto */
-.metal-clip {
-    position: absolute; top: -35px; left: 50%; transform: translateX(-50%);
-    width: 50px; height: 60px;
-    background: linear-gradient(to bottom, #E0E0E0, #999, #E0E0E0);
-    border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    z-index: 15;
+/* Tiket Kontak Gelap (Kontras dengan Folder Krem) */
+.contact-ticket {
+    background-color: #1A1C18; color: #E8E5DF;
+    padding: 25px; border-radius: 6px;
+    box-shadow: 4px 8px 20px rgba(0,0,0,0.25);
+    transform: rotate(2deg); margin-top: -20px;
+    width: 110%; position: relative; z-index: 15;
 }
-.metal-clip::after {
-    content: ''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
-    width: 20px; height: 8px; background: #333; border-radius: 10px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
-}
-
-/* Kontak Kertas Terjepit di Bawah Foto */
-.contact-paper-clip {
-    background: #FAFAFA; padding: 20px 25px 15px;
-    border-radius: 2px; box-shadow: var(--shadow-flat);
-    transform: rotate(2deg) translateY(-20px);
-    width: 105%; position: relative; z-index: 5;
-    border: 1px dashed rgba(0,0,0,0.1);
-}
-.contact-paper-clip h3 { font-size: 1.8rem; color: var(--red-highlight); margin-bottom: 10px; border-bottom: 2px solid var(--red-highlight); }
+.contact-ticket h3 { font-size: 2.2rem; color: var(--accent-orange); margin-bottom: 12px; line-height: 1; border-bottom: 2px dashed rgba(255,255,255,0.1); padding-bottom: 10px; }
 .contact-list { list-style: none; font-size: 1.05rem; }
-.contact-list li { margin-bottom: 8px; display: flex; gap: 10px; align-items: center; }
-.contact-list li i { color: var(--red-highlight); }
-.contact-list li a:hover { color: var(--red-highlight); font-weight: 600; }
+.contact-list li { margin-bottom: 12px; display: flex; gap: 12px; align-items: center; }
+.contact-list li i { color: var(--accent-orange); font-size: 1.3rem; }
+.contact-list li a { transition: var(--transition); }
+.contact-list li a:hover { color: var(--accent-orange); }
 
-/* --- Kanan: Deskripsi & Nama --- */
-.intro-section { padding-top: 20px; position: relative; }
-.greeting { font-size: 2.2rem; color: var(--red-highlight); line-height: 1; }
-.name-wrapper { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-.curly-brace { font-size: 5rem; color: var(--red-highlight); font-family: var(--font-hand); font-weight: 300; margin-top: -10px; }
-.big-name { font-size: clamp(3rem, 5vw, 4.5rem); font-family: var(--font-sans); font-weight: 800; color: #513B2E; line-height: 1; letter-spacing: -1px; }
+/* --- KANAN: DESKRIPSI (Teks Khas Abidzar) --- */
+.right-column { padding-top: 10px; position: relative; }
 
-.bio-text { font-size: 1.15rem; line-height: 1.85; color: #4A3A2F; text-align: justify; }
-.bio-text b { color: var(--red-highlight); font-weight: 700; background: rgba(168, 44, 53, 0.08); padding: 2px 4px; border-radius: 3px; }
+.hello-sticker {
+    display: inline-block; background: var(--accent-army); color: #FFF;
+    padding: 4px 16px; border-radius: 20px; font-size: 1.2rem;
+    transform: rotate(-3deg); margin-bottom: 15px;
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.15);
+}
+
+.title-name {
+    font-size: clamp(3.2rem, 6vw, 5rem);
+    font-weight: 800; color: var(--ink-main);
+    line-height: 1.1; margin-bottom: 25px;
+    letter-spacing: -1px;
+}
+.title-name span { position: relative; display: inline-block; }
+.title-name span::after {
+    content: ''; position: absolute; bottom: 8px; left: 0;
+    width: 100%; height: 18px; background-color: rgba(211, 84, 0, 0.2);
+    z-index: -1; transform: rotate(-1deg);
+}
+
+.bio-text { font-size: 1.12rem; line-height: 1.9; color: var(--ink-light); text-align: justify; }
+.bio-text b { color: var(--accent-orange); font-weight: 700; background: rgba(211, 84, 0, 0.08); padding: 2px 6px; border-radius: 4px; }
+.bio-text i { color: var(--accent-army); font-weight: 600; font-style: normal; }
 
 /* ==================================================
-   BOTTOM OVERLAPPING PAPERS (SKILLS & SHOWCASE)
+   BOTTOM PAPERS (SKILLS & PORTFOLIO)
    ================================================== */
-.bottom-papers-container {
+.papers-wrapper {
     max-width: 1150px; margin: 40px auto 0;
-    display: grid; grid-template-columns: 1fr 1.2fr;
+    display: grid; grid-template-columns: 0.9fr 1.1fr;
+    position: relative; gap: 20px;
+}
+
+/* Kertas Kiri: Skills Grid */
+.skill-paper {
+    background-color: var(--paper-grid);
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+    padding: 45px 40px; border-radius: 6px;
+    box-shadow: var(--shadow-float);
+    transform: rotate(-1.5deg);
+    z-index: 20; position: relative;
+}
+
+/* Kertas Kanan: Portofolio Putih */
+.portfolio-paper {
+    background-color: var(--paper-white);
+    padding: 50px 45px; border-radius: 6px;
+    box-shadow: var(--shadow-float);
+    transform: rotate(1deg);
+    z-index: 10; margin-top: 25px;
     position: relative;
 }
 
-/* Kertas Kiri: Skills & Software */
-.paper-left {
-    background-color: var(--paper-grid);
-    background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-    background-size: 20px 20px;
-    padding: 50px 40px;
-    border-radius: 4px;
-    box-shadow: var(--shadow-float);
-    transform: rotate(-2deg);
-    z-index: 20;
-    margin-right: -40px; /* Overlap ke kanan */
+/* Label Judul Section */
+.section-label {
+    font-family: var(--font-hand); font-size: 2.6rem;
+    color: var(--accent-army); margin-bottom: 20px; line-height: 1;
 }
 
-/* Kertas Kanan: Video & Graphic Design Experience */
-.paper-right {
-    background-color: var(--paper-white);
-    padding: 50px 40px;
-    border-radius: 4px;
-    box-shadow: var(--shadow-float);
-    transform: rotate(1.5deg);
-    z-index: 10;
-    margin-top: 30px;
+/* --- TORN TAPE SKILLS --- */
+.tape-skills-group { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 45px; }
+.tape-item {
+    background: #FFF; color: var(--ink-main);
+    font-family: var(--font-sans); font-size: 1.05rem; font-weight: 700;
+    padding: 10px 18px; box-shadow: 2px 3px 8px rgba(0,0,0,0.08);
+    border-left: 3px solid var(--accent-orange);
+    transform: rotate(random);
 }
+.tape-item:nth-child(1) { transform: rotate(-2deg); }
+.tape-item:nth-child(2) { transform: rotate(1.5deg); }
+.tape-item:nth-child(3) { transform: rotate(-1deg); margin-top: 5px;}
+.tape-item:nth-child(4) { transform: rotate(2deg); margin-top: 5px;}
 
-/* Headings Merah dalam Kertas */
-.red-badge-title {
-    display: inline-block; background: var(--red-highlight); color: #FFF;
-    padding: 6px 18px; border-radius: 4px; font-family: var(--font-sans);
-    font-size: 1.3rem; font-weight: 700; margin-bottom: 25px;
-    box-shadow: 2px 3px 6px rgba(0,0,0,0.15);
-}
-
-/* --- TAPE SKILLS STYLE --- */
-.skills-tape-container { display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0 40px; }
-.tape-skill {
-    background: #EFEBDF; color: #4A3A2F;
-    font-family: var(--font-hand); font-size: 1.8rem; font-weight: 700;
-    padding: 8px 20px; box-shadow: 2px 3px 8px rgba(0,0,0,0.12);
-    position: relative; cursor: default;
-    border-left: 2px dashed rgba(0,0,0,0.1);
-    border-right: 2px dashed rgba(0,0,0,0.1);
-}
-.tape-skill:nth-child(1) { transform: rotate(-4deg); }
-.tape-skill:nth-child(2) { transform: rotate(3deg); margin-top: 10px; }
-.tape-skill:nth-child(3) { transform: rotate(-2deg); }
-.tape-skill:nth-child(4) { transform: rotate(5deg); margin-top: 5px; }
-.tape-skill::before { content: '★'; position: absolute; left: 5px; top: 12px; font-size: 1rem; color: var(--red-highlight); }
-
-/* --- SOFTWARE SQUARES (IMAGE CUSTOMIZABLE) --- */
-.software-grid { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 22px; 
-}
-.soft-box { 
-    text-align: center; 
-    cursor: pointer; 
-}
+/* --- SOFTWARE IMAGES GRID --- */
+.software-grid { display: flex; flex-wrap: wrap; gap: 22px; }
+.soft-box { text-align: center; cursor: pointer; }
 .soft-img-icon {
-    width: 75px; 
-    height: 75px; 
-    object-fit: contain; 
-    border-radius: 14px; 
-    box-shadow: 3px 5px 12px rgba(0,0,0,0.15); 
-    margin-bottom: 8px; 
-    background-color: #FFF; 
+    width: 75px; height: 75px; object-fit: contain;
+    border-radius: 14px; box-shadow: 3px 5px 15px rgba(0,0,0,0.12);
+    margin-bottom: 10px; background-color: #FFF;
     transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.soft-box:hover .soft-img-icon { 
-    transform: translateY(-6px) scale(1.08); 
-    box-shadow: 4px 8px 18px rgba(0,0,0,0.2);
-}
-.soft-label { 
-    font-size: 0.9rem; 
-    font-weight: 700; 
-    color: #4A3A2F; 
-}
+.soft-box:hover .soft-img-icon { transform: translateY(-6px) scale(1.08); box-shadow: 4px 8px 20px rgba(0,0,0,0.2); }
+.soft-label { font-size: 0.95rem; font-weight: 700; color: var(--ink-main); }
 
-/* --- SHOWCASE ITEMS ON RIGHT PAPER --- */
-.showcase-group { margin-bottom: 45px; }
-.showcase-group:last-child { margin-bottom: 0; }
-.showcase-subtitle { font-size: 1.1rem; color: #665243; margin-top: -15px; margin-bottom: 20px; }
+/* --- PORTFOLIO GALLERY ITEMS --- */
+.showcase-block { margin-bottom: 50px; }
+.showcase-block:last-child { margin-bottom: 0; }
+.showcase-desc { font-size: 1.05rem; color: var(--ink-light); margin-bottom: 25px; margin-top: -10px; }
 
-.work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-.work-item {
-    background: #FFF; padding: 10px 10px 25px 10px;
-    box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+.video-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+.graphic-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+
+.work-card {
+    background: #FFF; padding: 12px 12px 40px 12px;
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.08);
     position: relative; transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.03); border-radius: 2px;
 }
-.work-item:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 10; box-shadow: var(--shadow-float); }
-.work-item.tilt-left { transform: rotate(-2deg); }
-.work-item.tilt-right { transform: rotate(2deg); }
+.work-card:hover { transform: scale(1.04) rotate(0deg) !important; z-index: 15; box-shadow: 6px 12px 25px rgba(0,0,0,0.15); }
+.work-card.tilt-a { transform: rotate(-2deg); }
+.work-card.tilt-b { transform: rotate(2.5deg); }
+.work-card.tilt-c { transform: rotate(-1.5deg); }
 
-.work-img-box { position: relative; overflow: hidden; aspect-ratio: 16/10; border: 1px solid rgba(0,0,0,0.05); }
-.work-img-box img { width: 100%; height: 100%; object-fit: cover; }
-.play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; color: #FFF; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); opacity: 0.9; }
+.img-container { position: relative; overflow: hidden; border-radius: 2px; }
+.video-layout .img-container { aspect-ratio: 16/10; }
+.graphic-layout .img-container { aspect-ratio: 4/5; }
+.img-container img { width: 100%; height: 100%; object-fit: cover; }
 
-.work-title { font-family: var(--font-hand); font-size: 1.4rem; color: #4A3A2F; text-align: center; margin-top: 10px; line-height: 1; }
+.play-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; color: #FFF; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5)); opacity: 0.95; }
+.work-caption { font-family: var(--font-hand); font-size: 1.5rem; color: var(--ink-main); position: absolute; bottom: 8px; left: 0; width: 100%; text-align: center; }
 
-.design-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-.design-gallery .work-img-box { aspect-ratio: 4/5; }
+/* Footer Singkat */
+.simple-footer { text-align: center; padding: 50px 0 20px; color: rgba(255,255,255,0.4); font-family: var(--font-hand); font-size: 2rem; letter-spacing: 2px; }
 
 /* ==================================================
    RESPONSIVE DESIGN
    ================================================== */
 @media (max-width: 1024px) {
-    .folder-body { grid-template-columns: 1fr; text-align: center; padding: 50px 30px; }
-    .profile-section { margin-bottom: 30px; }
-    .name-wrapper { justify-content: center; }
-    .bottom-papers-container { grid-template-columns: 1fr; }
-    .paper-left { margin-right: 0; margin-bottom: 20px; transform: rotate(0); }
-    .paper-right { transform: rotate(0); margin-top: 0; }
-    .about-me-sticker { top: -25px; right: 20px; }
+    .folder-body { grid-template-columns: 1fr; padding: 50px 40px; gap: 40px; text-align: center; }
+    .left-column { margin-bottom: 20px; }
+    .contact-ticket { width: 100%; max-width: 350px; margin-top: 10px; transform: rotate(0); }
+    .papers-wrapper { grid-template-columns: 1fr; }
+    .skill-paper { transform: rotate(0); margin-bottom: 20px; }
+    .portfolio-paper { transform: rotate(0); margin-top: 0; }
 }
 @media (max-width: 768px) {
-    body { padding: 40px 15px 60px; }
-    .big-name { font-size: 2.8rem; }
-    .curly-brace { font-size: 4rem; }
-    .folder-tab { width: 200px; }
-    .work-grid { grid-template-columns: 1fr; }
-    .design-gallery { grid-template-columns: 1fr; }
+    body { padding: 30px 4% 50px; }
+    .title-name { font-size: 2.8rem; }
+    .video-layout, .graphic-layout { grid-template-columns: 1fr; max-width: 350px; margin: 0 auto; }
 }
