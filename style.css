@@ -1,5 +1,5 @@
 /* ==================================================
-   DESIGN SYSTEM (Clean Editorial Scrapbook)
+   DESIGN SYSTEM (Clean Editorial Scrapbook - Updated)
    ================================================== */
 :root {
     --army: #5B6E36;         
@@ -12,8 +12,8 @@
     --marker-accent: #5B6E36;
     
     --shadow-subtle: 2px 5px 15px rgba(0, 0, 0, 0.05);
-    --shadow-float: 2px 8px 25px rgba(0, 0, 0, 0.08);
-    --shadow-flat: 3px 4px 0px rgba(58, 110, 54, 0.15);
+    --shadow-float: 4px 10px 25px rgba(0, 0, 0, 0.08);
+    --shadow-flat: 3px 4px 0px rgba(58, 110, 54, 0.2);
     
     --font-hand: 'Gochi Hand', cursive;
     --font-sans: 'Nunito', sans-serif;
@@ -31,7 +31,7 @@ body.dark-mode {
     --white: #20231C;
     --army: #6b823f;
     --shadow-subtle: 2px 5px 15px rgba(0,0,0,0.3);
-    --shadow-float: 2px 8px 25px rgba(0,0,0,0.5);
+    --shadow-float: 4px 10px 25px rgba(0,0,0,0.5);
     --shadow-flat: 3px 4px 0px rgba(0,0,0,0.8);
 }
 
@@ -42,9 +42,9 @@ body {
     font-family: var(--font-sans);
     background-color: var(--paper);
     background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
-    background-size: 20px 20px;
+        linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+    background-size: 24px 24px;
     color: var(--ink);
     line-height: 1.6;
     overflow-x: hidden;
@@ -62,7 +62,7 @@ img { max-width: 100%; height: auto; display: block; }
 .text-marker-white { color: #F6F5F0 !important; }
 .text-marker { color: var(--marker-accent); }
 
-.section-header { text-align: center; margin-bottom: 40px; position: relative; z-index: 10; }
+.section-header { text-align: center; margin-bottom: 30px; position: relative; z-index: 10; }
 .section-title {
     font-family: var(--font-hand);
     font-size: clamp(2.8rem, 5vw, 4rem);
@@ -85,14 +85,15 @@ img { max-width: 100%; height: auto; display: block; }
     font-size: 0.95rem;
     color: var(--ink);
     max-width: 550px;
-    margin: 15px auto 0;
+    margin: 12px auto 0;
     line-height: 1.6;
     background: var(--paper-card);
     padding: 8px 16px;
     border-radius: 2px;
-    border: 1px dashed rgba(0,0,0,0.1);
+    border: 1px dashed rgba(0,0,0,0.12);
     display: inline-block;
     box-shadow: var(--shadow-subtle);
+    transform: rotate(-0.5deg);
 }
 
 .sticky-label {
@@ -152,54 +153,51 @@ body.dark-mode .logo img { filter: invert(1); }
 }
 
 /* ==================================================
-   SUBTLE SCRAPBOOK ELEMENTS (TAPE & CLIPS)
+   SCRAPBOOK ELEMENTS (TAPE & CLIPS)
    ================================================== */
 .tape-corner, .tape-top-center, .tape-corner-small {
     position: absolute;
-    background: rgba(230, 225, 210, 0.85);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    border-left: 1px dashed rgba(0,0,0,0.1); 
-    border-right: 1px dashed rgba(0,0,0,0.1);
+    background: rgba(230, 225, 210, 0.88);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    border-left: 1px dashed rgba(0,0,0,0.12); 
+    border-right: 1px dashed rgba(0,0,0,0.12);
     z-index: 15; 
     backdrop-filter: blur(2px);
 }
 .tape-corner { width: 70px; height: 20px; top: -10px; left: -20px; transform: rotate(-45deg); }
-.tape-top-center { width: 80px; height: 22px; top: -11px; left: 50%; transform: translateX(-50%) rotate(-2deg); }
+.tape-top-center { width: 80px; height: 22px; top: -11px; left: 50%; transform: translateX(-50%) rotate(-1.5deg); }
 .tape-corner-small { width: 40px; height: 14px; top: -5px; left: -10px; transform: rotate(-45deg); }
 
 .paper-clip, .paper-clip-alt {
     position: absolute; top: -20px; left: 20px; width: 15px; height: 50px;
-    border: 2px solid #999; border-radius: 10px; z-index: 25;
+    border: 2px solid #888; border-radius: 10px; z-index: 25;
     background: transparent; transform: rotate(8deg);
     box-shadow: 1px 2px 4px rgba(0,0,0,0.1);
 }
 .paper-clip::before, .paper-clip-alt::before {
     content: ''; position: absolute; top: 5px; right: -2px; width: 8px; height: 30px;
-    border: 2px solid #999; border-radius: 10px; border-left: none;
+    border: 2px solid #888; border-radius: 10px; border-left: none;
     border-top-left-radius: 0; border-bottom-left-radius: 0;
 }
 .paper-clip-alt { left: auto; right: 25px; transform: rotate(-12deg); }
 
-.tilt-left { transform: rotate(-1deg); }
-.tilt-right { transform: rotate(1.5deg); }
+.tilt-left { transform: rotate(-1.5deg); }
+.tilt-right { transform: rotate(1.8deg); }
 
 /* ==================================================
-   HERO SECTION (FOTO DIPERKECIL & DIRAPIKAN)
+   HERO SECTION
    ================================================== */
-.section-hero { padding: 130px 5% 60px; max-width: 1050px; margin: 0 auto; }
-/* Grid diatur agar teks dapat ruang lebih besar (1.3) dan foto lebih kecil (0.7) */
+.section-hero { padding: 120px 5% 50px; max-width: 1050px; margin: 0 auto; }
 .hero-content-wrapper { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 40px; align-items: center; }
-
 .hero-heading { font-family: var(--font-hand); font-size: clamp(3.2rem, 6vw, 5rem); line-height: 1; margin-bottom: 20px; }
 
-/* UKURAN FOTO HERO DIPERBAIKI */
 .polaroid-frame {
     background: var(--paper-card); 
-    padding: 10px 10px 35px 10px; /* Padding bawah diperkecil dari 50px ke 35px */
+    padding: 10px 10px 35px 10px; 
     box-shadow: var(--shadow-float); position: relative; border-radius: 2px;
-    border: 1px solid rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.05);
     transform: rotate(2deg); transition: var(--transition);
-    max-width: 260px; /* Ukuran frame maksimal diperkecil drastis */
+    max-width: 260px; 
     margin: 0 auto;
 }
 .polaroid-frame:hover { transform: rotate(0deg) scale(1.02); z-index: 20; }
@@ -215,39 +213,59 @@ body.dark-mode .logo img { filter: invert(1); }
 .btn-secondary.marker-btn { background: var(--paper-dark); color: var(--ink); }
 
 /* ==================================================
-   ABOUT SECTION (UKURAN ID CARD DIPERKECIL)
+   ABOUT SECTION (REVISED: LEBIH KREATIF & TIDAK BORING)
    ================================================== */
-.section-about { padding: 50px 5% 70px; max-width: 1050px; margin: 0 auto; }
-.scrapbook-card { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
+.section-about { padding: 40px 5% 50px; max-width: 1050px; margin: 0 auto; }
+.scrapbook-card { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 35px; align-items: center; }
 
 .about-text-wrapper {
     position: relative;
-    padding: 35px 30px; 
-    border-radius: 2px; 
+    padding: 35px 32px; 
+    border-radius: 4px; 
     box-shadow: var(--shadow-float); 
-    border: 1px solid rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.06);
     background-color: var(--paper-card);
+    transform: rotate(-1deg);
 }
-.about-heading { font-size: 2.2rem; color: var(--army); margin-bottom: 15px; }
-.text-description { font-size: 1rem; line-height: 1.7; color: var(--ink); }
+/* Aksen catatan tempel kertas kreatif di dalam about */
+.about-text-wrapper::after {
+    content: '✨ Fun Fact / About Me';
+    position: absolute;
+    top: -14px;
+    right: 25px;
+    background: var(--army);
+    color: var(--white);
+    font-family: var(--font-hand);
+    font-size: 0.95rem;
+    padding: 2px 10px;
+    transform: rotate(3deg);
+    box-shadow: var(--shadow-subtle);
+    border-radius: 2px;
+}
 
-/* UKURAN FOTO ID CARD DIPERBAIKI */
+.about-heading { font-size: 2.3rem; color: var(--army); margin-bottom: 12px; }
+.text-description { font-size: 1.02rem; line-height: 1.75; color: var(--ink); }
+.text-description b { background: rgba(91, 110, 54, 0.1); padding: 1px 4px; border-radius: 2px; color: var(--army-dark); font-weight: 700; }
+
 .id-badge {
-    background: var(--paper-card); border: 1px solid rgba(0,0,0,0.06); 
+    background: var(--paper-card); border: 1px solid rgba(0,0,0,0.08); 
     border-radius: 6px; 
-    max-width: 230px; /* Diperkecil dari 300px */
+    max-width: 220px; 
     margin: 0 auto; 
-    padding: 15px 15px 20px 15px; /* Bingkai ditipiskan */
+    padding: 15px 15px 20px 15px; 
     position: relative;
-    box-shadow: var(--shadow-subtle); transform: rotate(2deg);
+    box-shadow: var(--shadow-float); 
+    transform: rotate(3deg);
     display: flex; flex-direction: column; align-items: center;
+    transition: var(--transition);
 }
+.id-badge:hover { transform: rotate(0deg) scale(1.03); }
 .badge-hole {
-    width: 50px; height: 8px; background: var(--paper-dark); 
-    border-radius: 8px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); 
-    margin-bottom: 15px; position: relative;
+    width: 40px; height: 7px; background: var(--paper-dark); 
+    border-radius: 8px; box-shadow: inset 0 2px 3px rgba(0,0,0,0.15); 
+    margin-bottom: 12px; position: relative;
 }
-.lanyard-rope-container { position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 40px; height: 90px; z-index: -1; }
+.lanyard-rope-container { position: absolute; top: -55px; left: 50%; transform: translateX(-50%); width: 35px; height: 85px; z-index: -1; }
 .lanyard {
     width: 100%; height: 100%;
     background: repeating-linear-gradient(90deg, var(--army-dark), var(--army-dark) 4px, var(--army) 4px, var(--army) 10px);
@@ -255,107 +273,112 @@ body.dark-mode .logo img { filter: invert(1); }
 }
 .lanyard-clip {
     position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
-    width: 25px; height: 18px; background: linear-gradient(90deg, #999, #eee, #999); 
+    width: 22px; height: 16px; background: linear-gradient(90deg, #888, #ddd, #888); 
     border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); z-index: 2;
 }
+.img-profile { border-radius: 4px; aspect-ratio: 4/5; object-fit: cover; }
 
 /* ==================================================
    SOFTWARE SKILL SECTION
    ================================================== */
+.section-skills { padding: 30px 5% 40px; }
 .software-card {
     background: var(--paper-card);
-    padding: 40px;
-    max-width: 850px;
+    padding: 30px 40px;
+    max-width: 800px;
     margin: 0 auto;
     display: block;
-    border: 1px solid rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.05);
     box-shadow: var(--shadow-float);
+    transform: rotate(1deg);
 }
 .skill-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+    gap: 20px;
     justify-items: center;
-    padding-top: 15px;
+    padding-top: 10px;
 }
 .skill-placeholder {
-    width: 90px;
-    height: 90px;
-    background-color: rgba(91, 110, 54, 0.03);
-    border: 1px dashed rgba(91, 110, 54, 0.3);
+    width: 85px;
+    height: 85px;
+    background-color: rgba(91, 110, 54, 0.04);
+    border: 1px dashed rgba(91, 110, 54, 0.35);
     border-radius: 4px;
     position: relative;
     transition: var(--transition);
 }
 .skill-placeholder:hover {
-    transform: scale(1.03) rotate(1deg);
-    background-color: rgba(91, 110, 54, 0.06);
+    transform: scale(1.05) rotate(-2deg);
+    background-color: rgba(91, 110, 54, 0.08);
     border-style: solid;
     border-color: var(--army);
 }
 
 /* ==================================================
-   SHOWCASE SECTION & VIDEO EDITING
+   SHOWCASE SECTION & VIDEO EDITING (JARAK DIPERBAIKI / DIPERAPAT)
    ================================================== */
-.section-showcase { position: relative; padding-top: 40px; padding-bottom: 60px; }
+.section-showcase { position: relative; padding-top: 30px; padding-bottom: 45px; }
 
 .video-grid { 
-    display: grid; grid-template-columns: 1fr 1fr; gap: 30px; 
-    max-width: 850px; margin: 35px auto 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 25px; 
+    max-width: 800px; margin: 25px auto 0;
 }
 .card-image { position: relative; overflow: hidden; height: 100%; border: 1px solid rgba(0,0,0,0.03); }
 .card-image img { width: 100%; height: 100%; object-fit: cover; }
 .play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; color: var(--white); opacity: 0.9; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3)); transition: var(--transition); }
 .polaroid-frame:hover .play-overlay { transform: translate(-50%, -50%) scale(1.1); color: var(--marker-accent); }
-.card-info { padding-top: 12px; display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; font-weight: bold; }
+.card-info { padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; font-weight: bold; }
 
 /* Edge transition */
 .torn-paper-edge {
-    width: 100%; height: 40px; background-color: var(--army);
+    width: 100%; height: 35px; background-color: var(--army);
     -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 L0,20 Q30,40 60,10 T120,30 T180,15 T240,25 T300,5 T360,20 T420,10 T480,35 T540,15 T600,25 T660,10 T720,30 T780,15 T840,35 T900,15 T960,25 T1020,10 T1080,30 T1140,15 T1200,25 L1200,40 Z" fill="black"/></svg>');
     mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 L0,20 Q30,40 60,10 T120,30 T180,15 T240,25 T300,5 T360,20 T420,10 T480,35 T540,15 T600,25 T660,10 T720,30 T780,15 T840,35 T900,15 T960,25 T1020,10 T1080,30 T1140,15 T1200,25 L1200,40 Z" fill="black"/></svg>');
-    margin-top: 30px; margin-bottom: -2px;
+    margin-top: 25px; margin-bottom: -2px;
 }
 
-.purple-bg-wrapper { background-color: var(--army); color: #F6F5F0; padding-bottom: 50px; position: relative; }
+.purple-bg-wrapper { background-color: var(--army); color: #F6F5F0; padding-bottom: 45px; position: relative; }
 
-.design-grid { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 30px; padding: 40px 20px 30px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+/* Jarak antar card design diperdekat agar pas dan dinamis */
+.design-grid { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 25px; padding: 35px 20px 25px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; max-width: 950px; margin: 0 auto; }
 .design-grid::-webkit-scrollbar { height: 8px; }
 .design-grid::-webkit-scrollbar-track { background: rgba(0,0,0,0.15); border-radius: 10px; margin: 0 20px; }
 .design-grid::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.9); border-radius: 10px; }
-.design-item { flex: 0 0 280px; scroll-snap-align: center; }
+.design-item { flex: 0 0 260px; scroll-snap-align: center; }
 .design-item .card-image { aspect-ratio: 4/5; }
 
 .design-item::before {
     content: attr(class); position: absolute; 
-    top: -30px; left: -15px; 
+    top: -28px; left: -12px; 
     font-family: var(--font-hand);
-    font-size: 4.5rem; 
-    color: rgba(255,255,255,0.9); 
+    font-size: 4rem; 
+    color: rgba(255,255,255,0.85); 
     text-shadow: var(--shadow-subtle); 
     z-index: 5; 
-    transform: rotate(-10deg);
+    transform: rotate(-8deg);
 }
 .number-1::before { content: '1.'; } .number-2::before { content: '2.'; } .number-3::before { content: '3.'; }
 
 /* ==================================================
    CONTACT SECTION
    ================================================== */
+.section-contact { padding-top: 15px; }
 .contact-grid {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
-    max-width: 850px; margin: 30px auto 0;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 18px;
+    max-width: 800px; margin: 25px auto 0;
 }
 .contact-card {
-    background: var(--paper-card); color: var(--ink); padding: 18px 20px; 
+    background: var(--paper-card); color: var(--ink); padding: 16px 20px; 
     display: flex; align-items: center; justify-content: center; gap: 12px; 
-    font-size: 1.15rem; box-shadow: var(--shadow-subtle); transition: var(--transition);
-    border: 1px solid rgba(0,0,0,0.04); border-radius: 2px;
-    width: 200px;
+    font-size: 1.1rem; box-shadow: var(--shadow-subtle); transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.05); border-radius: 2px;
+    width: 190px;
 }
-.contact-card:nth-child(1) { transform: rotate(-2deg); }
-.contact-card:nth-child(2) { transform: rotate(1deg); }
-.contact-card:nth-child(3) { transform: rotate(-1deg); }
-.contact-card:nth-child(4) { transform: rotate(2deg); }
+.contact-card:nth-child(1) { transform: rotate(-2.5deg); }
+.contact-card:nth-child(2) { transform: rotate(1.5deg); }
+.contact-card:nth-child(3) { transform: rotate(-1.5deg); }
+.contact-card:nth-child(4) { transform: rotate(2.5deg); }
 
 .contact-card:hover { 
     transform: translateY(-5px) rotate(0deg) scale(1.03) !important; 
@@ -363,35 +386,33 @@ body.dark-mode .logo img { filter: invert(1); }
     z-index: 10;
 }
 
-.site-footer { text-align: center; padding: 25px 5%; margin-top: 30px; border-top: 2px dashed rgba(255,255,255,0.2); }
-.footer-logo { font-family: var(--font-hand); font-size: 2.2rem; color: var(--white); display: block; }
+.site-footer { text-align: center; padding: 20px 5%; margin-top: 25px; border-top: 2px dashed rgba(255,255,255,0.2); }
+.footer-logo { font-family: var(--font-hand); font-size: 2rem; color: var(--white); display: block; }
 
 /* ==================================================
-   RESPONSIVE (HP & TABLET) - UKURAN FOTO MAKIN KECIL DI HP
+   RESPONSIVE (HP & TABLET)
    ================================================== */
 @media (max-width: 1024px) {
-    .hero-content-wrapper, .scrapbook-card { gap: 30px; }
+    .hero-content-wrapper, .scrapbook-card { gap: 25px; }
 }
 @media (max-width: 768px) {
-    .hero-content-wrapper, .scrapbook-card { grid-template-columns: 1fr; text-align: center; gap: 35px; }
+    .hero-content-wrapper, .scrapbook-card { grid-template-columns: 1fr; text-align: center; gap: 30px; }
     
-    /* Ukuran foto di layar kecil dijaga agar tidak memenuhi layar */
-    .hero-image-wrapper { order: -1; max-width: 220px; margin: 0 auto; }
-    .about-image-wrapper { order: -1; max-width: 200px; margin: 0 auto; }
+    .hero-image-wrapper { order: -1; max-width: 210px; margin: 0 auto; }
+    .about-image-wrapper { order: -1; max-width: 190px; margin: 0 auto; }
     
     .hero-cta { justify-content: center; }
+    .section-title { font-size: 2.5rem; }
+    .section-subtitle { padding: 6px 12px; font-size: 0.88rem; margin-top: 8px; }
     
-    .section-title { font-size: 2.6rem; }
-    .section-subtitle { padding: 6px 12px; font-size: 0.9rem; margin-top: 10px; }
+    .video-grid { grid-template-columns: 1fr; margin-top: 20px; gap: 20px; max-width: 300px; }
+    .design-item { flex: 0 0 250px; }
     
-    .video-grid { grid-template-columns: 1fr; margin-top: 25px; gap: 25px; max-width: 320px; }
-    .design-item { flex: 0 0 260px; }
-    
-    .contact-grid { flex-direction: column; align-items: center; gap: 15px; }
-    .contact-card { width: 260px; transform: rotate(0deg) !important; }
+    .contact-grid { flex-direction: column; align-items: center; gap: 12px; }
+    .contact-card { width: 250px; transform: rotate(0deg) !important; }
     
     .text-description { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
     .text-description.expanded { display: block; overflow: visible; -webkit-line-clamp: unset; }
-    .read-more-btn { display: inline-block; background: none; border: none; color: var(--marker-accent); font-family: var(--font-hand); font-size: 1.15rem; cursor: pointer; margin-top: 12px; text-decoration: underline wavy; }
+    .read-more-btn { display: inline-block; background: none; border: none; color: var(--marker-accent); font-family: var(--font-hand); font-size: 1.15rem; cursor: pointer; margin-top: 10px; text-decoration: underline wavy; }
 }
 @media (min-width: 769px) { .read-more-btn { display: none; } }
