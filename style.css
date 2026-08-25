@@ -1,17 +1,17 @@
 /* ==================================================
-   DESIGN SYSTEM (Modern Editor's Scrapbook)
+   DESIGN SYSTEM (Modern Editor's Scrapbook - Fully Responsive)
    ================================================== */
 :root {
-    --bg-desk: #1F221D;      /* Warna latar meja gelap (Dark Charcoal/Greenish) */
-    --folder-color: #F4F2EC; /* Warna kertas folder krem terang */
-    --paper-grid: #EAE6DB;   /* Warna kertas grid */
+    --bg-desk: #1F221D;      
+    --folder-color: #F4F2EC; 
+    --paper-grid: #EAE6DB;   
     --paper-white: #FFFFFF;
     
     --ink-main: #2C2C2C;
     --ink-light: #555555;
     
-    --accent-orange: #D35400; /* Warna aksen utama (Terracotta) */
-    --accent-army: #5B6E36;   /* Warna hijau army Abidzar */
+    --accent-orange: #D35400; 
+    --accent-army: #5B6E36;   
     
     --shadow-flat: 4px 6px 0px rgba(0,0,0,0.15);
     --shadow-float: 10px 25px 50px rgba(0,0,0,0.3);
@@ -24,7 +24,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 
-/* Latar Belakang Meja Editor Gelap bertekstur titik halus */
 body {
     font-family: var(--font-sans);
     background-color: var(--bg-desk);
@@ -32,7 +31,7 @@ body {
     background-size: 25px 25px;
     color: var(--ink-main);
     line-height: 1.6;
-    padding: 60px 3% 100px; /* Padding atas disesuaikan karena tidak ada navbar */
+    padding: 60px 3% 100px; 
 }
 
 a { text-decoration: none; color: inherit; }
@@ -80,7 +79,7 @@ img { max-width: 100%; height: auto; display: block; }
     border-radius: 0 20px 20px 20px;
     padding: 60px 50px;
     display: grid;
-    grid-template-columns: 0.75fr 1.25fr; /* Rasio disesuaikan */
+    grid-template-columns: 0.75fr 1.25fr; 
     gap: 55px;
     position: relative;
     z-index: 5;
@@ -98,7 +97,6 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .polaroid-frame img { border-radius: 2px; aspect-ratio: 4/5; object-fit: cover; }
 
-/* Tiket Kontak Gelap (Kontras dengan Folder Krem) */
 .contact-ticket {
     background-color: #1A1C18; color: #E8E5DF;
     padding: 25px; border-radius: 6px;
@@ -113,7 +111,7 @@ img { max-width: 100%; height: auto; display: block; }
 .contact-list li a { transition: var(--transition); }
 .contact-list li a:hover { color: var(--accent-orange); }
 
-/* --- KANAN: DESKRIPSI (Teks Khas Abidzar) --- */
+/* --- KANAN: DESKRIPSI --- */
 .right-column { padding-top: 10px; position: relative; }
 
 .hello-sticker {
@@ -149,7 +147,6 @@ img { max-width: 100%; height: auto; display: block; }
     position: relative; gap: 20px;
 }
 
-/* Kertas Kiri: Skills Grid */
 .skill-paper {
     background-color: var(--paper-grid);
     background-image: 
@@ -162,7 +159,6 @@ img { max-width: 100%; height: auto; display: block; }
     z-index: 20; position: relative;
 }
 
-/* Kertas Kanan: Portofolio Putih */
 .portfolio-paper {
     background-color: var(--paper-white);
     padding: 50px 45px; border-radius: 6px;
@@ -172,27 +168,23 @@ img { max-width: 100%; height: auto; display: block; }
     position: relative;
 }
 
-/* Label Judul Section */
 .section-label {
     font-family: var(--font-hand); font-size: 2.6rem;
     color: var(--accent-army); margin-bottom: 20px; line-height: 1;
 }
 
-/* --- TORN TAPE SKILLS --- */
 .tape-skills-group { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 45px; }
 .tape-item {
     background: #FFF; color: var(--ink-main);
     font-family: var(--font-sans); font-size: 1.05rem; font-weight: 700;
     padding: 10px 18px; box-shadow: 2px 3px 8px rgba(0,0,0,0.08);
     border-left: 3px solid var(--accent-orange);
-    transform: rotate(random);
 }
 .tape-item:nth-child(1) { transform: rotate(-2deg); }
 .tape-item:nth-child(2) { transform: rotate(1.5deg); }
 .tape-item:nth-child(3) { transform: rotate(-1deg); margin-top: 5px;}
 .tape-item:nth-child(4) { transform: rotate(2deg); margin-top: 5px;}
 
-/* --- SOFTWARE IMAGES GRID --- */
 .software-grid { display: flex; flex-wrap: wrap; gap: 22px; }
 .soft-box { text-align: center; cursor: pointer; }
 .soft-img-icon {
@@ -204,7 +196,6 @@ img { max-width: 100%; height: auto; display: block; }
 .soft-box:hover .soft-img-icon { transform: translateY(-6px) scale(1.08); box-shadow: 4px 8px 20px rgba(0,0,0,0.2); }
 .soft-label { font-size: 0.95rem; font-weight: 700; color: var(--ink-main); }
 
-/* --- PORTFOLIO GALLERY ITEMS --- */
 .showcase-block { margin-bottom: 50px; }
 .showcase-block:last-child { margin-bottom: 0; }
 .showcase-desc { font-size: 1.05rem; color: var(--ink-light); margin-bottom: 25px; margin-top: -10px; }
@@ -231,22 +222,69 @@ img { max-width: 100%; height: auto; display: block; }
 .play-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; color: #FFF; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5)); opacity: 0.95; }
 .work-caption { font-family: var(--font-hand); font-size: 1.5rem; color: var(--ink-main); position: absolute; bottom: 8px; left: 0; width: 100%; text-align: center; }
 
-/* Footer Singkat */
 .simple-footer { text-align: center; padding: 50px 0 20px; color: rgba(255,255,255,0.4); font-family: var(--font-hand); font-size: 2rem; letter-spacing: 2px; }
 
 /* ==================================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN & CROSS-DEVICE COMPATIBILITY
    ================================================== */
+
+/* iPad & Tablet (Potrait) -> 768px - 1024px */
 @media (max-width: 1024px) {
-    .folder-body { grid-template-columns: 1fr; padding: 50px 40px; gap: 40px; text-align: center; }
+    .folder-body { 
+        grid-template-columns: 1fr; /* Jadi satu kolom (atas-bawah) */
+        padding: 50px 40px; 
+        gap: 40px; 
+    }
     .left-column { margin-bottom: 20px; }
-    .contact-ticket { width: 100%; max-width: 350px; margin-top: 10px; transform: rotate(0); }
+    
+    /* Mengamankan elemen agar tidak melebar keluar batas layar */
+    .contact-ticket { 
+        width: 100%; 
+        max-width: 400px; 
+        margin-top: -15px; 
+        transform: rotate(1deg); 
+    }
+    
     .papers-wrapper { grid-template-columns: 1fr; }
-    .skill-paper { transform: rotate(0); margin-bottom: 20px; }
+    
+    /* Kemiringan dinonaktifkan di layar medium agar mudah dibaca */
+    .skill-paper { transform: rotate(0); margin-bottom: 25px; }
     .portfolio-paper { transform: rotate(0); margin-top: 0; }
+    
+    .graphic-layout { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* Smartphone / Mobile -> Kurang dari 768px */
 @media (max-width: 768px) {
     body { padding: 30px 4% 50px; }
-    .title-name { font-size: 2.8rem; }
-    .video-layout, .graphic-layout { grid-template-columns: 1fr; max-width: 350px; margin: 0 auto; }
+    
+    /* Menyesuaikan Tab & Header Folder */
+    .folder-tab { width: 150px; height: 35px; font-size: 1.1rem; padding-left: 15px; top: 1px; }
+    .folder-body { padding: 40px 20px; gap: 30px; border-radius: 0 16px 16px 16px; }
+    
+    .hello-sticker { font-size: 1rem; padding: 4px 12px; margin-bottom: 10px; }
+    .title-name { font-size: 2.5rem; margin-bottom: 15px; }
+    .bio-text { font-size: 1rem; line-height: 1.7; }
+    
+    .contact-ticket h3 { font-size: 1.8rem; }
+    .contact-ticket { padding: 20px 15px; max-width: 320px; }
+    .contact-list { font-size: 0.95rem; }
+    
+    .skill-paper, .portfolio-paper { padding: 30px 20px; }
+    .section-label { font-size: 2.2rem; }
+    
+    .tape-item { font-size: 0.95rem; padding: 8px 14px; }
+    .software-grid { gap: 15px; justify-content: center; }
+    .soft-img-icon { width: 60px; height: 60px; }
+    
+    /* Memaksa grid portofolio jadi 1 baris ke bawah */
+    .video-layout, .graphic-layout { 
+        grid-template-columns: 1fr; 
+        max-width: 340px; 
+        margin: 0 auto; 
+    }
+    
+    /* Kartu tidak miring di HP untuk menghemat ruang & rapi */
+    .work-card { transform: rotate(0) !important; margin-bottom: 10px; }
+    .showcase-desc { font-size: 0.95rem; margin-bottom: 20px; text-align: center; }
 }
