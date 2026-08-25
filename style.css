@@ -1,19 +1,17 @@
 /* ==================================================
-   DESIGN SYSTEM (Realistic Physical Scrapbook - Ref 11)
+   DESIGN SYSTEM (Dynamic Multi-Section Scrapbook)
    ================================================== */
 :root {
-    --bg-page: #F1EFEA;         /* Latar belakang luar (kertas meja) */
-    --paper-backing: #E5C78B;   /* Kertas folder cokelat/krem di belakang */
-    --paper-white: #FCFAFA;     /* Kertas putih utama */
+    --bg-dark-mat: #1A1C18;     /* Latar gelap atas */
+    --bg-kraft: #D4B895;        /* Kertas kraft cokelat tengah */
+    --bg-cream: #F4F1EA;        /* Krem hangat bawah */
     
-    --blue-tag: #085BCE;        /* Biru terang untuk stiker utama */
-    --blue-dark: #042559;       /* Biru gelap untuk nama dan teks utama */
+    --army-main: #5B6E36;
+    --orange-accent: #D35400;
     
-    --ribbon-blue: #085BCE;
-    --ribbon-orange: #EF8341;
-    --ribbon-yellow: #F4D35E;
-    
-    --text-main: #333333;
+    --paper-white: #FFFFFF;
+    --text-main: #2C2C2C;
+    --text-muted: #555555;
     
     --font-hand: 'Caveat', cursive;
     --font-sans: 'Plus Jakarta Sans', sans-serif;
@@ -23,15 +21,11 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 
-/* Latar belakang bertekstur kertas halus */
 body {
     font-family: var(--font-sans);
-    background-color: var(--bg-page);
-    background-image: radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
-    background-size: 15px 15px;
     color: var(--text-main);
     line-height: 1.6;
-    padding: 100px 2% 100px;
+    background-color: var(--bg-dark-mat); /* Default fallback */
 }
 
 a { text-decoration: none; color: inherit; }
@@ -39,226 +33,186 @@ img { max-width: 100%; height: auto; display: block; }
 .handwritten { font-family: var(--font-hand); }
 
 /* ==================================================
-   MAIN NOTEBOOK CONTAINER
+   DECORATIVE ELEMENTS (Tapes, Clips, Tags)
    ================================================== */
-.notebook-wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
-    background-color: var(--paper-backing);
-    border-radius: 8px;
-    box-shadow: 4px 15px 40px rgba(0,0,0,0.15);
-    position: relative;
-    padding-top: 15px; /* Ruang untuk lubang spiral */
+.masking-tape {
+    position: absolute; background: rgba(235, 230, 215, 0.9);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    border-left: 2px dashed rgba(0,0,0,0.1); border-right: 2px dashed rgba(0,0,0,0.1);
+    z-index: 20;
 }
+.tape-small { width: 60px; height: 20px; }
+.tape-medium { width: 90px; height: 26px; }
 
-/* Lubang Spiral di Atas Kertas */
-.spiral-holes {
-    height: 35px;
-    background-image: radial-gradient(circle at 50% 50%, var(--bg-page) 9px, transparent 10px);
-    background-size: 45px 35px;
-    background-position: center top;
-    margin: 0 15px;
-    opacity: 0.95;
+/* Klip Besi Hitam (Pengganti Lanyard Biru) */
+.bulldog-clip {
+    position: absolute; top: -25px; left: 50%; transform: translateX(-50%);
+    width: 45px; height: 40px;
+    background: linear-gradient(180deg, #333, #111);
+    border-radius: 6px 6px 2px 2px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    z-index: 15;
 }
-
-/* Kertas Putih Utama */
-.white-canvas {
-    background-color: var(--paper-white);
-    margin: 0 15px 15px 15px;
-    padding: 50px;
-    border-radius: 0 0 6px 6px;
-    min-height: 500px;
-    position: relative;
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.03);
-}
-
-/* Stiker "about me" Melayang di Atas Kanan */
-.blue-header-tag {
-    position: absolute;
-    top: -35px;
-    right: 50px;
-    background: var(--blue-tag);
-    color: #FFF;
-    font-size: 2.8rem;
-    font-weight: 800;
-    padding: 10px 40px;
-    box-shadow: 4px 8px 15px rgba(0,0,0,0.2);
-    letter-spacing: -1px;
-    z-index: 50;
+.bulldog-clip::before {
+    content: ''; position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+    width: 20px; height: 25px; border: 4px solid #444; border-bottom: none; border-radius: 10px 10px 0 0;
 }
 
 /* ==================================================
-   ROW 1: ABOUT (ID BADGE & BIO)
+   SECTION 1: HERO & BIO (DARK CUTTING MAT)
    ================================================== */
-.about-grid {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 50px;
-    margin-bottom: 60px;
-}
-
-/* --- KIRI: SISTEM LANYARD & ID BADGE --- */
-.left-id-section { position: relative; display: flex; flex-direction: column; align-items: center; }
-
-/* Tali Lanyard */
-.lanyard-rope {
-    position: absolute;
-    top: -120px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 35px;
-    height: 120px;
-    background: repeating-linear-gradient(0deg, #053D8C, #053D8C 5px, #043170 5px, #043170 10px);
-    border-radius: 0 0 15px 15px;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 2px 5px 10px rgba(0,0,0,0.2);
-    z-index: 0;
-}
-/* Klip Besi Lanyard */
-.lanyard-clip {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 14px;
-    height: 30px;
-    background: linear-gradient(180deg, #E0E0E0, #888888);
-    border-radius: 4px;
-    box-shadow: 1px 3px 6px rgba(0,0,0,0.3);
-    z-index: 15;
-}
-
-/* Kartu ID Name Tag */
-.id-badge-card {
-    background: #F4F4F4;
-    padding: 15px 15px 45px 15px;
-    border-radius: 8px;
-    border: 1px solid #D0D0D0;
-    box-shadow: 4px 10px 25px rgba(0,0,0,0.2);
-    width: 100%;
-    max-width: 280px;
-    transform: rotate(-2deg);
+.section-hero {
+    background-color: var(--bg-dark-mat);
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1.5px, transparent 1.5px);
+    background-size: 25px 25px;
+    padding: 80px 3% 60px;
     position: relative;
     z-index: 10;
 }
-.id-badge-card::before {
-    content: '';
-    position: absolute;
-    top: 8px; left: 50%; transform: translateX(-50%);
-    width: 45px; height: 8px;
-    background: var(--paper-white);
-    border-radius: 5px;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
-}
-.id-badge-card img {
-    border-radius: 4px;
-    aspect-ratio: 4/5;
-    object-fit: cover;
-    border: 1px solid rgba(0,0,0,0.1);
-    margin-top: 10px;
-}
 
-/* Kertas Kontak Notebook Spiral */
-.contact-spiral-paper {
-    background: #FFF;
-    padding: 25px 20px 20px;
-    width: 100%;
-    max-width: 300px;
+.scrapbook-canvas {
+    max-width: 1100px; margin: 0 auto;
+    background: var(--paper-white);
     border-radius: 4px;
-    box-shadow: 2px 6px 15px rgba(0,0,0,0.15);
-    transform: rotate(3deg);
-    margin-top: -30px;
+    box-shadow: 8px 15px 40px rgba(0,0,0,0.3);
     position: relative;
-    z-index: 5;
+    padding: 60px 50px;
+    /* Efek kertas sobek di pinggir */
     border: 1px solid rgba(0,0,0,0.05);
 }
-/* Efek sobekan spiral */
-.contact-spiral-paper::before {
-    content: '';
-    position: absolute;
-    top: -8px; left: 0; width: 100%; height: 16px;
-    background-image: radial-gradient(circle at 50% 50%, var(--paper-white) 6px, transparent 7px);
-    background-size: 25px 16px;
-}
-.contact-list { list-style: none; text-align: right; }
-.contact-list li { 
-    display: flex; justify-content: space-between; align-items: center; 
-    border-bottom: 1px solid #EEEEEE; padding: 10px 0; font-size: 0.95rem; font-weight: 500;
-}
-.contact-list li:last-child { border-bottom: none; }
-.contact-list li i { font-size: 1.3rem; color: #555; }
-.contact-list li a:hover { color: var(--blue-tag); }
 
-/* --- KANAN: TEKS & PITA SKILL --- */
-.right-bio-section { position: relative; padding-top: 10px; }
-
-.hello-text {
-    font-size: 2.2rem; color: #555; line-height: 1;
-    transform: rotate(-4deg); display: inline-block;
-    margin-bottom: -5px;
-}
-.name-title {
-    font-size: clamp(3rem, 5vw, 4.2rem);
-    font-weight: 800; color: var(--blue-dark);
-    letter-spacing: -1.5px; line-height: 1.1;
-    margin-bottom: 25px;
+/* Stiker Utama */
+.hero-badge {
+    position: absolute; top: -20px; right: -20px;
+    background: var(--army-main); color: #FFF;
+    font-size: 2.2rem; font-weight: 800; padding: 10px 35px;
+    box-shadow: 4px 8px 15px rgba(0,0,0,0.3);
+    transform: rotate(3deg); z-index: 25;
 }
 
-.bio-paragraph {
-    font-size: 1.1rem; line-height: 1.85; color: #444;
-    text-align: justify; margin-bottom: 30px;
-    padding-right: 40px; /* Jarak untuk pita di kanan */
-}
+.about-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 55px; align-items: start; }
 
-/* Pita Skill di Pinggir Kanan (Floating Ribbons) */
-.skill-ribbons {
-    position: absolute;
-    right: -70px; /* Menjorok keluar kertas */
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 20;
-}
-.ribbon {
-    color: #FFF; font-size: 1.4rem; padding: 6px 35px 6px 20px;
-    box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
-}
-.ribbon.blue { background-color: var(--ribbon-blue); }
-.ribbon.orange { background-color: var(--ribbon-orange); }
-.ribbon.yellow { background-color: var(--ribbon-yellow); color: #333; }
+/* Kiri: ID Badge & Kontak */
+.left-id-col { display: flex; flex-direction: column; align-items: center; position: relative; }
 
-/* Stiker CTA Kontak Biru Bawah */
-.cta-sticker {
-    display: inline-block; background: var(--blue-tag); color: #FFF;
-    font-size: 1.5rem; padding: 6px 25px;
-    transform: rotate(-2deg); box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
-    cursor: pointer; transition: var(--transition);
+.id-card {
+    background: #F8F8F8; padding: 15px 15px 45px 15px;
+    border-radius: 6px; border: 1px solid #DDD;
+    box-shadow: 4px 10px 20px rgba(0,0,0,0.15);
+    width: 100%; max-width: 280px;
+    transform: rotate(-2deg); position: relative;
 }
-.cta-sticker:hover { transform: rotate(0deg) scale(1.05); }
+.id-card img { border-radius: 4px; aspect-ratio: 4/5; object-fit: cover; margin-top: 15px; }
+
+.contact-note {
+    background: var(--bg-cream); padding: 25px;
+    width: 100%; max-width: 320px; border-radius: 2px;
+    box-shadow: 2px 6px 15px rgba(0,0,0,0.1);
+    transform: rotate(2deg); margin-top: -15px; position: relative; z-index: 5;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+.contact-list { list-style: none; font-size: 0.95rem; font-weight: 600; color: var(--text-main); }
+.contact-list li { margin-bottom: 12px; display: flex; gap: 12px; align-items: center; }
+.contact-list li i { color: var(--orange-accent); font-size: 1.4rem; }
+.contact-list li a:hover { color: var(--orange-accent); }
+
+/* Kanan: Bio */
+.right-bio-col { position: relative; padding-top: 15px; }
+.name-title { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 800; color: var(--text-main); line-height: 1.1; margin-bottom: 25px; letter-spacing: -1px; }
+.name-title span { color: var(--orange-accent); }
+.bio-paragraph { font-size: 1.1rem; line-height: 1.85; color: var(--text-muted); text-align: justify; margin-bottom: 30px; }
+.bio-paragraph b { color: var(--army-main); font-weight: 700; background: rgba(91, 110, 54, 0.1); padding: 2px 6px; border-radius: 4px; }
+
+.cta-button {
+    display: inline-block; background: var(--text-main); color: #FFF;
+    font-size: 1.6rem; padding: 8px 30px; border-radius: 4px;
+    box-shadow: 3px 5px 12px rgba(0,0,0,0.2); transition: var(--transition);
+}
+.cta-button:hover { transform: translateY(-3px); box-shadow: 4px 8px 18px rgba(0,0,0,0.3); background: var(--orange-accent); }
 
 /* ==================================================
-   ROW 2 & 3: SOFTWARE & SHOWCASE
+   TRANSISI KERTAS SOBEK (TORN EDGE)
    ================================================== */
-.section-inline-header {
-    display: inline-block; background: var(--blue-tag); color: #FFF;
-    font-size: 1.6rem; font-weight: 700; padding: 4px 20px;
-    margin-bottom: 25px; box-shadow: 2px 4px 8px rgba(0,0,0,0.15);
+.torn-divider-dark-to-kraft {
+    width: 100%; height: 40px; background-color: var(--bg-kraft);
+    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 L0,20 Q30,40 60,10 T120,30 T180,15 T240,25 T300,5 T360,20 T420,10 T480,35 T540,15 T600,25 T660,10 T720,30 T780,15 T840,35 T900,15 T960,25 T1020,10 T1080,30 T1140,15 T1200,25 L1200,40 Z" fill="black"/></svg>');
+    mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 L0,20 Q30,40 60,10 T120,30 T180,15 T240,25 T300,5 T360,20 T420,10 T480,35 T540,15 T600,25 T660,10 T720,30 T780,15 T840,35 T900,15 T960,25 T1020,10 T1080,30 T1140,15 T1200,25 L1200,40 Z" fill="black"/></svg>');
+    margin-top: -2px; position: relative; z-index: 5;
 }
 
-.showcase-block { margin-top: 50px; position: relative; }
-.showcase-desc { font-size: 1.05rem; color: #555; margin-bottom: 20px; margin-top: -15px; }
+/* ==================================================
+   SECTION 2: SKILLS & SOFTWARE (KRAFT PAPER)
+   ================================================== */
+.section-skills {
+    background-color: var(--bg-kraft);
+    /* Tekstur serat kertas kraft */
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.05"/></svg>');
+    padding: 60px 3% 80px;
+    position: relative;
+    z-index: 4;
+}
 
-/* SOFTWARE ICONS (LOGO SAJA) */
-.software-icons-row { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; }
+.kraft-container { max-width: 1050px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+.kraft-card {
+    background: var(--paper-white); padding: 40px; border-radius: 4px;
+    box-shadow: 4px 8px 20px rgba(0,0,0,0.1); position: relative;
+}
+.kraft-card:nth-child(1) { transform: rotate(-1deg); }
+.kraft-card:nth-child(2) { transform: rotate(1deg); }
+
+.section-label { font-family: var(--font-hand); font-size: 2.8rem; color: var(--army-main); margin-bottom: 25px; line-height: 1; }
+
+.tape-skills-group { display: flex; flex-wrap: wrap; gap: 12px; }
+.tape-item {
+    background: var(--bg-cream); color: var(--text-main); font-weight: 700;
+    padding: 8px 18px; box-shadow: 2px 3px 8px rgba(0,0,0,0.1);
+    border-left: 4px solid var(--orange-accent); width: fit-content;
+}
+.tape-item:nth-child(even) { transform: rotate(2deg); }
+.tape-item:nth-child(odd) { transform: rotate(-1deg); }
+
+.software-icons-row { display: flex; flex-wrap: wrap; gap: 18px; }
 .soft-badge {
-    background: #FFF; padding: 10px; border-radius: 8px;
+    background: #FFF; padding: 10px; border-radius: 12px;
     width: 65px; height: 65px; display: flex; align-items: center; justify-content: center;
-    box-shadow: 2px 4px 12px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.05);
     transition: var(--transition); cursor: pointer;
 }
-.soft-badge:hover { transform: translateY(-4px) scale(1.1); box-shadow: 4px 8px 15px rgba(0,0,0,0.15); }
+.soft-badge:hover { transform: translateY(-4px) scale(1.08); box-shadow: 4px 8px 15px rgba(0,0,0,0.15); }
 .soft-badge img { width: 42px; height: 42px; object-fit: contain; }
+
+/* ==================================================
+   TRANSISI KERTAS SOBEK 2 (KRAFT TO CREAM GRID)
+   ================================================== */
+.torn-divider-kraft-to-cream {
+    width: 100%; height: 40px; background-color: var(--bg-cream);
+    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 L0,20 Q30,40 60,10 T120,30 T180,15 T240,25 T300,5 T360,20 T420,10 T480,35 T540,15 T600,25 T660,10 T720,30 T780,15 T840,35 T900,15 T960,25 T1020,10 T1080,30 T1140,15 T1200,25 L1200,40 Z" fill="black"/></svg>');
+    mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 L0,20 Q30,40 60,10 T120,30 T180,15 T240,25 T300,5 T360,20 T420,10 T480,35 T540,15 T600,25 T660,10 T720,30 T780,15 T840,35 T900,15 T960,25 T1020,10 T1080,30 T1140,15 T1200,25 L1200,40 Z" fill="black"/></svg>');
+    margin-top: -2px; position: relative; z-index: 3;
+}
+
+/* ==================================================
+   SECTION 3: PORTFOLIO (CREAM GRID PAPER)
+   ================================================== */
+.section-portfolio {
+    background-color: var(--bg-cream);
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+    padding: 60px 3% 80px;
+    position: relative;
+    z-index: 2;
+}
+
+.portfolio-container { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 50px; }
+
+.showcase-block {
+    background: var(--paper-white); padding: 40px; border-radius: 6px;
+    box-shadow: 4px 10px 25px rgba(0,0,0,0.08); position: relative;
+}
+.showcase-desc { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 25px; margin-top: -10px; }
 
 /* HORIZONTAL SCROLL (VIDEO & GRAPHIC) */
 .horizontal-scroll-container {
@@ -268,9 +222,9 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .horizontal-scroll-container::-webkit-scrollbar { height: 8px; }
 .horizontal-scroll-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
-.horizontal-scroll-container::-webkit-scrollbar-thumb { background: var(--blue-tag); border-radius: 10px; }
+.horizontal-scroll-container::-webkit-scrollbar-thumb { background: var(--army-main); border-radius: 10px; }
 
-.scroll-item-video { flex: 0 0 300px; scroll-snap-align: start; }
+.scroll-item-video { flex: 0 0 320px; scroll-snap-align: start; }
 .scroll-item-graphic { flex: 0 0 250px; scroll-snap-align: start; }
 
 .photo-card {
@@ -291,36 +245,35 @@ img { max-width: 100%; height: auto; display: block; }
     font-size: 3.5rem; color: #FFF; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
 }
 .photo-caption {
-    font-family: var(--font-hand); font-size: 1.5rem; color: var(--blue-dark);
+    font-family: var(--font-hand); font-size: 1.5rem; color: var(--text-main);
     text-align: center; position: absolute; bottom: 5px; left: 0; width: 100%;
 }
 
-.footer-text {
-    text-align: center; font-family: var(--font-sans); font-weight: 800;
-    font-size: 1.5rem; color: #CCC; margin-top: 40px; letter-spacing: 2px;
-}
+.footer-text { text-align: center; font-family: var(--font-sans); font-weight: 800; font-size: 1.5rem; color: #BBB; margin-top: 40px; letter-spacing: 2px; }
 
 /* ==================================================
    RESPONSIVE DESIGN
    ================================================== */
 @media (max-width: 1024px) {
-    .blue-header-tag { right: 20px; font-size: 2.2rem; }
-    .about-grid { grid-template-columns: 1fr; text-align: center; gap: 30px; }
-    .left-id-section { margin-bottom: 20px; }
-    .bio-paragraph { padding-right: 0; text-align: center; }
-    .skill-ribbons { 
-        position: relative; right: 0; top: 0; transform: none; 
-        flex-direction: row; justify-content: center; flex-wrap: wrap; margin-bottom: 20px;
-    }
-    .ribbon { padding: 6px 20px; }
+    .about-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+    .scrapbook-canvas { padding: 50px 30px; }
+    .hero-badge { right: 20px; }
+    .left-id-col { margin-bottom: 20px; }
+    .bio-paragraph { text-align: center; }
+    .kraft-container { grid-template-columns: 1fr; gap: 30px; }
+    .kraft-card { transform: rotate(0) !important; padding: 30px; }
 }
 @media (max-width: 768px) {
-    body { padding: 80px 2% 50px; }
-    .white-canvas { padding: 40px 20px; }
-    .blue-header-tag { top: -25px; right: 10px; font-size: 1.8rem; padding: 8px 25px; }
-    .lanyard-rope { top: -90px; height: 90px; width: 25px; }
-    .name-title { font-size: 2.6rem; }
-    .contact-spiral-paper { margin-top: -15px; }
+    .section-hero { padding: 40px 3% 40px; }
+    .scrapbook-canvas { padding: 40px 20px; }
+    .hero-badge { top: -20px; right: 10px; font-size: 1.6rem; padding: 8px 25px; }
+    .name-title { font-size: 2.5rem; }
+    .contact-note { max-width: 100%; transform: rotate(0); margin-top: 10px; }
+    
+    .section-skills, .section-portfolio { padding: 40px 3% 50px; }
+    .tape-skills-group, .software-icons-row { justify-content: center; }
+    .showcase-block { padding: 30px 20px; }
+    
     .scroll-item-video { flex: 0 0 260px; }
     .scroll-item-graphic { flex: 0 0 220px; }
 }
