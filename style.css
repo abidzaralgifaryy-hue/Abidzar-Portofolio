@@ -1,268 +1,326 @@
 /* ==================================================
-   DESIGN SYSTEM (Retro Army Green & Cream)
+   DESIGN SYSTEM (Realistic Physical Scrapbook - Ref 11)
    ================================================== */
 :root {
-    --bg-cream: #F5F3ED;       
-    --card-cream: #FCFAF7;     
-    --army-main: #5B6E36;      
-    --army-dark: #3A4A1B;      
-    --army-light: #728D44;     
-    --text-dark: #242A1D;      
-    --text-muted: #62685B;
+    --bg-page: #F1EFEA;         /* Latar belakang luar (kertas meja) */
+    --paper-backing: #E5C78B;   /* Kertas folder cokelat/krem di belakang */
+    --paper-white: #FCFAFA;     /* Kertas putih utama */
     
-    --shadow-retro: 4px 8px 0px rgba(91, 110, 54, 0.2);
-    --shadow-soft: 8px 20px 40px rgba(36, 42, 29, 0.08);
+    --blue-tag: #085BCE;        /* Biru terang untuk stiker utama */
+    --blue-dark: #042559;       /* Biru gelap untuk nama dan teks utama */
     
-    --font-serif-title: 'Playfair Display', Georgia, serif;
+    --ribbon-blue: #085BCE;
+    --ribbon-orange: #EF8341;
+    --ribbon-yellow: #F4D35E;
+    
+    --text-main: #333333;
+    
+    --font-hand: 'Caveat', cursive;
     --font-sans: 'Plus Jakarta Sans', sans-serif;
     --transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 
+/* Latar belakang bertekstur kertas halus */
 body {
     font-family: var(--font-sans);
-    background-color: var(--bg-cream);
-    color: var(--text-dark);
+    background-color: var(--bg-page);
+    background-image: radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 15px 15px;
+    color: var(--text-main);
     line-height: 1.6;
-    padding: 50px 3% 90px;
+    padding: 100px 2% 100px;
 }
 
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; height: auto; display: block; }
-
-.star-icon { color: var(--army-main); font-size: 0.9rem; margin-right: 6px; }
+.handwritten { font-family: var(--font-hand); }
 
 /* ==================================================
-   LAYOUT UTAMA
+   MAIN NOTEBOOK CONTAINER
    ================================================== */
-.retro-container {
-    max-width: 1050px;
+.notebook-wrapper {
+    max-width: 1100px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 35px;
-    align-items: start;
-}
-
-.left-column { display: flex; flex-direction: column; gap: 25px; }
-
-.profile-card {
-    background: var(--card-cream);
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: var(--shadow-soft);
-    border: 2px solid rgba(91, 110, 54, 0.15);
-    text-align: center;
+    background-color: var(--paper-backing);
+    border-radius: 8px;
+    box-shadow: 4px 15px 40px rgba(0,0,0,0.15);
     position: relative;
+    padding-top: 15px; /* Ruang untuk lubang spiral */
 }
 
-.photo-frame {
-    background-color: var(--army-dark);
-    padding: 12px 12px 0 12px;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 15px;
+/* Lubang Spiral di Atas Kertas */
+.spiral-holes {
+    height: 35px;
+    background-image: radial-gradient(circle at 50% 50%, var(--bg-page) 9px, transparent 10px);
+    background-size: 45px 35px;
+    background-position: center top;
+    margin: 0 15px;
+    opacity: 0.95;
 }
-.photo-frame img { border-radius: 8px 8px 0 0; aspect-ratio: 4/5; object-fit: cover; width: 100%; }
 
-.contact-box {
-    background: #FFF;
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px dashed var(--army-main);
+/* Kertas Putih Utama */
+.white-canvas {
+    background-color: var(--paper-white);
+    margin: 0 15px 15px 15px;
+    padding: 50px;
+    border-radius: 0 0 6px 6px;
+    min-height: 500px;
+    position: relative;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.03);
+}
+
+/* Stiker "about me" Melayang di Atas Kanan */
+.blue-header-tag {
+    position: absolute;
+    top: -35px;
+    right: 50px;
+    background: var(--blue-tag);
+    color: #FFF;
+    font-size: 2.8rem;
+    font-weight: 800;
+    padding: 10px 40px;
+    box-shadow: 4px 8px 15px rgba(0,0,0,0.2);
+    letter-spacing: -1px;
+    z-index: 50;
+}
+
+/* ==================================================
+   ROW 1: ABOUT (ID BADGE & BIO)
+   ================================================== */
+.about-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+/* --- KIRI: SISTEM LANYARD & ID BADGE --- */
+.left-id-section { position: relative; display: flex; flex-direction: column; align-items: center; }
+
+/* Tali Lanyard */
+.lanyard-rope {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 35px;
+    height: 120px;
+    background: repeating-linear-gradient(0deg, #053D8C, #053D8C 5px, #043170 5px, #043170 10px);
+    border-radius: 0 0 15px 15px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 2px 5px 10px rgba(0,0,0,0.2);
+    z-index: 0;
+}
+/* Klip Besi Lanyard */
+.lanyard-clip {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 30px;
+    background: linear-gradient(180deg, #E0E0E0, #888888);
+    border-radius: 4px;
+    box-shadow: 1px 3px 6px rgba(0,0,0,0.3);
+    z-index: 15;
+}
+
+/* Kartu ID Name Tag */
+.id-badge-card {
+    background: #F4F4F4;
+    padding: 15px 15px 45px 15px;
+    border-radius: 8px;
+    border: 1px solid #D0D0D0;
+    box-shadow: 4px 10px 25px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 280px;
+    transform: rotate(-2deg);
+    position: relative;
+    z-index: 10;
+}
+.id-badge-card::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 50%; transform: translateX(-50%);
+    width: 45px; height: 8px;
+    background: var(--paper-white);
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+.id-badge-card img {
+    border-radius: 4px;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border: 1px solid rgba(0,0,0,0.1);
     margin-top: 10px;
 }
-.contact-box h3 { font-family: var(--font-serif-title); font-size: 1.4rem; color: var(--army-dark); margin-bottom: 8px; }
-.contact-list { list-style: none; font-size: 0.95rem; text-align: left; }
-.contact-list li { margin-bottom: 8px; display: flex; gap: 10px; align-items: center; }
-.contact-list li i { color: var(--army-main); font-size: 1.1rem; }
-.contact-list li a:hover { color: var(--army-main); text-decoration: underline; }
 
-/* Panel Hijau Army */
-.army-panel {
-    background-color: var(--army-dark);
-    color: #FFF;
-    padding: 35px 30px;
-    border-radius: 20px;
-    box-shadow: var(--shadow-retro);
+/* Kertas Kontak Notebook Spiral */
+.contact-spiral-paper {
+    background: #FFF;
+    padding: 25px 20px 20px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 4px;
+    box-shadow: 2px 6px 15px rgba(0,0,0,0.15);
+    transform: rotate(3deg);
+    margin-top: -30px;
     position: relative;
+    z-index: 5;
+    border: 1px solid rgba(0,0,0,0.05);
 }
-.army-panel h2 {
-    font-family: var(--font-serif-title);
-    font-size: 2.2rem;
-    color: #FFF;
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    padding-bottom: 8px;
+/* Efek sobekan spiral */
+.contact-spiral-paper::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: 0; width: 100%; height: 16px;
+    background-image: radial-gradient(circle at 50% 50%, var(--paper-white) 6px, transparent 7px);
+    background-size: 25px 16px;
+}
+.contact-list { list-style: none; text-align: right; }
+.contact-list li { 
+    display: flex; justify-content: space-between; align-items: center; 
+    border-bottom: 1px solid #EEEEEE; padding: 10px 0; font-size: 0.95rem; font-weight: 500;
+}
+.contact-list li:last-child { border-bottom: none; }
+.contact-list li i { font-size: 1.3rem; color: #555; }
+.contact-list li a:hover { color: var(--blue-tag); }
+
+/* --- KANAN: TEKS & PITA SKILL --- */
+.right-bio-section { position: relative; padding-top: 10px; }
+
+.hello-text {
+    font-size: 2.2rem; color: #555; line-height: 1;
+    transform: rotate(-4deg); display: inline-block;
+    margin-bottom: -5px;
+}
+.name-title {
+    font-size: clamp(3rem, 5vw, 4.2rem);
+    font-weight: 800; color: var(--blue-dark);
+    letter-spacing: -1.5px; line-height: 1.1;
+    margin-bottom: 25px;
 }
 
-.skill-pills-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-.skill-pill {
-    background: var(--card-cream);
-    color: var(--army-dark);
-    font-weight: 700;
-    font-size: 0.9rem;
-    padding: 8px 16px;
-    border-radius: 20px;
-    box-shadow: 2px 3px 6px rgba(0,0,0,0.15);
+.bio-paragraph {
+    font-size: 1.1rem; line-height: 1.85; color: #444;
+    text-align: justify; margin-bottom: 30px;
+    padding-right: 40px; /* Jarak untuk pita di kanan */
 }
 
-.software-icons-row { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 12px; 
-    margin-top: 15px; 
-}
-.soft-badge {
-    background: var(--card-cream);
-    padding: 8px;
-    border-radius: 12px;
-    text-align: center;
-    width: 55px;
-    height: 55px;
+/* Pita Skill di Pinggir Kanan (Floating Ribbons) */
+.skill-ribbons {
+    position: absolute;
+    right: -70px; /* Menjorok keluar kertas */
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 3px 8px rgba(0,0,0,0.2);
-    transition: var(--transition);
+    flex-direction: column;
+    gap: 15px;
+    z-index: 20;
 }
-.soft-badge:hover { transform: translateY(-3px) scale(1.08); }
-.soft-badge img { 
-    width: 38px; 
-    height: 38px; 
-    object-fit: contain; 
+.ribbon {
+    color: #FFF; font-size: 1.4rem; padding: 6px 35px 6px 20px;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
 }
+.ribbon.blue { background-color: var(--ribbon-blue); }
+.ribbon.orange { background-color: var(--ribbon-orange); }
+.ribbon.yellow { background-color: var(--ribbon-yellow); color: #333; }
 
-/* Kolom Kanan */
-.right-column { display: flex; flex-direction: column; gap: 30px; }
-
-.header-intro {
-    background: var(--card-cream);
-    padding: 35px;
-    border-radius: 20px;
-    box-shadow: var(--shadow-soft);
-    border: 2px solid rgba(91, 110, 54, 0.15);
-    position: relative;
+/* Stiker CTA Kontak Biru Bawah */
+.cta-sticker {
+    display: inline-block; background: var(--blue-tag); color: #FFF;
+    font-size: 1.5rem; padding: 6px 25px;
+    transform: rotate(-2deg); box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer; transition: var(--transition);
 }
-.role-badge {
-    display: inline-block;
-    background: var(--army-main);
-    color: #FFF;
-    font-family: var(--font-serif-title);
-    font-size: 0.9rem;
-    padding: 6px 18px;
-    border-radius: 20px;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-}
-.retro-title {
-    font-family: var(--font-serif-title);
-    font-size: clamp(2.8rem, 5vw, 4rem);
-    color: var(--army-dark);
-    line-height: 1.1;
-    margin-bottom: 20px;
-}
-.bio-desc {
-    font-size: 1.05rem;
-    line-height: 1.85;
-    color: var(--text-dark);
-    text-align: justify;
-}
-.bio-desc b { color: var(--army-main); font-weight: 700; }
-
-.showcase-card-retro {
-    background: var(--card-cream);
-    padding: 35px;
-    border-radius: 20px;
-    box-shadow: var(--shadow-soft);
-    border: 2px solid rgba(91, 110, 54, 0.15);
-}
-.showcase-card-retro h2 {
-    font-family: var(--font-serif-title);
-    font-size: 2.2rem;
-    color: var(--army-dark);
-    margin-bottom: 8px;
-}
-.showcase-sub { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; }
+.cta-sticker:hover { transform: rotate(0deg) scale(1.05); }
 
 /* ==================================================
-   HORIZONTAL SCROLL UNTUK VIDEO & GRAPHIC DESIGN
+   ROW 2 & 3: SOFTWARE & SHOWCASE
    ================================================== */
+.section-inline-header {
+    display: inline-block; background: var(--blue-tag); color: #FFF;
+    font-size: 1.6rem; font-weight: 700; padding: 4px 20px;
+    margin-bottom: 25px; box-shadow: 2px 4px 8px rgba(0,0,0,0.15);
+}
+
+.showcase-block { margin-top: 50px; position: relative; }
+.showcase-desc { font-size: 1.05rem; color: #555; margin-bottom: 20px; margin-top: -15px; }
+
+/* SOFTWARE ICONS (LOGO SAJA) */
+.software-icons-row { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; }
+.soft-badge {
+    background: #FFF; padding: 10px; border-radius: 8px;
+    width: 65px; height: 65px; display: flex; align-items: center; justify-content: center;
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.05);
+    transition: var(--transition); cursor: pointer;
+}
+.soft-badge:hover { transform: translateY(-4px) scale(1.1); box-shadow: 4px 8px 15px rgba(0,0,0,0.15); }
+.soft-badge img { width: 42px; height: 42px; object-fit: contain; }
+
+/* HORIZONTAL SCROLL (VIDEO & GRAPHIC) */
 .horizontal-scroll-container {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding: 10px 5px 20px 5px;
-    scroll-snap-type: x mandatory;
+    display: flex; overflow-x: auto; gap: 25px;
+    padding: 10px 10px 25px 10px; scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
 }
-.horizontal-scroll-container::-webkit-scrollbar {
-    height: 8px;
+.horizontal-scroll-container::-webkit-scrollbar { height: 8px; }
+.horizontal-scroll-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
+.horizontal-scroll-container::-webkit-scrollbar-thumb { background: var(--blue-tag); border-radius: 10px; }
+
+.scroll-item-video { flex: 0 0 300px; scroll-snap-align: start; }
+.scroll-item-graphic { flex: 0 0 250px; scroll-snap-align: start; }
+
+.photo-card {
+    background: #FFF; padding: 12px 12px 35px 12px;
+    border-radius: 4px; box-shadow: 2px 5px 15px rgba(0,0,0,0.1);
+    position: relative; transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.04);
 }
-.horizontal-scroll-container::-webkit-scrollbar-track {
-    background: rgba(91, 110, 54, 0.1);
-    border-radius: 10px;
+.photo-card:hover { transform: translateY(-5px); box-shadow: 5px 12px 25px rgba(0,0,0,0.2); }
+
+.img-container { position: relative; border-radius: 2px; overflow: hidden; }
+.scroll-item-video .img-container { aspect-ratio: 16/10; }
+.scroll-item-graphic .img-container { aspect-ratio: 4/5; }
+.img-container img { width: 100%; height: 100%; object-fit: cover; }
+
+.play-button {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-size: 3.5rem; color: #FFF; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
 }
-.horizontal-scroll-container::-webkit-scrollbar-thumb {
-    background: var(--army-main);
-    border-radius: 10px;
+.photo-caption {
+    font-family: var(--font-hand); font-size: 1.5rem; color: var(--blue-dark);
+    text-align: center; position: absolute; bottom: 5px; left: 0; width: 100%;
 }
 
-.scroll-item-video {
-    flex: 0 0 280px; /* Lebar kartu video saat digeser */
-    scroll-snap-align: start;
-}
-.scroll-item-graphic {
-    flex: 0 0 230px; /* Lebar kartu poster saat digeser */
-    scroll-snap-align: start;
-}
-
-.retro-item {
-    background: #FFF;
-    padding: 10px 10px 30px 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    border: 1px solid rgba(91, 110, 54, 0.2);
-    position: relative;
-    transition: var(--transition);
-}
-.retro-item:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(91, 110, 54, 0.25); }
-
-.retro-img-box { position: relative; border-radius: 6px; overflow: hidden; }
-.scroll-item-video .retro-img-box { aspect-ratio: 16/10; }
-.scroll-item-graphic .retro-img-box { aspect-ratio: 4/5; }
-.retro-img-box img { width: 100%; height: 100%; object-fit: cover; }
-
-.retro-play-btn {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 3rem; color: #FFF;
-    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
-}
-.retro-caption {
-    font-family: var(--font-serif-title);
-    font-size: 1.1rem;
-    color: var(--army-dark);
-    text-align: center;
-    position: absolute; bottom: 6px; left: 0; width: 100%;
-}
-
-.retro-footer {
-    text-align: center;
-    padding: 40px 0 10px;
-    font-family: var(--font-serif-title);
-    font-size: 1.8rem;
-    color: var(--army-main);
-    letter-spacing: 2px;
+.footer-text {
+    text-align: center; font-family: var(--font-sans); font-weight: 800;
+    font-size: 1.5rem; color: #CCC; margin-top: 40px; letter-spacing: 2px;
 }
 
 /* ==================================================
    RESPONSIVE DESIGN
    ================================================== */
-@media (max-width: 900px) {
-    .retro-container { grid-template-columns: 1fr; }
+@media (max-width: 1024px) {
+    .blue-header-tag { right: 20px; font-size: 2.2rem; }
+    .about-grid { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+    .left-id-section { margin-bottom: 20px; }
+    .bio-paragraph { padding-right: 0; text-align: center; }
+    .skill-ribbons { 
+        position: relative; right: 0; top: 0; transform: none; 
+        flex-direction: row; justify-content: center; flex-wrap: wrap; margin-bottom: 20px;
+    }
+    .ribbon { padding: 6px 20px; }
+}
+@media (max-width: 768px) {
+    body { padding: 80px 2% 50px; }
+    .white-canvas { padding: 40px 20px; }
+    .blue-header-tag { top: -25px; right: 10px; font-size: 1.8rem; padding: 8px 25px; }
+    .lanyard-rope { top: -90px; height: 90px; width: 25px; }
+    .name-title { font-size: 2.6rem; }
+    .contact-spiral-paper { margin-top: -15px; }
+    .scroll-item-video { flex: 0 0 260px; }
+    .scroll-item-graphic { flex: 0 0 220px; }
 }
