@@ -219,69 +219,83 @@ body.dark-mode .logo img { filter: invert(1) brightness(1.5); }
 .btn-secondary.marker-btn { background: var(--paper-dark); color: var(--ink); }
 
 /* ==================================================
-   ABOUT SECTION (LANYARD DIPERBESAR & MENEMPEL KE ATAS)
+   ABOUT SECTION & LANYARD PROPORSIONAL (EXTRA BIG)
    ================================================== */
-.section-about { padding: 60px 5%; max-width: 1100px; margin: 0 auto; position: relative; }
-.scrapbook-card { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center; }
-
-.about-text-wrapper {
-    position: relative;
-    background: linear-gradient(135deg, #FFFCF2 0%, #FDF7DB 100%); 
-    padding: 35px 30px; border-radius: 2px 16px 4px 22px; 
-    box-shadow: var(--shadow-paper); transform: rotate(-1deg) translateZ(0);
-    -webkit-backface-visibility: hidden; backface-visibility: hidden;
+.about-image-wrapper { 
+    position: relative; 
+    padding-top: 80px; /* Memberi ruang agar lanyard tinggi ke atas */
 }
-body.dark-mode .about-text-wrapper { background: linear-gradient(135deg, #2c2a24 0%, #363328 100%); }
-
-.about-text-wrapper::before {
-    content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
-    width: 16px; height: 16px; background: radial-gradient(circle at 30% 30%, #ff5252, #c62828); 
-    border-radius: 50%; box-shadow: inset -2px -2px 3px rgba(0,0,0,0.3), 2px 4px 4px rgba(0,0,0,0.2); z-index: 10;
-}
-.about-text-wrapper::after { content: ''; position: absolute; top: 28px; left: 50%; transform: translateX(-50%); width: 2px; height: 10px; background: rgba(0,0,0,0.15); }
-.about-heading { font-size: 2.8rem; color: var(--marker-accent); margin-bottom: 20px; }
-
-/* --- LANYARD MENEMPEL KE BINGKAI ATAS & LEBIH BESAR --- */
-.about-image-wrapper { position: relative; padding-top: 50px; }
 
 .id-badge {
-    background: var(--white); border: 1px solid rgba(0,0,0,0.08); border-radius: 10px;
-    max-width: 260px; margin: 0 auto; padding: 18px 18px 25px 18px; position: relative;
-    box-shadow: var(--shadow-paper); transform: rotate(3deg) translateZ(0);
-    display: flex; flex-direction: column; align-items: center;
-    -webkit-backface-visibility: hidden; backface-visibility: hidden;
+    background: var(--white); 
+    border: 1px solid rgba(0,0,0,0.08); 
+    border-radius: 12px;
+    max-width: 270px; 
+    margin: 0 auto; 
+    padding: 20px 20px 28px 20px; 
+    position: relative;
+    box-shadow: var(--shadow-paper); 
+    transform: rotate(3deg) translateZ(0);
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    -webkit-backface-visibility: hidden; 
+    backface-visibility: hidden;
 }
 
+/* Lubang Badge Diperbesar */
 .badge-hole {
-    width: 55px; height: 10px; background: var(--paper-dark); border-radius: 8px;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.25); margin-bottom: 16px; position: relative;
+    width: 70px; 
+    height: 12px; 
+    background: var(--paper-dark); 
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.25); 
+    margin-bottom: 18px; 
+    position: relative;
 }
 
-/* Lanyard menembus keluar bingkai atas secara proporsional */
+/* Kontainer Lanyard Dijebol Lebih Tinggi dan Tebal */
 .lanyard-rope-container {
     position: absolute;
-    top: -35px;
+    top: -95px; /* Menjulang tinggi ke atas */
     left: 50%;
     transform: translateX(-50%);
-    width: 40px;
-    height: 90px;
+    width: 60px; /* Ditebalkan jadi 60px */
+    height: 150px; /* Diperpanjang jadi 150px */
     z-index: -1;
 }
 
+/* Tali Lanyard Bergaris Tebal */
 .lanyard {
-    width: 100%; height: 100%;
-    background: repeating-linear-gradient(90deg, var(--army-dark), var(--army-dark) 4px, var(--army) 4px, var(--army) 10px);
-    box-shadow: 2px 0 6px rgba(0,0,0,0.2);
-    border-radius: 2px;
+    width: 100%; 
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg, 
+        var(--army-dark), 
+        var(--army-dark) 6px, 
+        var(--army) 6px, 
+        var(--army) 14px
+    );
+    box-shadow: 3px 0 8px rgba(0,0,0,0.25);
+    border-radius: 3px;
 }
 
+/* Klip Metal Besi Diperbesar */
 .lanyard-clip {
-    position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
-    width: 22px; height: 16px; background: linear-gradient(90deg, #999, #eee, #999); 
-    border-radius: 3px; box-shadow: 0 3px 5px rgba(0,0,0,0.3); z-index: 2;
+    position: absolute; 
+    bottom: -10px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 32px; 
+    height: 22px; 
+    background: linear-gradient(90deg, #888, #fff, #888); 
+    border-radius: 4px; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.35); 
+    z-index: 2;
 }
 
 .badge-text { display: none !important; }
+
 
 /* ==================================================
    CARDS & GRIDS (VIDEO EDITING JARAK LEBIH DEKAT)
