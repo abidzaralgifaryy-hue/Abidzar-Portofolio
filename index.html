@@ -7,14 +7,11 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Replaced Poppins with a Marker/Handwritten font and a clean sans-serif for body -->
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body id="body-container">
-
-    <div class="doodle-bg"></div>
 
     <header id="header" class="site-header">
         <div class="nav-container marker-border">
@@ -48,11 +45,10 @@
         <section id="home" class="section-hero">
             <div class="hero-content-wrapper">
                 <div class="hero-text">
-                    <div class="doodle-arrow"></div>
                     <h2 class="hero-subheading handwritten">Video Editor & Designer</h2>
                     <h1 class="hero-heading">Hai, Aku<br><span class="text-marker">Abidzar.</span></h1>
                     <div class="hero-cta">
-                        <a href="#projects" class="btn-primary marker-btn">Lihat Karya</a>
+                        <a href="#video-editing" class="btn-primary marker-btn">Lihat Karya</a>
                         <a href="#contact" class="btn-secondary marker-btn">Hubungi Saya</a>
                     </div>
                 </div>
@@ -70,10 +66,7 @@
         <section id="about" class="section-about">
             <div class="scrapbook-card">
                 <div class="about-text-wrapper">
-                    <div class="doodle-swirl"></div>
                     <h2 class="about-heading handwritten">Hai! Namaku..</h2>
-                    <div class="heading-accent marker-underline"></div>
-                    
                     <div class="description-container">
                         <p class="text-description">
                             Kenalin, aku <b>Abidzar Algifary</b> atau biasa dipanggil <b>Abijay</b>. Sekarang aku duduk di kelas 8 SMP Al-Azhar 44. Di luar jam sekolah, aku punya ketertarikan yang cukup besar di dunia kreatif, khususnya <b>desain grafis</b> dan <b>video editing</b>. Buat aku, bisa ngulik berbagai <b>software desain</b> dan <b>bikin konten</b> yang estetik itu jadi cara seru buat isi waktu luang sekaligus ngasah skill. Aku selalu senang <b>bereksperimen dengan ide-ide baru biar hasil karyaku bisa terus berkembang</b> jadi lebih baik lagi
@@ -83,10 +76,11 @@
                 </div>
                 
                 <div class="about-image-wrapper id-badge">
+                    <div class="lanyard">
+                        <div class="lanyard-clip"></div>
+                    </div>
                     <div class="badge-hole"></div>
-                    <div class="lanyard"></div>
                     <img src="IMG_4270.jpeg" alt="Foto Abidzar Algifary" class="img-profile">
-                    <div class="badge-text handwritten">Abidzar Algifary</div>
                 </div>
             </div>
         </section>
@@ -124,14 +118,14 @@
             </div>
         </section>
 
-        <!-- The torn paper divider splitting the two backgrounds -->
         <div class="torn-paper-edge"></div>
 
         <div class="purple-bg-wrapper">
             <section id="graphic-design" class="section-showcase">
                 <div class="section-header">
                     <h2 class="section-title text-white handwritten">Graphic <span class="text-marker-white">Design</span></h2>
-                    <div class="doodle-underline-white"></div>
+                    <!-- TAMBAHAN: Subtitle untuk Graphic Design langsung di HTML -->
+                    <p class="section-subtitle">Aku pernah mencoba untuk membuat desain Social Media saat duduk di bangku kelas 7, dan ini beberapa hasil yang telah ku buat.</p>
                 </div>
 
                 <div class="showcase-container design-grid">
@@ -195,8 +189,7 @@
             </section>
 
             <footer id="footer" class="site-footer">
-                <div class="footer-container marker-border">
-                    <div class="paper-clip"></div>
+                <div class="footer-container">
                     <a href="#home" class="footer-logo handwritten">ADIZAREL<span class="text-marker-white">.</span></a>
                     <p class="footer-copyright handwritten">Thanks for visiting! ♡</p>
                 </div>
