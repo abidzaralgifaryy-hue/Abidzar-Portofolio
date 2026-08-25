@@ -7,47 +7,80 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <main class="retro-container">
+    <main class="notebook-wrapper">
+        <!-- Spiral Holes Kertas -->
+        <div class="spiral-holes"></div>
         
-        <!-- ==========================================
-             KOLOM KIRI: FOTO, KONTAK, & PANEL ARMY
-             ========================================== -->
-        <div class="left-column">
+        <!-- Kertas Putih Utama -->
+        <div class="white-canvas">
             
-            <!-- Foto & Kontak -->
-            <div class="profile-card">
-                <div class="photo-frame">
-                    <img src="IMG_4270.jpeg" alt="Abidzar Algifary">
-                </div>
+            <!-- Stiker Judul Utama Biru -->
+            <div class="blue-header-tag">about me</div>
+
+            <!-- ==========================================
+                 ROW 1: ABOUT (FOTO ID, KONTAK & BIO)
+                 ========================================== -->
+            <div class="about-grid">
                 
-                <div class="contact-box">
-                    <h3>Contact</h3>
-                    <ul class="contact-list">
-                        <li><i class="ph-fill ph-whatsapp-logo"></i> <a href="https://wa.me/6285137071956" target="_blank">+62 851-3707-1956</a></li>
-                        <li><i class="ph-fill ph-instagram-logo"></i> <a href="https://www.instagram.com/adiz4rel" target="_blank">@adiz4rel</a></li>
-                        <li><i class="ph-tiktok-logo ph-fill"></i> <a href="https://www.tiktok.com/@adizarel" target="_blank">@adizarel</a></li>
-                        <li><i class="ph-fill ph-envelope-simple"></i> <a href="mailto:abidzaralgifaryy@gmail.com">abidzaralgifaryy</a></li>
-                    </ul>
+                <!-- KOLOM KIRI (Lanyard, Kartu ID & Notepad Kontak) -->
+                <div class="left-id-section">
+                    
+                    <!-- Lanyard System -->
+                    <div class="lanyard-rope"></div>
+                    <div class="lanyard-clip"></div>
+
+                    <!-- ID Card Badge -->
+                    <div class="id-badge-card">
+                        <img src="IMG_4270.jpeg" alt="Abidzar Algifary">
+                    </div>
+
+                    <!-- Kertas Kontak Sobekan Spiral -->
+                    <div class="contact-spiral-paper">
+                        <ul class="contact-list">
+                            <li><i class="ph-fill ph-whatsapp-logo"></i> <a href="https://wa.me/6285137071956" target="_blank">+62 851-3707-1956</a></li>
+                            <li><i class="ph-fill ph-instagram-logo"></i> <a href="https://www.instagram.com/adiz4rel" target="_blank">@adiz4rel</a></li>
+                            <li><i class="ph-tiktok-logo ph-fill"></i> <a href="https://www.tiktok.com/@adizarel" target="_blank">@adizarel</a></li>
+                            <li><i class="ph-fill ph-envelope-simple"></i> <a href="mailto:abidzaralgifaryy@gmail.com">abidzaralgifaryy</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- KOLOM KANAN (Teks, Bio & Pita Warna-warni) -->
+                <div class="right-bio-section">
+                    <span class="hello-text handwritten">Hello<br>My Name is</span>
+                    <h1 class="name-title">Abidzar Algifary</h1>
+                    
+                    <p class="bio-paragraph">
+                        Kenalin, aku biasa dipanggil <b>Abijay</b>. Sekarang aku duduk di kelas 8 SMP Al-Azhar 44. Di luar jam sekolah, aku punya ketertarikan yang cukup besar di dunia kreatif, khususnya <b>desain grafis</b> dan <b>video editing</b>. 
+                        <br><br>
+                        Buat aku, bisa ngulik berbagai <i>software desain</i> dan bikin konten yang estetik itu jadi cara seru buat isi waktu luang sekaligus ngasah skill. Aku selalu senang <b>bereksperimen dengan ide-ide baru</b> biar hasil karyaku bisa terus berkembang jadi lebih baik lagi.
+                    </p>
+
+                    <a href="https://wa.me/6285137071956" target="_blank" class="cta-sticker handwritten">
+                        Dont Forget to Contact Me
+                    </a>
+
+                    <!-- Pita Label Keahlian di Samping Kanan Kertas -->
+                    <div class="skill-ribbons handwritten">
+                        <div class="ribbon blue">Video Editor</div>
+                        <div class="ribbon orange">Graphic Designer</div>
+                        <div class="ribbon yellow">Creative & Detail</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Panel Hijau Army: Skills & Software -->
-            <div class="army-panel">
-                <h2>Design Skills</h2>
-                <div class="skill-pills-group">
-                    <div class="skill-pill">Video Editing</div>
-                    <div class="skill-pill">Graphic Design</div>
-                    <div class="skill-pill">Typography</div>
-                    <div class="skill-pill">Motion Graphics</div>
-                </div>
-
-                <h2 style="margin-top: 30px;">Software</h2>
+            <!-- ==========================================
+                 ROW 2: SOFTWARE (LOGO ONLY)
+                 ========================================== -->
+            <div class="showcase-block" style="margin-top: 20px;">
+                <div class="section-inline-header">software</div>
+                
                 <div class="software-icons-row">
                     <div class="soft-badge" title="Premiere">
                         <img src="pr-icon.png" alt="Premiere">
@@ -67,75 +100,59 @@
                 </div>
             </div>
 
-        </div>
-
-        <!-- ==========================================
-             KOLOM KANAN: INTRO & SHOWCASE KARYA
-             ========================================== -->
-        <div class="right-column">
-            
-            <!-- Header & Bio Sesuai Data Asli -->
-            <div class="header-intro">
-                <div class="role-badge">Graphic Designer & Video Editor</div>
-                <h1 class="retro-title">Hello,<br>I'm Abidzar !</h1>
-                
-                <p class="bio-desc">
-                    Kenalin, aku biasa dipanggil <b>Abijay</b>. Sekarang aku duduk di kelas 8 SMP Al-Azhar 44. Di luar jam sekolah, aku punya ketertarikan yang cukup besar di dunia kreatif, khususnya <b>desain grafis</b> dan <b>video editing</b>. 
-                    <br><br>
-                    Buat aku, bisa ngulik berbagai <i>software desain</i> dan bikin konten yang estetik itu jadi cara seru buat isi waktu luang sekaligus ngasah skill. Aku selalu senang <b>bereksperimen dengan ide-ide baru</b> biar hasil karyaku bisa terus berkembang jadi lebih baik lagi.
-                </p>
-            </div>
-
-            <!-- Showcase Video Editing (DIUBAH MENJADI SCROLL KANAN/KIRI) -->
-            <div class="showcase-card-retro">
-                <h2><span class="star-icon">✦</span> Video Editing</h2>
-                <p class="showcase-sub">Beberapa karya Typography & Mograph pilihan yang sudah ku buat. (Geser ke samping)</p>
+            <!-- ==========================================
+                 ROW 3: VIDEO EDITING (HORIZONTAL SCROLL)
+                 ========================================== -->
+            <div class="showcase-block">
+                <div class="section-inline-header">video editing</div>
+                <p class="showcase-desc">Beberapa karya Typography & Mograph pilihan yang sudah ku buat.</p>
                 
                 <div class="horizontal-scroll-container">
-                    <div class="scroll-item-video retro-item">
+                    <div class="scroll-item-video photo-card">
                         <a href="https://www.instagram.com/reel/DZ91lYPSzGQ/?igsh=MTM0b3F3dnptODZ0eQ==" target="_blank">
-                            <div class="retro-img-box">
+                            <div class="img-container">
                                 <img src="quality_restoration_20260708092438672.png" alt="Reel 1">
-                                <i class="ph-fill ph-play-circle retro-play-btn"></i>
+                                <i class="ph-fill ph-play-circle play-button"></i>
                             </div>
-                            <div class="retro-caption">Tonton Reel 1</div>
+                            <div class="photo-caption">Tonton Reel 1</div>
                         </a>
                     </div>
                     
-                    <div class="scroll-item-video retro-item">
+                    <div class="scroll-item-video photo-card">
                         <a href="https://www.instagram.com/reel/DRuWwDMkt60/?igsh=MTFzaDU4YmZkZDhsdQ==" target="_blank">
-                            <div class="retro-img-box">
+                            <div class="img-container">
                                 <img src="quality_restoration_20260708093216566.png" alt="Reel 2">
-                                <i class="ph-fill ph-play-circle retro-play-btn"></i>
+                                <i class="ph-fill ph-play-circle play-button"></i>
                             </div>
-                            <div class="retro-caption">Tonton Reel 2</div>
+                            <div class="photo-caption">Tonton Reel 2</div>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Showcase Graphic Design (Scroll Kanan/Kiri) -->
-            <div class="showcase-card-retro">
-                <h2><span class="star-icon">✦</span> Graphic Design</h2>
-                <p class="showcase-sub">Eksperimen desain Social Media saat duduk di bangku kelas 7. (Geser ke samping)</p>
+            <!-- ==========================================
+                 ROW 4: GRAPHIC DESIGN (HORIZONTAL SCROLL)
+                 ========================================== -->
+            <div class="showcase-block">
+                <div class="section-inline-header">graphic design</div>
+                <p class="showcase-desc">Eksperimen desain Social Media saat duduk di bangku kelas 7.</p>
                 
                 <div class="horizontal-scroll-container">
-                    <div class="scroll-item-graphic retro-item">
-                        <div class="retro-img-box"><img src="Arap.png" alt="Poster 1"></div>
+                    <div class="scroll-item-graphic photo-card">
+                        <div class="img-container"><img src="Arap.png" alt="Poster 1"></div>
                     </div>
-                    <div class="scroll-item-graphic retro-item">
-                        <div class="retro-img-box"><img src="quality_restoration_20260707183213934.jpeg" alt="Poster 2"></div>
+                    <div class="scroll-item-graphic photo-card">
+                        <div class="img-container"><img src="quality_restoration_20260707183213934.jpeg" alt="Poster 2"></div>
                     </div>
-                    <div class="scroll-item-graphic retro-item">
-                        <div class="retro-img-box"><img src="SEAN.png" alt="Poster 3"></div>
+                    <div class="scroll-item-graphic photo-card">
+                        <div class="img-container"><img src="SEAN.png" alt="Poster 3"></div>
                     </div>
                 </div>
             </div>
 
-            <div class="retro-footer">ADIZAREL.</div>
+            <div class="footer-text">ADIZAREL.</div>
 
-        </div>
-
+        </div> <!-- Tutup White Canvas -->
     </main>
 
 </body>
