@@ -7,248 +7,188 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body id="body-container">
+<body>
 
-    <header id="header" class="site-header">
+    <!-- NAVIGASI TETAP ADA UNTUK KEMUDAHAN -->
+    <header class="site-header">
         <div class="nav-container">
             <div class="logo-wrapper">
                 <a href="index.html" class="logo"><img src="logo.png" alt="Logo"></a>
             </div>
-
-            <nav id="main-nav" class="navigation">
+            <nav class="navigation">
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#video-editing" class="nav-link">Video Editing</a></li>
-                    <li class="nav-item"><a href="#graphic-design" class="nav-link">Graphic Design</a></li>
-                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
                 </ul>
             </nav>
-
-            <div class="nav-actions">
-                <button id="theme-toggle-btn" class="btn-theme-toggle" type="button" aria-label="Toggle Theme">
-                    <i class="ph ph-moon"></i>
-                </button>
-                <button id="hamburger-btn" class="hamburger-menu" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
         </div>
     </header>
 
-    <main id="main-content">
-        <!-- HERO & ABOUT (KOLASE PERSIS REFERENSI) -->
-        <section id="home" class="section-hero-about">
-            <div class="collage-grid">
+    <main id="about">
+        <!-- ==========================================
+             BAGIAN 1: MAP FOLDER MANILA (FOTO + BIO)
+             ========================================== -->
+        <div class="main-folder-container">
+            <div class="folder-tab"></div>
+            
+            <div class="folder-body">
+                <!-- Stiker About Me dengan Paku Payung Merah -->
+                <div class="about-me-sticker handwritten">
+                    About me
+                    <span class="deco deco-pin">📌</span>
+                </div>
                 
-                <!-- FOTO DENGAN BINDER CLIP HIJAU & STIKER TAG -->
-                <div class="profile-photo-wrapper">
-                    <div class="pin-tag">📍 Bekasi, Indonesia</div>
-                    
-                    <div class="profile-polaroid">
-                        <img src="IMG_4270.jpeg" alt="Abidzar Algifary" class="profile-img">
-                        <div class="name-tape">Abidzar Algifary</div>
+                <!-- Bintang Hiasan -->
+                <span class="deco deco-star" style="top: 20px; left: 45%;">⭐</span>
+
+                <!-- KOLOM KIRI: Foto ID Card & Kontak -->
+                <div class="profile-section">
+                    <div class="id-photo-card">
+                        <div class="metal-clip"></div>
+                        <img src="IMG_4270.jpeg" alt="Abidzar Algifary">
+                        <!-- Ornamen Kepik di foto -->
+                        <span class="deco deco-bug" style="top: -10px; right: -15px; transform: rotate(45deg);">🐞</span>
                     </div>
 
-                    <!-- Penjepit Binder Clip Hijau 3D di Sudut Polaroid -->
-                    <div class="binder-clip-green">
-                        <div class="clip-head"></div>
-                        <div class="clip-wire"></div>
+                    <!-- Kertas Kontak yang menempel di bawah foto -->
+                    <div class="contact-paper-clip">
+                        <!-- Efek paperclip -->
+                        <div style="position: absolute; top: -25px; right: 20px; font-size: 3rem; color: #888; transform: rotate(15deg);">📎</div>
+                        <h3 class="handwritten">Contact</h3>
+                        <ul class="contact-list">
+                            <li><i class="ph-fill ph-whatsapp-logo"></i> <a href="https://wa.me/6285137071956" target="_blank">+62 851-3707-1956</a></li>
+                            <li><i class="ph-fill ph-instagram-logo"></i> <a href="https://www.instagram.com/adiz4rel" target="_blank">@adiz4rel</a></li>
+                            <li><i class="ph-tiktok-logo ph-fill"></i> <a href="https://www.tiktok.com/@adizarel" target="_blank">@adizarel</a></li>
+                            <li><i class="ph-fill ph-envelope-simple"></i> <a href="mailto:abidzaralgifaryy@gmail.com">abidzaralgifaryy</a></li>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- KARTU ABOUT (DESAIN MANILA/BEIGE SAMA KAYA REFERENSI) -->
-                <div id="about" class="profile-desc-card">
-                    <div class="hello-badge">HELLO</div>
-                    <h1 class="profile-title handwritten">Designer Profile</h1>
-                    <p class="profile-text">
-                        Kenalin, aku <b>Abidzar Algifary</b> atau biasa dipanggil <b>Abijay</b>. Sekarang aku duduk di kelas 8 SMP Al-Azhar 44. Di luar jam sekolah, aku punya ketertarikan yang cukup besar di dunia kreatif, khususnya <b>desain grafis</b> dan <b>video editing</b>. Buat aku, bisa ngulik berbagai <b>software desain</b> dan <b>bikin konten</b> yang estetik itu jadi cara seru buat isi waktu luang sekaligus ngasah skill. Aku selalu senang <b>bereksperimen dengan ide-ide baru biar hasil karyaku bisa terus berkembang</b> jadi lebih baik lagi.
+                <!-- KOLOM KANAN: Deskripsi -->
+                <div class="intro-section">
+                    <span class="greeting handwritten">Hai, Aku</span>
+                    <div class="name-wrapper">
+                        <span class="curly-brace">{</span>
+                        <h1 class="big-name">Abidzar Algifary</h1>
+                    </div>
+
+                    <p class="bio-text">
+                        Halo! Aku biasa dipanggil <b>Abijay</b>, saat ini aku duduk di kelas 8 SMP Al-Azhar 44. Di luar jam sekolah, aku memiliki ketertarikan yang sangat mendalam di dunia desain kreatif. 
+                        <br><br>
+                        Selama ini, aku telah bereksperimen dan mengasah kemampuanku untuk merancang <b>Graphic Design</b> dan memproduksi <b>Video Editing</b> (khususnya Typography & Motion Graphics).
+                        Buat aku, bisa mengoperasikan berbagai <i>software desain</i> dan menciptakan karya visual yang estetis adalah caraku untuk mengekspresikan diri. Aku selalu siap menerima tantangan, terus <b>bereksperimen dengan ide segar</b>, dan menghasilkan karya yang lebih baik.
                     </p>
-                    <div class="hero-cta">
-                        <a href="#video-editing" class="btn-primary marker-btn">Lihat Karya</a>
-                        <a href="#contact" class="btn-secondary marker-btn">Hubungi Saya</a>
-                    </div>
                 </div>
-
             </div>
-        </section>
+        </div>
 
-        <!-- SKILLS & SOFTWARE SECTION (REFERENSI GRAPH PAPER & ICON STACK) -->
-        <section id="software-skill" class="section-skills-software">
-            <div class="skills-layout-wrapper">
+        <!-- ==========================================
+             BAGIAN 2: KERTAS BERTUMPUK (SKILLS & KARYA)
+             ========================================== -->
+        <div id="portfolio" class="bottom-papers-container">
+            
+            <!-- KERTAS KIRI (Kertas Kotak-Kotak): Skills & Software -->
+            <div class="paper-left">
+                <span class="deco deco-bug" style="bottom: 10px; left: 20px;">🐞</span>
                 
-                <!-- DUAL SKILLS CARD BERLATAR KERTAS KOTAK-KOTAK -->
-                <div class="skills-dual-card graph-paper-card">
-                    <div class="tape-corner tape-top-left"></div>
-                    <div class="skills-column-grid">
-                        <div class="skill-col">
-                            <h3 class="skills-col-title handwritten">Soft Skills</h3>
-                            <ul class="star-list">
-                                <li><i class="ph-fill ph-star"></i> Creative</li>
-                                <li><i class="ph-fill ph-star"></i> Problem Solving</li>
-                                <li><i class="ph-fill ph-star"></i> Teamwork</li>
-                                <li><i class="ph-fill ph-star"></i> Detail Oriented</li>
-                            </ul>
-                        </div>
-                        <div class="skill-col">
-                            <h3 class="skills-col-title handwritten">Design Skills</h3>
-                            <ul class="star-list">
-                                <li><i class="ph-fill ph-star"></i> Video Editing</li>
-                                <li><i class="ph-fill ph-star"></i> Motion Graphics</li>
-                                <li><i class="ph-fill ph-star"></i> Social Media Post</li>
-                                <li><i class="ph-fill ph-star"></i> Typography</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="red-badge-title">Design Skills</div>
+                
+                <!-- Selotip Keterampilan -->
+                <div class="skills-tape-container">
+                    <div class="tape-skill">Video Editing</div>
+                    <div class="tape-skill">Graphic Design</div>
+                    <div class="tape-skill">Typography</div>
+                    <div class="tape-skill">Motion Graphics</div>
                 </div>
 
-                <!-- SOFTWARE FLOATING ICON STACK (PERSIS GAYA REFERENSI) -->
-                <div class="software-stack-container">
-                    <h2 class="section-title-small handwritten">Software Proficient</h2>
-                    <div class="software-icons-floating">
-                        <div class="soft-icon-badge icon-pr">
-                            <span>Pr</span>
-                            <label>Premiere</label>
-                        </div>
-                        <div class="soft-icon-badge icon-ps">
-                            <span>Ps</span>
-                            <label>Photoshop</label>
-                        </div>
-                        <div class="soft-icon-badge icon-ae">
-                            <span>Ae</span>
-                            <label>After Effect</label>
-                        </div>
-                        <div class="soft-icon-badge icon-ai">
-                            <span>Ai</span>
-                            <label>Illustrator</label>
-                        </div>
-                        <div class="soft-icon-badge icon-capcut">
-                            <span>Cc</span>
-                            <label>CapCut</label>
-                        </div>
+                <div class="red-badge-title">Software</div>
+                
+                <!-- CUSTOM IMAGE ICONS UNTUK SOFTWARE -->
+                <div class="software-grid">
+                    <div class="soft-box">
+                        <!-- Ganti dengan nama file PNG Premiere punyamu -->
+                        <img src="pr-icon.png" alt="Premiere Pro" class="soft-img-icon">
+                        <div class="soft-label">Premiere</div>
+                    </div>
+                    <div class="soft-box">
+                        <!-- Ganti dengan nama file PNG After Effects punyamu -->
+                        <img src="ae-icon.png" alt="After Effect" class="soft-img-icon">
+                        <div class="soft-label">After Effect</div>
+                    </div>
+                    <div class="soft-box">
+                        <!-- Ganti dengan nama file PNG Photoshop punyamu -->
+                        <img src="ps-icon.png" alt="Photoshop" class="soft-img-icon">
+                        <div class="soft-label">Photoshop</div>
+                    </div>
+                    <div class="soft-box">
+                        <!-- Ganti dengan nama file PNG Illustrator punyamu -->
+                        <img src="ai-icon.png" alt="Illustrator" class="soft-img-icon">
+                        <div class="soft-label">Illustrator</div>
+                    </div>
+                    <div class="soft-box">
+                        <!-- Ganti dengan nama file PNG CapCut punyamu -->
+                        <img src="cc-icon.png" alt="CapCut" class="soft-img-icon">
+                        <div class="soft-label">CapCut</div>
                     </div>
                 </div>
-
-            </div>
-        </section>
-
-        <!-- SHOWCASE VIDEO EDITING -->
-        <section id="video-editing" class="section-showcase">
-            <div class="section-header-custom">
-                <h2 class="handwritten">Video Editing</h2>
-                <p>Aku juga sudah pernah membuat beberapa Typography/Mograph, dan ini beberapa video yang sudah ku buat.</p>
             </div>
 
-            <div class="showcase-container video-grid">
-                <a href="https://www.instagram.com/reel/DZ91lYPSzGQ/?igsh=MTM0b3F3dnptODZ0eQ==" target="_blank" class="showcase-card polaroid-frame tilt-left">
-                    <div class="tape-corner tape-top-center"></div>
-                    <div class="card-image">
-                        <img src="quality_restoration_20260708092438672.png" alt="Preview Typography 1">
-                        <div class="play-overlay"><i class="ph-fill ph-play-circle"></i></div>
-                    </div>
-                    <div class="card-info handwritten">
-                        <h3>Tonton Reel Pertama</h3>
-                        <span class="view-project"><i class="ph ph-arrow-up-right"></i></span>
-                    </div>
-                </a>
+            <!-- KERTAS KANAN (Kertas Putih Lembut): Showcase Experience -->
+            <div class="paper-right">
+                <span class="deco deco-star" style="top: 50%; left: -20px;">⭐</span>
 
-                <a href="https://www.instagram.com/reel/DRuWwDMkt60/?igsh=MTFzaDU4YmZkZDhsdQ==" target="_blank" class="showcase-card polaroid-frame tilt-right">
-                    <div class="tape-corner tape-top-center"></div>
-                    <div class="card-image">
-                        <img src="quality_restoration_20260708093216566.png" alt="Preview Typography 2">
-                        <div class="play-overlay"><i class="ph-fill ph-play-circle"></i></div>
-                    </div>
-                    <div class="card-info handwritten">
-                        <h3>Tonton Reel Kedua</h3>
-                        <span class="view-project"><i class="ph ph-arrow-up-right"></i></span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- BANNER KONTRAS PEKAT (REFERENSI BANNER EXPERIENCE/GRAPHIC DESIGN) -->
-        <div class="dark-banner-wrapper">
-            <div class="torn-paper-edge-top"></div>
-
-            <section id="graphic-design" class="section-showcase">
-                <div class="section-header-custom">
-                    <h2 class="handwritten text-white">Graphic Design</h2>
-                    <p class="text-white">Aku pernah mencoba untuk membuat desain Social Media saat duduk di bangku kelas 7, dan ini beberapa hasil yang telah ku buat.</p>
-                </div>
-
-                <div class="showcase-container design-grid">
-                    <div class="showcase-card design-item polaroid-frame tilt-right">
-                        <div class="card-image">
-                            <img src="Arap.png" alt="Desain Poster Rasya">
-                        </div>
-                    </div>
+                <!-- Karya Video Editing -->
+                <div class="showcase-group">
+                    <div class="red-badge-title">Video Editing Projects</div>
+                    <p class="showcase-subtitle">Kumpulan eksperimen Typography & Mograph yang pernah ku buat.</p>
                     
-                    <div class="showcase-card design-item polaroid-frame tilt-left">
-                        <div class="card-image">
-                            <img src="quality_restoration_20260707183213934.jpeg" alt="Desain Poster Juliant Azzam">
-                        </div>
-                    </div>
-
-                    <div class="showcase-card design-item polaroid-frame tilt-right">
-                        <div class="card-image">
-                            <img src="SEAN.png" alt="Desain Poster Sean">
-                        </div>
+                    <div class="work-grid">
+                        <a href="https://www.instagram.com/reel/DZ91lYPSzGQ/?igsh=MTM0b3F3dnptODZ0eQ==" target="_blank" class="work-item tilt-left">
+                            <div class="work-img-box">
+                                <img src="quality_restoration_20260708092438672.png" alt="Video 1">
+                                <i class="ph-fill ph-play-circle play-icon"></i>
+                            </div>
+                            <div class="work-title">Reel Pertama</div>
+                        </a>
+                        <a href="https://www.instagram.com/reel/DRuWwDMkt60/?igsh=MTFzaDU4YmZkZDhsdQ==" target="_blank" class="work-item tilt-right">
+                            <div class="work-img-box">
+                                <img src="quality_restoration_20260708093216566.png" alt="Video 2">
+                                <i class="ph-fill ph-play-circle play-icon"></i>
+                            </div>
+                            <div class="work-title">Reel Kedua</div>
+                        </a>
                     </div>
                 </div>
-            </section>
 
-            <!-- CONTACT SECTION (KERTAS MILIMETER TEMPIL MIKRING) -->
-            <section id="contact" class="section-contact">
-                <div class="contact-grid-note graph-paper-card">
-                    <div class="tape-corner tape-top-center"></div>
-                    <h2 class="handwritten" style="font-size: 3rem; text-align: center; color: var(--army);">Contact Me</h2>
+                <!-- Karya Graphic Design -->
+                <div class="showcase-group">
+                    <div class="red-badge-title" style="background-color: #2E5C31;">Graphic Design</div>
+                    <p class="showcase-subtitle">Eksperimen desain Social Media Poster saat duduk di kelas 7.</p>
                     
-                    <div class="contact-list-items">
-                        <a href="https://wa.me/6285137071956" target="_blank" class="contact-item-box">
-                            <i class="ph-fill ph-whatsapp-logo"></i>
-                            <div>
-                                <strong class="handwritten" style="font-size: 1.2rem;">WhatsApp</strong>
-                                <p style="font-size: 0.85rem; opacity: 0.8;">+62 851-3707-1956</p>
-                            </div>
-                        </a>
-
-                        <a href="https://www.instagram.com/adiz4rel?igsh=MWtqMGw0ODVhbnl3Mg==" target="_blank" class="contact-item-box">
-                            <i class="ph-fill ph-instagram-logo"></i>
-                            <div>
-                                <strong class="handwritten" style="font-size: 1.2rem;">Instagram</strong>
-                                <p style="font-size: 0.85rem; opacity: 0.8;">@adiz4rel</p>
-                            </div>
-                        </a>
-
-                        <a href="https://www.tiktok.com/@adizarel?_r=1&_t=ZS-97xkDrI7dOW" target="_blank" class="contact-item-box">
-                            <i class="ph-tiktok-logo ph-fill"></i>
-                            <div>
-                                <strong class="handwritten" style="font-size: 1.2rem;">TikTok</strong>
-                                <p style="font-size: 0.85rem; opacity: 0.8;">@adizarel</p>
-                            </div>
-                        </a>
-
-                        <a href="mailto:abidzaralgifaryy@gmail.com" class="contact-item-box">
-                            <i class="ph-fill ph-envelope-simple"></i>
-                            <div>
-                                <strong class="handwritten" style="font-size: 1.2rem;">Email</strong>
-                                <p style="font-size: 0.85rem; opacity: 0.8;">abidzaralgifaryy@gmail.com</p>
-                            </div>
-                        </a>
+                    <div class="design-gallery">
+                        <div class="work-item tilt-right">
+                            <div class="work-img-box"><img src="Arap.png" alt="Desain 1"></div>
+                        </div>
+                        <div class="work-item tilt-left">
+                            <div class="work-img-box"><img src="quality_restoration_20260707183213934.jpeg" alt="Desain 2"></div>
+                        </div>
+                        <div class="work-item tilt-right">
+                            <div class="work-img-box"><img src="SEAN.png" alt="Desain 3"></div>
+                        </div>
                     </div>
                 </div>
-            </section>
 
-            <footer id="footer" class="site-footer">
-                <a href="#home" class="footer-logo handwritten">ADIZAREL.</a>
-            </footer>
+            </div>
         </div>
     </main>
+
+    <footer style="text-align: center; padding: 40px; margin-top: 40px; color: #FFF; font-family: var(--font-hand); font-size: 2rem; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));">
+        ADIZAREL.
+    </footer>
 
     <script src="script.js"></script>
 </body>
