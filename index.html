@@ -13,35 +13,24 @@
 </head>
 <body>
 
-    <main class="notebook-wrapper">
-        <!-- Spiral Holes Kertas -->
-        <div class="spiral-holes"></div>
-        
-        <!-- Kertas Putih Utama -->
-        <div class="white-canvas">
+    <!-- ==========================================
+         SECTION 1: HERO & BIO (Latar Meja Gelap)
+         ========================================== -->
+    <section class="section-hero">
+        <div class="scrapbook-canvas">
             
-            <!-- Stiker Judul Utama Biru -->
-            <div class="blue-header-tag">about me</div>
+            <div class="hero-badge handwritten">about me</div>
 
-            <!-- ==========================================
-                 ROW 1: ABOUT (FOTO ID, KONTAK & BIO)
-                 ========================================== -->
             <div class="about-grid">
-                
-                <!-- KOLOM KIRI (Lanyard, Kartu ID & Notepad Kontak) -->
-                <div class="left-id-section">
-                    
-                    <!-- Lanyard System -->
-                    <div class="lanyard-rope"></div>
-                    <div class="lanyard-clip"></div>
-
-                    <!-- ID Card Badge -->
-                    <div class="id-badge-card">
+                <!-- KOLOM KIRI (ID Card Jepit & Kontak) -->
+                <div class="left-id-col">
+                    <div class="id-card">
+                        <div class="bulldog-clip"></div>
                         <img src="IMG_4270.jpeg" alt="Abidzar Algifary">
                     </div>
 
-                    <!-- Kertas Kontak Sobekan Spiral -->
-                    <div class="contact-spiral-paper">
+                    <div class="contact-note">
+                        <div class="masking-tape tape-medium" style="top: -10px; right: 20px; transform: rotate(5deg);"></div>
                         <ul class="contact-list">
                             <li><i class="ph-fill ph-whatsapp-logo"></i> <a href="https://wa.me/6285137071956" target="_blank">+62 851-3707-1956</a></li>
                             <li><i class="ph-fill ph-instagram-logo"></i> <a href="https://www.instagram.com/adiz4rel" target="_blank">@adiz4rel</a></li>
@@ -51,10 +40,9 @@
                     </div>
                 </div>
 
-                <!-- KOLOM KANAN (Teks, Bio & Pita Warna-warni) -->
-                <div class="right-bio-section">
-                    <span class="hello-text handwritten">Hello<br>My Name is</span>
-                    <h1 class="name-title">Abidzar Algifary</h1>
+                <!-- KOLOM KANAN (Teks Deskripsi Asli) -->
+                <div class="right-bio-col">
+                    <h1 class="name-title">Hello, I'm <br><span>Abidzar Algifary</span></h1>
                     
                     <p class="bio-paragraph">
                         Kenalin, aku biasa dipanggil <b>Abijay</b>. Sekarang aku duduk di kelas 8 SMP Al-Azhar 44. Di luar jam sekolah, aku punya ketertarikan yang cukup besar di dunia kreatif, khususnya <b>desain grafis</b> dan <b>video editing</b>. 
@@ -62,49 +50,63 @@
                         Buat aku, bisa ngulik berbagai <i>software desain</i> dan bikin konten yang estetik itu jadi cara seru buat isi waktu luang sekaligus ngasah skill. Aku selalu senang <b>bereksperimen dengan ide-ide baru</b> biar hasil karyaku bisa terus berkembang jadi lebih baik lagi.
                     </p>
 
-                    <a href="https://wa.me/6285137071956" target="_blank" class="cta-sticker handwritten">
+                    <a href="https://wa.me/6285137071956" target="_blank" class="cta-button handwritten">
                         Dont Forget to Contact Me
                     </a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
 
-                    <!-- Pita Label Keahlian di Samping Kanan Kertas -->
-                    <div class="skill-ribbons handwritten">
-                        <div class="ribbon blue">Video Editor</div>
-                        <div class="ribbon orange">Graphic Designer</div>
-                        <div class="ribbon yellow">Creative & Detail</div>
-                    </div>
+    <!-- Transisi Efek Kertas Sobek -->
+    <div class="torn-divider-dark-to-kraft"></div>
+
+    <!-- ==========================================
+         SECTION 2: SKILLS & SOFTWARE (Latar Kraft Cokelat)
+         ========================================== -->
+    <section class="section-skills">
+        <div class="kraft-container">
+            
+            <div class="kraft-card">
+                <div class="masking-tape tape-small" style="top: -10px; left: 50%; transform: translateX(-50%);"></div>
+                <h2 class="section-label">Design Skills</h2>
+                <div class="tape-skills-group">
+                    <div class="tape-item">Video Editing</div>
+                    <div class="tape-item">Graphic Design</div>
+                    <div class="tape-item">Typography</div>
+                    <div class="tape-item">Motion Graphics</div>
                 </div>
             </div>
 
-            <!-- ==========================================
-                 ROW 2: SOFTWARE (LOGO ONLY)
-                 ========================================== -->
-            <div class="showcase-block" style="margin-top: 20px;">
-                <div class="section-inline-header">software</div>
-                
+            <div class="kraft-card">
+                <div class="masking-tape tape-small" style="top: -10px; left: 50%; transform: translateX(-50%);"></div>
+                <h2 class="section-label">Software</h2>
                 <div class="software-icons-row">
-                    <div class="soft-badge" title="Premiere">
-                        <img src="pr-icon.png" alt="Premiere">
-                    </div>
-                    <div class="soft-badge" title="After Effect">
-                        <img src="ae-icon.png" alt="After Effect">
-                    </div>
-                    <div class="soft-badge" title="Photoshop">
-                        <img src="ps-icon.png" alt="Photoshop">
-                    </div>
-                    <div class="soft-badge" title="Illustrator">
-                        <img src="ai-icon.png" alt="Illustrator">
-                    </div>
-                    <div class="soft-badge" title="CapCut">
-                        <img src="cc-icon.png" alt="CapCut">
-                    </div>
+                    <div class="soft-badge" title="Premiere"><img src="pr-icon.png" alt="Premiere"></div>
+                    <div class="soft-badge" title="After Effect"><img src="ae-icon.png" alt="After Effect"></div>
+                    <div class="soft-badge" title="Photoshop"><img src="ps-icon.png" alt="Photoshop"></div>
+                    <div class="soft-badge" title="Illustrator"><img src="ai-icon.png" alt="Illustrator"></div>
+                    <div class="soft-badge" title="CapCut"><img src="cc-icon.png" alt="CapCut"></div>
                 </div>
             </div>
 
-            <!-- ==========================================
-                 ROW 3: VIDEO EDITING (HORIZONTAL SCROLL)
-                 ========================================== -->
+        </div>
+    </section>
+
+    <!-- Transisi Efek Kertas Sobek -->
+    <div class="torn-divider-kraft-to-cream"></div>
+
+    <!-- ==========================================
+         SECTION 3: PORTFOLIO SHOWCASE (Latar Kertas Krem Grid)
+         ========================================== -->
+    <section class="section-portfolio">
+        <div class="portfolio-container">
+            
+            <!-- Video Editing (Scroll Kanan Kiri) -->
             <div class="showcase-block">
-                <div class="section-inline-header">video editing</div>
+                <div class="masking-tape tape-medium" style="top: -10px; left: 30px; transform: rotate(-3deg);"></div>
+                <h2 class="section-label">Video Editing</h2>
                 <p class="showcase-desc">Beberapa karya Typography & Mograph pilihan yang sudah ku buat.</p>
                 
                 <div class="horizontal-scroll-container">
@@ -130,11 +132,10 @@
                 </div>
             </div>
 
-            <!-- ==========================================
-                 ROW 4: GRAPHIC DESIGN (HORIZONTAL SCROLL)
-                 ========================================== -->
+            <!-- Graphic Design (Scroll Kanan Kiri) -->
             <div class="showcase-block">
-                <div class="section-inline-header">graphic design</div>
+                <div class="masking-tape tape-medium" style="top: -10px; right: 30px; transform: rotate(3deg);"></div>
+                <h2 class="section-label">Graphic Design</h2>
                 <p class="showcase-desc">Eksperimen desain Social Media saat duduk di bangku kelas 7.</p>
                 
                 <div class="horizontal-scroll-container">
@@ -152,8 +153,8 @@
 
             <div class="footer-text">ADIZAREL.</div>
 
-        </div> <!-- Tutup White Canvas -->
-    </main>
+        </div>
+    </section>
 
 </body>
 </html>
