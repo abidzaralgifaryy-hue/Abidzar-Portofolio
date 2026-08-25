@@ -1,13 +1,13 @@
 /* ==================================================
-   DESIGN SYSTEM (Retro Army Green & Cream)
+   DESIGN SYSTEM (Retro Army Green & Clean Logo Icons)
    ================================================== */
 :root {
-    --bg-cream: #F5F3ED;       /* Latar belakang krem hangat */
-    --card-cream: #FCFAF7;     /* Warna putih gading untuk kartu */
-    --army-main: #5B6E36;      /* Warna Hijau Army utama */
-    --army-dark: #3A4A1B;      /* Hijau Army gelap untuk kontras panel */
-    --army-light: #728D44;     /* Hijau Army yang lebih terang */
-    --text-dark: #242A1D;      /* Teks gelap bernuansa natural */
+    --bg-cream: #F5F3ED;       
+    --card-cream: #FCFAF7;     
+    --army-main: #5B6E36;      
+    --army-dark: #3A4A1B;      
+    --army-light: #728D44;     
+    --text-dark: #242A1D;      
     --text-muted: #62685B;
     
     --shadow-retro: 4px 8px 0px rgba(91, 110, 54, 0.2);
@@ -34,11 +34,10 @@ body {
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; height: auto; display: block; }
 
-/* Ornamen Bintang Retro (✦) */
 .star-icon { color: var(--army-main); font-size: 0.9rem; margin-right: 6px; }
 
 /* ==================================================
-   LAYOUT UTAMA (RETRO PORTFOLIO GRID)
+   LAYOUT UTAMA
    ================================================== */
 .retro-container {
     max-width: 1050px;
@@ -49,7 +48,6 @@ img { max-width: 100%; height: auto; display: block; }
     align-items: start;
 }
 
-/* --- KOLOM KIRI (FOTO, KONTAK, & PANEL ARMY) --- */
 .left-column { display: flex; flex-direction: column; gap: 25px; }
 
 .profile-card {
@@ -84,7 +82,7 @@ img { max-width: 100%; height: auto; display: block; }
 .contact-list li i { color: var(--army-main); font-size: 1.1rem; }
 .contact-list li a:hover { color: var(--army-main); text-decoration: underline; }
 
-/* Panel Hijau Army Gelap di Kiri Bawah (Skills & Software) */
+/* Panel Hijau Army */
 .army-panel {
     background-color: var(--army-dark);
     color: #FFF;
@@ -113,18 +111,34 @@ img { max-width: 100%; height: auto; display: block; }
     box-shadow: 2px 3px 6px rgba(0,0,0,0.15);
 }
 
-.software-icons-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+/* PEMBARUAN SOFTWARE GRID: Fokus Logo Saja Tanpa Teks */
+.software-icons-row { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 12px; 
+    margin-top: 15px; 
+}
 .soft-badge {
     background: var(--card-cream);
     padding: 8px;
-    border-radius: 10px;
+    border-radius: 12px;
     text-align: center;
-    width: 60px;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 3px 8px rgba(0,0,0,0.2);
+    transition: var(--transition);
 }
-.soft-badge img { width: 35px; height: 35px; object-fit: contain; margin: 0 auto 4px; }
-.soft-badge span { font-size: 0.7rem; font-weight: 700; color: var(--text-dark); display: block; }
+.soft-badge:hover { transform: translateY(-3px) scale(1.08); }
+.soft-badge img { 
+    width: 38px; 
+    height: 38px; 
+    object-fit: contain; 
+}
 
-/* --- KOLOM KANAN (HEADER, BIO, & SHOWCASE KARYA) --- */
+/* Kolom Kanan */
 .right-column { display: flex; flex-direction: column; gap: 30px; }
 
 .header-intro {
@@ -161,7 +175,6 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .bio-desc b { color: var(--army-main); font-weight: 700; }
 
-/* Kartu Putih untuk Showcase Karya */
 .showcase-card-retro {
     background: var(--card-cream);
     padding: 35px;
