@@ -1,20 +1,16 @@
 /* ==================================================
-   DESIGN SYSTEM (Scrapbook Masterpiece - Fixed Layout)
+   DESIGN SYSTEM (Cyber-Grunge Scrapbook / Zine Hybrid)
    ================================================== */
 :root {
-    --bg-desk: #1F221D;      
-    --folder-color: #F4F2EC; 
-    --paper-grid: #EAE6DB;   
-    --paper-white: #FFFFFF;
+    --bg-dark: #121411;         /* Latar belakang meja gelap ala kantong zine */
+    --folder-bg: #EAE6DB;       /* Warna dasar kertas/folder */
+    --grunge-card: #1A1C18;     /* Warna kartu identitas/kontak gaya zine gelap */
+    --accent-neon: #BBE048;     /* Hijau neon khas referensi baru */
+    --accent-orange: #D35400;   /* Aksen terakota hangat dari style sebelumnya */
+    --ink: #1F221D;
     
-    --ink-main: #2C2C2C;
-    --ink-light: #555555;
-    
-    --accent-orange: #D35400; 
-    --accent-army: #5B6E36;   
-    
-    --shadow-flat: 4px 6px 0px rgba(0,0,0,0.15);
-    --shadow-float: 10px 25px 50px rgba(0,0,0,0.3);
+    --shadow-grunge: 5px 8px 0px rgba(0, 0, 0, 0.4);
+    --shadow-float: 10px 25px 45px rgba(0,0,0,0.5);
     
     --font-hand: 'Caveat', cursive;
     --font-sans: 'Plus Jakarta Sans', sans-serif;
@@ -26,12 +22,15 @@ html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
     font-family: var(--font-sans);
-    background-color: var(--bg-desk);
-    background-image: radial-gradient(rgba(255,255,255,0.05) 1.5px, transparent 1.5px);
-    background-size: 25px 25px;
-    color: var(--ink-main);
+    background-color: var(--bg-dark);
+    /* Efek tekstur garis dan titik digital grunge */
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.04) 1.5px, transparent 1.5px),
+        repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(187, 224, 72, 0.02) 40px, rgba(187, 224, 72, 0.02) 41px);
+    background-size: 25px 25px, 100% 100%;
+    color: var(--ink);
     line-height: 1.6;
-    padding: 60px 3% 100px; 
+    padding: 60px 3% 100px;
 }
 
 a { text-decoration: none; color: inherit; }
@@ -39,20 +38,29 @@ img { max-width: 100%; height: auto; display: block; }
 .handwritten { font-family: var(--font-hand); font-weight: 700; }
 
 /* ==================================================
-   DECORATIVE TAPE & STICKERS
+   DECORATIVE TAPE & STICKERS (Grunge Style)
    ================================================== */
 .masking-tape {
     position: absolute;
-    background: rgba(240, 235, 220, 0.85);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    border-left: 2px dashed rgba(0,0,0,0.15);
-    border-right: 2px dashed rgba(0,0,0,0.15);
-    backdrop-filter: blur(2px);
+    background: rgba(240, 235, 220, 0.88);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    border-left: 2px dashed rgba(0,0,0,0.2);
+    border-right: 2px dashed rgba(0,0,0,0.2);
     z-index: 20;
 }
 .tape-top-center { width: 100px; height: 28px; top: -14px; left: 50%; transform: translateX(-50%) rotate(-2deg); }
 .tape-corner-left { width: 80px; height: 25px; top: -10px; left: -25px; transform: rotate(-45deg); }
 .tape-corner-right { width: 80px; height: 25px; top: -10px; right: -25px; transform: rotate(45deg); }
+
+/* Aksen Stempel "LIMITED EDITION" ala Referensi */
+.stamp-badge {
+    position: absolute; bottom: -12px; right: 15px;
+    background: #111; color: var(--accent-neon);
+    font-family: var(--font-sans); font-size: 0.7rem; font-weight: 800;
+    letter-spacing: 2px; padding: 4px 10px;
+    transform: rotate(-6deg); border: 2px dashed var(--accent-neon);
+    z-index: 25; pointer-events: none;
+}
 
 /* ==================================================
    MAIN FOLDER (HERO & ABOUT SECTION)
@@ -61,12 +69,12 @@ img { max-width: 100%; height: auto; display: block; }
     max-width: 1100px;
     margin: 0 auto;
     position: relative;
-    filter: drop-shadow(10px 25px 45px rgba(0,0,0,0.4));
+    filter: drop-shadow(10px 25px 45px rgba(0,0,0,0.6));
 }
 
 .folder-tab {
-    width: 220px; height: 45px;
-    background-color: var(--folder-color);
+    width: 240px; height: 45px;
+    background-color: var(--folder-bg);
     border-radius: 12px 12px 0 0;
     clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
     display: flex; align-items: center; padding-left: 25px;
@@ -75,68 +83,72 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .folder-body {
-    background-color: var(--folder-color);
+    background-color: var(--folder-bg);
     border-radius: 0 20px 20px 20px;
     padding: 60px 50px;
     display: grid;
-    grid-template-columns: 0.75fr 1.25fr; 
+    grid-template-columns: 0.75fr 1.25fr;
     gap: 55px;
     position: relative;
     z-index: 5;
+    border: 2px solid #2C2C2C;
 }
 
+/* --- KIRI: FOTO & KARTU KONTAK ALA ID BADGE ZINE --- */
 .left-column { display: flex; flex-direction: column; align-items: center; position: relative; }
 
 .polaroid-frame {
     background: #FFF; padding: 14px 14px 45px 14px;
-    border-radius: 4px; box-shadow: var(--shadow-flat);
+    border-radius: 4px; box-shadow: var(--shadow-grunge);
     transform: rotate(-3deg); position: relative;
     width: 100%; max-width: 300px; z-index: 10;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 2px solid #1F221D;
 }
 .polaroid-frame img { border-radius: 2px; aspect-ratio: 4/5; object-fit: cover; }
 
-/* PERBAIKAN CONTACT TICKET: Berubah jadi warna Krem Senada (Tidak Hitam Lagi) */
+/* Kartu Kontak Dipadu Zine Grunge (Hitam Pekat dengan Aksen Neon) */
 .contact-ticket {
-    background-color: #EFEBD9; color: var(--ink-main);
-    padding: 25px; border-radius: 6px;
-    box-shadow: 4px 8px 20px rgba(0,0,0,0.12);
+    background-color: var(--grunge-card); color: #E8E5DF;
+    padding: 25px; border-radius: 4px;
+    box-shadow: var(--shadow-grunge);
     transform: rotate(2deg); margin-top: -20px;
     width: 110%; position: relative; z-index: 15;
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 2px solid #333;
 }
-.contact-ticket h3 { font-size: 2.2rem; color: var(--accent-orange); margin-bottom: 12px; line-height: 1; border-bottom: 2px dashed rgba(0,0,0,0.15); padding-bottom: 10px; }
+.contact-ticket h3 { font-size: 2.2rem; color: var(--accent-neon); margin-bottom: 12px; line-height: 1; border-bottom: 2px dashed rgba(187, 224, 72, 0.3); padding-bottom: 10px; }
 .contact-list { list-style: none; font-size: 1.05rem; }
 .contact-list li { margin-bottom: 12px; display: flex; gap: 12px; align-items: center; }
-.contact-list li i { color: var(--accent-orange); font-size: 1.3rem; }
+.contact-list li i { color: var(--accent-neon); font-size: 1.3rem; }
 .contact-list li a { transition: var(--transition); }
-.contact-list li a:hover { color: var(--accent-orange); font-weight: 600; }
+.contact-list li a:hover { color: var(--accent-neon); text-decoration: underline; }
 
+/* --- KANAN: DESKRIPSI (Teks Asli Sesuai Permintaan) --- */
 .right-column { padding-top: 10px; position: relative; }
 
 .hello-sticker {
-    display: inline-block; background: var(--accent-army); color: #FFF;
-    padding: 4px 16px; border-radius: 20px; font-size: 1.2rem;
+    display: inline-block; background: #111; color: var(--accent-neon);
+    padding: 4px 16px; border-radius: 4px; font-size: 1.2rem;
     transform: rotate(-3deg); margin-bottom: 15px;
-    box-shadow: 2px 4px 8px rgba(0,0,0,0.15);
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+    border: 1px solid var(--accent-neon);
 }
 
 .title-name {
     font-size: clamp(3.2rem, 6vw, 5rem);
-    font-weight: 800; color: var(--ink-main);
+    font-weight: 800; color: var(--ink);
     line-height: 1.1; margin-bottom: 25px;
     letter-spacing: -1px;
 }
 .title-name span { position: relative; display: inline-block; }
 .title-name span::after {
     content: ''; position: absolute; bottom: 8px; left: 0;
-    width: 100%; height: 18px; background-color: rgba(211, 84, 0, 0.2);
+    width: 100%; height: 18px; background-color: rgba(187, 224, 72, 0.4);
     z-index: -1; transform: rotate(-1deg);
 }
 
-.bio-text { font-size: 1.12rem; line-height: 1.9; color: var(--ink-light); text-align: justify; }
-.bio-text b { color: var(--accent-orange); font-weight: 700; background: rgba(211, 84, 0, 0.08); padding: 2px 6px; border-radius: 4px; }
-.bio-text i { color: var(--accent-army); font-weight: 600; font-style: normal; }
+.bio-text { font-size: 1.12rem; line-height: 1.9; color: #444; text-align: justify; }
+.bio-text b { color: #111; font-weight: 700; background: var(--accent-neon); padding: 2px 6px; border-radius: 2px; }
+.bio-text i { color: var(--accent-orange); font-weight: 600; font-style: normal; }
 
 /* ==================================================
    BOTTOM PAPERS (SKILLS & PORTFOLIO)
@@ -148,32 +160,33 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .skill-paper {
-    background-color: var(--paper-grid);
+    background-color: var(--folder-bg);
     background-image: 
-        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+        linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
     background-size: 20px 20px;
     padding: 45px 40px; border-radius: 6px;
     box-shadow: var(--shadow-float);
     transform: rotate(-1.5deg);
     z-index: 20; position: relative;
+    border: 2px solid #2C2C2C;
 }
 
 .portfolio-paper {
-    background-color: var(--paper-white);
+    background-color: #FFF;
     padding: 50px 45px; border-radius: 6px;
     box-shadow: var(--shadow-float);
     transform: rotate(1deg);
     z-index: 10; margin-top: 25px;
     position: relative;
+    border: 2px solid #2C2C2C;
 }
 
 .section-label {
     font-family: var(--font-hand); font-size: 2.6rem;
-    color: var(--accent-army); margin-bottom: 20px; line-height: 1;
+    color: #111; margin-bottom: 20px; line-height: 1;
 }
 
-/* PERBAIKAN SHAPE KELEBARAN: Dibuat ukuran pas (fit-content) agar tidak memanjang */
 .tape-skills-group { 
     display: flex; 
     flex-wrap: wrap; 
@@ -181,56 +194,56 @@ img { max-width: 100%; height: auto; display: block; }
     margin-bottom: 40px; 
 }
 .tape-item {
-    background: #FFF; color: var(--ink-main);
+    background: #1A1C18; color: #FFF;
     font-family: var(--font-sans); font-size: 0.95rem; font-weight: 700;
-    padding: 8px 16px; box-shadow: 2px 3px 8px rgba(0,0,0,0.08);
-    border-left: 3px solid var(--accent-orange);
-    width: fit-content; /* Mencegah shape melebar penuh */
+    padding: 8px 16px; box-shadow: 2px 3px 8px rgba(0,0,0,0.2);
+    border-left: 3px solid var(--accent-neon);
+    width: fit-content;
 }
 .tape-item:nth-child(1) { transform: rotate(-2deg); }
 .tape-item:nth-child(2) { transform: rotate(1.5deg); }
 .tape-item:nth-child(3) { transform: rotate(-1deg); }
 .tape-item:nth-child(4) { transform: rotate(2deg); }
 
-/* PERBAIKAN SOFTWARE GRID: Rapi dan tidak dobel teks */
 .software-grid { display: flex; flex-wrap: wrap; gap: 16px; }
 .soft-box { text-align: center; cursor: pointer; width: 75px; }
 .soft-img-icon {
     width: 65px; height: 65px; object-fit: contain;
-    border-radius: 12px; box-shadow: 3px 5px 12px rgba(0,0,0,0.1);
-    margin-bottom: 6px; background-color: #FFF; padding: 4px;
+    border-radius: 12px; box-shadow: 3px 5px 12px rgba(0,0,0,0.15);
+    margin-bottom: 6px; background-color: #1A1C18; padding: 6px;
+    border: 1px solid #333;
     transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.soft-box:hover .soft-img-icon { transform: translateY(-5px) scale(1.06); box-shadow: 4px 8px 16px rgba(0,0,0,0.18); }
-.soft-label { font-size: 0.85rem; font-weight: 700; color: var(--ink-main); white-space: nowrap; }
+.soft-box:hover .soft-img-icon { transform: translateY(-5px) scale(1.06); box-shadow: 4px 8px 16px rgba(0,0,0,0.25); }
+.soft-label { font-size: 0.85rem; font-weight: 700; color: var(--ink); white-space: nowrap; }
 
 .showcase-block { margin-bottom: 50px; }
 .showcase-block:last-child { margin-bottom: 0; }
-.showcase-desc { font-size: 1.05rem; color: var(--ink-light); margin-bottom: 25px; margin-top: -10px; }
+.showcase-desc { font-size: 1.05rem; color: #555; margin-bottom: 25px; margin-top: -10px; }
 
 .video-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
 .graphic-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
 
 .work-card {
     background: #FFF; padding: 12px 12px 40px 12px;
-    box-shadow: 2px 4px 12px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow-grunge);
     position: relative; transition: var(--transition);
-    border: 1px solid rgba(0,0,0,0.03); border-radius: 2px;
+    border: 2px solid #2C2C2C; border-radius: 2px;
 }
-.work-card:hover { transform: scale(1.04) rotate(0deg) !important; z-index: 15; box-shadow: 6px 12px 25px rgba(0,0,0,0.15); }
+.work-card:hover { transform: scale(1.04) rotate(0deg) !important; z-index: 15; box-shadow: 6px 12px 25px rgba(0,0,0,0.25); }
 .work-card.tilt-a { transform: rotate(-2deg); }
 .work-card.tilt-b { transform: rotate(2.5deg); }
 .work-card.tilt-c { transform: rotate(-1.5deg); }
 
-.img-container { position: relative; overflow: hidden; border-radius: 2px; }
+.img-container { position: relative; overflow: hidden; border-radius: 2px; border: 1px solid #ddd; }
 .video-layout .img-container { aspect-ratio: 16/10; }
 .graphic-layout .img-container { aspect-ratio: 4/5; }
 .img-container img { width: 100%; height: 100%; object-fit: cover; }
 
-.play-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; color: #FFF; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5)); opacity: 0.95; }
-.work-caption { font-family: var(--font-hand); font-size: 1.5rem; color: var(--ink-main); position: absolute; bottom: 8px; left: 0; width: 100%; text-align: center; }
+.play-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; color: #FFF; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7)); opacity: 0.95; }
+.work-caption { font-family: var(--font-hand); font-size: 1.5rem; color: #111; position: absolute; bottom: 8px; left: 0; width: 100%; text-align: center; }
 
-.simple-footer { text-align: center; padding: 50px 0 20px; color: rgba(255,255,255,0.4); font-family: var(--font-hand); font-size: 2rem; letter-spacing: 2px; }
+.simple-footer { text-align: center; padding: 50px 0 20px; color: var(--accent-neon); font-family: var(--font-hand); font-size: 2rem; letter-spacing: 2px; }
 
 /* ==================================================
    RESPONSIVE DESIGN
