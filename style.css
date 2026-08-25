@@ -1,279 +1,229 @@
 /* ==================================================
-   DESIGN SYSTEM (Cyber-Grunge Scrapbook / Zine Hybrid)
+   DESIGN SYSTEM (Retro Army Green & Cream)
    ================================================== */
 :root {
-    --bg-dark: #121411;         /* Latar belakang meja gelap ala kantong zine */
-    --folder-bg: #EAE6DB;       /* Warna dasar kertas/folder */
-    --grunge-card: #1A1C18;     /* Warna kartu identitas/kontak gaya zine gelap */
-    --accent-neon: #BBE048;     /* Hijau neon khas referensi baru */
-    --accent-orange: #D35400;   /* Aksen terakota hangat dari style sebelumnya */
-    --ink: #1F221D;
+    --bg-cream: #F5F3ED;       /* Latar belakang krem hangat */
+    --card-cream: #FCFAF7;     /* Warna putih gading untuk kartu */
+    --army-main: #5B6E36;      /* Warna Hijau Army utama */
+    --army-dark: #3A4A1B;      /* Hijau Army gelap untuk kontras panel */
+    --army-light: #728D44;     /* Hijau Army yang lebih terang */
+    --text-dark: #242A1D;      /* Teks gelap bernuansa natural */
+    --text-muted: #62685B;
     
-    --shadow-grunge: 5px 8px 0px rgba(0, 0, 0, 0.4);
-    --shadow-float: 10px 25px 45px rgba(0,0,0,0.5);
+    --shadow-retro: 4px 8px 0px rgba(91, 110, 54, 0.2);
+    --shadow-soft: 8px 20px 40px rgba(36, 42, 29, 0.08);
     
-    --font-hand: 'Caveat', cursive;
+    --font-serif-title: 'Playfair Display', Georgia, serif;
     --font-sans: 'Plus Jakarta Sans', sans-serif;
     --transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
     font-family: var(--font-sans);
-    background-color: var(--bg-dark);
-    /* Efek tekstur garis dan titik digital grunge */
-    background-image: 
-        radial-gradient(rgba(255, 255, 255, 0.04) 1.5px, transparent 1.5px),
-        repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(187, 224, 72, 0.02) 40px, rgba(187, 224, 72, 0.02) 41px);
-    background-size: 25px 25px, 100% 100%;
-    color: var(--ink);
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
     line-height: 1.6;
-    padding: 60px 3% 100px;
+    padding: 50px 3% 90px;
 }
 
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; height: auto; display: block; }
-.handwritten { font-family: var(--font-hand); font-weight: 700; }
+
+/* Ornamen Bintang Retro (✦) */
+.star-icon { color: var(--army-main); font-size: 0.9rem; margin-right: 6px; }
 
 /* ==================================================
-   DECORATIVE TAPE & STICKERS (Grunge Style)
+   LAYOUT UTAMA (RETRO PORTFOLIO GRID)
    ================================================== */
-.masking-tape {
-    position: absolute;
-    background: rgba(240, 235, 220, 0.88);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    border-left: 2px dashed rgba(0,0,0,0.2);
-    border-right: 2px dashed rgba(0,0,0,0.2);
-    z-index: 20;
-}
-.tape-top-center { width: 100px; height: 28px; top: -14px; left: 50%; transform: translateX(-50%) rotate(-2deg); }
-.tape-corner-left { width: 80px; height: 25px; top: -10px; left: -25px; transform: rotate(-45deg); }
-.tape-corner-right { width: 80px; height: 25px; top: -10px; right: -25px; transform: rotate(45deg); }
-
-/* Aksen Stempel "LIMITED EDITION" ala Referensi */
-.stamp-badge {
-    position: absolute; bottom: -12px; right: 15px;
-    background: #111; color: var(--accent-neon);
-    font-family: var(--font-sans); font-size: 0.7rem; font-weight: 800;
-    letter-spacing: 2px; padding: 4px 10px;
-    transform: rotate(-6deg); border: 2px dashed var(--accent-neon);
-    z-index: 25; pointer-events: none;
-}
-
-/* ==================================================
-   MAIN FOLDER (HERO & ABOUT SECTION)
-   ================================================== */
-.scrapbook-container {
-    max-width: 1100px;
+.retro-container {
+    max-width: 1050px;
     margin: 0 auto;
-    position: relative;
-    filter: drop-shadow(10px 25px 45px rgba(0,0,0,0.6));
-}
-
-.folder-tab {
-    width: 240px; height: 45px;
-    background-color: var(--folder-bg);
-    border-radius: 12px 12px 0 0;
-    clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
-    display: flex; align-items: center; padding-left: 25px;
-    font-family: var(--font-hand); font-size: 1.5rem; color: var(--accent-orange);
-    position: relative; top: 1px;
-}
-
-.folder-body {
-    background-color: var(--folder-bg);
-    border-radius: 0 20px 20px 20px;
-    padding: 60px 50px;
     display: grid;
-    grid-template-columns: 0.75fr 1.25fr;
-    gap: 55px;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 35px;
+    align-items: start;
+}
+
+/* --- KOLOM KIRI (FOTO, KONTAK, & PANEL ARMY) --- */
+.left-column { display: flex; flex-direction: column; gap: 25px; }
+
+.profile-card {
+    background: var(--card-cream);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    border: 2px solid rgba(91, 110, 54, 0.15);
+    text-align: center;
     position: relative;
-    z-index: 5;
-    border: 2px solid #2C2C2C;
 }
 
-/* --- KIRI: FOTO & KARTU KONTAK ALA ID BADGE ZINE --- */
-.left-column { display: flex; flex-direction: column; align-items: center; position: relative; }
-
-.polaroid-frame {
-    background: #FFF; padding: 14px 14px 45px 14px;
-    border-radius: 4px; box-shadow: var(--shadow-grunge);
-    transform: rotate(-3deg); position: relative;
-    width: 100%; max-width: 300px; z-index: 10;
-    border: 2px solid #1F221D;
+.photo-frame {
+    background-color: var(--army-dark);
+    padding: 12px 12px 0 12px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
 }
-.polaroid-frame img { border-radius: 2px; aspect-ratio: 4/5; object-fit: cover; }
+.photo-frame img { border-radius: 8px 8px 0 0; aspect-ratio: 4/5; object-fit: cover; width: 100%; }
 
-/* Kartu Kontak Dipadu Zine Grunge (Hitam Pekat dengan Aksen Neon) */
-.contact-ticket {
-    background-color: var(--grunge-card); color: #E8E5DF;
-    padding: 25px; border-radius: 4px;
-    box-shadow: var(--shadow-grunge);
-    transform: rotate(2deg); margin-top: -20px;
-    width: 110%; position: relative; z-index: 15;
-    border: 2px solid #333;
+.contact-box {
+    background: #FFF;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px dashed var(--army-main);
+    margin-top: 10px;
 }
-.contact-ticket h3 { font-size: 2.2rem; color: var(--accent-neon); margin-bottom: 12px; line-height: 1; border-bottom: 2px dashed rgba(187, 224, 72, 0.3); padding-bottom: 10px; }
-.contact-list { list-style: none; font-size: 1.05rem; }
-.contact-list li { margin-bottom: 12px; display: flex; gap: 12px; align-items: center; }
-.contact-list li i { color: var(--accent-neon); font-size: 1.3rem; }
-.contact-list li a { transition: var(--transition); }
-.contact-list li a:hover { color: var(--accent-neon); text-decoration: underline; }
+.contact-box h3 { font-family: var(--font-serif-title); font-size: 1.4rem; color: var(--army-dark); margin-bottom: 8px; }
+.contact-list { list-style: none; font-size: 0.95rem; text-align: left; }
+.contact-list li { margin-bottom: 8px; display: flex; gap: 10px; align-items: center; }
+.contact-list li i { color: var(--army-main); font-size: 1.1rem; }
+.contact-list li a:hover { color: var(--army-main); text-decoration: underline; }
 
-/* --- KANAN: DESKRIPSI (Teks Asli Sesuai Permintaan) --- */
-.right-column { padding-top: 10px; position: relative; }
-
-.hello-sticker {
-    display: inline-block; background: #111; color: var(--accent-neon);
-    padding: 4px 16px; border-radius: 4px; font-size: 1.2rem;
-    transform: rotate(-3deg); margin-bottom: 15px;
-    box-shadow: 2px 4px 8px rgba(0,0,0,0.3);
-    border: 1px solid var(--accent-neon);
-}
-
-.title-name {
-    font-size: clamp(3.2rem, 6vw, 5rem);
-    font-weight: 800; color: var(--ink);
-    line-height: 1.1; margin-bottom: 25px;
-    letter-spacing: -1px;
-}
-.title-name span { position: relative; display: inline-block; }
-.title-name span::after {
-    content: ''; position: absolute; bottom: 8px; left: 0;
-    width: 100%; height: 18px; background-color: rgba(187, 224, 72, 0.4);
-    z-index: -1; transform: rotate(-1deg);
-}
-
-.bio-text { font-size: 1.12rem; line-height: 1.9; color: #444; text-align: justify; }
-.bio-text b { color: #111; font-weight: 700; background: var(--accent-neon); padding: 2px 6px; border-radius: 2px; }
-.bio-text i { color: var(--accent-orange); font-weight: 600; font-style: normal; }
-
-/* ==================================================
-   BOTTOM PAPERS (SKILLS & PORTFOLIO)
-   ================================================== */
-.papers-wrapper {
-    max-width: 1150px; margin: 40px auto 0;
-    display: grid; grid-template-columns: 0.9fr 1.1fr;
-    position: relative; gap: 20px;
-}
-
-.skill-paper {
-    background-color: var(--folder-bg);
-    background-image: 
-        linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
-    background-size: 20px 20px;
-    padding: 45px 40px; border-radius: 6px;
-    box-shadow: var(--shadow-float);
-    transform: rotate(-1.5deg);
-    z-index: 20; position: relative;
-    border: 2px solid #2C2C2C;
-}
-
-.portfolio-paper {
-    background-color: #FFF;
-    padding: 50px 45px; border-radius: 6px;
-    box-shadow: var(--shadow-float);
-    transform: rotate(1deg);
-    z-index: 10; margin-top: 25px;
+/* Panel Hijau Army Gelap di Kiri Bawah (Skills & Software) */
+.army-panel {
+    background-color: var(--army-dark);
+    color: #FFF;
+    padding: 35px 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-retro);
     position: relative;
-    border: 2px solid #2C2C2C;
+}
+.army-panel h2 {
+    font-family: var(--font-serif-title);
+    font-size: 2.2rem;
+    color: #FFF;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 8px;
 }
 
-.section-label {
-    font-family: var(--font-hand); font-size: 2.6rem;
-    color: #111; margin-bottom: 20px; line-height: 1;
+.skill-pills-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+.skill-pill {
+    background: var(--card-cream);
+    color: var(--army-dark);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.15);
 }
 
-.tape-skills-group { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 12px; 
-    margin-bottom: 40px; 
+.software-icons-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+.soft-badge {
+    background: var(--card-cream);
+    padding: 8px;
+    border-radius: 10px;
+    text-align: center;
+    width: 60px;
 }
-.tape-item {
-    background: #1A1C18; color: #FFF;
-    font-family: var(--font-sans); font-size: 0.95rem; font-weight: 700;
-    padding: 8px 16px; box-shadow: 2px 3px 8px rgba(0,0,0,0.2);
-    border-left: 3px solid var(--accent-neon);
-    width: fit-content;
+.soft-badge img { width: 35px; height: 35px; object-fit: contain; margin: 0 auto 4px; }
+.soft-badge span { font-size: 0.7rem; font-weight: 700; color: var(--text-dark); display: block; }
+
+/* --- KOLOM KANAN (HEADER, BIO, & SHOWCASE KARYA) --- */
+.right-column { display: flex; flex-direction: column; gap: 30px; }
+
+.header-intro {
+    background: var(--card-cream);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+    border: 2px solid rgba(91, 110, 54, 0.15);
+    position: relative;
 }
-.tape-item:nth-child(1) { transform: rotate(-2deg); }
-.tape-item:nth-child(2) { transform: rotate(1.5deg); }
-.tape-item:nth-child(3) { transform: rotate(-1deg); }
-.tape-item:nth-child(4) { transform: rotate(2deg); }
-
-.software-grid { display: flex; flex-wrap: wrap; gap: 16px; }
-.soft-box { text-align: center; cursor: pointer; width: 75px; }
-.soft-img-icon {
-    width: 65px; height: 65px; object-fit: contain;
-    border-radius: 12px; box-shadow: 3px 5px 12px rgba(0,0,0,0.15);
-    margin-bottom: 6px; background-color: #1A1C18; padding: 6px;
-    border: 1px solid #333;
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+.role-badge {
+    display: inline-block;
+    background: var(--army-main);
+    color: #FFF;
+    font-family: var(--font-serif-title);
+    font-size: 0.9rem;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
 }
-.soft-box:hover .soft-img-icon { transform: translateY(-5px) scale(1.06); box-shadow: 4px 8px 16px rgba(0,0,0,0.25); }
-.soft-label { font-size: 0.85rem; font-weight: 700; color: var(--ink); white-space: nowrap; }
-
-.showcase-block { margin-bottom: 50px; }
-.showcase-block:last-child { margin-bottom: 0; }
-.showcase-desc { font-size: 1.05rem; color: #555; margin-bottom: 25px; margin-top: -10px; }
-
-.video-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-.graphic-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-
-.work-card {
-    background: #FFF; padding: 12px 12px 40px 12px;
-    box-shadow: var(--shadow-grunge);
-    position: relative; transition: var(--transition);
-    border: 2px solid #2C2C2C; border-radius: 2px;
+.retro-title {
+    font-family: var(--font-serif-title);
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    color: var(--army-dark);
+    line-height: 1.1;
+    margin-bottom: 20px;
 }
-.work-card:hover { transform: scale(1.04) rotate(0deg) !important; z-index: 15; box-shadow: 6px 12px 25px rgba(0,0,0,0.25); }
-.work-card.tilt-a { transform: rotate(-2deg); }
-.work-card.tilt-b { transform: rotate(2.5deg); }
-.work-card.tilt-c { transform: rotate(-1.5deg); }
+.bio-desc {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--text-dark);
+    text-align: justify;
+}
+.bio-desc b { color: var(--army-main); font-weight: 700; }
 
-.img-container { position: relative; overflow: hidden; border-radius: 2px; border: 1px solid #ddd; }
-.video-layout .img-container { aspect-ratio: 16/10; }
-.graphic-layout .img-container { aspect-ratio: 4/5; }
-.img-container img { width: 100%; height: 100%; object-fit: cover; }
+/* Kartu Putih untuk Showcase Karya */
+.showcase-card-retro {
+    background: var(--card-cream);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+    border: 2px solid rgba(91, 110, 54, 0.15);
+}
+.showcase-card-retro h2 {
+    font-family: var(--font-serif-title);
+    font-size: 2.2rem;
+    color: var(--army-dark);
+    margin-bottom: 8px;
+}
+.showcase-sub { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; }
 
-.play-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; color: #FFF; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7)); opacity: 0.95; }
-.work-caption { font-family: var(--font-hand); font-size: 1.5rem; color: #111; position: absolute; bottom: 8px; left: 0; width: 100%; text-align: center; }
+.video-grid-retro { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.graphic-grid-retro { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
 
-.simple-footer { text-align: center; padding: 50px 0 20px; color: var(--accent-neon); font-family: var(--font-hand); font-size: 2rem; letter-spacing: 2px; }
+.retro-item {
+    background: #FFF;
+    padding: 10px 10px 30px 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 1px solid rgba(91, 110, 54, 0.2);
+    position: relative;
+    transition: var(--transition);
+}
+.retro-item:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(91, 110, 54, 0.25); }
+
+.retro-img-box { position: relative; border-radius: 6px; overflow: hidden; }
+.video-grid-retro .retro-img-box { aspect-ratio: 16/10; }
+.graphic-grid-retro .retro-img-box { aspect-ratio: 4/5; }
+.retro-img-box img { width: 100%; height: 100%; object-fit: cover; }
+
+.retro-play-btn {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem; color: #FFF;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
+}
+.retro-caption {
+    font-family: var(--font-serif-title);
+    font-size: 1.1rem;
+    color: var(--army-dark);
+    text-align: center;
+    position: absolute; bottom: 6px; left: 0; width: 100%;
+}
+
+.retro-footer {
+    text-align: center;
+    padding: 40px 0 10px;
+    font-family: var(--font-serif-title);
+    font-size: 1.8rem;
+    color: var(--army-main);
+    letter-spacing: 2px;
+}
 
 /* ==================================================
    RESPONSIVE DESIGN
    ================================================== */
-@media (max-width: 1024px) {
-    .folder-body { grid-template-columns: 1fr; padding: 50px 40px; gap: 40px; text-align: center; }
-    .left-column { margin-bottom: 20px; }
-    .contact-ticket { width: 100%; max-width: 400px; margin-top: -15px; transform: rotate(1deg); }
-    .papers-wrapper { grid-template-columns: 1fr; }
-    .skill-paper { transform: rotate(0); margin-bottom: 25px; }
-    .portfolio-paper { transform: rotate(0); margin-top: 0; }
-    .graphic-layout { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 768px) {
-    body { padding: 30px 4% 50px; }
-    .folder-tab { width: 150px; height: 35px; font-size: 1.1rem; padding-left: 15px; top: 1px; }
-    .folder-body { padding: 40px 20px; gap: 30px; border-radius: 0 16px 16px 16px; }
-    .hello-sticker { font-size: 1rem; padding: 4px 12px; margin-bottom: 10px; }
-    .title-name { font-size: 2.5rem; margin-bottom: 15px; }
-    .bio-text { font-size: 1rem; line-height: 1.7; }
-    .contact-ticket h3 { font-size: 1.8rem; }
-    .contact-ticket { padding: 20px 15px; max-width: 320px; }
-    .contact-list { font-size: 0.95rem; }
-    .skill-paper, .portfolio-paper { padding: 30px 20px; }
-    .section-label { font-size: 2.2rem; }
-    .tape-skills-group { justify-content: center; }
-    .tape-item { font-size: 0.95rem; padding: 8px 14px; }
-    .software-grid { gap: 15px; justify-content: center; }
-    .soft-img-icon { width: 55px; height: 55px; }
-    .video-layout, .graphic-layout { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; }
-    .work-card { transform: rotate(0) !important; margin-bottom: 10px; }
-    .showcase-desc { font-size: 0.95rem; margin-bottom: 20px; text-align: center; }
+@media (max-width: 900px) {
+    .retro-container { grid-template-columns: 1fr; }
+    .video-grid-retro { grid-template-columns: 1fr; }
+    .graphic-grid-retro { grid-template-columns: 1fr; max-width: 320px; margin: 0 auto; }
 }
