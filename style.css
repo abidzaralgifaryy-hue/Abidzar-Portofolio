@@ -2,21 +2,21 @@
    DESIGN SYSTEM (Scrapbook & Editorial)
    ================================================== */
 :root {
-    --bg-maroon-outer: #5C1515;  /* Warna dasar luar (seperti meja/kertas bawah) */
-    --bg-paper: #F8F9F3;         /* Warna kertas putih/krem bersih */
-    --note-yellow: #FFF9D2;      /* Kertas notes kuning pucat */
+    --bg-orange-outer: #D35400;  /* Warna dasar luar diganti jadi OREN sesuai request */
+    --bg-paper: #F8F9F3;         
+    --note-yellow: #FFF9D2;      
     
     --text-dark: #1A1F16;        
     --text-muted: #495042;
-    --marker-blue: #40578D;      /* Tinta spidol biru */
-    --marker-red: #8B1E1E;       /* Tinta spidol merah */
-    --marker-green: #3D6A42;     /* Tinta spidol hijau */
+    --marker-blue: #40578D;      
+    --marker-orange: #D35400;    /* Tinta spidol oren */
+    --marker-green: #3D6A42;     
     
     --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.08);
     --shadow-float: 3px 8px 25px rgba(0, 0, 0, 0.15);
     
     --font-hand: 'Caveat', cursive;
-    --font-marker: 'Kalam', cursive; /* Font khusus gaya tulisan spidol */
+    --font-marker: 'Kalam', cursive; 
     --font-sans: 'Plus Jakarta Sans', sans-serif;
     --transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -24,13 +24,13 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 
-/* Latar luar diset ke merah marun pekat sesuai referensi gambar */
+/* Latar luar menjadi Oren */
 body {
     font-family: var(--font-sans);
-    background-color: var(--bg-maroon-outer);
+    background-color: var(--bg-orange-outer);
     color: var(--text-dark);
     line-height: 1.6;
-    padding: 20px 10px; /* Jarak agar 'kertas' putih di tengah terlihat */
+    padding: 20px 10px; 
 }
 
 /* Kertas utama (Scrapbook Canvas) */
@@ -42,9 +42,8 @@ body {
     box-shadow: 0 0 40px rgba(0,0,0,0.6);
     position: relative;
     overflow: hidden;
-    /* Memberikan sedikit tekstur bintik kertas yang sangat halus */
-    background-image: radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
-    background-size: 10px 10px;
+    background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 15px 15px; /* Sedikit tekstur titik-titik samar */
 }
 
 a { text-decoration: none; color: inherit; }
@@ -56,7 +55,7 @@ img { max-width: 100%; height: auto; display: block; }
    ================================================== */
 .washi-tape {
     position: absolute;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -64,6 +63,7 @@ img { max-width: 100%; height: auto; display: block; }
     border-radius: 1px;
 }
 .tape-corner { width: 70px; height: 22px; top: -10px; right: -20px; transform: rotate(35deg); border: 1px solid rgba(0,0,0,0.05); }
+.tape-portfolio { width: 50px; height: 18px; top: -8px; left: 50%; transform: translateX(-50%) rotate(-3deg); border: 1px solid rgba(0,0,0,0.05); }
 
 /* ==================================================
    TYPOGRAPHY & MARKER STYLES
@@ -77,30 +77,27 @@ img { max-width: 100%; height: auto; display: block; }
     transform: rotate(-1deg);
 }
 .blue-marker { color: var(--marker-blue); }
-.red-marker { color: var(--marker-red); }
+.orange-marker { color: var(--marker-orange); }
 .green-marker { color: var(--marker-green); }
 
 .center-text { text-align: center; margin-bottom: 30px; }
 
-/* Garis bawah merah ala spidol */
-.red-underline {
+/* Garis bawah spidol kini berwarna Oren */
+.orange-underline {
     color: var(--text-dark);
     font-weight: 700;
     position: relative;
     z-index: 1;
 }
-.red-underline::after {
+.orange-underline::after {
     content: '';
     position: absolute;
-    bottom: 2px;
-    left: -2px;
-    right: -2px;
-    height: 3px;
-    background: var(--marker-red);
+    bottom: 2px; left: -2px; right: -2px; height: 3px;
+    background: var(--marker-orange);
     z-index: -1;
     transform: rotate(-1.5deg);
     border-radius: 3px;
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 /* ==================================================
@@ -115,22 +112,17 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* KIRI: Foto & Kontak */
-.hero-visuals {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+.hero-visuals { position: relative; display: flex; flex-direction: column; align-items: center; }
 
 /* POLAROID DENGAN EFEK BINDER CLIP MENGGUNAKAN CSS */
 .polaroid-clean {
     background: #FFF;
-    padding: 15px 15px 60px 15px;
+    padding: 15px 15px 95px 15px; /* Padding bawah dilebarkan untuk doodle oval */
     border-radius: 2px;
     box-shadow: var(--shadow-float);
     transform: rotate(-3deg);
     width: 100%;
-    max-width: 290px;
+    max-width: 310px;
     position: relative;
     z-index: 10;
     border: 1px solid rgba(0,0,0,0.08);
@@ -139,21 +131,31 @@ img { max-width: 100%; height: auto; display: block; }
     border-radius: 2px; 
     aspect-ratio: 4/5; 
     object-fit: cover; 
-    filter: contrast(1.05) saturate(1.1); /* Sedikit efek cetak foto */
+    filter: contrast(1.05) saturate(1.1); 
 }
 .polaroid-label {
     position: absolute;
-    bottom: 12px; left: 0; width: 100%;
+    bottom: 20px; left: 0; width: 100%;
     text-align: center;
+}
+
+/* EFEK LINGKARAN CORETAN (DOODLE OVAL) */
+.doodle-oval {
+    display: inline-block;
     font-family: var(--font-marker);
     font-size: 1.5rem;
-    color: var(--marker-red);
-    line-height: 1;
+    color: var(--marker-orange);
+    line-height: 1.1;
+    padding: 8px 15px;
+    /* Membuat border melengkung acak ala coretan tangan */
+    border: 2px solid var(--text-dark);
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    transform: rotate(1deg);
 }
-.polaroid-label span {
+.doodle-oval span {
     display: block;
     font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 800;
     color: var(--text-dark);
     letter-spacing: 1px;
@@ -162,8 +164,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* BINDER CLIP CSS ILLUSION */
 .polaroid-clean::before {
-    content: '';
-    position: absolute;
+    content: ''; position: absolute;
     top: -18px; left: 50%; transform: translateX(-50%);
     width: 75px; height: 35px;
     background: linear-gradient(to bottom, #2b2b2b, #111);
@@ -172,8 +173,7 @@ img { max-width: 100%; height: auto; display: block; }
     z-index: 30;
 }
 .polaroid-clean::after {
-    content: '';
-    position: absolute;
+    content: ''; position: absolute;
     top: -55px; left: 50%; transform: translateX(-50%);
     width: 45px; height: 45px;
     border: 5px solid #bdc3c7;
@@ -186,7 +186,6 @@ img { max-width: 100%; height: auto; display: block; }
 /* KARTU KONTAK (Gaya Kertas Notes) */
 .contact-card-premium {
     background-color: var(--note-yellow);
-    /* Membuat garis-garis buku catatan */
     background-image: repeating-linear-gradient(transparent, transparent 29px, #d1ccc0 29px, #d1ccc0 30px);
     background-position: 0 45px; 
     padding: 25px 25px 30px 25px;
@@ -196,41 +195,33 @@ img { max-width: 100%; height: auto; display: block; }
     transform: rotate(2deg) translateY(-20px);
     position: relative;
     z-index: 15;
-    border-left: 4px solid rgba(200, 80, 80, 0.5); /* Garis margin merah di kiri notes */
+    /* Garis pinggir buku notes diganti jadi oren */
+    border-left: 4px solid rgba(211, 84, 0, 0.6); 
 }
-.contact-card-premium .marker-heading {
-    font-size: 2.2rem; margin-bottom: 15px; margin-top: -5px;
-}
+.contact-card-premium .marker-heading { font-size: 2.2rem; margin-bottom: 15px; margin-top: -5px; }
 .contact-list { list-style: none; font-size: 0.95rem; font-weight: 700; color: var(--text-dark); }
 .contact-list li { margin-bottom: 9px; display: flex; gap: 12px; align-items: center; }
 .contact-list li i { font-size: 1.3rem; opacity: 0.7; }
-.contact-list li a:hover { color: var(--marker-red); }
+.contact-list li a:hover { color: var(--marker-orange); }
 
 /* KANAN: Typography Bersih */
 .hero-text-content { position: relative; padding-top: 30px; }
 
-.hello-badge {
-    font-size: 3rem; color: var(--marker-blue);
-    transform: rotate(-3deg); margin-bottom: 10px;
-    letter-spacing: 2px;
-}
+.hello-badge { font-size: 3.2rem; color: var(--marker-blue); transform: rotate(-3deg); margin-bottom: 10px; letter-spacing: 1px; }
+.bio-paragraph { font-size: 1.15rem; line-height: 1.8; color: var(--text-muted); text-align: justify; margin-bottom: 35px; }
 
-.bio-paragraph {
-    font-size: 1.15rem; line-height: 1.8; color: var(--text-muted);
-    text-align: justify; margin-bottom: 35px;
-}
-
-/* BUTTON CLICK HERE ALA PIN MERAH */
+/* BUTTON CLICK HERE - Warna Oren */
 .cta-btn-click {
     display: inline-block; 
-    background: radial-gradient(circle at 30% 30%, #e74c3c, #c0392b);
+    /* Gradient nuansa oren yang elegan */
+    background: radial-gradient(circle at 30% 30%, #F39C12, #D35400);
     color: #FFF;
     font-family: var(--font-marker);
     font-size: 1.5rem; 
     padding: 12px 35px; 
-    border-radius: 50px; /* Bentuk melingkar/pill */
+    border-radius: 50px;
     border: 2px solid #fff;
-    box-shadow: 0 8px 15px rgba(192, 57, 43, 0.4); 
+    box-shadow: 0 8px 15px rgba(211, 84, 0, 0.4); 
     transform: rotate(-3deg);
     transition: var(--transition);
 }
@@ -239,22 +230,15 @@ img { max-width: 100%; height: auto; display: block; }
 /* ==================================================
    SECTION 2: SKILLS & SOFTWARE 
    ================================================== */
-.section-skills-scrapbook {
-    padding: 20px 5% 50px;
-}
-.skills-container {
-    display: flex; flex-direction: column; gap: 30px; align-items: center;
-}
+.section-skills-scrapbook { padding: 20px 5% 50px; }
+.skills-container { display: flex; flex-direction: column; gap: 30px; align-items: center; }
 
-/* Skill Tags layaknya stiker */
+/* Skill Tags */
 .tape-skills-group { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
 .tape-skill-item {
-    font-family: var(--font-sans);
-    font-weight: 800; font-size: 0.9rem;
-    padding: 8px 18px; border-radius: 30px;
-    color: #fff;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-    transform: rotate(-1deg);
+    font-family: var(--font-sans); font-weight: 800; font-size: 0.9rem;
+    padding: 8px 18px; border-radius: 30px; color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15); transform: rotate(-1deg);
 }
 .tape-skill-item:nth-child(even) { transform: rotate(2deg); }
 .blue-pill { background: #4a69bd; }
@@ -277,9 +261,7 @@ img { max-width: 100%; height: auto; display: block; }
    SECTION 3: PORTFOLIO SHOWCASE
    ================================================== */
 .section-portfolio { padding: 40px 5% 80px; }
-
 .showcase-block { margin-bottom: 60px; }
-
 .showcase-desc { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 25px; font-family: var(--font-hand); font-size: 1.4rem;}
 
 /* HORIZONTAL SCROLL CONTAINER */
@@ -290,19 +272,19 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .horizontal-scroll-container::-webkit-scrollbar { height: 8px; }
 .horizontal-scroll-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
-.horizontal-scroll-container::-webkit-scrollbar-thumb { background: var(--marker-blue); border-radius: 10px; }
+.horizontal-scroll-container::-webkit-scrollbar-thumb { background: var(--marker-orange); border-radius: 10px; }
 
 .scroll-item-video { flex: 0 0 340px; scroll-snap-align: start; }
 .scroll-item-graphic { flex: 0 0 280px; scroll-snap-align: start; }
 
 .work-card-clean {
-    background: #fff; padding: 12px 12px 45px 12px;
+    background: #fff; padding: 15px 12px 45px 12px;
     border-radius: 2px; box-shadow: var(--shadow-soft);
     position: relative; transition: var(--transition);
     border: 1px solid rgba(0,0,0,0.05);
 }
-.work-card-clean:nth-child(even) { transform: rotate(1deg); }
-.work-card-clean:nth-child(odd) { transform: rotate(-1deg); }
+.work-card-clean:nth-child(even) { transform: rotate(1.5deg); }
+.work-card-clean:nth-child(odd) { transform: rotate(-1.5deg); }
 .work-card-clean:hover { transform: translateY(-6px) scale(1.02); box-shadow: var(--shadow-float); z-index: 10;}
 
 .img-container { position: relative; border-radius: 2px; overflow: hidden; background: #EEE; }
@@ -315,7 +297,8 @@ img { max-width: 100%; height: auto; display: block; }
     font-size: 4rem; color: #FFF; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
     transition: var(--transition);
 }
-.work-card-clean:hover .play-button { transform: translate(-50%, -50%) scale(1.1); color: #e74c3c; }
+/* Efek hover tombol play ikut diganti oren */
+.work-card-clean:hover .play-button { transform: translate(-50%, -50%) scale(1.1); color: var(--marker-orange); }
 
 .photo-caption {
     font-family: var(--font-marker); font-size: 1.4rem; color: var(--text-dark);
