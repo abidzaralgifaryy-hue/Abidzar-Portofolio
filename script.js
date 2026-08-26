@@ -1,15 +1,8 @@
 /* ==================================================================
    ADIZAREL — PORTFOLIO SCRIPT
-   ------------------------------------------------------------------
-   INTEGRATION NOTE: the original script.js targeted a dark-mode
-   toggle button, a "#projects" CTA and a "read more" button — none
-   of which exist in this markup, so those handlers never actually
-   fired. They're replaced here with logic that matches the real
-   nav: smooth scrolling to each section, and an active-link
-   indicator (the orange underline) that updates as you scroll.
    ================================================================== */
 
-// 1. SMOOTH SCROLL FOR NAV LINKS
+// 1. SMOOTH SCROLL POUR LIENS DE NAVIGATION
 const navLinks = document.querySelectorAll('.nav-link[data-nav]');
 
 navLinks.forEach(link => {
@@ -30,7 +23,7 @@ navLinks.forEach(link => {
     });
 });
 
-// 2. SCROLL-SPY — highlight the nav link for the section in view
+// 2. SCROLL-SPY — mettre en évidence le lien actif
 const sections = Array.from(navLinks)
     .map(link => document.querySelector(link.getAttribute('href')))
     .filter(Boolean);
