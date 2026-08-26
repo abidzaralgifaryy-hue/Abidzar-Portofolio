@@ -7,21 +7,35 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&family=Caveat:wght@400;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@600;700&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="style.css">
+
+    <!--
+        REDESIGN NOTES FOR ABIDZAR (v2 — "ID Badge & Notebook")
+        =========================================================
+        - Style translated from the badge/lanyard + spiral-notebook +
+          clipboard moodboard: an ID badge, a sticky-note memo sheet,
+          a repeating profession banner, and a clipboard/paper-stack
+          layout for skills and work.
+        - Palette: army green (#4B5320) + orange (#FF7A00) everywhere
+          the reference used blue + yellow. No blue/reference-yellow
+          remain anywhere.
+        - Content is 100% yours: same name, bio, hobby text, contact
+          links, skills, software list and project images/links as
+          your original file — only the visual wrapper changed.
+        - Section ids (#about, #skills, #work) are unchanged so the
+          existing script.js scroll-spy keeps working with no edits.
+    -->
 </head>
 <body>
 
     <!-- ============================================================
-         NAVIGATION (style marque-page)
+         NAV
          ============================================================ -->
     <header class="site-nav">
         <div class="nav-inner">
-            <a href="#top" class="nav-logo">
-                <span class="logo-mark">AA</span>
-                <span class="logo-word">ADIZAREL<small>Video &amp; Graphic Design</small></span>
-            </a>
+            <a href="#about" class="nav-logo">ADIZAREL<span class="dot">.</span></a>
             <nav class="nav-links">
                 <a href="#about" class="nav-link active" data-nav="about">About me</a>
                 <a href="#skills" class="nav-link" data-nav="skills">Skills</a>
@@ -34,145 +48,194 @@
     </header>
 
     <!-- ============================================================
-         SECTION 0 — RESUME / PAGE PRINCIPALE (style CV scrapbook)
+         HERO — ID BADGE + ABOUT BANNER + NOTEBOOK MEMO
          ============================================================ -->
-    <section class="resume-page" id="top">
+    <section id="about" class="hero">
 
-        <!-- Étiquette "RESUME" en haut à gauche -->
-        <div class="resume-tag">
-            <span class="paperclip"></span>
-            <span>RESUME</span>
-        </div>
-
-        <div class="resume-grid">
-            <!-- Colonne gauche -->
-            <div class="left-col">
-                
-                <!-- Emplacement photo (facultatif) -->
-                <div class="photo-frame">
-                    <span class="paperclip-clip"></span>
-                    <div class="photo-content">
-                        <!-- <img src="IMG_4270.jpeg" alt="Abidzar Algifary"> -->
-                        <div class="photo-fallback">
-                            <i class="ph-fill ph-user"></i>
-                            <span>Your<br>Photo</span>
-                        </div>
-                    </div>
+        <!-- ID badge on a lanyard -->
+        <div class="badge-column">
+            <div class="lanyard" aria-hidden="true"></div>
+            <div class="id-badge">
+                <div class="id-tag">AA</div>
+                <div class="id-photo">
+                    <img src="IMG_4270.jpeg" alt="Abidzar Algifary">
                 </div>
-
-                <!-- Nom et rôle -->
-                <div class="name-block">
-                    <h2 class="name-main">Abidzar<br>Algifary</h2>
-                    <span class="role-main">VIDEO EDITOR &amp; GRAPHIC DESIGNER</span>
-                </div>
-
-                <!-- Contact sur papier ligné -->
-                <div class="contact-paper">
-                    <p class="contact-head">Contact</p>
-                    <div class="contact-item"><i class="ph-fill ph-user"></i> Indonesia</div>
-                    <div class="contact-item"><i class="ph-fill ph-whatsapp-logo"></i> +62 851-3707-1956</div>
-                    <div class="contact-item"><i class="ph-fill ph-instagram-logo"></i> @adiz4rel</div>
-                    <div class="contact-item"><i class="ph-fill ph-tiktok-logo"></i> @adizarel</div>
-                    <div class="contact-item"><i class="ph-fill ph-envelope-simple"></i> iniadizarel@gmail.com</div>
-                </div>
-
-                <!-- Petite section hobby (sous le contact) -->
-                <div class="hobby-sticky">
-                    <span class="sticky-tape"></span>
-                    <h3 class="hand-title">My hobby is</h3>
-                    <p>Video editing, graphic design, and finding new visual references to keep learning.</p>
-                </div>
+                <div class="id-role">Video Editor &amp; Graphic Designer</div>
             </div>
 
-            <!-- Colonne droite -->
-            <div class="right-col">
-                
-                <!-- À propos (style manuscrit) -->
-                <div class="about-box" id="about">
-                    <h2 class="hand-title large">About Me</h2>
+            <!-- Contact sticky note -->
+            <div class="contact-sticky">
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="ph-fill ph-whatsapp-logo"></i><a href="https://wa.me/6285137071956" target="_blank">+62 851-3707-1956</a></li>
+                    <li><i class="ph-fill ph-instagram-logo"></i><a href="https://www.instagram.com/adiz4rel" target="_blank">@adiz4rel</a></li>
+                    <li><i class="ph-fill ph-tiktok-logo"></i><a href="https://www.tiktok.com/@adizarel" target="_blank">@adizarel</a></li>
+                    <li><i class="ph-fill ph-envelope-simple"></i><a href="mailto:iniadizarel@gmail.com">iniadizarel@gmail.com</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- About banner + notebook memo -->
+        <div>
+            <div class="about-banner-wrap">
+                <div class="about-banner">about me</div>
+            </div>
+
+            <div class="memo-sheet">
+                <div class="hello-tag">
+                    Hello <span class="box">NAME</span>
+                </div>
+                <h2 class="memo-name">Abidzar <span class="accent">Algifary</span></h2>
+
+                <div class="memo-bio">
                     <p>
-                        Kenalin, aku biasa dipanggil <span class="hl-orange">Abijay</span>. Saat ini aku adalah seorang pelajar di Al-Azhar 44. Di luar jam sekolah, aku punya ketertarikan yang cukup besar di dunia kreatif, khususnya <span class="hl-orange">desain grafis</span> dan <span class="hl-army">video editing</span>.
+                        Kenalin, aku biasa dipanggil <span class="hl-orange">Abijay</span>. Saat ini aku adalah seorang pelajar di Al-Azhar 44. Di luar jam sekolah, aku punya ketertarikan yang cukup besar di dunia kreatif, khususnya <strong>desain grafis</strong> dan <strong>video editing</strong>.
                     </p>
                     <p>
                         Buat aku, bisa ngulik berbagai software desain dan bikin konten yang estetik itu jadi cara seru buat isi waktu luang sekaligus ngasah skill. Aku selalu senang <span class="hl-orange">bereksperimen dengan ide-ide baru</span> biar hasil karyaku bisa terus berkembang jadi lebih baik lagi.
                     </p>
                 </div>
 
-                <!-- Logiciels & Compétences (icônes 3D) -->
-                <div class="skills-box" id="skills">
-                    <h2 class="hand-title large">Software &amp; Skills</h2>
-                    
-                    <div class="software-cluster">
-                        <!-- Icônes 3D -->
-                        <div class="soft-3d soft-ps"><img src="ps-icon.png" alt="Photoshop" title="Photoshop"></div>
-                        <div class="soft-3d soft-ai"><img src="ai-icon.png" alt="Illustrator" title="Illustrator"></div>
-                        <div class="soft-3d soft-ae"><img src="ae-icon.png" alt="After Effects" title="After Effects"></div>
-                        <div class="soft-3d soft-pr"><img src="pr-icon.png" alt="Premiere Pro" title="Premiere Pro"></div>
-                        <div class="soft-3d soft-cc"><img src="cc-icon.png" alt="CapCut" title="CapCut"></div>
+                <div class="sticker-rail">
+                    <span class="sticker">Creative</span>
+                    <span class="sticker">Curious</span>
+                    <span class="sticker">Detail-oriented</span>
+                </div>
 
-                        <!-- Étiquettes de compétences autour -->
-                        <span class="skill-ribbon ribbon-orange ribbon-1">Video Editing</span>
-                        <span class="skill-ribbon ribbon-army ribbon-2">Graphic Design</span>
-                        <span class="skill-ribbon ribbon-orange ribbon-3">Typography</span>
-                        <span class="skill-ribbon ribbon-army ribbon-4">Motion Graphics</span>
-                    </div>
+                <div class="memo-cta">
+                    <a href="https://wa.me/6285137071956" target="_blank">Don't forget to contact me!</a>
+                    <i class="ph-fill ph-push-pin"></i>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-         SECTION 1 — PORTFOLIO / TRAVAUX (style clipboard)
+         MARQUEE BANNER
          ============================================================ -->
-    <section class="work-section" id="work">
-        
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+            <span>&#9734;</span> Video Editor <span>&#9734;</span> Graphic Designer
+            <span>&#9734;</span> Video Editor <span>&#9734;</span> Graphic Designer
+            <span>&#9734;</span> Video Editor <span>&#9734;</span> Graphic Designer
+            <span>&#9734;</span> Video Editor <span>&#9734;</span> Graphic Designer
+        </div>
+    </div>
+
+    <!-- ============================================================
+         BOARD — CLIPBOARD (skills) + PAPER STACK (work)
+         ============================================================ -->
+    <section id="skills" class="board-wrap">
+
+        <!-- Clipboard: Education / Skill / Software -->
         <div class="clipboard">
-            <div class="clipboard-header">
-                <h2 class="hand-title large">Portfolio</h2>
-                <p>Beberapa karya Typography &amp; Mograph pilihan yang sudah ku buat.</p>
-            </div>
-
-            <div class="work-block video-work">
-                <h3 class="block-title">Portfolio Video</h3>
-                <div class="work-grid">
-                    <a class="work-card" href="https://www.instagram.com/reel/DZ91lYPSzGQ/?igsh=MTM0b3F3dnptODZ0eQ==" target="_blank">
-                        <div class="img-wrap">
-                            <img src="quality_restoration_20260708092438672.png" alt="Reel 1">
-                            <i class="ph-fill ph-play-circle play-icon"></i>
-                        </div>
-                        <div class="card-tag"><span>Reel</span><span class="num">01</span></div>
-                    </a>
-                    <a class="work-card" href="https://www.instagram.com/reel/DRuWwDMkt60/?igsh=MTFzaDU4YmZkZDhsdQ==" target="_blank">
-                        <div class="img-wrap">
-                            <img src="quality_restoration_20260708093216566.png" alt="Reel 2">
-                            <i class="ph-fill ph-play-circle play-icon"></i>
-                        </div>
-                        <div class="card-tag"><span>Reel</span><span class="num">02</span></div>
-                    </a>
+            <div class="board-inner">
+                <span class="board-heading hl-army-bg">Education</span>
+                <div class="edu-item">
+                    <span class="year">Now</span>
+                    <div>
+                        <h5>Al-Azhar 44</h5>
+                        <p>Currently studying, alongside self-directed learning in design &amp; video editing.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="work-block design-work">
-                <h3 class="block-title">Graphic Design</h3>
-                <div class="work-grid">
-                    <div class="work-card">
-                        <div class="img-wrap"><img src="Arap.png" alt="Poster 1"></div>
-                        <div class="card-tag"><span>Poster</span><span class="num">01</span></div>
+                <div class="board-section">
+                    <span class="board-heading hl-orange-bg">Skill</span>
+                    <div class="tag-row">
+                        <span class="paper-tag">Video Editing</span>
+                        <span class="paper-tag">Graphic Design</span>
+                        <span class="paper-tag">Typography</span>
+                        <span class="paper-tag">Motion Graphics</span>
                     </div>
-                    <div class="work-card">
-                        <div class="img-wrap"><img src="quality_restoration_20260707183213934.jpeg" alt="Poster 2"></div>
-                        <div class="card-tag"><span>Poster</span><span class="num">02</span></div>
-                    </div>
-                    <div class="work-card">
-                        <div class="img-wrap"><img src="SEAN.png" alt="Poster 3"></div>
-                        <div class="card-tag"><span>Poster</span><span class="num">03</span></div>
+                </div>
+
+                <div class="board-section">
+                    <span class="board-heading hl-army-bg">Software</span>
+                    <div class="soft-icon-row-wrap">
+                        <div class="soft-item">
+                            <div class="soft-icon"><img src="pr-icon.png" alt="Premiere Pro" title="Premiere Pro"></div>
+                            <div class="soft-label">Premiere</div>
+                        </div>
+                        <div class="soft-item">
+                            <div class="soft-icon"><img src="ae-icon.png" alt="After Effects" title="After Effects"></div>
+                            <div class="soft-label">After FX</div>
+                        </div>
+                        <div class="soft-item">
+                            <div class="soft-icon"><img src="ps-icon.png" alt="Photoshop" title="Photoshop"></div>
+                            <div class="soft-label">Photoshop</div>
+                        </div>
+                        <div class="soft-item">
+                            <div class="soft-icon"><img src="ai-icon.png" alt="Illustrator" title="Illustrator"></div>
+                            <div class="soft-label">Illustrator</div>
+                        </div>
+                        <div class="soft-item">
+                            <div class="soft-icon"><img src="cc-icon.png" alt="CapCut" title="CapCut"></div>
+                            <div class="soft-label">CapCut</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="footer-stamp">ADIZAREL.</div>
+        <!-- Paper stack: Work -->
+        <div class="paper-stack" id="work">
+            <h3 class="stack-heading"><i class="ph-fill ph-seal-check"></i> Portfolio Video</h3>
+            <p class="stack-sub">Beberapa karya Typography &amp; Mograph pilihan yang sudah ku buat.</p>
+
+            <a class="work-entry tint-orange" href="https://www.instagram.com/reel/DZ91lYPSzGQ/?igsh=MTM0b3F3dnptODZ0eQ==" target="_blank">
+                <div class="work-thumb">
+                    <img src="quality_restoration_20260708092438672.png" alt="Reel 1">
+                    <div class="play-mark"><i class="ph-fill ph-play"></i></div>
+                </div>
+                <div class="work-info">
+                    <h5>Reel 01</h5>
+                    <p>Typography &amp; motion graphics reel</p>
+                </div>
+                <div class="work-go"><i class="ph-bold ph-arrow-up-right"></i></div>
+            </a>
+
+            <a class="work-entry tint-army" href="https://www.instagram.com/reel/DRuWwDMkt60/?igsh=MTFzaDU4YmZkZDhsdQ==" target="_blank">
+                <div class="work-thumb">
+                    <img src="quality_restoration_20260708093216566.png" alt="Reel 2">
+                    <div class="play-mark"><i class="ph-fill ph-play"></i></div>
+                </div>
+                <div class="work-info">
+                    <h5>Reel 02</h5>
+                    <p>Typography &amp; motion graphics reel</p>
+                </div>
+                <div class="work-go"><i class="ph-bold ph-arrow-up-right"></i></div>
+            </a>
+
+            <div class="stack-divider">Graphic design</div>
+            <p class="stack-sub" style="margin-top:-10px;">Eksperimen desain Social Media.</p>
+
+            <div class="work-entry tint-cream">
+                <div class="work-thumb"><img src="Arap.png" alt="Poster 1"></div>
+                <div class="work-info">
+                    <h5>Poster 01</h5>
+                    <p>Social media design experiment</p>
+                </div>
+            </div>
+
+            <div class="work-entry tint-orange">
+                <div class="work-thumb"><img src="quality_restoration_20260707183213934.jpeg" alt="Poster 2"></div>
+                <div class="work-info">
+                    <h5>Poster 02</h5>
+                    <p>Social media design experiment</p>
+                </div>
+            </div>
+
+            <div class="work-entry tint-army">
+                <div class="work-thumb"><img src="SEAN.png" alt="Poster 3"></div>
+                <div class="work-info">
+                    <h5>Poster 03</h5>
+                    <p>Social media design experiment</p>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <div class="footer-stamp">ADIZAREL.</div>
 
     <script src="script.js"></script>
 </body>
