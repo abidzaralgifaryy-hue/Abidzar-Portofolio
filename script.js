@@ -1,87 +1,54 @@
-// ==================================================
-// 1. SYSTEM DARK & LIGHT MODE (OPTIMASI AUTOMATIC)
-// ==================================================
-const themeToggleBtn = document.getElementById('theme-toggle-btn');
-const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
-const bodyElement = document.body;
+/* ==================================================================
+   ADIZAREL — PORTFOLIO SCRIPT
+   ------------------------------------------------------------------
+   INTEGRATION NOTE: the original script.js targeted a dark-mode
+   toggle button, a "#projects" CTA and a "read more" button — none
+   of which exist in this markup, so those handlers never actually
+   fired. They're replaced here with logic that matches the real
+   nav: smooth scrolling to each section, and an active-link
+   indicator (the orange underline) that updates as you scroll.
+   ================================================================== */
 
-const setTheme = (theme) => {
-    const logoImg = document.querySelector('.logo img');
+// 1. SMOOTH SCROLL FOR NAV LINKS
+const navLinks = document.querySelectorAll('.nav-link[data-nav]');
 
-    if (theme === 'dark') {
-        bodyElement.classList.add('dark-mode');
-        if (themeIcon) themeIcon.className = 'ph ph-sun';
-        // OTOMATIS: Balikkan logo hitam jadi putih pas dark mode
-        if (logoImg) logoImg.style.filter = 'invert(1) brightness(2)';
-    } else {
-        bodyElement.classList.remove('dark-mode');
-        if (themeIcon) themeIcon.className = 'ph ph-moon';
-        // OTOMATIS: Kembalikan logo ke warna hitam aslinya pas light mode
-        if (logoImg) logoImg.style.filter = 'none';
-    }
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        if (!targetSection) return;
 
-    try {
-        localStorage.setItem('theme', theme);
-    } catch (e) {
-        console.log("Storage blocked, safe.");
-    }
+        e.preventDefault();
+        const headerOffset = 90;
+        const elementPosition = targetSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    });
+});
+
+// 2. SCROLL-SPY — highlight the nav link for the section in view
+const sections = Array.from(navLinks)
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+const setActiveLink = (id) => {
+    navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+    });
 };
 
-// Ambil data tema pas pertama kali dibuka
-try {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        setTheme(savedTheme);
-    } else {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        setTheme(prefersDark ? 'dark' : 'light');
-    }
-} catch (e) {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setTheme(prefersDark ? 'dark' : 'light');
-}
+if ('IntersectionObserver' in window && sections.length) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setActiveLink(entry.target.id);
+            }
+        });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
 
-// Event klik ganti tema
-if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-        const isDark = bodyElement.classList.contains('dark-mode');
-        setTheme(isDark ? 'light' : 'dark');
-    });
-}
-
-// ==================================================
-// 2. SMOOTH SCROLL TOMBOL "LIHAT KARYA"
-// ==================================================
-const ctaPrimaryBtn = document.querySelector('.btn-primary[href="#projects"]');
-if (ctaPrimaryBtn) {
-    ctaPrimaryBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetSection = document.getElementById('video-editing');
-        if (targetSection) {
-            const headerOffset = 100;
-            const elementPosition = targetSection.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-}
-
-// ==================================================
-// 3. FITUR READ MORE DESKRIPSI (KHUSUS MOBILE)
-// ==================================================
-const readMoreBtn = document.getElementById('read-more-btn');
-const textDescription = document.querySelector('.text-description');
-
-if (readMoreBtn && textDescription) {
-    readMoreBtn.addEventListener('click', () => {
-        textDescription.classList.toggle('expanded');
-        if (textDescription.classList.contains('expanded')) {
-            readMoreBtn.textContent = 'Sembunyikan';
-        } else {
-            readMoreBtn.textContent = 'Lihat Selengkapnya';
-        }
-    });
+    sections.forEach(section => observer.observe(section));
 }
