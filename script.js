@@ -2,7 +2,7 @@
    ADIZAREL — PORTFOLIO SCRIPT
    ================================================================== */
 
-// 1. SMOOTH SCROLL POUR LIENS DE NAVIGATION
+// 1. SMOOTH SCROLL FOR NAV LINKS
 const navLinks = document.querySelectorAll('.nav-link[data-nav]');
 
 navLinks.forEach(link => {
@@ -23,7 +23,7 @@ navLinks.forEach(link => {
     });
 });
 
-// 2. SCROLL-SPY — mettre en évidence le lien actif
+// 2. SCROLL-SPY — highlight the nav link for the section in view
 const sections = Array.from(navLinks)
     .map(link => document.querySelector(link.getAttribute('href')))
     .filter(Boolean);
