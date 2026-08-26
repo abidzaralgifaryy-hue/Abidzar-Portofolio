@@ -7,24 +7,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="style.css">
-
-    <!--
-        REDESIGN NOTES FOR ABIDZAR
-        ==========================
-        - Structure follows the "vector grid" reference you shared: a full
-          intro/wordmark page, then a boxy About + Work layout with small
-          square "handles" on the corners of key frames.
-        - Palette is now orange (#FF7A00) + army green (#4B5320) on a light
-          background — no purple anywhere.
-        - Every name, bio line, hobby, contact link, software icon and
-          project link below is exactly what was in your original file;
-          only the containers around them changed.
-        - Image/icon filenames (IMG_4270.jpeg, pr-icon.png, etc.) are kept
-          as-is so you don't need to re-upload anything.
-    -->
 </head>
 <body>
 
@@ -49,27 +34,28 @@
     </header>
 
     <!-- ============================================================
-         SECTION 0 — INTRO / WORDMARK (new, per redesign brief)
+         SECTION 0 — INTRO / BADGE PRINCIPAL (Style ID Badge)
          ============================================================ -->
     <section class="intro" id="top">
-        <div class="intro-blob" aria-hidden="true"></div>
-
-        <div class="intro-photo-wrap" aria-hidden="true">
-            <img src="IMG_4270.jpeg" alt="">
+        <!-- Badge principal avec lanyard -->
+        <div class="badge-container">
+            <div class="badge">
+                <div class="lanyard"></div>
+                <div class="badge-photo">
+                    <img src="IMG_4270.jpeg" alt="Abidzar">
+                </div>
+                <div class="badge-info">
+                    <span class="badge-name">ABIDZAR</span>
+                    <span class="badge-role">Video Editor &amp; Graphic Designer</span>
+                    <span class="badge-year">2024 — 2025</span>
+                </div>
+            </div>
         </div>
-
-        <div class="intro-frame vec-frame">
-            <span class="vec-handle tl"></span>
-            <span class="vec-handle tr"></span>
-            <span class="vec-handle bl"></span>
-            <span class="vec-handle br"></span>
-            <span class="vec-handle tm"></span>
-            <span class="vec-handle bm"></span>
-
-            <div class="intro-side-label">ABIDZAR ALGIFARY</div>
-
+        
+        <!-- Grand mot-titre "PORTFOLIO" sur papier déchiré -->
+        <div class="intro-wordmark">
+            <span class="wordmark-label">HELLO</span>
             <h1 class="intro-title">PORTFOLIO</h1>
-
             <div class="intro-sub">
                 <span class="intro-role">Video Editor &amp; Graphic Designer</span>
                 <span class="intro-years">2024 — 2025</span>
@@ -78,15 +64,25 @@
     </section>
 
     <!-- ============================================================
-         SECTION 1 — ABOUT
+         SECTION 1 — ABOUT (Tableau d'affichage avec notes)
          ============================================================ -->
     <section class="about" id="about">
-
-        <div class="about-photo-frame vec-frame">
-            <span class="vec-handle tl"></span>
-            <span class="vec-handle tr"></span>
-            <span class="vec-handle bl"></span>
-            <span class="vec-handle br"></span>
+        
+        <!-- Note autocollante "About Me" -->
+        <div class="note-sticky note-about">
+            <span class="sticky-tape tape-left"></span>
+            <p class="eyebrow">Introduction</p>
+            <h2 class="about-name">Abidzar<br>Algifary</h2>
+            <p class="note-text">
+                Kenalin, aku biasa dipanggil <span class="hl-orange">Abijay</span>. Saat ini aku adalah seorang pelajar di Al-Azhar 44. Di luar jam sekolah, aku punya ketertarikan yang cukup besar di dunia kreatif, khususnya <span class="hl-orange">desain grafis</span> dan <span class="hl-army">video editing</span>.
+            </p>
+            <p class="note-text">
+                Buat aku, bisa ngulik berbagai software desain dan bikin konten yang estetik itu jadi cara seru buat isi waktu luang sekaligus ngasah skill. Aku selalu senang <span class="hl-orange">bereksperimen dengan ide-ide baru</span> biar hasil karyaku bisa terus berkembang jadi lebih baik lagi.
+            </p>
+        </div>
+        
+        <!-- Photo dans un cadre polaroid -->
+        <div class="photo-frame-polaroid">
             <img src="IMG_4270.jpeg" alt="Abidzar Algifary">
             <div class="photo-tag">
                 Abidzar Algifary
@@ -94,77 +90,66 @@
             </div>
         </div>
 
-        <div class="about-content">
-            <p class="eyebrow">Introduction</p>
-            <h2 class="about-name">Abidzar<br>Algifary</h2>
-
-            <div class="bio-box vec-frame">
-                <span class="vec-handle tl"></span>
-                <span class="vec-handle tr"></span>
-                <span class="vec-handle bl"></span>
-                <span class="vec-handle br"></span>
-                <p>
-                    Kenalin, aku biasa dipanggil <span class="hl-orange">Abijay</span>. Saat ini aku adalah seorang pelajar di Al-Azhar 44. Di luar jam sekolah, aku punya ketertarikan yang cukup besar di dunia kreatif, khususnya <span class="hl-orange">desain grafis</span> dan <span class="hl-army">video editing</span>.
-                </p>
-                <p>
-                    Buat aku, bisa ngulik berbagai software desain dan bikin konten yang estetik itu jadi cara seru buat isi waktu luang sekaligus ngasah skill. Aku selalu senang <span class="hl-orange">bereksperimen dengan ide-ide baru</span> biar hasil karyaku bisa terus berkembang jadi lebih baik lagi.
-                </p>
-            </div>
-
+        <!-- Note "My hobby" -->
+        <div class="note-sticky note-hobby">
+            <span class="sticky-tape tape-right"></span>
             <h3 class="hobby-title">My hobby is</h3>
             <p class="hobby-text">
                 Video editing, graphic design, and finding new visual references to keep learning and sharpening my skills in my free time.
             </p>
+        </div>
 
+        <!-- Grille des contacts (étiquettes) -->
+        <div class="contact-grid">
             <h3 class="contact-title">Get in touch</h3>
-            <div class="contact-grid">
-                <a class="contact-pill" href="https://wa.me/6285137071956" target="_blank">
-                    <i class="ph-fill ph-whatsapp-logo"></i>
-                    <span>+62 851-3707-1956</span>
-                </a>
-                <a class="contact-pill filled" href="https://www.instagram.com/adiz4rel" target="_blank">
-                    <i class="ph-fill ph-instagram-logo"></i>
-                    <span>@adiz4rel</span>
-                </a>
-                <a class="contact-pill" href="https://www.tiktok.com/@adizarel" target="_blank">
-                    <i class="ph-fill ph-tiktok-logo"></i>
-                    <span>@adizarel</span>
-                </a>
-                <a class="contact-pill" href="mailto:iniadizarel@gmail.com">
-                    <i class="ph-fill ph-envelope-simple"></i>
-                    <span>iniadizarel@gmail.com</span>
-                </a>
-            </div>
+            <a class="contact-pill" href="https://wa.me/6285137071956" target="_blank">
+                <i class="ph-fill ph-whatsapp-logo"></i>
+                <span>+62 851-3707-1956</span>
+            </a>
+            <a class="contact-pill filled" href="https://www.instagram.com/adiz4rel" target="_blank">
+                <i class="ph-fill ph-instagram-logo"></i>
+                <span>@adiz4rel</span>
+            </a>
+            <a class="contact-pill" href="https://www.tiktok.com/@adizarel" target="_blank">
+                <i class="ph-fill ph-tiktok-logo"></i>
+                <span>@adizarel</span>
+            </a>
+            <a class="contact-pill" href="mailto:iniadizarel@gmail.com">
+                <i class="ph-fill ph-envelope-simple"></i>
+                <span>iniadizarel@gmail.com</span>
+            </a>
         </div>
     </section>
 
     <!-- ============================================================
-         SECTION 2 — SKILLS & SOFTWARE
+         SECTION 2 — SKILLS & SOFTWARE (Panoplie d'étiquettes)
          ============================================================ -->
     <section class="skills" id="skills">
-        <p class="eyebrow">What I Do</p>
-        <h2>Software &amp; Skills</h2>
+        <div class="skills-header">
+            <p class="eyebrow">What I Do</p>
+            <h2>Software &amp; Skills</h2>
+        </div>
 
-        <div class="skills-grid">
-            <div class="tag-group">
-                <span class="skill-tag">Video Editing</span>
-                <span class="skill-tag filled-army">Graphic Design</span>
-                <span class="skill-tag filled-orange">Typography</span>
-                <span class="skill-tag">Motion Graphics</span>
-            </div>
+        <!-- Étiquettes de compétences -->
+        <div class="tag-group">
+            <span class="skill-tag" style="--tag-color: var(--accent-orange);">Video Editing</span>
+            <span class="skill-tag" style="--tag-color: var(--accent-army);">Graphic Design</span>
+            <span class="skill-tag" style="--tag-color: var(--accent-orange);">Typography</span>
+            <span class="skill-tag" style="--tag-color: var(--accent-army);">Motion Graphics</span>
+        </div>
 
-            <div class="software-row">
-                <div class="soft-box"><img src="pr-icon.png" alt="Premiere Pro" title="Premiere Pro"></div>
-                <div class="soft-box"><img src="ae-icon.png" alt="After Effects" title="After Effects"></div>
-                <div class="soft-box"><img src="ps-icon.png" alt="Photoshop" title="Photoshop"></div>
-                <div class="soft-box"><img src="ai-icon.png" alt="Illustrator" title="Illustrator"></div>
-                <div class="soft-box"><img src="cc-icon.png" alt="CapCut" title="CapCut"></div>
-            </div>
+        <!-- Logiciels dans des cases style "classeur" -->
+        <div class="software-row">
+            <div class="soft-box"><img src="pr-icon.png" alt="Premiere Pro" title="Premiere Pro"></div>
+            <div class="soft-box"><img src="ae-icon.png" alt="After Effects" title="After Effects"></div>
+            <div class="soft-box"><img src="ps-icon.png" alt="Photoshop" title="Photoshop"></div>
+            <div class="soft-box"><img src="ai-icon.png" alt="Illustrator" title="Illustrator"></div>
+            <div class="soft-box"><img src="cc-icon.png" alt="CapCut" title="CapCut"></div>
         </div>
     </section>
 
     <!-- ============================================================
-         SECTION 3 — WORK / PORTFOLIO
+         SECTION 3 — WORK / PORTFOLIO (Affiches sur tableau)
          ============================================================ -->
     <section class="work" id="work">
 
