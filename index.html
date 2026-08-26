@@ -7,14 +7,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&family=Caveat:wght@400;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- ============================================================
-         NAVIGATION
+         NAVIGATION (style marque-page)
          ============================================================ -->
     <header class="site-nav">
         <div class="nav-inner">
@@ -34,165 +34,139 @@
     </header>
 
     <!-- ============================================================
-         SECTION 0 — INTRO / BADGE PRINCIPAL (Style ID Badge)
+         SECTION 0 — RESUME / PAGE PRINCIPALE (style CV scrapbook)
          ============================================================ -->
-    <section class="intro" id="top">
-        <!-- Badge principal avec lanyard -->
-        <div class="badge-container">
-            <div class="badge">
-                <div class="lanyard"></div>
-                <div class="badge-photo">
-                    <img src="IMG_4270.jpeg" alt="Abidzar">
+    <section class="resume-page" id="top">
+
+        <!-- Étiquette "RESUME" en haut à gauche -->
+        <div class="resume-tag">
+            <span class="paperclip"></span>
+            <span>RESUME</span>
+        </div>
+
+        <div class="resume-grid">
+            <!-- Colonne gauche -->
+            <div class="left-col">
+                
+                <!-- Emplacement photo (facultatif) -->
+                <div class="photo-frame">
+                    <span class="paperclip-clip"></span>
+                    <div class="photo-content">
+                        <!-- <img src="IMG_4270.jpeg" alt="Abidzar Algifary"> -->
+                        <div class="photo-fallback">
+                            <i class="ph-fill ph-user"></i>
+                            <span>Your<br>Photo</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="badge-info">
-                    <span class="badge-name">ABIDZAR</span>
-                    <span class="badge-role">Video Editor &amp; Graphic Designer</span>
-                    <span class="badge-year">2024 — 2025</span>
+
+                <!-- Nom et rôle -->
+                <div class="name-block">
+                    <h2 class="name-main">Abidzar<br>Algifary</h2>
+                    <span class="role-main">VIDEO EDITOR &amp; GRAPHIC DESIGNER</span>
+                </div>
+
+                <!-- Contact sur papier ligné -->
+                <div class="contact-paper">
+                    <p class="contact-head">Contact</p>
+                    <div class="contact-item"><i class="ph-fill ph-user"></i> Indonesia</div>
+                    <div class="contact-item"><i class="ph-fill ph-whatsapp-logo"></i> +62 851-3707-1956</div>
+                    <div class="contact-item"><i class="ph-fill ph-instagram-logo"></i> @adiz4rel</div>
+                    <div class="contact-item"><i class="ph-fill ph-tiktok-logo"></i> @adizarel</div>
+                    <div class="contact-item"><i class="ph-fill ph-envelope-simple"></i> iniadizarel@gmail.com</div>
+                </div>
+
+                <!-- Petite section hobby (sous le contact) -->
+                <div class="hobby-sticky">
+                    <span class="sticky-tape"></span>
+                    <h3 class="hand-title">My hobby is</h3>
+                    <p>Video editing, graphic design, and finding new visual references to keep learning.</p>
+                </div>
+            </div>
+
+            <!-- Colonne droite -->
+            <div class="right-col">
+                
+                <!-- À propos (style manuscrit) -->
+                <div class="about-box" id="about">
+                    <h2 class="hand-title large">About Me</h2>
+                    <p>
+                        Kenalin, aku biasa dipanggil <span class="hl-orange">Abijay</span>. Saat ini aku adalah seorang pelajar di Al-Azhar 44. Di luar jam sekolah, aku punya ketertarikan yang cukup besar di dunia kreatif, khususnya <span class="hl-orange">desain grafis</span> dan <span class="hl-army">video editing</span>.
+                    </p>
+                    <p>
+                        Buat aku, bisa ngulik berbagai software desain dan bikin konten yang estetik itu jadi cara seru buat isi waktu luang sekaligus ngasah skill. Aku selalu senang <span class="hl-orange">bereksperimen dengan ide-ide baru</span> biar hasil karyaku bisa terus berkembang jadi lebih baik lagi.
+                    </p>
+                </div>
+
+                <!-- Logiciels & Compétences (icônes 3D) -->
+                <div class="skills-box" id="skills">
+                    <h2 class="hand-title large">Software &amp; Skills</h2>
+                    
+                    <div class="software-cluster">
+                        <!-- Icônes 3D -->
+                        <div class="soft-3d soft-ps"><img src="ps-icon.png" alt="Photoshop" title="Photoshop"></div>
+                        <div class="soft-3d soft-ai"><img src="ai-icon.png" alt="Illustrator" title="Illustrator"></div>
+                        <div class="soft-3d soft-ae"><img src="ae-icon.png" alt="After Effects" title="After Effects"></div>
+                        <div class="soft-3d soft-pr"><img src="pr-icon.png" alt="Premiere Pro" title="Premiere Pro"></div>
+                        <div class="soft-3d soft-cc"><img src="cc-icon.png" alt="CapCut" title="CapCut"></div>
+
+                        <!-- Étiquettes de compétences autour -->
+                        <span class="skill-ribbon ribbon-orange ribbon-1">Video Editing</span>
+                        <span class="skill-ribbon ribbon-army ribbon-2">Graphic Design</span>
+                        <span class="skill-ribbon ribbon-orange ribbon-3">Typography</span>
+                        <span class="skill-ribbon ribbon-army ribbon-4">Motion Graphics</span>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Grand mot-titre "PORTFOLIO" sur papier déchiré -->
-        <div class="intro-wordmark">
-            <span class="wordmark-label">HELLO</span>
-            <h1 class="intro-title">PORTFOLIO</h1>
-            <div class="intro-sub">
-                <span class="intro-role">Video Editor &amp; Graphic Designer</span>
-                <span class="intro-years">2024 — 2025</span>
-            </div>
-        </div>
     </section>
 
     <!-- ============================================================
-         SECTION 1 — ABOUT (Tableau d'affichage avec notes)
+         SECTION 1 — PORTFOLIO / TRAVAUX (style clipboard)
          ============================================================ -->
-    <section class="about" id="about">
+    <section class="work-section" id="work">
         
-        <!-- Note autocollante "About Me" -->
-        <div class="note-sticky note-about">
-            <span class="sticky-tape tape-left"></span>
-            <p class="eyebrow">Introduction</p>
-            <h2 class="about-name">Abidzar<br>Algifary</h2>
-            <p class="note-text">
-                Kenalin, aku biasa dipanggil <span class="hl-orange">Abijay</span>. Saat ini aku adalah seorang pelajar di Al-Azhar 44. Di luar jam sekolah, aku punya ketertarikan yang cukup besar di dunia kreatif, khususnya <span class="hl-orange">desain grafis</span> dan <span class="hl-army">video editing</span>.
-            </p>
-            <p class="note-text">
-                Buat aku, bisa ngulik berbagai software desain dan bikin konten yang estetik itu jadi cara seru buat isi waktu luang sekaligus ngasah skill. Aku selalu senang <span class="hl-orange">bereksperimen dengan ide-ide baru</span> biar hasil karyaku bisa terus berkembang jadi lebih baik lagi.
-            </p>
-        </div>
-        
-        <!-- Photo dans un cadre polaroid -->
-        <div class="photo-frame-polaroid">
-            <img src="IMG_4270.jpeg" alt="Abidzar Algifary">
-            <div class="photo-tag">
-                Abidzar Algifary
-                <span>Video Editor &amp; Graphic Designer</span>
-            </div>
-        </div>
-
-        <!-- Note "My hobby" -->
-        <div class="note-sticky note-hobby">
-            <span class="sticky-tape tape-right"></span>
-            <h3 class="hobby-title">My hobby is</h3>
-            <p class="hobby-text">
-                Video editing, graphic design, and finding new visual references to keep learning and sharpening my skills in my free time.
-            </p>
-        </div>
-
-        <!-- Grille des contacts (étiquettes) -->
-        <div class="contact-grid">
-            <h3 class="contact-title">Get in touch</h3>
-            <a class="contact-pill" href="https://wa.me/6285137071956" target="_blank">
-                <i class="ph-fill ph-whatsapp-logo"></i>
-                <span>+62 851-3707-1956</span>
-            </a>
-            <a class="contact-pill filled" href="https://www.instagram.com/adiz4rel" target="_blank">
-                <i class="ph-fill ph-instagram-logo"></i>
-                <span>@adiz4rel</span>
-            </a>
-            <a class="contact-pill" href="https://www.tiktok.com/@adizarel" target="_blank">
-                <i class="ph-fill ph-tiktok-logo"></i>
-                <span>@adizarel</span>
-            </a>
-            <a class="contact-pill" href="mailto:iniadizarel@gmail.com">
-                <i class="ph-fill ph-envelope-simple"></i>
-                <span>iniadizarel@gmail.com</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         SECTION 2 — SKILLS & SOFTWARE (Panoplie d'étiquettes)
-         ============================================================ -->
-    <section class="skills" id="skills">
-        <div class="skills-header">
-            <p class="eyebrow">What I Do</p>
-            <h2>Software &amp; Skills</h2>
-        </div>
-
-        <!-- Étiquettes de compétences -->
-        <div class="tag-group">
-            <span class="skill-tag" style="--tag-color: var(--accent-orange);">Video Editing</span>
-            <span class="skill-tag" style="--tag-color: var(--accent-army);">Graphic Design</span>
-            <span class="skill-tag" style="--tag-color: var(--accent-orange);">Typography</span>
-            <span class="skill-tag" style="--tag-color: var(--accent-army);">Motion Graphics</span>
-        </div>
-
-        <!-- Logiciels dans des cases style "classeur" -->
-        <div class="software-row">
-            <div class="soft-box"><img src="pr-icon.png" alt="Premiere Pro" title="Premiere Pro"></div>
-            <div class="soft-box"><img src="ae-icon.png" alt="After Effects" title="After Effects"></div>
-            <div class="soft-box"><img src="ps-icon.png" alt="Photoshop" title="Photoshop"></div>
-            <div class="soft-box"><img src="ai-icon.png" alt="Illustrator" title="Illustrator"></div>
-            <div class="soft-box"><img src="cc-icon.png" alt="CapCut" title="CapCut"></div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         SECTION 3 — WORK / PORTFOLIO (Affiches sur tableau)
-         ============================================================ -->
-    <section class="work" id="work">
-
-        <div class="work-block">
-            <div class="work-head">
-                <h2>Portfolio Video</h2>
+        <div class="clipboard">
+            <div class="clipboard-header">
+                <h2 class="hand-title large">Portfolio</h2>
                 <p>Beberapa karya Typography &amp; Mograph pilihan yang sudah ku buat.</p>
             </div>
-            <div class="work-grid">
-                <a class="work-card wide" href="https://www.instagram.com/reel/DZ91lYPSzGQ/?igsh=MTM0b3F3dnptODZ0eQ==" target="_blank">
-                    <div class="img-wrap">
-                        <img src="quality_restoration_20260708092438672.png" alt="Reel 1">
-                        <i class="ph-fill ph-play-circle play-icon"></i>
-                    </div>
-                    <div class="card-tag"><span>Reel</span><span class="num">01</span></div>
-                </a>
-                <a class="work-card wide" href="https://www.instagram.com/reel/DRuWwDMkt60/?igsh=MTFzaDU4YmZkZDhsdQ==" target="_blank">
-                    <div class="img-wrap">
-                        <img src="quality_restoration_20260708093216566.png" alt="Reel 2">
-                        <i class="ph-fill ph-play-circle play-icon"></i>
-                    </div>
-                    <div class="card-tag"><span>Reel</span><span class="num">02</span></div>
-                </a>
-            </div>
-        </div>
 
-        <div class="work-block">
-            <div class="work-head">
-                <h2>Graphic Design</h2>
-                <p>Eksperimen desain Social Media.</p>
+            <div class="work-block video-work">
+                <h3 class="block-title">Portfolio Video</h3>
+                <div class="work-grid">
+                    <a class="work-card" href="https://www.instagram.com/reel/DZ91lYPSzGQ/?igsh=MTM0b3F3dnptODZ0eQ==" target="_blank">
+                        <div class="img-wrap">
+                            <img src="quality_restoration_20260708092438672.png" alt="Reel 1">
+                            <i class="ph-fill ph-play-circle play-icon"></i>
+                        </div>
+                        <div class="card-tag"><span>Reel</span><span class="num">01</span></div>
+                    </a>
+                    <a class="work-card" href="https://www.instagram.com/reel/DRuWwDMkt60/?igsh=MTFzaDU4YmZkZDhsdQ==" target="_blank">
+                        <div class="img-wrap">
+                            <img src="quality_restoration_20260708093216566.png" alt="Reel 2">
+                            <i class="ph-fill ph-play-circle play-icon"></i>
+                        </div>
+                        <div class="card-tag"><span>Reel</span><span class="num">02</span></div>
+                    </a>
+                </div>
             </div>
-            <div class="work-grid">
-                <div class="work-card">
-                    <div class="img-wrap"><img src="Arap.png" alt="Poster 1"></div>
-                    <div class="card-tag"><span>Poster</span><span class="num">01</span></div>
-                </div>
-                <div class="work-card">
-                    <div class="img-wrap"><img src="quality_restoration_20260707183213934.jpeg" alt="Poster 2"></div>
-                    <div class="card-tag"><span>Poster</span><span class="num">02</span></div>
-                </div>
-                <div class="work-card">
-                    <div class="img-wrap"><img src="SEAN.png" alt="Poster 3"></div>
-                    <div class="card-tag"><span>Poster</span><span class="num">03</span></div>
+
+            <div class="work-block design-work">
+                <h3 class="block-title">Graphic Design</h3>
+                <div class="work-grid">
+                    <div class="work-card">
+                        <div class="img-wrap"><img src="Arap.png" alt="Poster 1"></div>
+                        <div class="card-tag"><span>Poster</span><span class="num">01</span></div>
+                    </div>
+                    <div class="work-card">
+                        <div class="img-wrap"><img src="quality_restoration_20260707183213934.jpeg" alt="Poster 2"></div>
+                        <div class="card-tag"><span>Poster</span><span class="num">02</span></div>
+                    </div>
+                    <div class="work-card">
+                        <div class="img-wrap"><img src="SEAN.png" alt="Poster 3"></div>
+                        <div class="card-tag"><span>Poster</span><span class="num">03</span></div>
+                    </div>
                 </div>
             </div>
         </div>
