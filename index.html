@@ -32,11 +32,11 @@
         </div>
     </header>
 
-    <!-- ===== HERO / SPLASH ===== -->
+    <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
         <div class="hero-inner">
-            <!-- Tumpukan Foto -->
-            <div class="photo-stack">
+            <!-- Kartu Profil (kiri) -->
+            <div class="profile-card">
                 <div class="photo-layers">
                     <div class="photo-frame frame-1"></div>
                     <div class="photo-frame frame-2"></div>
@@ -44,18 +44,20 @@
                         <img src="IMG_4270.jpeg" alt="Abidzar Algifary">
                     </div>
                 </div>
+                <div class="profile-info">
+                    <h2 class="profile-name">Abidzar Algifary</h2>
+                    <p class="profile-role">VIDEO EDITOR & GRAPHIC DESIGNER</p>
+                </div>
                 <div class="tape-deco"></div>
-                <div class="hero-handwriting">Abidzar Algifary</div>
-                <div class="hero-role">VIDEO EDITOR & GRAPHIC DESIGNER</div>
             </div>
 
-            <!-- Judul Besar -->
+            <!-- Teks PORTFOLIO (kanan) -->
             <div class="hero-title-wrap">
                 <h1 class="hero-title">
                     <span class="line1">PORT</span>
                     <span class="line2">FOLIO</span>
                 </h1>
-                <div class="deco-scribble"><i class="ph-fill ph-pencil"></i></div>
+                <!-- ikon pensil dihapus -->
                 <div class="deco-tape"></div>
             </div>
         </div>
@@ -101,11 +103,10 @@
         <!-- KOLOM KANAN -->
         <div class="right-col">
 
-            <!-- SKILLS & SOFTWARE (Awan/Gelembung) -->
+            <!-- SKILLS & SOFTWARE -->
             <section class="skills-section" id="skills">
                 <h2 class="section-title">Software & Skills</h2>
                 <div class="skills-bubbles">
-                    <!-- Software -->
                     <div class="bubble bubble-software">
                         <div class="soft-item">
                             <div class="soft-icon"><img src="pr-icon.png" alt="Premiere Pro"></div>
@@ -128,7 +129,6 @@
                             <span>CapCut</span>
                         </div>
                     </div>
-                    <!-- Skills -->
                     <div class="bubble bubble-skill">
                         <span class="skill-tag tag-orange">Video Editing</span>
                         <span class="skill-tag tag-army">Graphic Design</span>
@@ -138,7 +138,7 @@
                 </div>
             </section>
 
-            <!-- EXPERIENCE (Clipboard) -->
+            <!-- EXPERIENCE (CLIPBOARD) -->
             <section class="experience-section" id="experience">
                 <div class="clipboard">
                     <div class="clip"></div>
@@ -170,6 +170,7 @@
                     <h2 class="section-title">Portfolio</h2>
                     <p class="work-sub">Beberapa karya Typography & Mograph pilihan.</p>
 
+                    <!-- Reel dengan tautan eksternal -->
                     <a class="work-entry tint-orange" href="https://www.instagram.com/reel/DZ91lYPSzGQ/?igsh=MTM0b3F3dnptODZ0eQ==" target="_blank">
                         <div class="work-thumb">
                             <img src="quality_restoration_20260708092438672.png" alt="Reel 1">
@@ -194,35 +195,33 @@
                         <div class="work-go"><i class="ph-bold ph-arrow-up-right"></i></div>
                     </a>
 
+                    <!-- Divider -->
                     <div class="stack-divider">Graphic design</div>
                     <p class="work-sub">Eksperimen desain Social Media.</p>
 
-                    <div class="poster-slider-wrapper">
-                        <button class="slider-btn slider-prev" id="posterPrev"><i class="ph-bold ph-arrow-left"></i></button>
-                        <div class="poster-slider" id="posterSlider">
-                            <a class="poster-card tint-cream" href="https://instagram.com" target="_blank">
-                                <div class="work-thumb"><img src="Arap.png" alt="Poster 1"></div>
-                                <div class="work-info">
-                                    <h5>Poster 01</h5>
-                                    <p>Social media design</p>
-                                </div>
-                            </a>
-                            <a class="poster-card tint-orange" href="https://instagram.com" target="_blank">
-                                <div class="work-thumb"><img src="quality_restoration_20260707183213934.jpeg" alt="Poster 2"></div>
-                                <div class="work-info">
-                                    <h5>Poster 02</h5>
-                                    <p>Social media design</p>
-                                </div>
-                            </a>
-                            <a class="poster-card tint-army" href="https://instagram.com" target="_blank">
-                                <div class="work-thumb"><img src="SEAN.png" alt="Poster 3"></div>
-                                <div class="work-info">
-                                    <h5>Poster 03</h5>
-                                    <p>Social media design</p>
-                                </div>
-                            </a>
+                    <!-- Galeri Poster (Scroll native, tanpa tombol panah, tanpa tautan) -->
+                    <div class="poster-gallery">
+                        <div class="poster-card tint-cream">
+                            <div class="work-thumb"><img src="Arap.png" alt="Poster 1"></div>
+                            <div class="work-info">
+                                <h5>Poster 01</h5>
+                                <p>Social media design</p>
+                            </div>
                         </div>
-                        <button class="slider-btn slider-next" id="posterNext"><i class="ph-bold ph-arrow-right"></i></button>
+                        <div class="poster-card tint-orange">
+                            <div class="work-thumb"><img src="quality_restoration_20260707183213934.jpeg" alt="Poster 2"></div>
+                            <div class="work-info">
+                                <h5>Poster 02</h5>
+                                <p>Social media design</p>
+                            </div>
+                        </div>
+                        <div class="poster-card tint-army">
+                            <div class="work-thumb"><img src="SEAN.png" alt="Poster 3"></div>
+                            <div class="work-info">
+                                <h5>Poster 03</h5>
+                                <p>Social media design</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
