@@ -776,4 +776,113 @@ ul {
     align-items: center;
     text-align: center;
     padding: 12px;
-    border-radius:
+    border-radius: 10px;
+    background: var(--paper-cream);
+    box-shadow: var(--shadow-soft);
+    transition: transform .3s;
+}
+.poster-card:hover {
+    transform: translateY(-4px);
+}
+.poster-card .work-thumb {
+    width: 100%;
+    height: 180px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+.poster-card .work-info h5 {
+    font-size: .95rem;
+}
+.poster-card .work-info p {
+    font-size: .75rem;
+}
+
+/* ===== FOOTER ===== */
+.footer-stamp {
+    text-align: center;
+    padding: 30px 0 50px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: .35em;
+    color: var(--army);
+    font-size: 1.2rem;
+    position: relative;
+}
+.footer-stamp::before {
+    content: '✂';
+    position: absolute;
+    left: 20%;
+    top: 20px;
+    font-size: 1.1rem;
+    color: var(--orange);
+    transform: rotate(-20deg);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px) {
+    .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 80px;
+    }
+    .profile-card {
+        justify-self: center;
+        transform: rotate(0deg);
+        width: fit-content;
+    }
+    .hero-title-wrap {
+        text-align: center;
+    }
+    .hero-title .line2 {
+        margin-left: 0;
+    }
+    .main-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+@media(max-width:600px) {
+    .nav-links {
+        display: none;
+    }
+    .profile-card {
+        padding: 15px;
+        max-width: 320px;
+    }
+    .photo-layers {
+        width: 180px;
+        height: 200px;
+    }
+    .hero-title {
+        font-size: clamp(4rem, 20vw, 7rem);
+    }
+    .clipboard {
+        padding: 20px;
+    }
+    .board-inner {
+        padding: 18px;
+    }
+    .work-entry {
+        grid-template-columns: 50px 1fr auto;
+    }
+    .work-thumb {
+        width: 50px;
+        height: 50px;
+    }
+    .poster-card {
+        flex-basis: 160px;
+    }
+    .poster-card .work-thumb {
+        height: 140px;
+    }
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .8s, transform .8s;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
