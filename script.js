@@ -1,6 +1,6 @@
 /* ==================================================================
-   ADIZAREL — PORTFOLIO SCRIPT (v3)
-   Smooth scroll + scroll-spy + nav shadow + fade-in reveal
+   ADIZAREL — PORTFOLIO SCRIPT (v4)
+   Smooth scroll + scroll-spy + nav shadow + fade-in reveal + slider
    ================================================================== */
 
 // 1. SMOOTH SCROLL FOR NAV LINKS
@@ -70,5 +70,20 @@ if ('IntersectionObserver' in window) {
     fadeElements.forEach(el => {
         el.classList.add('fade-in');
         fadeObserver.observe(el);
+    });
+}
+
+// 5. POSTER SLIDER NAVIGATION
+const slider = document.getElementById('posterSlider');
+const prevBtn = document.getElementById('posterPrev');
+const nextBtn = document.getElementById('posterNext');
+
+if (slider && prevBtn && nextBtn) {
+    const cardWidth = slider.querySelector('.poster-card').offsetWidth + 20; // + gap
+    prevBtn.addEventListener('click', () => {
+        slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', () => {
+        slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
     });
 }
