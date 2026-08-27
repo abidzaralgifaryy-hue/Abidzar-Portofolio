@@ -5,39 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio | Abidzar Algifary</title>
 
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@600;700&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css">
 
-    <!--
-        REDESIGN NOTES FOR ABIDZAR (v2 — "ID Badge & Notebook")
-        =========================================================
-        - Style translated from the badge/lanyard + spiral-notebook +
-          clipboard moodboard: an ID badge, a sticky-note memo sheet,
-          a repeating profession banner, and a clipboard/paper-stack
-          layout for skills and work.
-        - Palette: army green (#4B5320) + orange (#FF7A00) everywhere
-          the reference used blue + yellow. No blue/reference-yellow
-          remain anywhere.
-        - Content is 100% yours: same name, bio, hobby text, contact
-          links, skills, software list and project images/links as
-          your original file — only the visual wrapper changed.
-        - Section ids (#about, #skills, #work) are unchanged so the
-          existing script.js scroll-spy keeps working with no edits.
-    -->
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ============================================================
-         NAV
-         ============================================================ -->
-    <header class="site-nav">
+    <!-- NAVIGATION -->
+    <header class="site-nav" id="siteNav">
         <div class="nav-inner">
-            <a href="#about" class="nav-logo">ADIZAREL<span class="dot">.</span></a>
+            <a href="#intro" class="nav-logo">ADIZAREL<span class="dot">.</span></a>
             <nav class="nav-links">
-                <a href="#about" class="nav-link active" data-nav="about">About me</a>
+                <a href="#about" class="nav-link active" data-nav="about">About</a>
                 <a href="#skills" class="nav-link" data-nav="skills">Skills</a>
                 <a href="#work" class="nav-link" data-nav="work">Work</a>
             </nav>
@@ -47,47 +31,57 @@
         </div>
     </header>
 
-    <!-- ============================================================
-         HERO — ID BADGE + ABOUT BANNER + NOTEBOOK MEMO
-         ============================================================ -->
-    <section id="about" class="hero">
-
-        <!-- ID badge on a lanyard -->
-        <div class="badge-column">
-            <div class="lanyard" aria-hidden="true"></div>
-            <div class="id-badge">
-                <div class="id-tag">AA</div>
-                <div class="id-photo">
-                    <img src="IMG_4270.jpeg" alt="Abidzar Algifary">
-                </div>
-                <div class="id-role">Video Editor &amp; Graphic Designer</div>
+    <!-- LANDING PAGE -->
+    <section class="landing" id="intro">
+        <div class="landing-content">
+            <span class="landing-handle">@adizarel</span>
+            <div class="portfolio-title-wrap">
+                <h1 class="portfolio-title">
+                    <span class="line-break">PORT</span>
+                    <span class="line-break">FOLIO</span>
+                    <i class="ph-fill ph-star star"></i>
+                </h1>
             </div>
+            <div class="landing-photo-frame">
+                <img src="IMG_4270.jpeg" alt="Abidzar Algifary">
+                <span class="tape tl"></span>
+                <span class="tape tr"></span>
+            </div>
+            <p class="landing-sub">Selamat datang di dunia kreatifku <i class="ph-fill ph-heart"></i></p>
+        </div>
+        <div class="deco-pin" style="top:15%;left:10%;"></div>
+        <div class="deco-pin" style="bottom:20%;right:12%;"></div>
+        <div class="deco-paperclip" style="top:30%;right:8%;transform:rotate(15deg);"></div>
+    </section>
 
-            <!-- Contact sticky note -->
-            <div class="contact-sticky">
-                <h4>Contact</h4>
-                <ul>
-                    <li><i class="ph-fill ph-whatsapp-logo"></i><a href="https://wa.me/6285137071956" target="_blank">+62 851-3707-1956</a></li>
-                    <li><i class="ph-fill ph-instagram-logo"></i><a href="https://www.instagram.com/adiz4rel" target="_blank">@adiz4rel</a></li>
-                    <li><i class="ph-fill ph-tiktok-logo"></i><a href="https://www.tiktok.com/@adizarel" target="_blank">@adizarel</a></li>
-                    <li><i class="ph-fill ph-envelope-simple"></i><a href="mailto:iniadizarel@gmail.com">iniadizarel@gmail.com</a></li>
-                </ul>
+    <!-- ABOUT SECTION -->
+    <section class="about-section" id="about">
+        <!-- ID Card -->
+        <div class="id-card-wrap">
+            <div class="lanyard-strap"></div>
+            <div class="id-card">
+                <div class="id-card-inner">
+                    <div class="id-tag">AA</div>
+                    <div class="id-photo">
+                        <img src="IMG_4270.jpeg" alt="Abidzar Algifary">
+                    </div>
+                    <h3 class="id-name">Abidzar Algifary</h3>
+                    <p class="id-role">Video Editor &amp; Graphic Designer</p>
+                    <ul class="id-contact">
+                        <li><i class="ph-fill ph-whatsapp-logo"></i><a href="https://wa.me/6285137071956" target="_blank">+62 851-3707-1956</a></li>
+                        <li><i class="ph-fill ph-instagram-logo"></i><a href="https://www.instagram.com/adiz4rel" target="_blank">@adiz4rel</a></li>
+                        <li><i class="ph-fill ph-tiktok-logo"></i><a href="https://www.tiktok.com/@adizarel" target="_blank">@adizarel</a></li>
+                        <li><i class="ph-fill ph-envelope-simple"></i><a href="mailto:iniadizarel@gmail.com">iniadizarel@gmail.com</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <!-- About banner + notebook memo -->
-        <div>
-            <div class="about-banner-wrap">
-                <div class="about-banner">about me</div>
-            </div>
-
-            <div class="memo-sheet">
-                <div class="hello-tag">
-                    Hello <span class="box">NAME</span>
-                </div>
-                <h2 class="memo-name">Abidzar <span class="accent">Algifary</span></h2>
-
-                <div class="memo-bio">
+        <!-- About Paper -->
+        <div class="about-paper-wrap">
+            <div class="about-paper">
+                <h2 class="about-heading">About Me <i class="ph-fill ph-pencil-simple"></i></h2>
+                <div class="about-bio">
                     <p>
                         Kenalin, aku biasa dipanggil <span class="hl-orange">Abijay</span>. Saat ini aku adalah seorang pelajar di Al-Azhar 44. Di luar jam sekolah, aku punya ketertarikan yang cukup besar di dunia kreatif, khususnya <strong>desain grafis</strong> dan <strong>video editing</strong>.
                     </p>
@@ -95,14 +89,12 @@
                         Buat aku, bisa ngulik berbagai software desain dan bikin konten yang estetik itu jadi cara seru buat isi waktu luang sekaligus ngasah skill. Aku selalu senang <span class="hl-orange">bereksperimen dengan ide-ide baru</span> biar hasil karyaku bisa terus berkembang jadi lebih baik lagi.
                     </p>
                 </div>
-
-                <div class="sticker-rail">
+                <div class="sticker-row">
                     <span class="sticker">Creative</span>
                     <span class="sticker">Curious</span>
                     <span class="sticker">Detail-oriented</span>
                 </div>
-
-                <div class="memo-cta">
+                <div class="about-cta">
                     <a href="https://wa.me/6285137071956" target="_blank">Don't forget to contact me!</a>
                     <i class="ph-fill ph-push-pin"></i>
                 </div>
@@ -110,77 +102,52 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         MARQUEE BANNER
-         ============================================================ -->
-    <div class="marquee" aria-hidden="true">
-        <div class="marquee-track">
-            <span>&#9734;</span> Video Editor <span>&#9734;</span> Graphic Designer
-            <span>&#9734;</span> Video Editor <span>&#9734;</span> Graphic Designer
-            <span>&#9734;</span> Video Editor <span>&#9734;</span> Graphic Designer
-            <span>&#9734;</span> Video Editor <span>&#9734;</span> Graphic Designer
+    <!-- SKILLS SECTION -->
+    <section class="skills-section" id="skills">
+        <div class="section-heading">
+            <h2><i class="ph-fill ph-lightning"></i> Skills</h2>
         </div>
-    </div>
-
-    <!-- ============================================================
-         BOARD — CLIPBOARD (skills) + PAPER STACK (work)
-         ============================================================ -->
-    <section id="skills" class="board-wrap">
-
-        <!-- Clipboard: Education / Skill / Software -->
-        <div class="clipboard">
-            <div class="board-inner">
-                <span class="board-heading hl-army-bg">Education</span>
-                <div class="edu-item">
-                    <span class="year">Now</span>
-                    <div>
-                        <h5>Al-Azhar 44</h5>
-                        <p>Currently studying, alongside self-directed learning in design &amp; video editing.</p>
+        <div class="skills-board">
+            <div class="sticky-notes">
+                <div class="sticky-note n1"><i class="ph-fill ph-film-script"></i> Video Editing</div>
+                <div class="sticky-note n2"><i class="ph-fill ph-palette"></i> Graphic Design</div>
+                <div class="sticky-note n3"><i class="ph-fill ph-text-aa"></i> Typography</div>
+                <div class="sticky-note n4"><i class="ph-fill ph-play"></i> Motion Graphics</div>
+            </div>
+            <div class="software-panel">
+                <h3><i class="ph-fill ph-laptop"></i> Software</h3>
+                <p>Tools yang sering ku pakai untuk berkarya.</p>
+                <div class="software-grid">
+                    <div class="soft-item">
+                        <div class="soft-icon"><img src="pr-icon.png" alt="Premiere Pro"></div>
+                        <div class="soft-label">Premiere</div>
                     </div>
-                </div>
-
-                <div class="board-section">
-                    <span class="board-heading hl-orange-bg">Skill</span>
-                    <div class="tag-row">
-                        <span class="paper-tag">Video Editing</span>
-                        <span class="paper-tag">Graphic Design</span>
-                        <span class="paper-tag">Typography</span>
-                        <span class="paper-tag">Motion Graphics</span>
+                    <div class="soft-item">
+                        <div class="soft-icon"><img src="ae-icon.png" alt="After Effects"></div>
+                        <div class="soft-label">After FX</div>
                     </div>
-                </div>
-
-                <div class="board-section">
-                    <span class="board-heading hl-army-bg">Software</span>
-                    <div class="soft-icon-row-wrap">
-                        <div class="soft-item">
-                            <div class="soft-icon"><img src="pr-icon.png" alt="Premiere Pro" title="Premiere Pro"></div>
-                            <div class="soft-label">Premiere</div>
-                        </div>
-                        <div class="soft-item">
-                            <div class="soft-icon"><img src="ae-icon.png" alt="After Effects" title="After Effects"></div>
-                            <div class="soft-label">After FX</div>
-                        </div>
-                        <div class="soft-item">
-                            <div class="soft-icon"><img src="ps-icon.png" alt="Photoshop" title="Photoshop"></div>
-                            <div class="soft-label">Photoshop</div>
-                        </div>
-                        <div class="soft-item">
-                            <div class="soft-icon"><img src="ai-icon.png" alt="Illustrator" title="Illustrator"></div>
-                            <div class="soft-label">Illustrator</div>
-                        </div>
-                        <div class="soft-item">
-                            <div class="soft-icon"><img src="cc-icon.png" alt="CapCut" title="CapCut"></div>
-                            <div class="soft-label">CapCut</div>
-                        </div>
+                    <div class="soft-item">
+                        <div class="soft-icon"><img src="ps-icon.png" alt="Photoshop"></div>
+                        <div class="soft-label">Photoshop</div>
+                    </div>
+                    <div class="soft-item">
+                        <div class="soft-icon"><img src="ai-icon.png" alt="Illustrator"></div>
+                        <div class="soft-label">Illustrator</div>
+                    </div>
+                    <div class="soft-item">
+                        <div class="soft-icon"><img src="cc-icon.png" alt="CapCut"></div>
+                        <div class="soft-label">CapCut</div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Paper stack: Work -->
-        <div class="paper-stack" id="work">
-            <h3 class="stack-heading"><i class="ph-fill ph-seal-check"></i> Portfolio Video</h3>
-            <p class="stack-sub">Beberapa karya Typography &amp; Mograph pilihan yang sudah ku buat.</p>
+    <!-- WORK SECTION -->
+    <section class="work-section" id="work">
+        <div class="work-stack">
+            <h3 class="work-heading"><i class="ph-fill ph-seal-check"></i> Portfolio Video</h3>
+            <p class="work-sub">Beberapa karya Typography &amp; Mograph pilihan yang sudah ku buat.</p>
 
             <a class="work-entry tint-orange" href="https://www.instagram.com/reel/DZ91lYPSzGQ/?igsh=MTM0b3F3dnptODZ0eQ==" target="_blank">
                 <div class="work-thumb">
@@ -207,7 +174,7 @@
             </a>
 
             <div class="stack-divider">Graphic design</div>
-            <p class="stack-sub" style="margin-top:-10px;">Eksperimen desain Social Media.</p>
+            <p class="work-sub" style="margin-top:-8px;">Eksperimen desain Social Media.</p>
 
             <div class="work-entry tint-cream">
                 <div class="work-thumb"><img src="Arap.png" alt="Poster 1"></div>
@@ -235,8 +202,10 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <div class="footer-stamp">ADIZAREL.</div>
 
+    <!-- External JS -->
     <script src="script.js"></script>
 </body>
 </html>
