@@ -1,12 +1,6 @@
 /* ==================================================================
-   ADIZAREL — PORTFOLIO SCRIPT
-   ------------------------------------------------------------------
-   INTEGRATION NOTE: the original script.js targeted a dark-mode
-   toggle button, a "#projects" CTA and a "read more" button — none
-   of which exist in this markup, so those handlers never actually
-   fired. They're replaced here with logic that matches the real
-   nav: smooth scrolling to each section, and an active-link
-   indicator (the orange underline) that updates as you scroll.
+   ADIZAREL — PORTFOLIO SCRIPT (v3)
+   Smooth scroll + scroll-spy + nav shadow + fade-in reveal
    ================================================================== */
 
 // 1. SMOOTH SCROLL FOR NAV LINKS
@@ -19,7 +13,7 @@ navLinks.forEach(link => {
         if (!targetSection) return;
 
         e.preventDefault();
-        const headerOffset = 90;
+        const headerOffset = 70;
         const elementPosition = targetSection.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -30,7 +24,7 @@ navLinks.forEach(link => {
     });
 });
 
-// 2. SCROLL-SPY — highlight the nav link for the section in view
+// 2. SCROLL-SPY — highlight nav link for section in view
 const sections = Array.from(navLinks)
     .map(link => document.querySelector(link.getAttribute('href')))
     .filter(Boolean);
@@ -51,4 +45,30 @@ if ('IntersectionObserver' in window && sections.length) {
     }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
 
     sections.forEach(section => observer.observe(section));
+}
+
+// 3. NAV SHADOW ON SCROLL
+const siteNav = document.getElementById('siteNav');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        siteNav.classList.add('scrolled');
+    } else {
+        siteNav.classList.remove('scrolled');
+    }
+});
+
+// 4. FADE-IN ON SCROLL (subtle reveal)
+const fadeElements = document.querySelectorAll('.about-paper, .id-card, .sticky-notes, .software-panel, .work-stack');
+if ('IntersectionObserver' in window) {
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    fadeElements.forEach(el => {
+        el.classList.add('fade-in');
+        fadeObserver.observe(el);
+    });
 }
