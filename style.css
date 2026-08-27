@@ -1,5 +1,5 @@
 /* ==================================================================
-   ADIZAREL — PORTFOLIO v6.1 (Layout & Responsiveness Fix)
+   ADIZAREL — PORTFOLIO v6.2 (Fix Work Section Overlap)
    ================================================================== */
 :root {
     --paper-bg: #F3ECDD;
@@ -80,7 +80,7 @@ ul {
     box-shadow: 0 4px 20px rgba(35, 40, 26, .08);
 }
 .nav-inner {
-    max-width: 1280px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 12px 5%;
     display: flex;
@@ -151,7 +151,6 @@ ul {
 }
 
 /* ===== HERO ===== */
-/* Perbaikan: batas lebar & centering */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -165,12 +164,12 @@ ul {
     grid-template-columns: 0.8fr 1.2fr;
     gap: 60px;
     align-items: center;
-    max-width: 1200px; /* batas maksimal */
-    margin: 0 auto;    /* center */
+    max-width: 1000px;
+    margin: 0 auto;
     width: 100%;
 }
 
-/* === Kartu Profil (photocard) === */
+/* === Kartu Profil === */
 .profile-card {
     position: relative;
     display: flex;
@@ -182,10 +181,9 @@ ul {
     box-shadow: var(--shadow-float);
     transform: rotate(-2deg);
     border: 2px solid var(--orange-light);
-    /* Perbaikan: lebar menyesuaikan isi, tidak melebar */
     width: fit-content;
-    max-width: 360px; /* batasan agar tidak terlalu lebar di layar besar */
-    margin: 0 auto;   /* center jika grid memberi ruang */
+    max-width: 360px;
+    margin: 0 auto;
 }
 .photo-layers {
     position: relative;
@@ -264,7 +262,7 @@ ul {
     box-shadow: 0 2px 6px rgba(0,0,0,.1);
 }
 
-/* === Teks PORTFOLIO (kanan) === */
+/* === Teks PORTFOLIO === */
 .hero-title-wrap {
     position: relative;
     text-align: center;
@@ -273,7 +271,7 @@ ul {
 .hero-title {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(5rem, 18vw, 10rem);
+    font-size: clamp(4rem, 12vw, 8rem);
     line-height: .85;
     color: var(--orange);
     text-transform: uppercase;
@@ -301,21 +299,21 @@ ul {
 }
 
 /* ===== MAIN GRID ===== */
-/* Perbaikan: batas lebar & centering */
+/* PERBAIKAN: Batasi max-width dan proporsi kolom */
 .main-grid {
-    max-width: 1280px;
+    max-width: 1000px; /* Lebih ketat */
     margin: 0 auto;
     padding: 60px 5% 100px;
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 60px;
-    align-items: start; /* tinggi konten menyesuaikan */
+    grid-template-columns: 0.9fr 1.1fr; /* Kolom kanan tidak terlalu dominan */
+    gap: 50px;
+    align-items: start;
 }
 .left-col, .right-col {
     display: flex;
     flex-direction: column;
     gap: 40px;
-    min-width: 0; /* mencegah overflow di grid */
+    min-width: 0; /* Mencegah overflow */
 }
 
 /* ===== ABOUT ===== */
@@ -630,13 +628,16 @@ ul {
 }
 
 /* ===== WORK ===== */
+/* PERBAIKAN: Batasi lebar work-stack */
 .work-stack {
     background: var(--paper-white);
     border-radius: 6px 20px 20px 6px;
     padding: 30px;
     box-shadow: var(--shadow-float);
     position: relative;
-    height: auto; /* biarkan menyesuaikan konten */
+    height: auto;
+    width: 100%;
+    max-width: 100%; /* Tidak melebihi kolom */
 }
 .work-stack::before {
     content: '';
@@ -838,6 +839,7 @@ ul {
     .main-grid {
         grid-template-columns: 1fr;
         gap: 40px;
+        max-width: 700px; /* Lebih ketat di tablet */
     }
 }
 @media(max-width:600px) {
