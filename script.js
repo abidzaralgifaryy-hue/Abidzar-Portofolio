@@ -1,6 +1,6 @@
 /* ==================================================================
-   ADIZAREL — PORTFOLIO SCRIPT (v5)
-   Smooth scroll + scroll-spy + nav shadow + fade-in reveal + slider
+   ADIZAREL — PORTFOLIO SCRIPT (v6)
+   Smooth scroll + scroll-spy + nav shadow + fade-in reveal
    ================================================================== */
 
 // 1. SMOOTH SCROLL FOR NAV LINKS
@@ -58,7 +58,7 @@ window.addEventListener('scroll', () => {
 });
 
 // 4. FADE-IN ON SCROLL (subtle reveal)
-const fadeElements = document.querySelectorAll('.about-paper, .edu-card, .bubble, .clipboard, .work-stack, .photo-layers');
+const fadeElements = document.querySelectorAll('.about-paper, .edu-card, .bubble, .clipboard, .work-stack, .profile-card');
 if ('IntersectionObserver' in window) {
     const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -70,20 +70,5 @@ if ('IntersectionObserver' in window) {
     fadeElements.forEach(el => {
         el.classList.add('fade-in');
         fadeObserver.observe(el);
-    });
-}
-
-// 5. POSTER SLIDER NAVIGATION
-const slider = document.getElementById('posterSlider');
-const prevBtn = document.getElementById('posterPrev');
-const nextBtn = document.getElementById('posterNext');
-
-if (slider && prevBtn && nextBtn) {
-    const cardWidth = slider.querySelector('.poster-card').offsetWidth + 16; // + gap
-    prevBtn.addEventListener('click', () => {
-        slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-    });
-    nextBtn.addEventListener('click', () => {
-        slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
     });
 }
