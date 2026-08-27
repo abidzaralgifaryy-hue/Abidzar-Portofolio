@@ -1,5 +1,5 @@
 /* ==================================================================
-   ADIZAREL — PORTFOLIO v6.3 (Compact Work Section)
+   ADIZAREL — PORTFOLIO v6.4 (Balanced Work Section)
    ================================================================== */
 :root {
     --paper-bg: #F3ECDD;
@@ -164,7 +164,7 @@ ul {
     grid-template-columns: 0.8fr 1.2fr;
     gap: 50px;
     align-items: center;
-    max-width: 900px; /* Lebih kecil agar seimbang */
+    max-width: 1000px;
     margin: 0 auto;
     width: 100%;
 }
@@ -187,8 +187,8 @@ ul {
 }
 .photo-layers {
     position: relative;
-    width: 200px;
-    height: 220px;
+    width: 210px;
+    height: 230px;
     margin-bottom: 14px;
 }
 .photo-frame {
@@ -242,7 +242,7 @@ ul {
 }
 .profile-role {
     font-family: var(--font-mono);
-    font-size: .55rem;
+    font-size: .6rem;
     color: var(--orange-dark);
     font-weight: 700;
     letter-spacing: .05em;
@@ -271,7 +271,7 @@ ul {
 .hero-title {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(4rem, 10vw, 7rem);
+    font-size: clamp(4.5rem, 12vw, 8rem);
     line-height: .85;
     color: var(--orange);
     text-transform: uppercase;
@@ -285,7 +285,7 @@ ul {
 }
 .hero-title .line2 {
     color: var(--army);
-    margin-left: 30px;
+    margin-left: 40px;
 }
 .deco-tape {
     position: absolute;
@@ -300,11 +300,11 @@ ul {
 
 /* ===== MAIN GRID ===== */
 .main-grid {
-    max-width: 900px; /* Dibatasi agar tidak melebar */
+    max-width: 1000px;
     margin: 0 auto;
     padding: 60px 5% 80px;
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Seimbang */
+    grid-template-columns: 1fr 1.1fr; /* Seimbang */
     gap: 40px;
     align-items: start;
 }
@@ -319,7 +319,7 @@ ul {
 .about-paper {
     background: var(--paper-white);
     border-radius: 4px;
-    padding: 24px;
+    padding: 26px;
     box-shadow: var(--shadow-float);
     position: relative;
     background-image: repeating-linear-gradient(transparent, transparent 29px, rgba(35, 40, 26, .05) 29px, rgba(35, 40, 26, .05) 30px);
@@ -352,7 +352,7 @@ ul {
 .about-heading {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: var(--army);
     text-transform: uppercase;
     margin-bottom: 12px;
@@ -365,7 +365,7 @@ ul {
 }
 .about-bio {
     color: var(--ink);
-    font-size: .85rem;
+    font-size: .9rem;
     line-height: 1.7;
 }
 .about-bio p + p {
@@ -383,7 +383,7 @@ ul {
 .sticker {
     font-family: var(--font-hand);
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.1rem;
     padding: 5px 14px;
     border-radius: 3px;
     box-shadow: var(--shadow-soft);
@@ -408,14 +408,14 @@ ul {
 .edu-card {
     background: var(--paper-cream);
     border-radius: 8px;
-    padding: 20px;
+    padding: 22px;
     box-shadow: var(--shadow-soft);
     border-left: 6px solid var(--army);
 }
 .edu-heading {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--army-dark);
     display: flex;
     align-items: center;
@@ -431,7 +431,7 @@ ul {
 }
 .edu-item .year {
     font-family: var(--font-mono);
-    font-size: .65rem;
+    font-size: .7rem;
     font-weight: 700;
     background: var(--paper-white);
     border: 1.5px solid var(--ink);
@@ -443,11 +443,11 @@ ul {
 .edu-item h5 {
     font-family: var(--font-body);
     font-weight: 700;
-    font-size: .85rem;
+    font-size: .9rem;
     margin-bottom: 4px;
 }
 .edu-item p {
-    font-size: .75rem;
+    font-size: .8rem;
     color: var(--muted);
 }
 
@@ -455,7 +455,7 @@ ul {
 .section-title {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: var(--army-dark);
     text-align: center;
     margin-bottom: 16px;
@@ -475,7 +475,7 @@ ul {
     gap: 16px;
 }
 .bubble {
-    padding: 16px;
+    padding: 18px;
     border-radius: 30px;
     box-shadow: var(--shadow-soft);
     position: relative;
@@ -491,29 +491,29 @@ ul {
 .soft-item {
     background: var(--paper-white);
     border-radius: 10px;
-    padding: 8px 10px;
+    padding: 10px 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     box-shadow: var(--shadow-soft);
-    min-width: 60px;
+    min-width: 68px;
 }
 .soft-icon {
-    width: 32px;
-    height: 32px;
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .soft-icon img {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
 }
 .soft-item span {
     font-family: var(--font-mono);
-    font-size: .55rem;
+    font-size: .6rem;
     color: var(--ink);
     font-weight: 700;
     text-align: center;
@@ -529,8 +529,8 @@ ul {
 .skill-tag {
     font-family: var(--font-body);
     font-weight: 700;
-    font-size: .7rem;
-    padding: 6px 12px;
+    font-size: .75rem;
+    padding: 6px 14px;
     border-radius: 20px;
     box-shadow: var(--shadow-soft);
 }
@@ -552,7 +552,7 @@ ul {
 .clipboard {
     background: var(--board-tan);
     border-radius: 16px;
-    padding: 24px;
+    padding: 26px;
     box-shadow: var(--shadow-float);
     position: relative;
 }
@@ -561,8 +561,8 @@ ul {
     top: -18px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 30px;
+    width: 65px;
+    height: 32px;
     background: linear-gradient(145deg, #d8d3c4, #a09b8e);
     border-radius: 6px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
@@ -574,8 +574,8 @@ ul {
     bottom: -8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 16px;
-    height: 12px;
+    width: 18px;
+    height: 14px;
     background: #b0aa9c;
     border-radius: 0 0 6px 6px;
 }
@@ -589,7 +589,7 @@ ul {
 .board-heading {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--army-dark);
     margin-bottom: 16px;
     border-bottom: 3px solid var(--orange);
@@ -622,7 +622,7 @@ ul {
     margin-bottom: 4px;
 }
 .exp-desc p {
-    font-size: .75rem;
+    font-size: .78rem;
     color: var(--muted);
 }
 
@@ -630,13 +630,12 @@ ul {
 .work-stack {
     background: var(--paper-white);
     border-radius: 6px 20px 20px 6px;
-    padding: 20px;
+    padding: 26px;
     box-shadow: var(--shadow-float);
     position: relative;
     height: auto;
-    width: 100%;
-    max-width: 550px; /* Penting: batasi lebar */
-    margin: 0 auto;   /* Tengahkan di kolom kanan */
+    width: 100%; /* Pas dengan kolom */
+    max-width: 100%;
 }
 .work-stack::before {
     content: '';
@@ -658,18 +657,18 @@ ul {
 }
 .work-sub {
     color: var(--muted);
-    font-size: .8rem;
-    margin-bottom: 14px;
+    font-size: .85rem;
+    margin-bottom: 18px;
     text-align: center;
 }
 .work-entry {
     display: grid;
-    grid-template-columns: 50px 1fr auto;
-    gap: 10px;
+    grid-template-columns: 70px 1fr auto;
+    gap: 14px;
     align-items: center;
-    padding: 8px;
+    padding: 12px;
     border-radius: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     transition: transform .3s, box-shadow .3s;
 }
 .work-entry:hover {
@@ -687,8 +686,8 @@ ul {
     border: 1.5px dashed rgba(35, 40, 26, .2);
 }
 .work-thumb {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     border-radius: 6px;
     overflow: hidden;
     position: relative;
@@ -707,29 +706,29 @@ ul {
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     background: rgba(35, 40, 26, .2);
 }
 .work-info h5 {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: .85rem;
+    font-size: .95rem;
     margin-bottom: 2px;
 }
 .work-info p {
-    font-size: .7rem;
+    font-size: .78rem;
     color: var(--muted);
 }
 .work-go {
-    width: 26px;
-    height: 26px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     background: var(--ink);
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: .8rem;
+    font-size: .9rem;
     transition: background .3s, transform .3s;
 }
 .work-entry:hover .work-go {
@@ -739,11 +738,11 @@ ul {
 .stack-divider {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin: 16px 0 10px;
+    gap: 10px;
+    margin: 16px 0 12px;
     color: var(--muted);
     font-family: var(--font-mono);
-    font-size: .6rem;
+    font-size: .7rem;
     text-transform: uppercase;
     letter-spacing: .1em;
 }
@@ -758,8 +757,8 @@ ul {
 /* === Galeri Poster (Slider Horizontal) === */
 .poster-gallery {
     display: flex;
-    flex-wrap: nowrap; /* Kunci: jangan wrap */
-    gap: 12px;
+    flex-wrap: nowrap;
+    gap: 16px;
     overflow-x: auto;
     padding: 8px 4px 16px;
     scrollbar-width: none;
@@ -771,13 +770,13 @@ ul {
     display: none;
 }
 .poster-card {
-    flex: 0 0 150px; /* Ukuran lebih kecil */
+    flex: 0 0 220px; /* Ukuran wajar */
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 10px;
+    padding: 12px;
     border-radius: 10px;
     background: var(--paper-cream);
     box-shadow: var(--shadow-soft);
@@ -788,15 +787,15 @@ ul {
 }
 .poster-card .work-thumb {
     width: 100%;
-    height: 130px; /* Tinggi lebih pendek */
-    margin-bottom: 8px;
+    height: 160px; /* Tinggi wajar */
+    margin-bottom: 10px;
     border-radius: 8px;
 }
 .poster-card .work-info h5 {
-    font-size: .8rem;
+    font-size: .95rem;
 }
 .poster-card .work-info p {
-    font-size: .65rem;
+    font-size: .78rem;
 }
 
 /* ===== FOOTER ===== */
@@ -842,9 +841,6 @@ ul {
         gap: 40px;
         max-width: 600px;
     }
-    .work-stack {
-        max-width: 100%;
-    }
 }
 @media(max-width:600px) {
     .nav-links {
@@ -855,29 +851,29 @@ ul {
         max-width: 300px;
     }
     .photo-layers {
-        width: 160px;
-        height: 180px;
+        width: 180px;
+        height: 200px;
     }
     .hero-title {
         font-size: clamp(4rem, 18vw, 6rem);
     }
     .clipboard {
-        padding: 16px;
+        padding: 18px;
     }
     .board-inner {
-        padding: 14px;
+        padding: 16px;
     }
     .work-entry {
-        grid-template-columns: 40px 1fr auto;
+        grid-template-columns: 50px 1fr auto;
     }
     .work-thumb {
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
     }
     .poster-card {
-        flex-basis: 130px;
+        flex-basis: 180px;
     }
     .poster-card .work-thumb {
-        height: 100px;
+        height: 130px;
     }
 }
