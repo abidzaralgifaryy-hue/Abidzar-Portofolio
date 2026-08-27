@@ -1,5 +1,5 @@
 /* ==================================================================
-   ADIZAREL — PORTFOLIO SCRIPT (v4)
+   ADIZAREL — PORTFOLIO SCRIPT (v5)
    Smooth scroll + scroll-spy + nav shadow + fade-in reveal + slider
    ================================================================== */
 
@@ -58,7 +58,7 @@ window.addEventListener('scroll', () => {
 });
 
 // 4. FADE-IN ON SCROLL (subtle reveal)
-const fadeElements = document.querySelectorAll('.about-paper, .id-card, .sticky-notes, .software-panel, .work-stack');
+const fadeElements = document.querySelectorAll('.about-paper, .edu-card, .bubble, .clipboard, .work-stack, .photo-layers');
 if ('IntersectionObserver' in window) {
     const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -79,7 +79,7 @@ const prevBtn = document.getElementById('posterPrev');
 const nextBtn = document.getElementById('posterNext');
 
 if (slider && prevBtn && nextBtn) {
-    const cardWidth = slider.querySelector('.poster-card').offsetWidth + 20; // + gap
+    const cardWidth = slider.querySelector('.poster-card').offsetWidth + 16; // + gap
     prevBtn.addEventListener('click', () => {
         slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
     });
