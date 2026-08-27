@@ -1,5 +1,5 @@
 /* ==================================================================
-   ADIZAREL — PORTFOLIO v3 (Scrapbook-Desk)
+   ADIZAREL — PORTFOLIO v4 (Scrapbook Optimized)
    ================================================================== */
 :root {
     --paper-bg: #F3ECDD;
@@ -150,7 +150,7 @@ ul {
     transform: rotate(12deg) scale(1.05);
 }
 
-/* ===== LANDING ===== */
+/* ===== LANDING (Tanpa Foto) ===== */
 .landing {
     min-height: 100vh;
     display: flex;
@@ -185,19 +185,19 @@ ul {
 .portfolio-title {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(4rem, 12vw, 8rem);
+    font-size: clamp(4rem, 14vw, 9rem);
     line-height: .85;
     color: var(--orange);
     text-transform: uppercase;
     letter-spacing: -.02em;
     position: relative;
-    text-shadow: 3px 3px 0 rgba(35, 40, 26, .08);
+    text-shadow: 5px 5px 0 rgba(35, 40, 26, .1);
 }
 .portfolio-title .star {
     position: absolute;
-    top: -10px;
-    right: -30px;
-    font-size: 2.2rem;
+    top: -15px;
+    right: -40px;
+    font-size: 2.8rem;
     color: var(--army);
     transform: rotate(20deg);
     animation: twinkle 2s infinite alternate;
@@ -213,55 +213,62 @@ ul {
 .portfolio-title .line-break {
     display: block;
 }
-.landing-photo-frame {
-    position: relative;
-    display: inline-block;
-    margin: 30px auto 20px;
-    width: 220px;
-    height: 280px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow-float);
-    transform: rotate(2deg);
-    background: var(--board-tan);
-}
-.landing-photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.landing-photo-frame .tape {
+/* Dekorasi scrapbook pada landing */
+.tape-deco {
     position: absolute;
-    width: 70px;
-    height: 22px;
-    background: rgba(255, 122, 0, .55);
+    width: 100px;
+    height: 25px;
+    background: rgba(255, 122, 0, .5);
     border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.1);
     z-index: 2;
 }
-.tape.tl {
-    top: -8px;
-    left: 20px;
-    transform: rotate(-12deg);
+.tape-top {
+    top: -10px;
+    left: -40px;
+    transform: rotate(-10deg);
 }
-.tape.tr {
-    top: -6px;
-    right: 20px;
-    transform: rotate(10deg);
-    background: rgba(75, 83, 32, .45);
+.tape-bottom {
+    bottom: -10px;
+    right: -40px;
+    transform: rotate(8deg);
+    background: rgba(75, 83, 32, .4);
+}
+.doodle {
+    position: absolute;
+    font-size: 2rem;
+    color: var(--army);
+    opacity: .6;
+    z-index: 1;
+}
+.doodle-star {
+    top: 15%;
+    left: -50px;
+    transform: rotate(-15deg);
+    color: var(--orange);
+}
+.doodle-arrow {
+    bottom: 10%;
+    right: -60px;
+    transform: rotate(20deg);
+}
+.doodle-circle {
+    top: 20%;
+    right: -30px;
+    font-size: 1.5rem;
+    color: var(--ink);
 }
 .landing-sub {
     font-family: var(--font-hand);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: var(--army-dark);
-    margin-top: 10px;
+    margin-top: 15px;
+    display: inline-block;
+    border-bottom: 2px dashed var(--orange);
+    padding-bottom: 4px;
 }
 .landing-sub i {
     color: var(--orange);
-}
-.landing-deco {
-    position: absolute;
-    border-radius: 50%;
-    opacity: .4;
 }
 
 /* ===== ABOUT SECTION ===== */
@@ -527,21 +534,47 @@ ul {
     text-align: center;
     margin-bottom: 40px;
 }
+/* Judul Skills yang lebih artistik */
 .section-heading h2 {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 2.6rem;
-    color: var(--army);
+    font-size: 2.4rem;
+    color: var(--army-dark);
     display: inline-block;
-    background: var(--paper-white);
-    padding: 10px 30px;
+    background: linear-gradient(135deg, var(--orange-sticky) 0%, var(--orange-light) 50%, var(--army-sticky) 100%);
+    padding: 14px 36px;
     border-radius: 12px;
-    box-shadow: var(--shadow-soft);
-    transform: rotate(-1deg);
+    box-shadow: var(--shadow-soft), 3px 3px 0 var(--orange-dark);
+    transform: rotate(-2deg);
     position: relative;
+    border: 2px solid var(--army);
+}
+.section-heading h2::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 10px;
+    width: 40px;
+    height: 20px;
+    background: rgba(255, 255, 255, .5);
+    border-radius: 2px;
+    transform: rotate(-8deg);
+}
+.section-heading h2::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: 20px;
+    width: 50px;
+    height: 16px;
+    background: rgba(75, 83, 32, .3);
+    border-radius: 2px;
+    transform: rotate(5deg);
 }
 .section-heading h2 i {
     color: var(--orange);
+    margin-right: 8px;
+    font-size: 1.4rem;
 }
 .skills-board {
     display: grid;
@@ -834,6 +867,92 @@ ul {
     background: repeating-linear-gradient(to right, var(--muted) 0 4px, transparent 4px 8px);
 }
 
+/* ===== POSTER SLIDER ===== */
+.poster-slider-wrapper {
+    position: relative;
+    margin: 10px 0 20px;
+}
+.poster-slider {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 10px 5px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--army) var(--paper-cream);
+}
+.poster-slider::-webkit-scrollbar {
+    height: 8px;
+}
+.poster-slider::-webkit-scrollbar-track {
+    background: var(--paper-cream);
+    border-radius: 4px;
+}
+.poster-slider::-webkit-scrollbar-thumb {
+    background: var(--army);
+    border-radius: 4px;
+}
+.poster-card {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 0;
+    background: var(--paper-cream);
+    box-shadow: var(--shadow-soft);
+    transition: transform .3s, box-shadow .3s;
+}
+.poster-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-float);
+}
+.poster-card .work-thumb {
+    width: 100%;
+    height: 220px;
+    margin-bottom: 14px;
+    border-radius: 8px;
+}
+.poster-card .work-info h5 {
+    font-size: 1.1rem;
+}
+.poster-card .work-info p {
+    font-size: .8rem;
+}
+/* Tombol navigasi slider */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--army);
+    color: var(--paper-white);
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background .3s, transform .2s;
+    box-shadow: var(--shadow-soft);
+}
+.slider-btn:hover {
+    background: var(--orange);
+    transform: translateY(-50%) scale(1.1);
+}
+.slider-prev {
+    left: -15px;
+}
+.slider-next {
+    right: -15px;
+}
+
 /* ===== FOOTER ===== */
 .footer-stamp {
     text-align: center;
@@ -903,23 +1022,62 @@ ul {
         grid-template-columns: 1fr;
     }
 }
-@media(max-width:560px) {
+@media(max-width:600px) {
     .nav-links {
         display: none;
     }
     .landing-photo-frame {
-        width: 180px;
-        height: 230px;
+        display: none;
     }
     .portfolio-title {
-        font-size: clamp(3rem, 14vw, 5rem);
+        font-size: clamp(3rem, 16vw, 5rem);
     }
-    .work-entry {
-        grid-template-columns: 70px 1fr auto;
+    .poster-slider {
+        gap: 12px;
     }
-    .work-thumb {
-        width: 70px;
-        height: 70px;
+    .poster-card {
+        flex-basis: 240px;
+    }
+    .poster-card .work-thumb {
+        height: 180px;
+    }
+    .slider-prev {
+        left: 5px;
+    }
+    .slider-next {
+        right: 5px;
+    }
+    .slider-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+    .id-card-wrap {
+        padding-top: 50px;
+        width: 100%;
+    }
+    .id-card {
+        padding: 14px;
+    }
+    .id-card-inner {
+        padding: 10px;
+    }
+    .about-paper {
+        padding: 24px 18px;
+    }
+    .about-heading {
+        font-size: 1.8rem;
+    }
+    .about-bio {
+        font-size: .88rem;
+    }
+    .sticker {
+        font-size: .95rem;
+        padding: 4px 12px;
+    }
+    .section-heading h2 {
+        font-size: 1.8rem;
+        padding: 10px 20px;
     }
     .software-grid {
         grid-template-columns: repeat(2, 1fr);
