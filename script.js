@@ -1,5 +1,12 @@
 /* ==================================================================
    ADIZAREL — PORTFOLIO SCRIPT
+   ------------------------------------------------------------------
+   INTEGRATION NOTE: the original script.js targeted a dark-mode
+   toggle button, a "#projects" CTA and a "read more" button — none
+   of which exist in this markup, so those handlers never actually
+   fired. They're replaced here with logic that matches the real
+   nav: smooth scrolling to each section, and an active-link
+   indicator (the orange underline) that updates as you scroll.
    ================================================================== */
 
 // 1. SMOOTH SCROLL FOR NAV LINKS
