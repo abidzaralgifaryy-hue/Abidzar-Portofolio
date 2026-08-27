@@ -31,7 +31,7 @@
         </div>
     </header>
 
-    <!-- LANDING PAGE -->
+    <!-- LANDING PAGE (Tanpa Foto) -->
     <section class="landing" id="intro">
         <div class="landing-content">
             <span class="landing-handle">@adizarel</span>
@@ -41,14 +41,16 @@
                     <span class="line-break">FOLIO</span>
                     <i class="ph-fill ph-star star"></i>
                 </h1>
-            </div>
-            <div class="landing-photo-frame">
-                <img src="IMG_4270.jpeg" alt="Abidzar Algifary">
-                <span class="tape tl"></span>
-                <span class="tape tr"></span>
+                <!-- Dekorasi scrapbook -->
+                <div class="tape-deco tape-top"></div>
+                <div class="tape-deco tape-bottom"></div>
+                <div class="doodle doodle-star">✦</div>
+                <div class="doodle doodle-arrow">➳</div>
+                <div class="doodle doodle-circle">○</div>
             </div>
             <p class="landing-sub">Selamat datang di dunia kreatifku <i class="ph-fill ph-heart"></i></p>
         </div>
+        <!-- Elemen dekoratif kecil di sisi -->
         <div class="deco-pin" style="top:15%;left:10%;"></div>
         <div class="deco-pin" style="bottom:20%;right:12%;"></div>
         <div class="deco-paperclip" style="top:30%;right:8%;transform:rotate(15deg);"></div>
@@ -149,6 +151,7 @@
             <h3 class="work-heading"><i class="ph-fill ph-seal-check"></i> Portfolio Video</h3>
             <p class="work-sub">Beberapa karya Typography &amp; Mograph pilihan yang sudah ku buat.</p>
 
+            <!-- Video Entries (tetap list vertikal) -->
             <a class="work-entry tint-orange" href="https://www.instagram.com/reel/DZ91lYPSzGQ/?igsh=MTM0b3F3dnptODZ0eQ==" target="_blank">
                 <div class="work-thumb">
                     <img src="quality_restoration_20260708092438672.png" alt="Reel 1">
@@ -173,31 +176,38 @@
                 <div class="work-go"><i class="ph-bold ph-arrow-up-right"></i></div>
             </a>
 
+            <!-- Slider Poster -->
             <div class="stack-divider">Graphic design</div>
             <p class="work-sub" style="margin-top:-8px;">Eksperimen desain Social Media.</p>
+            
+            <div class="poster-slider-wrapper">
+                <button class="slider-btn slider-prev" id="posterPrev"><i class="ph-bold ph-arrow-left"></i></button>
+                <div class="poster-slider" id="posterSlider">
+                    <a class="work-entry poster-card tint-cream" href="https://instagram.com" target="_blank">
+                        <div class="work-thumb"><img src="Arap.png" alt="Poster 1"></div>
+                        <div class="work-info">
+                            <h5>Poster 01</h5>
+                            <p>Social media design experiment</p>
+                        </div>
+                    </a>
 
-            <div class="work-entry tint-cream">
-                <div class="work-thumb"><img src="Arap.png" alt="Poster 1"></div>
-                <div class="work-info">
-                    <h5>Poster 01</h5>
-                    <p>Social media design experiment</p>
-                </div>
-            </div>
+                    <a class="work-entry poster-card tint-orange" href="https://instagram.com" target="_blank">
+                        <div class="work-thumb"><img src="quality_restoration_20260707183213934.jpeg" alt="Poster 2"></div>
+                        <div class="work-info">
+                            <h5>Poster 02</h5>
+                            <p>Social media design experiment</p>
+                        </div>
+                    </a>
 
-            <div class="work-entry tint-orange">
-                <div class="work-thumb"><img src="quality_restoration_20260707183213934.jpeg" alt="Poster 2"></div>
-                <div class="work-info">
-                    <h5>Poster 02</h5>
-                    <p>Social media design experiment</p>
+                    <a class="work-entry poster-card tint-army" href="https://instagram.com" target="_blank">
+                        <div class="work-thumb"><img src="SEAN.png" alt="Poster 3"></div>
+                        <div class="work-info">
+                            <h5>Poster 03</h5>
+                            <p>Social media design experiment</p>
+                        </div>
+                    </a>
                 </div>
-            </div>
-
-            <div class="work-entry tint-army">
-                <div class="work-thumb"><img src="SEAN.png" alt="Poster 3"></div>
-                <div class="work-info">
-                    <h5>Poster 03</h5>
-                    <p>Social media design experiment</p>
-                </div>
+                <button class="slider-btn slider-next" id="posterNext"><i class="ph-bold ph-arrow-right"></i></button>
             </div>
         </div>
     </section>
