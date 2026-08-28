@@ -130,6 +130,203 @@ ul {
     z-index: 3;
 }
 
+/* ===== NEW SCRAPBOOK ELEMENTS (added to HTML) ===== */
+/* scattered star stickers — a/b/c placed individually so they read as
+   loosely tossed-on collage pieces rather than a repeating pattern */
+.deco-star {
+    position: absolute;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    filter: drop-shadow(0 3px 4px rgba(35, 26, 10, .3));
+    pointer-events: none;
+    z-index: 2;
+}
+.deco-star-a { width: 26px; height: 26px; background: var(--mustard); top: 14%; left: 4%; transform: rotate(-12deg); }
+.deco-star-b { width: 18px; height: 18px; background: var(--orange); top: 62%; right: 5%; transform: rotate(20deg); }
+.deco-star-c { width: 14px; height: 14px; background: var(--army); top: 30%; right: 14%; transform: rotate(-6deg); opacity: .85; }
+.deco-star-work { width: 24px; height: 24px; background: var(--mustard); top: -12px; right: 26px; transform: rotate(16deg); }
+
+/* hand-drawn scribble accent (a loose freehand loop, like a pen doodle) */
+.deco-scribble {
+    position: absolute;
+    width: 70px;
+    height: 40px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: .55;
+}
+.deco-scribble::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2.5px solid var(--army-dark);
+    border-radius: 50% 40% 60% 30% / 40% 50% 30% 60%;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+}
+.deco-scribble-a { bottom: 8%; left: 8%; transform: rotate(-18deg); }
+
+/* paperclip pinned to the photo card */
+.deco-paperclip {
+    position: absolute;
+    top: -16px;
+    right: 22px;
+    font-size: 2rem;
+    color: var(--muted);
+    transform: rotate(24deg);
+    filter: drop-shadow(0 3px 3px rgba(35, 26, 10, .35));
+    z-index: 6;
+}
+
+/* second tape strip, bottom-right corner of the photo card */
+.tape-deco-br {
+    top: auto;
+    left: auto;
+    bottom: -12px;
+    right: 26px;
+    width: 56px;
+    transform: rotate(8deg);
+}
+
+/* hand-drawn wavy underline beneath the hero title */
+.title-underline {
+    display: block;
+    width: min(320px, 70%);
+    height: 22px;
+    margin: 4px auto 0;
+    overflow: visible;
+}
+.title-underline path {
+    fill: none;
+    stroke: var(--orange);
+    stroke-width: 5;
+    stroke-linecap: round;
+    filter: drop-shadow(0 2px 0 rgba(41, 53, 15, .25));
+}
+
+/* folded paper corner on the About Me card */
+.corner-fold {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 34px;
+    height: 34px;
+    background: linear-gradient(135deg, var(--paper-cream) 50%, var(--kraft-dark) 50%);
+    clip-path: polygon(100% 0%, 0% 0%, 100% 100%);
+    box-shadow: -3px 3px 6px rgba(35, 26, 10, .2);
+    z-index: 4;
+}
+
+/* pushpin on the education card */
+.deco-pushpin {
+    position: absolute;
+    top: -14px;
+    left: 24px;
+    font-size: 1.9rem;
+    color: var(--orange-dark);
+    transform: rotate(-8deg);
+    filter: drop-shadow(0 3px 3px rgba(35, 26, 10, .35));
+    z-index: 6;
+}
+
+/* washi tape strip across the skills bubbles */
+.washi-strip {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 130px;
+    height: 22px;
+    background: repeating-linear-gradient(45deg, rgba(255, 122, 0, .55) 0 8px, rgba(240, 180, 41, .55) 8px 16px);
+    box-shadow: 0 2px 5px rgba(35, 26, 10, .18);
+    z-index: 3;
+    opacity: .9;
+}
+
+/* small tape holding the footer stamp */
+.footer-tape {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 64px;
+    height: 18px;
+    background: rgba(69, 89, 31, .45);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12);
+}
+
+/* full-width torn kraft strip separating hero from the content, and
+   content from the footer — the “page break” of the scrapbook */
+.torn-divider {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    background: var(--kraft);
+    box-shadow: 0 -2px 8px rgba(35, 26, 10, .12) inset;
+    clip-path: polygon(
+        0% 100%, 2% 20%, 6% 70%, 10% 10%, 14% 60%, 18% 5%, 22% 55%, 26% 15%, 30% 65%,
+        34% 10%, 38% 58%, 42% 5%, 46% 62%, 50% 15%, 54% 55%, 58% 8%, 62% 60%,
+        66% 12%, 70% 65%, 74% 5%, 78% 58%, 82% 15%, 86% 55%, 90% 10%, 94% 60%, 98% 15%, 100% 100%
+    );
+    z-index: 1;
+}
+.torn-divider-flip {
+    transform: scaleY(-1);
+    margin-top: -2px;
+}
+
+/* handwritten “chapter / page” journal tag above each section heading */
+.page-tag {
+    display: inline-block;
+    font-family: var(--font-hand);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--orange-dark);
+    margin-bottom: 6px;
+    transform: rotate(-3deg);
+    position: relative;
+}
+.page-tag::after {
+    content: '';
+    position: absolute;
+    left: -3px;
+    right: -6px;
+    bottom: -3px;
+    height: 2px;
+    background: repeating-linear-gradient(to right, var(--orange-dark) 0 5px, transparent 5px 9px);
+    opacity: .7;
+}
+.page-tag-center {
+    display: block;
+    text-align: center;
+}
+.page-tag-center::after {
+    left: 50%;
+    right: auto;
+    width: 90px;
+    transform: translateX(-50%);
+}
+
+/* mini washi-tape corner on poster cards, alternating tone via nth-child */
+.mini-tape {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    width: 46px;
+    height: 16px;
+    transform: translateX(-50%) rotate(-4deg);
+    background: rgba(255, 122, 0, .55);
+    box-shadow: 0 2px 4px rgba(35, 26, 10, .18);
+    z-index: 3;
+}
+.poster-card:nth-child(2) .mini-tape {
+    background: rgba(69, 89, 31, .5);
+    transform: translateX(-50%) rotate(3deg);
+}
+.poster-card:nth-child(3) .mini-tape {
+    background: rgba(240, 180, 41, .65);
+    transform: translateX(-50%) rotate(-2deg);
+}
+
 /* ===== NAV ===== */
 .site-nav {
     position: fixed;
@@ -300,17 +497,17 @@ ul {
     align-self: center;
     background: var(--paper-white);
     border: 1.5px dashed var(--army);
-    padding: 7px 18px;
-    border-radius: 30px;
+    padding: 9px 26px;
     font-family: var(--font-mono);
     font-size: .7rem;
     font-weight: 700;
     color: var(--army-dark);
     text-transform: uppercase;
     letter-spacing: .04em;
-    box-shadow: var(--shadow-soft);
+    box-shadow: var(--shadow-sticker);
     animation: heroFadeUp .7s var(--ease) both;
-    transform: rotate(-1deg);
+    transform: rotate(-1.5deg);
+    clip-path: polygon(2.5% 0%, 97.5% 0%, 100% 50%, 97.5% 100%, 2.5% 100%, 0% 50%);
 }
 .pulse-dot {
     width: 8px;
@@ -411,8 +608,9 @@ ul {
     border: 2px solid var(--orange-light);
     width: fit-content;
     max-width: 340px;
-    margin: 0 auto;
+    margin: 0 auto 18px;
     animation: heroFadeUpRotate .85s var(--ease) .1s both;
+    overflow: visible;
 }
 .photo-layers {
     position: relative;
@@ -520,19 +718,24 @@ ul {
     font-weight: 800;
     font-size: clamp(4.5rem, 12vw, 8rem);
     line-height: .85;
-    color: var(--orange);
     text-transform: uppercase;
     letter-spacing: -.04em;
-    text-shadow: 5px 5px 0 rgba(41, 53, 15, .18);
     position: relative;
 }
 .hero-title .line1,
 .hero-title .line2 {
     display: block;
 }
+/* cut-paper lettering: solid flat colour + a solid offset duplicate,
+   mimicking two layers of construction paper stacked and glued */
+.hero-title .line1 {
+    color: var(--orange);
+    text-shadow: 5px 5px 0 var(--army-dark);
+}
 .hero-title .line2 {
-    color: var(--army-dark);
+    color: var(--army);
     margin-left: 40px;
+    text-shadow: 5px 5px 0 var(--orange-dark);
 }
 .deco-tape {
     position: absolute;
@@ -626,6 +829,7 @@ ul {
     padding: 34px 26px;
     box-shadow: var(--shadow-float);
     position: relative;
+    overflow: hidden;
     background-image: repeating-linear-gradient(transparent, transparent 29px, rgba(43, 36, 18, .06) 29px, rgba(43, 36, 18, .06) 30px);
     transform: rotate(-1deg);
 }
@@ -727,6 +931,13 @@ ul {
     box-shadow: var(--shadow-soft);
     border-left: 6px solid var(--army);
     position: relative;
+    margin-top: 16px;
+    transform: rotate(.8deg);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.edu-card:hover {
+    transform: rotate(0deg) translateY(-3px);
+    box-shadow: var(--shadow-float);
 }
 .edu-heading {
     font-family: var(--font-display);
@@ -788,6 +999,8 @@ ul {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    position: relative;
+    margin-top: 14px;
 }
 .bubble {
     padding: 18px;
@@ -887,6 +1100,7 @@ ul {
     padding: 26px;
     box-shadow: var(--shadow-float);
     position: relative;
+    transform: rotate(-.8deg);
 }
 .clip {
     position: absolute;
@@ -913,11 +1127,12 @@ ul {
 }
 .board-inner {
     background: var(--paper-white);
-    border-radius: 4px;
-    padding: 22px 20px;
+    padding: 26px 22px 22px;
     box-shadow: var(--shadow-soft);
     background-image: repeating-linear-gradient(transparent, transparent 29px, rgba(43, 36, 18, .06) 29px, rgba(43, 36, 18, .06) 30px);
 }
+/* .torn-edge (defined earlier as a reusable utility) clips this sheet
+   into a genuinely torn-paper silhouette instead of a plain rectangle */
 .board-heading {
     font-family: var(--font-display);
     font-weight: 800;
@@ -987,19 +1202,32 @@ ul {
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 4px;
     background: var(--paper-cream);
     z-index: -1;
     transform: rotate(1deg) translate(4px, 5px);
+    clip-path: polygon(
+        0% 3%, 4% 0%, 8% 3%, 12% .5%, 16% 3%, 20% 0%, 24% 2.5%, 28% 0%, 32% 3%, 36% .5%,
+        40% 3%, 44% 0%, 48% 2.5%, 52% 0%, 56% 3%, 60% .5%, 64% 3%, 68% 0%, 72% 2.5%, 76% 0%,
+        80% 3%, 84% .5%, 88% 3%, 92% 0%, 96% 2.5%, 100% 0%,
+        100% 97%, 96% 100%, 92% 97.5%, 88% 100%, 84% 97%, 80% 100%, 76% 97.5%, 72% 100%,
+        68% 97%, 64% 100%, 60% 97.5%, 56% 100%, 52% 97%, 48% 100%, 44% 97.5%, 40% 100%,
+        36% 97%, 32% 100%, 28% 97.5%, 24% 100%, 20% 97%, 16% 100%, 12% 97.5%, 8% 100%, 4% 97%, 0% 100%
+    );
 }
 .work-stack::after {
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 4px;
     background: var(--board-tan);
     z-index: -2;
     transform: rotate(-1deg) translate(-4px, 6px);
+    clip-path: polygon(
+        0% 4%, 5% 0%, 10% 4%, 15% .5%, 20% 4%, 25% 0%, 30% 3%, 35% 0%, 40% 4%, 45% .5%,
+        50% 4%, 55% 0%, 60% 3%, 65% 0%, 70% 4%, 75% .5%, 80% 4%, 85% 0%, 90% 3%, 95% 0%, 100% 4%,
+        100% 96%, 95% 100%, 90% 96.5%, 85% 100%, 80% 97%, 75% 100%, 70% 96.5%, 65% 100%,
+        60% 97%, 55% 100%, 50% 96.5%, 45% 100%, 40% 97%, 35% 100%, 30% 96.5%, 25% 100%,
+        20% 97%, 15% 100%, 10% 96.5%, 5% 100%, 0% 96%
+    );
 }
 .work-stack > .section-title {
     margin-top: -6px;
@@ -1119,21 +1347,27 @@ ul {
     display: none;
 }
 .poster-card {
+    position: relative;
     flex: 0 0 220px;
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 12px;
+    padding: 16px 12px 12px;
     border-radius: 8px;
     background: var(--paper-cream);
     box-shadow: var(--shadow-soft);
-    transition: transform .3s;
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
     border: 1.5px dashed rgba(43, 36, 18, .2);
+    margin-top: 6px;
+    transform: rotate(-2deg);
 }
+.poster-card:nth-child(2) { transform: rotate(1.5deg); }
+.poster-card:nth-child(3) { transform: rotate(-1deg); }
 .poster-card:hover {
-    transform: translateY(-4px) rotate(-1deg);
+    transform: translateY(-6px) rotate(0deg);
+    box-shadow: var(--shadow-float);
 }
 .poster-card .work-thumb {
     width: 100%;
@@ -1157,13 +1391,15 @@ ul {
 /* ===== FOOTER ===== */
 .footer-stamp {
     text-align: center;
-    padding: 30px 0 50px;
+    padding: 34px 0 54px;
+    margin: 20px 5% 0;
     font-family: var(--font-display);
     font-weight: 800;
     letter-spacing: .35em;
     color: var(--army-dark);
     font-size: 1.2rem;
     position: relative;
+    border-top: 2px dashed rgba(43, 36, 18, .25);
 }
 .footer-stamp::before {
     content: '✂';
