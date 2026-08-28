@@ -16,6 +16,9 @@
     --orange-dark: #C95E00;
     --orange-light: #FFD9A3;
     --orange-sticky: #FFE3B8;
+    --green-mid: #96B36B;
+    --orange-deep: #E08A3D;
+    --green-deep: #56642B;
     --shadow-soft: 0 6px 16px rgba(35, 40, 26, .14);
     --shadow-float: 6px 14px 30px rgba(35, 40, 26, .22);
     --shadow-hard: 4px 4px 0 var(--ink);
@@ -431,6 +434,40 @@ ul {
     border-radius: 2px;
     transform: rotate(-4deg);
 }
+/* Dekorasi tambahan di sekitar judul PORTFOLIO */
+.title-tape {
+    position: absolute;
+    width: 84px;
+    height: 24px;
+    border-radius: 2px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    z-index: 2;
+}
+.tape-tl {
+    top: -20px;
+    left: 6%;
+    background: rgba(255, 122, 0, .45);
+    transform: rotate(-9deg);
+}
+.title-doodle {
+    position: absolute;
+    z-index: 2;
+    font-size: 1.6rem;
+    line-height: 1;
+}
+.doodle-star {
+    top: -12px;
+    right: 8%;
+    color: var(--army);
+    transform: rotate(12deg);
+}
+.doodle-swirl {
+    bottom: -18px;
+    right: 22%;
+    color: var(--orange);
+    font-size: 1.15rem;
+    transform: rotate(-16deg);
+}
 
 /* ===== MAIN GRID ===== */
 .main-grid {
@@ -636,7 +673,7 @@ ul {
     align-items: center;
     gap: 6px;
     box-shadow: var(--shadow-soft);
-    min-width: 68px;
+    min-width: 78px;
 }
 .soft-icon {
     width: 38px;
@@ -685,6 +722,19 @@ ul {
     background: var(--paper-cream);
     color: var(--ink);
     border: 1.5px dashed var(--muted);
+}
+/* Warna tag skill baru (urutan: hijau medium, oranye tua, hijau tua, oranye muda) */
+.tag-green-mid {
+    background: var(--green-mid);
+    color: var(--ink);
+}
+.tag-orange-deep {
+    background: var(--orange-deep);
+    color: #FFF8EC;
+}
+.tag-green-deep {
+    background: var(--green-deep);
+    color: #F5F1DD;
 }
 
 /* ===== EXPERIENCE (CLIPBOARD) ===== */
@@ -926,9 +976,15 @@ ul {
 }
 .poster-card .work-thumb {
     width: 100%;
-    height: 160px; /* Tinggi wajar */
+    aspect-ratio: 4 / 5; /* Rasio standar IG (potrait) */
+    height: auto;
     margin-bottom: 10px;
     border-radius: 8px;
+}
+.poster-card .work-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Gambar terpotong rapi, tidak gepeng */
 }
 .poster-card .work-info h5 {
     font-size: .95rem;
@@ -1018,13 +1074,14 @@ ul {
     .poster-card {
         flex-basis: 180px;
     }
-    .poster-card .work-thumb {
-        height: 130px;
-    }
     .marquee-track span {
         font-size: .72rem;
     }
     .scroll-indicator {
+        display: none;
+    }
+    .title-tape,
+    .title-doodle {
         display: none;
     }
     .hero::before,
