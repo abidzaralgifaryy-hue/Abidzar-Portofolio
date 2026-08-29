@@ -254,6 +254,79 @@ ul {
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12);
 }
 
+/* ===== EXTRA SCATTERED COLLAGE ACCENTS ===== */
+/* small stars/tape sprinkled around section wrappers so the page reads
+   like loose pieces tossed onto a scrapbook spread, not just single cards */
+.about-section {
+    position: relative;
+}
+.about-section::after {
+    content: '';
+    position: absolute;
+    bottom: -14px;
+    right: 7%;
+    width: 20px;
+    height: 20px;
+    background: var(--orange);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    filter: drop-shadow(0 3px 3px rgba(35, 26, 10, .3));
+    transform: rotate(-16deg);
+    z-index: 3;
+    pointer-events: none;
+}
+.education-section {
+    position: relative;
+}
+.education-section::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    right: 8%;
+    width: 52px;
+    height: 17px;
+    background: rgba(255, 122, 0, .5);
+    border-radius: 2px;
+    transform: rotate(6deg);
+    box-shadow: 0 2px 5px rgba(35, 26, 10, .15);
+    z-index: 3;
+    pointer-events: none;
+}
+.skills-section {
+    position: relative;
+}
+.skills-section::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 6%;
+    width: 22px;
+    height: 22px;
+    background: var(--mustard);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    filter: drop-shadow(0 3px 3px rgba(35, 26, 10, .3));
+    transform: rotate(10deg);
+    z-index: 3;
+    pointer-events: none;
+}
+.experience-section {
+    position: relative;
+}
+.experience-section::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 3%;
+    width: 16px;
+    height: 16px;
+    background: var(--army);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    filter: drop-shadow(0 2px 3px rgba(35, 26, 10, .3));
+    transform: rotate(-20deg);
+    opacity: .85;
+    z-index: 3;
+    pointer-events: none;
+}
+
 /* full-width torn kraft strip separating hero from the content, and
    content from the footer — the “page break” of the scrapbook */
 .torn-divider {
@@ -721,21 +794,42 @@ ul {
     text-transform: uppercase;
     letter-spacing: -.04em;
     position: relative;
+    z-index: 2;
+}
+.hero-title::before {
+    /* big hand-cut starburst sticker parked behind the wordmark, like the
+       reference's bold star accent beside the name */
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -4%;
+    width: 92px;
+    height: 92px;
+    background: var(--mustard);
+    clip-path: polygon(50% 0%,58% 20%,78% 6%,72% 28%,96% 26%,80% 42%,100% 54%,78% 58%,88% 80%,64% 68%,58% 92%,48% 72%,28% 90%,32% 66%,8% 72%,24% 52%,2% 40%,26% 36%,18% 12%,42% 24%);
+    filter: drop-shadow(0 4px 6px rgba(35, 26, 10, .32));
+    transform: rotate(8deg);
+    z-index: -1;
 }
 .hero-title .line1,
 .hero-title .line2 {
     display: block;
 }
 /* cut-paper lettering: solid flat colour + a solid offset duplicate,
-   mimicking two layers of construction paper stacked and glued */
+   mimicking two layers of construction paper stacked and glued, with a
+   thin sticker-outline stroke for extra pop */
 .hero-title .line1 {
     color: var(--orange);
     text-shadow: 5px 5px 0 var(--army-dark);
+    -webkit-text-stroke: 1.5px var(--army-dark);
+    transform: rotate(-1.2deg);
 }
 .hero-title .line2 {
     color: var(--army);
     margin-left: 40px;
     text-shadow: 5px 5px 0 var(--orange-dark);
+    -webkit-text-stroke: 1.5px var(--orange-dark);
+    transform: rotate(1deg);
 }
 .deco-tape {
     position: absolute;
@@ -923,17 +1017,47 @@ ul {
     transform: rotate(-1deg);
 }
 
-/* ===== EDUCATION ===== */
+/* ===== EDUCATION (torn notebook-grid paper, spiral-bound like a school binder) ===== */
 .edu-card {
-    background: var(--paper-cream);
-    border-radius: 4px 14px 14px 4px;
-    padding: 22px;
-    box-shadow: var(--shadow-soft);
-    border-left: 6px solid var(--army);
+    background: var(--paper-white);
+    background-image: repeating-linear-gradient(transparent, transparent 27px, rgba(43, 36, 18, .07) 27px, rgba(43, 36, 18, .07) 28px);
+    padding: 26px 22px 22px 36px;
+    box-shadow: var(--shadow-float);
     position: relative;
     margin-top: 16px;
     transform: rotate(.8deg);
     transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+    clip-path: polygon(
+        0% 3%, 4% 0%, 8% 3%, 12% .5%, 16% 3%, 20% 0%, 24% 2.5%, 28% 0%, 32% 3%, 36% .5%,
+        40% 3%, 44% 0%, 48% 2.5%, 52% 0%, 56% 3%, 60% .5%, 64% 3%, 68% 0%, 72% 2.5%, 76% 0%,
+        80% 3%, 84% .5%, 88% 3%, 92% 0%, 96% 2.5%, 100% 0%,
+        100% 97%, 96% 100%, 92% 97.5%, 88% 100%, 84% 97%, 80% 100%, 76% 97.5%, 72% 100%,
+        68% 97%, 64% 100%, 60% 97.5%, 56% 100%, 52% 97%, 48% 100%, 44% 97.5%, 40% 100%,
+        36% 97%, 32% 100%, 28% 97.5%, 24% 100%, 20% 97%, 16% 100%, 12% 97.5%, 8% 100%, 4% 97%, 0% 100%
+    );
+}
+.edu-card::before {
+    /* spiral-binder holes running down the left margin, like a torn-out notebook page */
+    content: '';
+    position: absolute;
+    top: 8%;
+    bottom: 8%;
+    left: 15px;
+    width: 8px;
+    background-image: radial-gradient(circle, var(--paper-bg) 3px, transparent 3.2px);
+    background-size: 100% 22px;
+    background-repeat: repeat-y;
+    box-shadow: 0 0 0 1.5px rgba(43, 36, 18, .16);
+    z-index: 1;
+    opacity: .85;
+}
+.edu-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--board-tan);
+    z-index: -1;
+    transform: rotate(-1.4deg) translate(-3px, 5px);
 }
 .edu-card:hover {
     transform: rotate(0deg) translateY(-3px);
@@ -941,27 +1065,38 @@ ul {
 }
 .edu-heading {
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: var(--army-dark);
-    display: flex;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--paper-white);
+    text-transform: uppercase;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    background: var(--army);
+    padding: 7px 18px;
+    transform: rotate(-1.5deg);
+    box-shadow: var(--shadow-sticker);
+    clip-path: polygon(0% 0%, 96% 0%, 100% 50%, 96% 100%, 0% 100%, 4% 50%);
+    position: relative;
+    z-index: 2;
 }
 .edu-heading i {
-    color: var(--orange);
+    color: var(--mustard);
 }
 .edu-item {
     display: flex;
     gap: 12px;
+    position: relative;
+    z-index: 2;
 }
 .edu-item .year {
     font-family: var(--font-mono);
     font-size: .7rem;
     font-weight: 700;
-    background: var(--paper-white);
-    border: 1.5px solid var(--ink);
+    background: var(--orange-sticky);
+    border: 1.5px dashed var(--orange-dark);
+    color: var(--orange-dark);
     border-radius: 3px;
     padding: 2px 8px;
     height: fit-content;
@@ -1442,7 +1577,19 @@ ul {
 }
 @media(max-width:600px) {
     .nav-links {
+        gap: 14px;
+        max-width: 44vw;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .nav-links::-webkit-scrollbar {
         display: none;
+    }
+    .nav-link {
+        font-size: .76rem;
+        white-space: nowrap;
+        flex: 0 0 auto;
     }
     .profile-card {
         padding: 15px;
@@ -1484,6 +1631,12 @@ ul {
     .title-doodle {
         display: none;
     }
+    .hero-title::before {
+        width: 52px;
+        height: 52px;
+        top: -8%;
+        right: -2%;
+    }
     .hero::before,
     .hero::after {
         width: 200px;
@@ -1506,5 +1659,55 @@ ul {
     .hero-marquee,
     .main-grid {
         max-width: 1080px;
+    }
+}
+
+/* ===== TABLET RANGE (iPad portrait/landscape, between the mobile
+   single-column layout and the full desktop grid) ===== */
+@media(min-width:801px) and (max-width:1024px) {
+    .hero-inner {
+        gap: 36px;
+    }
+    .hero-title {
+        font-size: clamp(4rem, 10vw, 6.5rem);
+    }
+    .main-grid {
+        gap: 26px;
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+    .left-col {
+        top: 84px;
+    }
+}
+
+/* ===== EXTRA-SMALL PHONES ===== */
+@media(max-width:380px) {
+    .hero-badge {
+        padding: 7px 16px;
+        font-size: .6rem;
+    }
+    .profile-card {
+        max-width: 92vw;
+        padding: 12px;
+    }
+    .photo-layers {
+        width: 150px;
+        height: 170px;
+    }
+    .hero-title {
+        font-size: clamp(3.2rem, 20vw, 4.4rem);
+    }
+    .about-heading,
+    .section-title,
+    .edu-heading {
+        font-size: 1.02rem;
+        padding: 6px 14px;
+    }
+    .edu-card {
+        padding: 22px 16px 16px 28px;
+    }
+    .work-stack {
+        padding: 22px 16px;
     }
 }
