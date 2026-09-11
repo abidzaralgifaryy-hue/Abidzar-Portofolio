@@ -3,127 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio | Abidzar Algifary</title>
+    <title>Portofolio | Abidzar Algifary - Video Editor & Graphic Designer</title>
+    <meta name="description" content="Abidzar Algifary (Abijay) - Video Editor & Graphic Designer, pelajar Al-Azhar 44. Portofolio typography, motion graphics, dan desain grafis. Open for freelance projects.">
+    <meta name="theme-color" content="#EFE1C2">
+    <meta property="og:title" content="Abidzar Algifary - Video Editor & Graphic Designer">
+    <meta property="og:description" content="Typography, motion graphics, dan desain grafis pilihan oleh Abidzar Algifary.">
+    <meta property="og:image" content="Asset/IMG_4270.jpeg">
+    <meta property="og:type" content="website">
 
-    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Caveat:wght@600;700&family=Patrick+Hand&family=Montserrat:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <!-- External CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="preload" as="image" href="Asset/IMG_4270.jpeg" fetchpriority="high">
+    <script>
+    (function(){
+      try{
+        var stored = localStorage.getItem('adizarel-theme');
+        var sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored || (sysDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if(meta) meta.setAttribute('content', theme === 'dark' ? '#1A1814' : '#EFE1C2');
+      }catch(e){}
+    })();
+    </script>
 </head>
 <body>
+    <a href="#main" class="skip-link">Lewati ke konten utama</a>
+    <div id="navSentinel" aria-hidden="true"></div>
 
     <!-- NAVIGATION -->
     <header class="site-nav" id="siteNav">
         <div class="nav-inner">
-            <a href="#hero" class="nav-logo">ADIZAREL<span class="dot">.</span></a>
-            <nav class="nav-links">
-                <a href="#about" class="nav-link active" data-nav="about">About</a>
-                <a href="#skills" class="nav-link" data-nav="skills">Skills</a>
+            <a href="#hero" class="nav-logo" aria-label="Beranda Adizarel"><img src="Asset/logo.png" alt="Adizarel" width="120" height="28" loading="eager" decoding="async"></a>
+            <nav class="nav-links" aria-label="Navigasi utama">
+                <a href="#skills" class="nav-link active" data-nav="skills">Skills</a>
                 <a href="#experience" class="nav-link" data-nav="experience">Experience</a>
                 <a href="#work" class="nav-link" data-nav="work">Work</a>
             </nav>
-            <a class="nav-contact-btn" href="https://wa.me/6285137071956" target="_blank" aria-label="Chat on WhatsApp">
-                <i class="ph-fill ph-whatsapp-logo"></i>
-            </a>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+                    <i class="ph ph-moon icon-moon" aria-hidden="true"></i>
+                    <i class="ph ph-sun icon-sun" aria-hidden="true"></i>
+                </button>
+                <a class="nav-contact-btn" href="https://wa.me/6285137071956" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+                    <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- ===== HERO ===== -->
-    <section class="hero" id="hero">
-        <!-- a single decorative star, purely aesthetic -->
+    <!-- HERO -->
+    <section class="hero" id="hero" aria-labelledby="heroTitle">
+        <div class="hero-bg-text" aria-hidden="true">ABIDZAR</div>
         <span class="deco-star deco-star-a" aria-hidden="true"></span>
+        <span class="deco-star deco-star-hero" aria-hidden="true"></span>
 
-        <div class="hero-badge"><span class="pulse-dot"></span><span>Open for Freelance Projects</span></div>
+        <div class="hero-badge"><span class="pulse-dot" aria-hidden="true"></span><span>Open for Freelance Projects</span></div>
 
         <div class="hero-inner">
-            <!-- Kartu Profil (kiri) -->
             <div class="profile-card">
                 <i class="ph-fill ph-paperclip deco-paperclip" aria-hidden="true"></i>
                 <div class="photo-layers">
-                    <div class="photo-frame frame-1"></div>
-                    <div class="photo-frame frame-2"></div>
+                    <div class="photo-frame frame-1" aria-hidden="true"></div>
                     <div class="photo-frame frame-3">
-                        <img src="Asset/IMG_4270.jpeg" alt="Abidzar Algifary">
+                        <img src="Asset/IMG_4270.jpeg" alt="Abidzar Algifary, Video Editor dan Graphic Designer" width="208" height="224" fetchpriority="high" decoding="async">
                     </div>
                 </div>
                 <div class="profile-info">
                     <h2 class="profile-name">Abidzar Algifary</h2>
-                    <p class="profile-role">VIDEO EDITOR & GRAPHIC DESIGNER</p>
+                    <p class="profile-role">Video Editor & Graphic Designer</p>
                 </div>
-                <div class="tape-deco"></div>
+                <div class="tape-deco" aria-hidden="true"></div>
             </div>
 
-            <!-- Teks PORTFOLIO (kanan) -->
-            <div class="hero-title-wrap">
-                <div class="title-tape tape-tl"></div>
-                <h1 class="hero-title">
+            <div class="portfolio-card">
+                <i class="ph-fill ph-push-pin deco-pushpin portfolio-pin" aria-hidden="true"></i>
+                <div class="title-tape tape-tl" aria-hidden="true"></div>
+                <h1 class="hero-title" id="heroTitle">
                     <span class="line1">PORT</span>
                     <span class="line2">FOLIO</span>
                 </h1>
                 <svg class="title-underline" viewBox="0 0 320 24" preserveAspectRatio="none" aria-hidden="true">
                     <path d="M4 14 Q 40 4, 80 13 T 156 12 T 232 14 T 316 10" />
                 </svg>
+                <p class="hero-sub">Typography dan motion reels untuk brand dan kreator yang butuh tampil beda. Berbasis di Bekasi.</p>
+                <div class="hero-ctas">
+                    <a href="#work" class="btn btn-primary">Lihat Karya</a>
+                    <a href="https://wa.me/6285137071956" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Hubungi Saya</a>
+                </div>
+                <span class="corner-fold" aria-hidden="true"></span>
+                <div class="tape-deco portfolio-tape" aria-hidden="true"></div>
             </div>
-        </div>
-
-        <div class="hero-marquee">
-            <div class="marquee-track">
-                <span>Video Editing</span><span class="dot">✦</span>
-                <span>Graphic Design</span><span class="dot">✦</span>
-                <span>Motion Graphics</span><span class="dot">✦</span>
-                <span>Typography</span><span class="dot">✦</span>
-                <span>Video Editing</span><span class="dot">✦</span>
-                <span>Graphic Design</span><span class="dot">✦</span>
-                <span>Motion Graphics</span><span class="dot">✦</span>
-                <span>Typography</span><span class="dot">✦</span>
-            </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <i class="ph-bold ph-arrow-down"></i>
         </div>
     </section>
 
+    <!-- SKILL MARQUEE - lives UNDER hero, not inside (pre-flight compliant) -->
+    <div class="hero-marquee" aria-label="Daftar keahlian" role="region">
+        <div class="marquee-track" aria-hidden="true">
+            <span>Video Editing</span><span class="dot">✦</span>
+            <span>Graphic Design</span><span class="dot">✦</span>
+            <span>Motion Graphics</span><span class="dot">✦</span>
+            <span>Typography</span><span class="dot">✦</span>
+            <span>Video Editing</span><span class="dot">✦</span>
+            <span>Graphic Design</span><span class="dot">✦</span>
+            <span>Motion Graphics</span><span class="dot">✦</span>
+            <span>Typography</span><span class="dot">✦</span>
+            <span>Video Editing</span><span class="dot">✦</span>
+            <span>Graphic Design</span><span class="dot">✦</span>
+            <span>Motion Graphics</span><span class="dot">✦</span>
+            <span>Typography</span><span class="dot">✦</span>
+        </div>
+    </div>
+
     <div class="torn-divider" aria-hidden="true"></div>
 
-    <!-- ===== MAIN GRID ===== -->
-    <div class="main-grid">
+    <!-- LINED PAPER CONTENT - second section with loose-leaf background -->
+    <section class="lined-paper" aria-label="Portfolio content">
+    <main id="main" class="main-grid">
         <!-- KOLOM KIRI -->
         <div class="left-col">
-            
-            <!-- ABOUT ME -->
-            <section class="about-section" id="about">
+            <section class="about-section" id="about" aria-labelledby="aboutHeading">
                 <div class="about-paper">
                     <span class="corner-fold" aria-hidden="true"></span>
-                    <span class="page-tag" aria-hidden="true">01</span>
-                    <h2 class="about-heading">About Me <i class="ph-fill ph-pencil-simple"></i></h2>
+                    <h2 class="about-heading" id="aboutHeading">About Me <i class="ph-fill ph-pencil-simple" aria-hidden="true"></i></h2>
                     <div class="about-bio">
                         <p>Kenalin, aku biasa dipanggil <strong>Abijay</strong>. Saat ini aku adalah seorang pelajar di Al-Azhar 44. Di luar jam sekolah, aku punya ketertarikan yang cukup besar di dunia kreatif, khususnya <strong>desain grafis</strong> dan <strong>video editing</strong>.</p>
-                        <p>Buat aku, bisa ngulik berbagai software desain dan bikin konten yang estetik itu jadi cara seru buat isi waktu luang sekaligus ngasah skill. Aku selalu senang <strong>bereksperimen dengan ide-ide baru</strong> biar hasil karyaku bisa terus berkembang jadi lebih baik lagi.</p>
+                        <p>Buat aku, bisa ngulik berbagai software desain dan bikin konten yang estetik itu jadi cara seru buat isi waktu luang sekaligus ngasah skill. Aku selalu senang <strong>bereksperimen dengan ide baru</strong> biar hasil karyaku bisa terus berkembang jadi lebih baik lagi.</p>
                     </div>
-                    <div class="sticker-rail">
+                    <div class="sticker-rail" aria-label="Karakter">
                         <span class="sticker">Creative</span>
                         <span class="sticker">Curious</span>
-                        <span class="sticker">Detail-oriented</span>
+                        <span class="sticker">Detail oriented</span>
                     </div>
                 </div>
             </section>
 
-            <!-- EDUCATION -->
-            <section class="education-section" id="education">
+            <section class="education-section" id="education" aria-labelledby="eduHeading">
                 <div class="edu-card">
                     <i class="ph-fill ph-push-pin deco-pushpin" aria-hidden="true"></i>
-                    <h3 class="edu-heading"><i class="ph-fill ph-graduation-cap"></i> Education</h3>
+                    <h3 class="edu-heading" id="eduHeading"><i class="ph-fill ph-graduation-cap" aria-hidden="true"></i> Education</h3>
                     <div class="edu-item">
                         <span class="year">Now</span>
                         <div class="edu-detail">
                             <h5>Al-Azhar 44</h5>
-                            <p>Currently studying, alongside self-directed learning in design & video editing.</p>
+                            <p>Currently studying, alongside self directed learning in design and video editing.</p>
                         </div>
                     </div>
                 </div>
@@ -132,33 +158,29 @@
 
         <!-- KOLOM KANAN -->
         <div class="right-col">
-
-            <!-- SKILLS & SOFTWARE -->
-            <section class="skills-section" id="skills">
-                <span class="page-tag page-tag-center" aria-hidden="true">02</span>
-                <!-- hand-drawn arrow pointing at the skill tags, purely decorative -->
+            <section class="skills-section" id="skills" aria-labelledby="skillsHeading">
                 <svg class="doodle-arrow-skills" viewBox="0 0 90 110" aria-hidden="true">
                     <path d="M78 6 C 40 4, 8 26, 14 58 C 18 82, 40 96, 66 92" />
                     <path d="M52 84 L 65 94 L 51 100" />
                 </svg>
-                <h2 class="section-title">Software & Skills</h2>
+                <h2 class="section-title" id="skillsHeading">Software & Skills</h2>
                 <div class="skills-bubbles">
                     <span class="washi-strip washi-strip-skills" aria-hidden="true"></span>
                     <div class="bubble bubble-software">
                         <div class="soft-item">
-                            <div class="soft-icon"><img src="am-icon.png" alt="Alight Motion"></div>
+                            <div class="soft-icon"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/8c/3b/7c/8c3b7ce9-68ef-ca83-9be6-8a4d3a54fbd3/AppIcon-0-0-1x_U007emarketing-0-5-0-0-0-0-85-220.png/512x512bb.jpg" alt="Alight Motion" width="28" height="28" loading="lazy" decoding="async"></div>
                             <span>Alight Motion</span>
                         </div>
                         <div class="soft-item">
-                            <div class="soft-icon"><img src="cc-icon.png" alt="CapCut"></div>
+                            <div class="soft-icon"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/84/54/a1/8454a15f-5543-6c27-e18e-bf31712c9410/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg" alt="CapCut" width="28" height="28" loading="lazy" decoding="async"></div>
                             <span>CapCut</span>
                         </div>
                         <div class="soft-item">
-                            <div class="soft-icon"><img src="canva-icon.png" alt="Canva"></div>
+                            <div class="soft-icon"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/78/26/b6/7826b612-9973-e381-1b11-f7fe8ec24f4e/AppIcon-0-0-1x_U007epad-0-11-0-85-220.png/512x512bb.jpg" alt="Canva" width="28" height="28" loading="lazy" decoding="async"></div>
                             <span>Canva</span>
                         </div>
                         <div class="soft-item">
-                            <div class="soft-icon"><img src="pin-icon.png" alt="Pinterest"></div>
+                            <div class="soft-icon"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ad/6d/aa/ad6daaaf-2e46-7dec-0ee6-0e82251c35fb/AppIcon-0-0-1x_U007epad-0-1-0-0-0-85-220.png/512x512bb.jpg" alt="Pinterest" width="28" height="28" loading="lazy" decoding="async"></div>
                             <span>Pinterest</span>
                         </div>
                     </div>
@@ -171,19 +193,16 @@
                 </div>
             </section>
 
-            <!-- EXPERIENCE -->
-            <section class="experience-section" id="experience">
+            <section class="experience-section" id="experience" aria-labelledby="expHeading">
                 <div class="clipboard">
-                    <div class="clip"></div>
-                    <div class="board-inner torn-edge">
-                        <span class="page-tag" aria-hidden="true">03</span>
-                        <h2 class="board-heading">Experience</h2>
+                    <div class="board-inner">
+                        <h2 class="board-heading" id="expHeading">Experience</h2>
                         <div class="experience-list">
                             <div class="exp-item">
                                 <span class="exp-year">Now</span>
                                 <div class="exp-desc">
                                     <h5>Al-Azhar 44</h5>
-                                    <p>Student & Content Creator</p>
+                                    <p>Student and Content Creator</p>
                                 </div>
                             </div>
                             <div class="exp-item">
@@ -198,82 +217,94 @@
                 </div>
             </section>
 
-            <!-- WORK -->
-            <section class="work-section" id="work">
+            <section class="work-section" id="work" aria-labelledby="workHeading">
+                <span class="deco-star deco-star-b" aria-hidden="true"></span>
                 <div class="work-stack">
-                    <span class="page-tag page-tag-center" aria-hidden="true">04</span>
-                    <h2 class="section-title">My Project</h2>
-                    <p class="work-sub">Beberapa karya Typography & Mograph pilihan.</p>
+                    <h2 class="section-title" id="workHeading">My Project</h2>
+                    <p class="work-sub">Beberapa karya Typography dan Mograph pilihan.</p>
 
-                    <!-- Reel dengan tautan eksternal -->
-                    <a class="work-entry tint-orange" href="https://www.instagram.com/reel/DZ91lYPSzGQ/?igsh=MTM0b3F3dnptODZ0eQ==" target="_blank">
+                    <a class="work-entry tint-orange" href="https://www.instagram.com/reel/DZ91lYPSzGQ/?igsh=MTM0b3F3dnptODZ0eQ==" target="_blank" rel="noopener noreferrer" aria-label="Buka Reel 01 di Instagram">
                         <div class="work-thumb">
-                            <img src="Asset/quality_restoration_20260708092438672.png" alt="Reel 1">
-                            <div class="play-mark"><i class="ph-fill ph-play"></i></div>
+                            <img src="Asset/quality_restoration_20260708092438672.png" alt="Thumbnail Reel 01 dengan tipografi bergerak" width="68" height="68" loading="lazy">
+                            <div class="play-mark" aria-hidden="true"><i class="ph-fill ph-play"></i></div>
                         </div>
                         <div class="work-info">
                             <h5>Reel 01</h5>
-                            <p>Typography & motion graphics reel</p>
+                            <p>Typography and motion graphics reel</p>
                         </div>
-                        <div class="work-go"><i class="ph-bold ph-arrow-up-right"></i></div>
+                        <div class="work-go" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></div>
                     </a>
 
-                    <a class="work-entry tint-army" href="https://www.instagram.com/reel/DRuWwDMkt60/?igsh=MTFzaDU4YmZkZDhsdQ==" target="_blank">
+                    <a class="work-entry tint-army" href="https://www.instagram.com/reel/DRuWwDMkt60/?igsh=MTFzaDU4YmZkZDhsdQ==" target="_blank" rel="noopener noreferrer" aria-label="Buka Reel 02 di Instagram">
                         <div class="work-thumb">
-                            <img src="Asset/quality_restoration_20260708093216566.png" alt="Reel 2">
-                            <div class="play-mark"><i class="ph-fill ph-play"></i></div>
+                            <img src="Asset/quality_restoration_20260708093216566.png" alt="Thumbnail Reel 02 dengan tipografi bergerak" width="68" height="68" loading="lazy">
+                            <div class="play-mark" aria-hidden="true"><i class="ph-fill ph-play"></i></div>
                         </div>
                         <div class="work-info">
                             <h5>Reel 02</h5>
-                            <p>Typography & motion graphics reel</p>
+                            <p>Typography and motion graphics reel</p>
                         </div>
-                        <div class="work-go"><i class="ph-bold ph-arrow-up-right"></i></div>
+                        <div class="work-go" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></div>
                     </a>
 
-                    <div class="stack-divider">Graphic design</div>
+                    <div class="stack-divider" aria-hidden="true"></div>
                     <p class="work-sub">Eksperimen desain Social Media.</p>
 
-                    <!-- Galeri Poster (scroll native) -->
-                    <div class="poster-gallery">
-                        <div class="poster-card tint-cream">
-                            <span class="mini-tape" aria-hidden="true"></span>
-                            <div class="work-thumb"><img src="Asset/Arap.png" alt="Poster 1"></div>
-                            <div class="work-info">
-                                <h5>Poster 01</h5>
-                                <p>Social media design</p>
-                            </div>
+                    <div class="poster-gallery-wrap">
+                        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous poster"><i class="ph-bold ph-caret-left" aria-hidden="true"></i></button>
+                        <div class="poster-gallery" id="posterGallery" role="list" aria-label="Galeri poster">
+                            <button type="button" class="poster-card tint-cream" role="listitem" aria-label="Perbesar Poster 01">
+                                <span class="mini-tape" aria-hidden="true"></span>
+                                <div class="work-thumb"><img src="Asset/Arap.png" alt="Poster 01 social media design dengan tipografi Arap" width="200" height="250" loading="lazy"></div>
+                                <div class="work-info">
+                                    <h5>Poster 01</h5>
+                                    <p>Social media design</p>
+                                </div>
+                            </button>
+                            <button type="button" class="poster-card tint-orange" role="listitem" aria-label="Perbesar Poster 02">
+                                <span class="mini-tape" aria-hidden="true"></span>
+                                <div class="work-thumb"><img src="Asset/quality_restoration_20260707183213934.jpeg" alt="Poster 02 social media design" width="200" height="250" loading="lazy"></div>
+                                <div class="work-info">
+                                    <h5>Poster 02</h5>
+                                    <p>Social media design</p>
+                                </div>
+                            </button>
+                            <button type="button" class="poster-card tint-army" role="listitem" aria-label="Perbesar Poster 03">
+                                <span class="mini-tape" aria-hidden="true"></span>
+                                <div class="work-thumb"><img src="Asset/SEAN.png" alt="Poster 03 social media design SEAN" width="200" height="250" loading="lazy"></div>
+                                <div class="work-info">
+                                    <h5>Poster 03</h5>
+                                    <p>Social media design</p>
+                                </div>
+                            </button>
                         </div>
-                        <div class="poster-card tint-orange">
-                            <span class="mini-tape" aria-hidden="true"></span>
-                            <div class="work-thumb"><img src="Asset/quality_restoration_20260707183213934.jpeg" alt="Poster 2"></div>
-                            <div class="work-info">
-                                <h5>Poster 02</h5>
-                                <p>Social media design</p>
-                            </div>
-                        </div>
-                        <div class="poster-card tint-army">
-                            <span class="mini-tape" aria-hidden="true"></span>
-                            <div class="work-thumb"><img src="Asset/SEAN.png" alt="Poster 3"></div>
-                            <div class="work-info">
-                                <h5>Poster 03</h5>
-                                <p>Social media design</p>
-                            </div>
-                        </div>
+                        <button type="button" class="gallery-arrow gallery-next" aria-label="Next poster"><i class="ph-bold ph-caret-right" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </section>
         </div>
-    </div>
+    </main>
+    </section>
 
     <div class="torn-divider torn-divider-flip" aria-hidden="true"></div>
 
-    <!-- FOOTER -->
-    <div class="footer-stamp">
-        <span class="footer-tape" aria-hidden="true"></span>
-        ADIZAREL.
+    <footer class="site-footer">
+        <a href="https://wa.me/6285137071956" target="_blank" rel="noopener noreferrer" class="footer-stamp" aria-label="Adizarel - Chat on WhatsApp">
+            <span class="footer-tape" aria-hidden="true"></span>
+            <img src="Asset/logo.png" alt="Adizarel" width="120" height="28" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-copy">Bekasi - Open for freelance. Hubungi via WhatsApp untuk kolaborasi.</p>
+    </footer>
+
+    <div class="poster-lightbox" id="posterLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Poster preview">
+        <div class="lightbox-backdrop" data-close="true"></div>
+        <div class="lightbox-card" role="document">
+            <button type="button" class="lightbox-close" aria-label="Tutup preview"><i class="ph-bold ph-x" aria-hidden="true"></i></button>
+            <div class="lightbox-media"><img id="lightboxImg" alt="" width="800" height="1000"></div>
+            <div class="lightbox-info"><h4 id="lightboxTitle"></h4><p id="lightboxDesc"></p></div>
+        </div>
     </div>
 
-    <!-- External JS -->
     <script src="script.js"></script>
 </body>
 </html>

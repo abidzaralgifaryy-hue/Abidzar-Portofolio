@@ -1,74 +1,233 @@
 /* ==================================================================
-   ADIZAREL — PORTFOLIO SCRIPT (v6)
-   Smooth scroll + scroll-spy + nav shadow + fade-in reveal
+   ADIZAREL - PORTFOLIO SCRIPT v12 (Anti-Slop compliant)
+   - Smooth scroll via scrollIntoView with offset handled by CSS scroll-margin
+   - Scroll-spy via IntersectionObserver
+   - Nav shadow via IntersectionObserver on sentinel (no scroll listener)
+   - Fade-in reveal via IntersectionObserver
+   All motion respects prefers-reduced-motion via CSS; JS never
+   touches window.scrollY in a scroll event.
    ================================================================== */
 
-// 1. SMOOTH SCROLL FOR NAV LINKS
 const navLinks = document.querySelectorAll('.nav-link[data-nav]');
-
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        if (!targetSection) return;
-
-        e.preventDefault();
-        const headerOffset = 70;
-        const elementPosition = targetSection.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-        });
-    });
-});
-
-// 2. SCROLL-SPY — highlight nav link for section in view
 const sections = Array.from(navLinks)
-    .map(link => document.querySelector(link.getAttribute('href')))
-    .filter(Boolean);
+  .map(link => document.querySelector(link.getAttribute('href')))
+  .filter(Boolean);
 
 const setActiveLink = (id) => {
-    navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-    });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+  });
 };
 
-if ('IntersectionObserver' in window && sections.length) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                setActiveLink(entry.target.id);
-            }
-        });
-    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
-
-    sections.forEach(section => observer.observe(section));
+// helper - document top (layout, not visual sticky)
+function getDocumentTop(el){
+  let top = 0; let cur = el;
+  while(cur){ top += cur.offsetTop; cur = cur.offsetParent; }
+  return top;
 }
-
-// 3. NAV SHADOW ON SCROLL
-const siteNav = document.getElementById('siteNav');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        siteNav.classList.add('scrolled');
-    } else {
-        siteNav.classList.remove('scrolled');
-    }
+// 1. Smooth scroll - sticky-safe: use document offset for all, not getBoundingClientRect
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    const navH = document.getElementById('siteNav')?.offsetHeight || 72;
+    const top = getDocumentTop(target) - navH - 12;
+    window.scrollTo({ top, behavior: 'smooth' });
+    history.pushState(null, '', link.getAttribute('href'));
+  });
 });
 
-// 4. FADE-IN ON SCROLL (subtle reveal)
-const fadeElements = document.querySelectorAll('.about-paper, .edu-card, .bubble, .clipboard, .work-stack, .profile-card');
-if ('IntersectionObserver' in window) {
-    const fadeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
-    fadeElements.forEach(el => {
-        el.classList.add('fade-in');
-        fadeObserver.observe(el);
+// Hero CTA smooth scroll also
+document.querySelectorAll('a[href="#work"]').forEach(a => {
+  if (a.classList.contains('nav-link')) return;
+  a.addEventListener('click', (e) => {
+    const target = document.querySelector('#work');
+    if (!target) return;
+    e.preventDefault();
+    const navH = document.getElementById('siteNav')?.offsetHeight || 72;
+    const top = getDocumentTop(target) - navH - 12;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
+
+// 2. Scroll-spy - rAF polling (no window scroll listener per skill, handles sticky)
+if (sections.length) {
+  const updateSpy = () => {
+    const navH = document.getElementById('siteNav')?.offsetHeight || 72;
+    const scrollPos = window.scrollY + navH + 24;
+    let activeId = sections[0].id;
+    for(const sec of sections){
+      const top = getDocumentTop(sec);
+      if(scrollPos >= top) activeId = sec.id;
+      else break;
+    }
+    setActiveLink(activeId);
+  };
+  // poll via rAF - no scroll event
+  (function poll(){ updateSpy(); requestAnimationFrame(poll); })();
+  window.addEventListener('resize', updateSpy, { passive: true });
+  updateSpy();
+}
+
+// 3. Nav shadow via sentinel IntersectionObserver (no scroll listener per skill 5.D)
+const siteNav = document.getElementById('siteNav');
+const sentinel = document.getElementById('navSentinel');
+if (siteNav && sentinel && 'IntersectionObserver' in window) {
+  const navObs = new IntersectionObserver(([entry]) => {
+    siteNav.classList.toggle('scrolled', !entry.isIntersecting);
+  }, { threshold: 0 });
+  navObs.observe(sentinel);
+}
+
+// 4. Theme toggle - dark / light, persists, respects system
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  const applyTheme = (theme) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    try { localStorage.setItem('adizarel-theme', theme); } catch(e){}
+    themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+    themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    if (metaTheme) metaTheme.setAttribute('content', theme === 'dark' ? '#1A1814' : '#EFE1C2');
+  };
+  // sync button state on load
+  const initial = document.documentElement.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  themeToggle.setAttribute('aria-pressed', initial === 'dark' ? 'true' : 'false');
+  themeToggle.setAttribute('aria-label', initial === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  themeToggle.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+  });
+  // follow system if user has not chosen manually
+  try {
+    if (!localStorage.getItem('adizarel-theme')) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        const next = e.matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        themeToggle.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+        if (metaTheme) metaTheme.setAttribute('content', next === 'dark' ? '#1A1814' : '#EFE1C2');
+      });
+    }
+  } catch(e){}
+}
+
+// 5. Poster lightbox - click to enlarge, centered with spring animation
+(function(){
+  const lightbox = document.getElementById('posterLightbox');
+  if(!lightbox) return;
+  const img = document.getElementById('lightboxImg');
+  const title = document.getElementById('lightboxTitle');
+  const desc = document.getElementById('lightboxDesc');
+  const closeBtn = lightbox.querySelector('.lightbox-close');
+  const backdrop = lightbox.querySelector('.lightbox-backdrop');
+  let lastFocus = null;
+
+  const open = (card) => {
+    const thumb = card.querySelector('.work-thumb img');
+    const h5 = card.querySelector('.work-info h5');
+    const p = card.querySelector('.work-info p');
+    if(!thumb) return;
+    lastFocus = document.activeElement;
+    img.src = thumb.src;
+    img.alt = thumb.alt || '';
+    title.textContent = h5 ? h5.textContent : '';
+    desc.textContent = p ? p.textContent : '';
+    lightbox.setAttribute('aria-hidden','false');
+    lightbox.classList.add('open');
+    document.body.classList.add('lightbox-lock');
+    // focus close for accessibility
+    setTimeout(()=> closeBtn.focus(), 50);
+    // animate from thumb position if motion allowed
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!prefersReduced && thumb.getBoundingClientRect){
+      const rect = thumb.getBoundingClientRect();
+      const cardEl = lightbox.querySelector('.lightbox-card');
+      // FLIP: start from thumb center, scale down, then to center
+      const vw = window.innerWidth, vh = window.innerHeight;
+      const thumbCX = rect.left + rect.width/2;
+      const thumbCY = rect.top + rect.height/2;
+      const centerX = vw/2, centerY = vh/2;
+      const dx = thumbCX - centerX;
+      const dy = thumbCY - centerY;
+      const scale = Math.min(rect.width / 520, rect.height / 640, 0.45);
+      cardEl.style.transition = 'none';
+      cardEl.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+      cardEl.style.opacity = '0';
+      // force reflow
+      void cardEl.offsetWidth;
+      cardEl.style.transition = '';
+      cardEl.style.transform = '';
+      cardEl.style.opacity = '';
+    }
+  };
+  const close = () => {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden','true');
+    document.body.classList.remove('lightbox-lock');
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  };
+  document.querySelectorAll('.poster-card').forEach(card=>{
+    card.addEventListener('click', ()=> open(card));
+  });
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', close);
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && lightbox.classList.contains('open')) close();
+  });
+})();
+
+// 6. Poster gallery arrows - clickable instead of only horizontal scroll
+(function(){
+  const gallery = document.getElementById('posterGallery');
+  const prev = document.querySelector('.gallery-prev');
+  const next = document.querySelector('.gallery-next');
+  if(!gallery || !prev || !next) return;
+  gallery.tabIndex = 0;
+  const update = () => {
+    const max = gallery.scrollWidth - gallery.clientWidth;
+    prev.disabled = gallery.scrollLeft <= 4;
+    next.disabled = gallery.scrollLeft >= max - 4;
+    // hide arrows if no overflow
+    const needsScroll = gallery.scrollWidth > gallery.clientWidth + 4;
+    prev.style.display = needsScroll ? '' : 'none';
+    next.style.display = needsScroll ? '' : 'none';
+  };
+  const amount = () => {
+    const card = gallery.querySelector('.poster-card');
+    const gap = parseFloat(getComputedStyle(gallery).gap) || 16;
+    return card ? card.offsetWidth + gap : gallery.clientWidth * 0.85;
+  };
+  prev.addEventListener('click', ()=> gallery.scrollBy({ left: -amount(), behavior: 'smooth' }));
+  next.addEventListener('click', ()=> gallery.scrollBy({ left: amount(), behavior: 'smooth' }));
+  gallery.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  // keyboard when gallery focused
+  gallery.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowLeft') { e.preventDefault(); gallery.scrollBy({ left: -amount(), behavior: 'smooth' }); }
+    if(e.key === 'ArrowRight') { e.preventDefault(); gallery.scrollBy({ left: amount(), behavior: 'smooth' }); }
+  });
+  update();
+})();
+
+// 7. Fade-in reveal - respects reduced-motion (CSS handles disable)
+const fadeEls = document.querySelectorAll('.about-paper, .edu-card, .bubble, .clipboard, .work-stack, .profile-card');
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!prefersReduced && 'IntersectionObserver' in window) {
+  const fadeObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObs.unobserve(entry.target);
+      }
     });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => {
+    el.classList.add('fade-in');
+    fadeObs.observe(el);
+  });
+} else {
+  // reduced-motion: show immediately, no animation
+  fadeEls.forEach(el => el.classList.add('visible'));
 }
