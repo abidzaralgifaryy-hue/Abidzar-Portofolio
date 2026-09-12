@@ -42,6 +42,7 @@
                 <a href="#skills" class="nav-link active" data-nav="skills">Skills</a>
                 <a href="#experience" class="nav-link" data-nav="experience">Experience</a>
                 <a href="#work" class="nav-link" data-nav="work">Work</a>
+                <a href="#contact" class="nav-link" data-nav="contact">Contact</a>
             </nav>
             <div class="nav-actions">
                 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
@@ -284,6 +285,65 @@
             </section>
         </div>
     </main>
+    </section>
+
+    <!-- CONTACT - second-last, WhatsApp handoff -->
+    <section class="contact-section" id="contact" aria-labelledby="contactHeading">
+        <div class="contact-card">
+            <span class="corner-fold" aria-hidden="true"></span>
+            <h2 class="contact-heading" id="contactHeading">Let's Talk</h2>
+            <p class="contact-sub">Cerita goal projectmu — aku balas via WhatsApp.</p>
+            <form id="contactForm" novalidate>
+                <div class="form-row">
+                    <label class="form-field"><span class="field-label">Name <span class="required" aria-hidden="true">*</span></span>
+                        <input type="text" name="name" required autocomplete="name" placeholder="Namamu">
+                        <span class="field-error" data-error="name"></span>
+                    </label>
+                    <label class="form-field"><span class="field-label">WhatsApp / Email <span class="required" aria-hidden="true">*</span></span>
+                        <input type="text" name="contact" required autocomplete="tel" placeholder="+62 / email">
+                        <span class="field-error" data-error="contact"></span>
+                    </label>
+                </div>
+                <label class="form-field"><span class="field-label">Project Goal <span class="required" aria-hidden="true">*</span></span>
+                    <select name="goal" required>
+                        <option value="">Pilih goal</option>
+                        <option>Video Editing</option>
+                        <option>Graphic Design</option>
+                        <option>Typography</option>
+                        <option>Motion Graphics</option>
+                        <option>Other</option>
+                    </select>
+                    <span class="field-error" data-error="goal"></span>
+                </label>
+                <div class="form-row">
+                    <label class="form-field">Budget
+                        <select name="budget">
+                            <option value="Discuss">Discuss</option>
+                            <option>&lt; 1jt</option>
+                            <option>1 - 3jt</option>
+                            <option>3 - 5jt</option>
+                            <option>5jt+</option>
+                        </select>
+                    </label>
+                    <label class="form-field">Timeline
+                        <select name="timeline">
+                            <option>Flexible</option>
+                            <option>ASAP</option>
+                            <option>1 - 2 weeks</option>
+                            <option>1 month</option>
+                        </select>
+                    </label>
+                </div>
+                <label class="form-field"><span class="field-label">Message <span class="required" aria-hidden="true">*</span></span>
+                    <textarea name="message" required maxlength="1000" rows="4" placeholder="Ceritain brief singkat..."></textarea>
+                    <span class="field-error" data-error="message"></span>
+                </label>
+                <button type="submit" class="btn btn-primary contact-submit">Kirim via WhatsApp <i class="ph-bold ph-paper-plane-tilt" aria-hidden="true"></i></button>
+                <p class="form-footnote">* required — langsung buka WhatsApp ke 6285137071956, tanpa simpan data di server.</p>
+                <div class="form-status" id="formStatus" aria-live="polite"></div>
+            </form>
+            <div class="tape-deco contact-tape" aria-hidden="true"></div>
+        </div>
     </section>
 
     <div class="torn-divider torn-divider-flip" aria-hidden="true"></div>

@@ -113,7 +113,62 @@ if (themeToggle) {
   } catch(e){}
 }
 
-// 5. Poster lightbox - click to enlarge, centered with spring animation
+// 5. Contact form - WhatsApp handoff (no backend)
+const contactForm = document.getElementById('contactForm');
+if(contactForm){
+  const statusEl = document.getElementById('formStatus');
+  const setError = (name, msg) => {
+    const el = contactForm.querySelector(`[data-error="${name}"]`);
+    if(el) el.textContent = msg || '';
+  };
+  const clearErrors = () => contactForm.querySelectorAll('.field-error').forEach(e=> e.textContent='');
+  const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  const isPhone = (v) => /^\+?[\d\s\-]{8,}$/.test(v.replace(/\s/g,''));
+  contactForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    clearErrors();
+    if(statusEl){ statusEl.textContent=''; statusEl.className='form-status'; }
+    const data = new FormData(contactForm);
+    const name = (data.get('name')||'').toString().trim();
+    const contact = (data.get('contact')||'').toString().trim();
+    const goal = (data.get('goal')||'').toString().trim();
+    const budget = (data.get('budget')||'Discuss').toString().trim();
+    const timeline = (data.get('timeline')||'Flexible').toString().trim();
+    const message = (data.get('message')||'').toString().trim();
+    let hasError = false;
+    if(!name){ setError('name','Name required'); hasError=true; }
+    if(!contact){ setError('contact','WhatsApp / Email required'); hasError=true; }
+    else if(!isEmail(contact) && !isPhone(contact)){ setError('contact','Enter valid WhatsApp or Email'); hasError=true; }
+    if(!goal){ setError('goal','Pilih goal'); hasError=true; }
+    if(!message){ setError('message','Message required'); hasError=true; }
+    if(hasError){
+      if(statusEl){ statusEl.textContent='Periksa field yang ditandai.'; statusEl.className='form-status error'; }
+      return;
+    }
+    const lines = [
+      `Halo Abijay, mau diskusi project`,
+      ``,
+      `*Name:* ${name}`,
+      `*Contact:* ${contact}`,
+      `*Goal:* ${goal}`,
+      `*Budget:* ${budget}`,
+      `*Timeline:* ${timeline}`,
+      `*Message:* ${message}`
+    ];
+    const text = encodeURIComponent(lines.join('\n'));
+    const url = `https://wa.me/6285137071956?text=${text}`;
+    const win = window.open(url, '_blank', 'noopener');
+    if(!win){
+      if(statusEl){ statusEl.innerHTML = `Popup blocked — <a href="${url}" target="_blank" rel="noopener">buka WhatsApp manual</a>`; statusEl.className='form-status error'; }
+      return;
+    }
+    if(statusEl){ statusEl.textContent='Terima kasih — membuka WhatsApp...'; statusEl.className='form-status success'; }
+    contactForm.reset();
+    setTimeout(()=>{ if(statusEl) statusEl.textContent=''; }, 4000);
+  });
+}
+
+// 6. Poster lightbox - click to enlarge, centered with spring animation
 (function(){
   const lightbox = document.getElementById('posterLightbox');
   if(!lightbox) return;
