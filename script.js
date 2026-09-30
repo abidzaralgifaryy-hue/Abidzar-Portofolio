@@ -1,10 +1,10 @@
 /* ==================================================================
-   ADIZAREL - PORTFOLIO SCRIPT v12 (Anti-Slop compliant)
-   - Smooth scroll via scrollIntoView with offset handled by CSS scroll-margin
-   - Scroll-spy via IntersectionObserver
+   ADIZAREL - PORTFOLIO SCRIPT v13 (Anti-Slop compliant)
+   - Buttery inertia scroll via Lenis (CDN, guarded) w/ native fallback
+   - Scroll-spy via rAF polling (sticky-safe, no scroll listener)
    - Nav shadow via IntersectionObserver on sentinel (no scroll listener)
    - Fade-in reveal via IntersectionObserver
-   All motion respects prefers-reduced-motion via CSS; JS never
+   All motion respects prefers-reduced-motion (Lenis skipped); JS never
    touches window.scrollY in a scroll event.
    ================================================================== */
 
@@ -19,6 +19,24 @@ const setActiveLink = (id) => {
   });
 };
 
+// Smooth-scroll engine (Lenis) - inertia feel, native fallback, reduced-motion respect
+let lenis = null;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!prefersReducedMotion && typeof Lenis !== 'undefined') {
+  try {
+    lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+  } catch(e){ lenis = null; }
+}
+// single entry point for all in-page jumps (Lenis or native)
+const smoothTo = (target) => {
+  const navH = document.getElementById('siteNav')?.offsetHeight || 72;
+  if (lenis) lenis.scrollTo(target, { offset: -(navH + 12), duration: 1.4 });
+  else {
+    const top = getDocumentTop(target) - navH - 12;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+};
+
 // helper - document top (layout, not visual sticky)
 function getDocumentTop(el){
   let top = 0; let cur = el;
@@ -31,31 +49,68 @@ navLinks.forEach(link => {
     const target = document.querySelector(link.getAttribute('href'));
     if (!target) return;
     e.preventDefault();
-    const navH = document.getElementById('siteNav')?.offsetHeight || 72;
-    const top = getDocumentTop(target) - navH - 12;
-    window.scrollTo({ top, behavior: 'smooth' });
+    smoothTo(target);
     history.pushState(null, '', link.getAttribute('href'));
   });
 });
 
-// Hero CTA smooth scroll also
+// 1b. Hamburger menu (mobile ≤640px) - dropdown under top bar
+const menuBtn = document.getElementById('navMenuBtn');
+const navMenu = document.getElementById('mobileMenu');
+if (menuBtn && navMenu) {
+  const setMenu = (open) => {
+    navMenu.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
+  menuBtn.addEventListener('click', () => {
+    setMenu(!navMenu.classList.contains('open'));
+  });
+  navLinks.forEach(link => link.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setMenu(false);
+  });
+  document.addEventListener('click', (e) => {
+    if (!navMenu.classList.contains('open')) return;
+    if (navMenu.contains(e.target) || menuBtn.contains(e.target)) return;
+    setMenu(false);
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 640) setMenu(false);
+  });
+}
+
+// Hero CTA + logo smooth scroll also
 document.querySelectorAll('a[href="#work"]').forEach(a => {
   if (a.classList.contains('nav-link')) return;
   a.addEventListener('click', (e) => {
     const target = document.querySelector('#work');
     if (!target) return;
     e.preventDefault();
-    const navH = document.getElementById('siteNav')?.offsetHeight || 72;
-    const top = getDocumentTop(target) - navH - 12;
-    window.scrollTo({ top, behavior: 'smooth' });
+    smoothTo(target);
+  });
+});
+document.querySelectorAll('a[href="#hero"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const target = document.querySelector('#hero');
+    if (!target) return;
+    e.preventDefault();
+    smoothTo(target);
+    history.pushState(null, '', '#hero');
   });
 });
 
 // 2. Scroll-spy - rAF polling (no window scroll listener per skill, handles sticky)
+// No hardcoded active: clear when above first section (hero has no nav link)
 if (sections.length) {
   const updateSpy = () => {
     const navH = document.getElementById('siteNav')?.offsetHeight || 72;
     const scrollPos = window.scrollY + navH + 24;
+    const firstTop = getDocumentTop(sections[0]);
+    if (scrollPos < firstTop) {
+      navLinks.forEach(link => link.classList.remove('active'));
+      return;
+    }
     let activeId = sections[0].id;
     for(const sec of sections){
       const top = getDocumentTop(sec);
@@ -64,10 +119,11 @@ if (sections.length) {
     }
     setActiveLink(activeId);
   };
-  // poll via rAF - no scroll event
-  (function poll(){ updateSpy(); requestAnimationFrame(poll); })();
+  // poll via rAF - no scroll event (also drives Lenis)
+  const loop = (time) => { if (lenis) lenis.raf(time); updateSpy(); requestAnimationFrame(loop); };
   window.addEventListener('resize', updateSpy, { passive: true });
   updateSpy();
+  requestAnimationFrame(loop);
 }
 
 // 3. Nav shadow via sentinel IntersectionObserver (no scroll listener per skill 5.D)
@@ -122,23 +178,18 @@ if(contactForm){
     if(el) el.textContent = msg || '';
   };
   const clearErrors = () => contactForm.querySelectorAll('.field-error').forEach(e=> e.textContent='');
-  const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-  const isPhone = (v) => /^\+?[\d\s\-]{8,}$/.test(v.replace(/\s/g,''));
   contactForm.addEventListener('submit', (e)=>{
     e.preventDefault();
     clearErrors();
     if(statusEl){ statusEl.textContent=''; statusEl.className='form-status'; }
     const data = new FormData(contactForm);
     const name = (data.get('name')||'').toString().trim();
-    const contact = (data.get('contact')||'').toString().trim();
     const goal = (data.get('goal')||'').toString().trim();
     const budget = (data.get('budget')||'Discuss').toString().trim();
     const timeline = (data.get('timeline')||'Flexible').toString().trim();
     const message = (data.get('message')||'').toString().trim();
     let hasError = false;
     if(!name){ setError('name','Name required'); hasError=true; }
-    if(!contact){ setError('contact','WhatsApp / Email required'); hasError=true; }
-    else if(!isEmail(contact) && !isPhone(contact)){ setError('contact','Enter valid WhatsApp or Email'); hasError=true; }
     if(!goal){ setError('goal','Pilih goal'); hasError=true; }
     if(!message){ setError('message','Message required'); hasError=true; }
     if(hasError){
@@ -149,7 +200,6 @@ if(contactForm){
       `Halo Abijay, mau diskusi project`,
       ``,
       `*Name:* ${name}`,
-      `*Contact:* ${contact}`,
       `*Goal:* ${goal}`,
       `*Budget:* ${budget}`,
       `*Timeline:* ${timeline}`,
@@ -192,6 +242,7 @@ if(contactForm){
     lightbox.setAttribute('aria-hidden','false');
     lightbox.classList.add('open');
     document.body.classList.add('lightbox-lock');
+    if (lenis) lenis.stop();
     // focus close for accessibility
     setTimeout(()=> closeBtn.focus(), 50);
     // animate from thumb position if motion allowed
@@ -221,6 +272,7 @@ if(contactForm){
     lightbox.classList.remove('open');
     lightbox.setAttribute('aria-hidden','true');
     document.body.classList.remove('lightbox-lock');
+    if (lenis) lenis.start();
     if(lastFocus && lastFocus.focus) lastFocus.focus();
   };
   document.querySelectorAll('.poster-card').forEach(card=>{
@@ -286,3 +338,47 @@ if (!prefersReduced && 'IntersectionObserver' in window) {
   // reduced-motion: show immediately, no animation
   fadeEls.forEach(el => el.classList.add('visible'));
 }
+
+// 8. Hero mouse background - parallax blobs + cursor glow (fine pointer, motion-safe)
+(function(){
+  const hero = document.getElementById('hero');
+  if (!hero || prefersReducedMotion) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  const glow = hero.querySelector('.hero-glow');
+  let tx = 0, ty = 0, cx = 0, cy = 0, gx = 0, gy = 0, px = 0, py = 0, running = false;
+  const tick = () => {
+    cx += (tx - cx) * 0.075;
+    cy += (ty - cy) * 0.075;
+    hero.style.setProperty('--pmx', cx.toFixed(4));
+    hero.style.setProperty('--pmy', cy.toFixed(4));
+    if (glow) {
+      px += (gx - px) * 0.12;
+      py += (gy - py) * 0.12;
+      const h = glow.offsetWidth / 2;
+      glow.style.transform = `translate3d(${(px - h).toFixed(1)}px, ${(py - h).toFixed(1)}px, 0)`;
+    }
+    const settled = Math.abs(tx - cx) < 0.0005 && Math.abs(ty - cy) < 0.0005
+      && Math.abs(gx - px) < 0.5 && Math.abs(gy - py) < 0.5;
+    if (!settled) requestAnimationFrame(tick);
+    else running = false;
+  };
+  const kick = () => { if (!running) { running = true; requestAnimationFrame(tick); } };
+  hero.addEventListener('pointermove', (e) => {
+    const r = hero.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+    ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
+    gx = e.clientX - r.left;
+    gy = e.clientY - r.top;
+    if (!hero.classList.contains('has-glow')) {
+      hero.classList.add('has-glow');
+      px = gx; py = gy;
+    }
+    kick();
+  });
+  hero.addEventListener('pointerleave', () => {
+    hero.classList.remove('has-glow');
+    tx = 0; ty = 0;
+    kick();
+  });
+})();

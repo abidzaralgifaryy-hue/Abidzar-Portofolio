@@ -38,8 +38,8 @@
     <header class="site-nav" id="siteNav">
         <div class="nav-inner">
             <a href="#hero" class="nav-logo" aria-label="Beranda Adizarel"><img src="Asset/logo.png" alt="Adizarel" width="120" height="28" loading="eager" decoding="async"></a>
-            <nav class="nav-links" aria-label="Navigasi utama">
-                <a href="#skills" class="nav-link active" data-nav="skills">Skills</a>
+            <nav class="nav-links" id="mobileMenu" aria-label="Navigasi utama">
+                <a href="#skills" class="nav-link" data-nav="skills">Skills</a>
                 <a href="#experience" class="nav-link" data-nav="experience">Experience</a>
                 <a href="#work" class="nav-link" data-nav="work">Work</a>
                 <a href="#contact" class="nav-link" data-nav="contact">Contact</a>
@@ -52,17 +52,22 @@
                 <a class="nav-contact-btn" href="https://wa.me/6285137071956" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
                     <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
                 </a>
+                <button class="nav-menu-btn" id="navMenuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                    <i class="ph-bold ph-list icon-open" aria-hidden="true"></i>
+                    <i class="ph-bold ph-x icon-close" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </header>
 
     <!-- HERO -->
     <section class="hero" id="hero" aria-labelledby="heroTitle">
-        <div class="hero-bg-text" aria-hidden="true">ABIDZAR</div>
+        <div class="hero-bg-text" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
         <span class="deco-star deco-star-a" aria-hidden="true"></span>
+        <span class="deco-star deco-star-a2" aria-hidden="true"></span>
+        <span class="deco-star deco-star-a3" aria-hidden="true"></span>
         <span class="deco-star deco-star-hero" aria-hidden="true"></span>
-
-        <div class="hero-badge"><span class="pulse-dot" aria-hidden="true"></span><span>Open for Freelance Projects</span></div>
 
         <div class="hero-inner">
             <div class="profile-card">
@@ -83,6 +88,7 @@
             <div class="portfolio-card">
                 <i class="ph-fill ph-push-pin deco-pushpin portfolio-pin" aria-hidden="true"></i>
                 <div class="title-tape tape-tl" aria-hidden="true"></div>
+                <p class="hero-badge hero-badge-inline"><span class="pulse-dot" aria-hidden="true"></span><span>Open for Freelance Projects</span></p>
                 <h1 class="hero-title" id="heroTitle">
                     <span class="line1">PORT</span>
                     <span class="line2">FOLIO</span>
@@ -90,7 +96,6 @@
                 <svg class="title-underline" viewBox="0 0 320 24" preserveAspectRatio="none" aria-hidden="true">
                     <path d="M4 14 Q 40 4, 80 13 T 156 12 T 232 14 T 316 10" />
                 </svg>
-                <p class="hero-sub">Typography dan motion reels untuk brand dan kreator yang butuh tampil beda. Berbasis di Bekasi.</p>
                 <div class="hero-ctas">
                     <a href="#work" class="btn btn-primary">Lihat Karya</a>
                     <a href="https://wa.me/6285137071956" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Hubungi Saya</a>
@@ -121,7 +126,8 @@
 
     <div class="torn-divider" aria-hidden="true"></div>
 
-    <!-- LINED PAPER CONTENT - second section with loose-leaf background -->
+    <!-- LINED PAPER CONTENT - single continuous paper wrap (no seam) -->
+    <div class="paper-wrap">
     <section class="lined-paper" aria-label="Portfolio content">
     <main id="main" class="main-grid">
         <!-- KOLOM KIRI -->
@@ -161,8 +167,8 @@
         <div class="right-col">
             <section class="skills-section" id="skills" aria-labelledby="skillsHeading">
                 <svg class="doodle-arrow-skills" viewBox="0 0 90 110" aria-hidden="true">
-                    <path d="M78 6 C 40 4, 8 26, 14 58 C 18 82, 40 96, 66 92" />
-                    <path d="M52 84 L 65 94 L 51 100" />
+                    <path d="M76 8 C 50 10, 22 30, 24 58 C 25 76, 56 82, 44 94" />
+                    <path d="M50 82 L 44 94 L 56 88" />
                 </svg>
                 <h2 class="section-title" id="skillsHeading">Software & Skills</h2>
                 <div class="skills-bubbles">
@@ -258,23 +264,23 @@
                                 <span class="mini-tape" aria-hidden="true"></span>
                                 <div class="work-thumb"><img src="Asset/ONLY.png" alt="Poster 01 social media design ONLY" width="200" height="250" loading="lazy"></div>
                                 <div class="work-info">
-                                    <h5>Poster 01</h5>
-                                    <p>Social media design</p>
+                                    <h5>Dubai Chewy</h5>
+                                    <p>Product design</p>
                                 </div>
                             </button>
                             <button type="button" class="poster-card tint-orange" role="listitem" aria-label="Perbesar Poster 02">
                                 <span class="mini-tape" aria-hidden="true"></span>
                                 <div class="work-thumb"><img src="Asset/SEWA_MOBIL.png" alt="Poster 02 social media design sewa mobil" width="200" height="250" loading="lazy"></div>
                                 <div class="work-info">
-                                    <h5>Poster 02</h5>
-                                    <p>Social media design</p>
+                                    <h5>Car Renting</h5>
+                                    <p>Product design</p>
                                 </div>
                             </button>
                             <button type="button" class="poster-card tint-army" role="listitem" aria-label="Perbesar Poster 03">
                                 <span class="mini-tape" aria-hidden="true"></span>
                                 <div class="work-thumb"><img src="Asset/SEAN.png" alt="Poster 03 social media design SEAN" width="200" height="250" loading="lazy"></div>
                                 <div class="work-info">
-                                    <h5>Poster 03</h5>
+                                    <h5>Sean</h5>
                                     <p>Social media design</p>
                                 </div>
                             </button>
@@ -282,7 +288,7 @@
                                 <span class="mini-tape" aria-hidden="true"></span>
                                 <div class="work-thumb"><img src="Asset/Arap.png" alt="Poster 04 social media design dengan tipografi Arap" width="200" height="250" loading="lazy"></div>
                                 <div class="work-info">
-                                    <h5>Poster 04</h5>
+                                    <h5>Rasya</h5>
                                     <p>Social media design</p>
                                 </div>
                             </button>
@@ -290,7 +296,7 @@
                                 <span class="mini-tape" aria-hidden="true"></span>
                                 <div class="work-thumb"><img src="Asset/quality_restoration_20260707183213934.jpeg" alt="Poster 05 social media design" width="200" height="250" loading="lazy"></div>
                                 <div class="work-info">
-                                    <h5>Poster 05</h5>
+                                    <h5>Juliant</h5>
                                     <p>Social media design</p>
                                 </div>
                             </button>
@@ -310,16 +316,10 @@
             <h2 class="contact-heading" id="contactHeading">Let's Talk</h2>
             <p class="contact-sub">Cerita goal projectmu — aku balas via WhatsApp.</p>
             <form id="contactForm" novalidate>
-                <div class="form-row">
-                    <label class="form-field"><span class="field-label">Name <span class="required" aria-hidden="true">*</span></span>
-                        <input type="text" name="name" required autocomplete="name" placeholder="Namamu">
-                        <span class="field-error" data-error="name"></span>
-                    </label>
-                    <label class="form-field"><span class="field-label">WhatsApp / Email <span class="required" aria-hidden="true">*</span></span>
-                        <input type="text" name="contact" required autocomplete="tel" placeholder="+62 / email">
-                        <span class="field-error" data-error="contact"></span>
-                    </label>
-                </div>
+                <label class="form-field"><span class="field-label">Name <span class="required" aria-hidden="true">*</span></span>
+                    <input type="text" name="name" required autocomplete="name" placeholder="Namamu">
+                    <span class="field-error" data-error="name"></span>
+                </label>
                 <label class="form-field"><span class="field-label">Project Goal <span class="required" aria-hidden="true">*</span></span>
                     <select name="goal" required>
                         <option value="">Pilih goal</option>
@@ -335,10 +335,10 @@
                     <label class="form-field">Budget
                         <select name="budget">
                             <option value="Discuss">Discuss</option>
-                            <option>&lt; 1jt</option>
-                            <option>1 - 3jt</option>
-                            <option>3 - 5jt</option>
-                            <option>5jt+</option>
+                            <option>&lt; 100k</option>
+                            <option>100k - 300k</option>
+                            <option>300k - 500k</option>
+                            <option>500k+</option>
                         </select>
                     </label>
                     <label class="form-field">Timeline
@@ -361,6 +361,7 @@
             <div class="tape-deco contact-tape" aria-hidden="true"></div>
         </div>
     </section>
+    </div>
 
     <div class="torn-divider torn-divider-flip" aria-hidden="true"></div>
 
@@ -381,6 +382,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="https://unpkg.com/lenis@1/dist/lenis.min.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
