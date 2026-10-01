@@ -459,10 +459,10 @@ html.lenis, html.lenis body { height: auto; }
     transition: opacity .8s var(--ease);
     background: radial-gradient(
         640px circle at var(--mx, 50%) var(--my, 50%),
-        rgba(255, 253, 245, .50) 0%,
-        rgba(255, 250, 235, .16) 30%,
-        rgba(42, 30, 18, .06) 62%,
-        rgba(42, 30, 18, .26) 100%
+        rgba(255, 254, 248, .55) 0%,
+        rgba(255, 252, 240, .22) 32%,
+        rgba(58, 42, 24, 0) 62%,
+        rgba(58, 42, 24, .10) 100%
     );
     will-change: background;
 }
@@ -493,10 +493,10 @@ html.lenis, html.lenis body { height: auto; }
   .hero-spotlight {
     background: radial-gradient(
         440px circle at var(--mx, 50%) var(--my, 50%),
-        rgba(255, 253, 245, .48) 0%,
-        rgba(255, 250, 235, .14) 30%,
-        rgba(42, 30, 18, .06) 62%,
-        rgba(42, 30, 18, .26) 100%
+        rgba(255, 254, 248, .52) 0%,
+        rgba(255, 252, 240, .20) 32%,
+        rgba(58, 42, 24, 0) 62%,
+        rgba(58, 42, 24, .09) 100%
     );
   }
   [data-theme="dark"] .hero-spotlight {
