@@ -448,6 +448,71 @@ html.lenis, html.lenis body { height: auto; }
     will-change: transform;
 }
 .hero.has-glow .hero-glow { opacity: 1; }
+
+/* dynamic dark/light gradient - follows cursor & touch, all devices */
+.hero-spotlight {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity .8s var(--ease);
+    background: radial-gradient(
+        640px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 253, 245, .50) 0%,
+        rgba(255, 250, 235, .16) 30%,
+        rgba(42, 30, 18, .06) 62%,
+        rgba(42, 30, 18, .26) 100%
+    );
+    will-change: background;
+}
+.hero.has-pointer .hero-spotlight { opacity: 1; }
+
+[data-theme="dark"] .hero-spotlight {
+    background: radial-gradient(
+        640px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 235, 200, .16) 0%,
+        rgba(255, 220, 180, .05) 30%,
+        rgba(0, 0, 0, .20) 62%,
+        rgba(0, 0, 0, .48) 100%
+    );
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .hero-spotlight {
+    background: radial-gradient(
+        640px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 235, 200, .16) 0%,
+        rgba(255, 220, 180, .05) 30%,
+        rgba(0, 0, 0, .20) 62%,
+        rgba(0, 0, 0, .48) 100%
+    );
+  }
+}
+/* radius lebih kecil di layar sempit supaya spotlight tetap proporsional */
+@media (max-width: 640px) {
+  .hero-spotlight {
+    background: radial-gradient(
+        440px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 253, 245, .48) 0%,
+        rgba(255, 250, 235, .14) 30%,
+        rgba(42, 30, 18, .06) 62%,
+        rgba(42, 30, 18, .26) 100%
+    );
+  }
+  [data-theme="dark"] .hero-spotlight {
+    background: radial-gradient(
+        440px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 235, 200, .14) 0%,
+        rgba(255, 220, 180, .04) 30%,
+        rgba(0, 0, 0, .20) 62%,
+        rgba(0, 0, 0, .46) 100%
+    );
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-spotlight { display: none; }
+}
+
 [data-theme="dark"] .hero-glow { background: radial-gradient(circle, rgba(204,122,33,.14), rgba(204,122,33,.04) 45%, transparent 68%); }
 @media (max-width: 640px) { .hero-glow { width: 260px; height: 260px; } }
 .hero-inner {
@@ -1195,42 +1260,4 @@ body.lightbox-lock { overflow: hidden; }
 [data-theme="dark"] .sticker:nth-child(3) { background: #3E7D50; }
 [data-theme="dark"] .tag-orange { background: #8F540F; }
 [data-theme="dark"] .hero-badge { background: #232019; border-color: #55692F; color: #D6CFC0; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) .sticker,
-  :root:not([data-theme]) .section-title,
-  :root:not([data-theme]) .about-heading,
-  :root:not([data-theme]) .edu-heading,
-  :root:not([data-theme]) .board-heading,
-  :root:not([data-theme]) .profile-role,
-  :root:not([data-theme]) .skill-tag { color: #FFFFFF; }
-  :root:not([data-theme]) .sticker:nth-child(3) { background: #3E7D50; }
-  :root:not([data-theme]) .tag-orange { background: #8F540F; }
-  :root:not([data-theme]) .hero-badge { background: #232019; border-color: #55692F; color: #D6CFC0; }
-}
-
-/* REDUCED MOTION - comprehensive, non-negotiable for MOTION >3 */
-@media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-        scroll-behavior: auto !important;
-    }
-    .marquee-track { animation: none !important; transform: none !important; }
-    .pulse-dot::after { animation: none !important; opacity: 0 !important; }
-    .fade-in { opacity: 1 !important; transform: none !important; }
-    .profile-card, .portfolio-card, .hero-badge, .hero-title-wrap { animation: none !important; transform: none !important; }
-    .work-entry:hover, .soft-item:hover, .poster-card:hover, .nav-contact-btn:hover { transform: none !important; }
-}
-
-/* reduced transparency fallback for glass nav */
-@media (prefers-reduced-transparency: reduce) {
-    .site-nav { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--paper-cream); }
-}
-
-/* focus and high-contrast tweaks */
-@media (forced-colors: active) {
-    .site-nav { border-bottom: 1px solid CanvasText; }
-    .btn-primary, .btn-ghost { border: 1px solid CanvasText; }
-}
+@media (pre
