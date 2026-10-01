@@ -339,268 +339,109 @@ if (!prefersReduced && 'IntersectionObserver' in window) {
   fadeEls.forEach(el => el.classList.add('visible'));
 }
 
-// 8. Hero motion background - works with mouse, touch & pen (all devices)
-//    - canvas of drifting dots / stars / rings that react to the pointer
-//    - amber glow + parallax blobs follow the pointer (CSS vars --pmx / --pmy)
-//    - idle drift keeps it alive on phones even when nobody is touching
-//    - pauses when the hero is off-screen or the tab is hidden; static if reduced-motion
+// 8. Hero motion background - parallax blobs + cursor/touch glow + dynamic dark/light gradient
+//    Bekerja untuk mouse, pen, dan touch screen. Menghormati prefers-reduced-motion.
 (function(){
   const hero = document.getElementById('hero');
-  const canvas = document.getElementById('heroCanvas');
-  if (!hero) return;
+  if (!hero || prefersReducedMotion) return;
   const glow = hero.querySelector('.hero-glow');
-  const shade = hero.querySelector('.hero-shade');
-  let hx = 0, hy = 0;                     // shade position (lags behind glow)
-  const ctx = canvas && canvas.getContext ? canvas.getContext('2d') : null;
-  const reduced = prefersReducedMotion;
 
-  // ---------- palette (follows light/dark theme) ----------
-  const PALETTES = {
-    light: ['#CC7A21', '#6B8A4A', '#E3A15F', '#9CAF88', '#A85E18'],
-    dark:  ['#CC7A21', '#8FB06A', '#E0A060', '#9CAF88', '#D9944A']
-  };
-  let colors = PALETTES.light, lineRGB = '168,94,24';
-  const readTheme = () => {
-    const dark = document.documentElement.getAttribute('data-theme') === 'dark'
-      || (!document.documentElement.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    colors = dark ? PALETTES.dark : PALETTES.light;
-    lineRGB = dark ? '224,160,96' : '168,94,24';
-    if (reduced) drawStatic();
-  };
-  new MutationObserver(readTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  let tx = 0, ty = 0, cx = 0, cy = 0;
+  let gx = 0, gy = 0, px = 0, py = 0;
+  let mx = 50, my = 50, tmx = 50, tmy = 50;
+  let running = false;
+  let touchFadeTimer = null;
 
-  // ---------- pointer state (shared by canvas, glow & parallax) ----------
-  const ptr = { x: 0, y: 0, sx: 0, sy: 0, vx: 0, vy: 0, on: false, power: 0 };
-  let tx = 0, ty = 0, cx = 0, cy = 0;     // parallax target / current (-1..1)
-  let gx = 0, gy = 0, px = 0, py = 0;     // glow target / current (px)
-  let holdTimer = 0;
-
-  const setPointer = (clientX, clientY) => {
-    const r = hero.getBoundingClientRect();
-    if (!r.width || !r.height) return;
-    const x = clientX - r.left, y = clientY - r.top;
-    if (!ptr.on) { ptr.sx = x; ptr.sy = y; px = x; py = y; hx = x; hy = y; }
-    ptr.vx = x - ptr.x; ptr.vy = y - ptr.y;
-    ptr.x = x; ptr.y = y; ptr.on = true;
-    tx = (x / r.width - 0.5) * 2; ty = (y / r.height - 0.5) * 2;
-    gx = x; gy = y;
-    hero.classList.add('has-glow');
-    clearTimeout(holdTimer);
-    kick();
+  const clearTouchFade = () => {
+    if (touchFadeTimer) { clearTimeout(touchFadeTimer); touchFadeTimer = null; }
   };
-  const releasePointer = (delay) => {
-    clearTimeout(holdTimer);
-    holdTimer = setTimeout(() => {
-      ptr.on = false; tx = 0; ty = 0;
+  const scheduleTouchFade = () => {
+    clearTouchFade();
+    touchFadeTimer = setTimeout(() => {
       hero.classList.remove('has-glow');
+      hero.classList.remove('has-pointer');
+      tx = 0; ty = 0;
+      tmx = 50; tmy = 50;
       kick();
-    }, delay || 0);
+    }, 3500);
   };
 
-  // mouse + pen via Pointer Events (touch handled separately so scrolling is never blocked)
-  window.addEventListener('pointermove', (e) => {
-    if (e.pointerType === 'touch') return;
-    setPointer(e.clientX, e.clientY);
-  }, { passive: true });
-  document.documentElement.addEventListener('mouseleave', () => releasePointer(0));
-  window.addEventListener('blur', () => releasePointer(0));
-
-  // touch: passive listeners, follows the finger while scrolling or dragging
-  const onTouch = (e) => { const t = e.touches[0]; if (t) setPointer(t.clientX, t.clientY); };
-  window.addEventListener('touchstart', (e) => { onTouch(e); burst(); }, { passive: true });
-  window.addEventListener('touchmove', onTouch, { passive: true });
-  window.addEventListener('touchend', () => releasePointer(700), { passive: true });
-  window.addEventListener('touchcancel', () => releasePointer(300), { passive: true });
-
-  // click / tap ripple (only when it lands inside the hero)
-  let burstT = 0;
-  const burst = () => { burstT = 1; };
-  window.addEventListener('pointerdown', (e) => {
-    if (e.pointerType !== 'touch') { setPointer(e.clientX, e.clientY); burst(); }
-  }, { passive: true });
-
-  // ---------- particles ----------
-  let W = 0, H = 0, dpr = 1, parts = [], inView = true, running = false, last = 0, time = 0;
-  const rnd = (a, b) => a + Math.random() * (b - a);
-
-  const makeParticle = (w, h) => {
-    const kind = Math.random();
-    return {
-      hx: rnd(0, w), hy: rnd(0, h),               // home position
-      ox: 0, oy: 0, vx: 0, vy: 0,                 // displacement from home + velocity
-      r: rnd(2.2, 6.5),
-      type: kind < .55 ? 0 : kind < .8 ? 1 : 2,   // 0 dot, 1 star, 2 ring
-      col: colors[(Math.random() * colors.length) | 0],
-      a: rnd(.28, .7),
-      amp: rnd(8, 26), spd: rnd(.12, .32), ph: rnd(0, 6.283),
-      rot: rnd(0, 6.283), vr: rnd(-.5, .5),
-      depth: rnd(.5, 1.5)                         // parallax depth
-    };
-  };
-
-  const targetCount = () => {
-    const area = W * H;
-    let n = Math.round(area / 15000);
-    const lowEnd = (navigator.hardwareConcurrency || 8) <= 4 || W < 640;
-    if (lowEnd) n = Math.round(n * .65);
-    return Math.max(18, Math.min(n, 90));
-  };
-
-  const resize = () => {
-    const r = hero.getBoundingClientRect();
-    const nw = Math.max(1, Math.round(r.width)), nh = Math.max(1, Math.round(r.height));
-    if (!canvas || !ctx) return;
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const sx = W ? nw / W : 1, sy = H ? nh / H : 1;
-    W = nw; H = nh;
-    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    if (!parts.length) {
-      const n = targetCount();
-      for (let i = 0; i < n; i++) parts.push(makeParticle(W, H));
-    } else {
-      parts.forEach(p => { p.hx *= sx; p.hy *= sy; });   // keep layout stable on resize
-      const n = targetCount();
-      while (parts.length < n) parts.push(makeParticle(W, H));
-      if (parts.length > n) parts.length = n;
-    }
-    if (reduced || !running) drawFrame(0);
-  };
-
-  const starPath = (r) => {
-    ctx.beginPath();
-    for (let i = 0; i < 10; i++) {
-      const a = (i * Math.PI) / 5 - Math.PI / 2, rr = i % 2 ? r * .45 : r;
-      const x = Math.cos(a) * rr, y = Math.sin(a) * rr;
-      i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
-    }
-    ctx.closePath();
-  };
-
-  function drawFrame(dt) {
-    if (!ctx) return;
-    ctx.clearRect(0, 0, W, H);
-    const R = Math.max(110, Math.min(190, W * .22));   // pointer influence radius
-    const R2 = R * R;
-    const power = ptr.power;
-    const wind = Math.min(1, Math.hypot(ptr.vx, ptr.vy) / 40);
-
-    // soft lines from pointer to nearby particles
-    if (power > .02) {
-      ctx.lineWidth = 1;
-      for (let i = 0; i < parts.length; i++) {
-        const p = parts[i];
-        const x = p.hx + p.ox, y = p.hy + p.oy;
-        const dx = x - ptr.sx, dy = y - ptr.sy, d2 = dx * dx + dy * dy;
-        const L = R * 1.15;
-        if (d2 < L * L) {
-          const k = (1 - Math.sqrt(d2) / L) * .35 * power;
-          ctx.strokeStyle = `rgba(${lineRGB},${k.toFixed(3)})`;
-          ctx.beginPath(); ctx.moveTo(ptr.sx, ptr.sy); ctx.lineTo(x, y); ctx.stroke();
-        }
-      }
-    }
-
-    for (let i = 0; i < parts.length; i++) {
-      const p = parts[i];
-      // idle drift (always on, gentle)
-      const dx0 = Math.sin(time * p.spd + p.ph) * p.amp;
-      const dy0 = Math.cos(time * p.spd * .8 + p.ph * 1.3) * p.amp;
-      let x = p.hx + dx0 + p.ox, y = p.hy + dy0 + p.oy;
-
-      if (dt) {
-        // pointer: repel + wind
-        const dx = x - ptr.sx, dy = y - ptr.sy, d2 = dx * dx + dy * dy;
-        if (power > .02 && d2 < R2 && d2 > .01) {
-          const d = Math.sqrt(d2), f = (1 - d / R) * power;
-          p.vx += (dx / d) * f * 90 * dt * 6 + ptr.vx * f * wind * .06;
-          p.vy += (dy / d) * f * 90 * dt * 6 + ptr.vy * f * wind * .06;
-        }
-        // tap / click ripple
-        if (burstT > 0 && ptr.on) {
-          const d = Math.sqrt(d2) || 1;
-          if (d < R * 1.8) { const f = (1 - d / (R * 1.8)) * burstT; p.vx += (dx / d) * f * 14; p.vy += (dy / d) * f * 14; }
-        }
-        // spring back home, with damping
-        p.vx += -p.ox * 2.2 * dt; p.vy += -p.oy * 2.2 * dt;
-        const damp = Math.pow(.04, dt);
-        p.vx *= damp; p.vy *= damp;
-        p.ox += p.vx * dt * 60 * .5; p.oy += p.vy * dt * 60 * .5;
-        p.rot += p.vr * dt;
-        x = p.hx + dx0 + p.ox; y = p.hy + dy0 + p.oy;
-      }
-
-      // parallax shift from pointer position
-      x += cx * -14 * p.depth; y += cy * -14 * p.depth;
-
-      // grow a little when close to the pointer
-      const near = power > .02 ? Math.max(0, 1 - Math.hypot(x - ptr.sx, y - ptr.sy) / R) * power : 0;
-      const r = p.r * (1 + near * .9);
-
-      ctx.globalAlpha = Math.min(1, p.a + near * .3);
-      ctx.fillStyle = ctx.strokeStyle = p.col;
-      if (p.type === 0) {
-        ctx.beginPath(); ctx.arc(x, y, r * .8, 0, 6.283); ctx.fill();
-      } else if (p.type === 1) {
-        ctx.save(); ctx.translate(x, y); ctx.rotate(p.rot); starPath(r * 1.7); ctx.fill(); ctx.restore();
-      } else {
-        ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(x, y, r * 1.2, 0, 6.283); ctx.stroke();
-      }
-    }
-    ctx.globalAlpha = 1;
-  }
-  const drawStatic = () => { if (ctx && W) drawFrame(0); };
-
-  // ---------- main loop ----------
-  const tick = (now) => {
-    if (!running) return;
-    const dt = Math.min(.05, (now - (last || now)) / 1000);
-    last = now; time += dt;
-
-    // ease parallax + glow + pointer
-    cx += (tx - cx) * .075; cy += (ty - cy) * .075;
+  const tick = () => {
+    cx += (tx - cx) * 0.075;
+    cy += (ty - cy) * 0.075;
     hero.style.setProperty('--pmx', cx.toFixed(4));
     hero.style.setProperty('--pmy', cy.toFixed(4));
-    px += (gx - px) * .12; py += (gy - py) * .12;
+
+    mx += (tmx - mx) * 0.12;
+    my += (tmy - my) * 0.12;
+    hero.style.setProperty('--mx', mx.toFixed(2) + '%');
+    hero.style.setProperty('--my', my.toFixed(2) + '%');
+
     if (glow) {
+      px += (gx - px) * 0.12;
+      py += (gy - py) * 0.12;
       const h = glow.offsetWidth / 2;
       glow.style.transform = `translate3d(${(px - h).toFixed(1)}px, ${(py - h).toFixed(1)}px, 0)`;
     }
-    if (shade) {
-      hx += (gx - hx) * .07; hy += (gy - hy) * .07;
-      const h2 = shade.offsetWidth / 2;
-      shade.style.transform = `translate3d(${(hx - h2).toFixed(1)}px, ${(hy - h2).toFixed(1)}px, 0)`;
-    }
-    ptr.sx += (ptr.x - ptr.sx) * .22; ptr.sy += (ptr.y - ptr.sy) * .22;
-    ptr.power += ((ptr.on ? 1 : 0) - ptr.power) * Math.min(1, dt * 6);
-    ptr.vx *= .85; ptr.vy *= .85;
-    if (burstT > 0) burstT = Math.max(0, burstT - dt * 4);
 
-    drawFrame(dt);
-    requestAnimationFrame(tick);
+    const settled =
+      Math.abs(tx - cx) < 0.0005 && Math.abs(ty - cy) < 0.0005 &&
+      Math.abs(tmx - mx) < 0.05 && Math.abs(tmy - my) < 0.05 &&
+      Math.abs(gx - px) < 0.5 && Math.abs(gy - py) < 0.5;
+    if (!settled) requestAnimationFrame(tick);
+    else running = false;
   };
-  function kick() {
-    if (running || reduced || !inView || document.hidden) return;
-    running = true; last = 0; requestAnimationFrame(tick);
-  }
-  const stop = () => { running = false; };
+  const kick = () => { if (!running) { running = true; requestAnimationFrame(tick); } };
 
-  // ---------- lifecycle ----------
-  readTheme();
-  resize();
-  if ('ResizeObserver' in window) new ResizeObserver(resize).observe(hero);
-  else window.addEventListener('resize', resize, { passive: true });
+  const handleMove = (clientX, clientY) => {
+    const r = hero.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    const relX = clientX - r.left;
+    const relY = clientY - r.top;
+    tx = (relX / r.width - 0.5) * 2;
+    ty = (relY / r.height - 0.5) * 2;
+    gx = relX; gy = relY;
+    tmx = (relX / r.width) * 100;
+    tmy = (relY / r.height) * 100;
+    if (!hero.classList.contains('has-glow')) {
+      hero.classList.add('has-glow');
+      hero.classList.add('has-pointer');
+      px = gx; py = gy;
+      mx = tmx; my = tmy;
+    }
+    clearTouchFade();
+    kick();
+  };
 
-  if (reduced) {                       // static, no animation, no pointer tracking cost
-    drawStatic();
-    return;
+  const handleLeave = (e) => {
+    if (e && e.pointerType === 'touch') {
+      // di touch: tahan posisi terakhir, baru fade setelah 3.5s idle
+      scheduleTouchFade();
+      tx = 0; ty = 0;
+      kick();
+      return;
+    }
+    hero.classList.remove('has-glow');
+    hero.classList.remove('has-pointer');
+    tx = 0; ty = 0;
+    tmx = 50; tmy = 50;
+    kick();
+  };
+
+  // Pointer Events - mencakup mouse, pen, dan touch di browser modern
+  hero.addEventListener('pointermove', (e) => handleMove(e.clientX, e.clientY), { passive: true });
+  hero.addEventListener('pointerdown', (e) => handleMove(e.clientX, e.clientY), { passive: true });
+  hero.addEventListener('pointerleave', handleLeave);
+
+  // Fallback untuk browser lawas tanpa PointerEvent
+  if (!window.PointerEvent) {
+    const touchMove = (e) => {
+      const t = e.touches[0]; if (!t) return;
+      handleMove(t.clientX, t.clientY);
+    };
+    hero.addEventListener('touchstart', touchMove, { passive: true });
+    hero.addEventListener('touchmove', touchMove, { passive: true });
+    hero.addEventListener('touchend', () => scheduleTouchFade(), { passive: true });
+    hero.addEventListener('touchcancel', () => scheduleTouchFade(), { passive: true });
   }
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([en]) => {
-      inView = en.isIntersecting;
-      inView ? kick() : stop();
-    }, { threshold: 0 }).observe(hero);
-  }
-  document.addEventListener('visibilitychange', () => { document.hidden ? stop() : kick(); });
-  kick();
 })();
