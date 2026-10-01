@@ -1260,4 +1260,42 @@ body.lightbox-lock { overflow: hidden; }
 [data-theme="dark"] .sticker:nth-child(3) { background: #3E7D50; }
 [data-theme="dark"] .tag-orange { background: #8F540F; }
 [data-theme="dark"] .hero-badge { background: #232019; border-color: #55692F; color: #D6CFC0; }
-@media (pre
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .sticker,
+  :root:not([data-theme]) .section-title,
+  :root:not([data-theme]) .about-heading,
+  :root:not([data-theme]) .edu-heading,
+  :root:not([data-theme]) .board-heading,
+  :root:not([data-theme]) .profile-role,
+  :root:not([data-theme]) .skill-tag { color: #FFFFFF; }
+  :root:not([data-theme]) .sticker:nth-child(3) { background: #3E7D50; }
+  :root:not([data-theme]) .tag-orange { background: #8F540F; }
+  :root:not([data-theme]) .hero-badge { background: #232019; border-color: #55692F; color: #D6CFC0; }
+}
+
+/* REDUCED MOTION - comprehensive, non-negotiable for MOTION >3 */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .marquee-track { animation: none !important; transform: none !important; }
+    .pulse-dot::after { animation: none !important; opacity: 0 !important; }
+    .fade-in { opacity: 1 !important; transform: none !important; }
+    .profile-card, .portfolio-card, .hero-badge, .hero-title-wrap { animation: none !important; transform: none !important; }
+    .work-entry:hover, .soft-item:hover, .poster-card:hover, .nav-contact-btn:hover { transform: none !important; }
+}
+
+/* reduced transparency fallback for glass nav */
+@media (prefers-reduced-transparency: reduce) {
+    .site-nav { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--paper-cream); }
+}
+
+/* focus and high-contrast tweaks */
+@media (forced-colors: active) {
+    .site-nav { border-bottom: 1px solid CanvasText; }
+    .btn-primary, .btn-ghost { border: 1px solid CanvasText; }
+}
