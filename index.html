@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio | Abidzar Algifary - Video Editor & Graphic Designer</title>
     <meta name="description" content="Abidzar Algifary (Abijay) - Video Editor & Graphic Designer, pelajar Al-Azhar 44. Portofolio typography, motion graphics, dan desain grafis. Open for freelance projects.">
-    <meta name="theme-color" content="#EFE1C2">
+    <meta name="theme-color" content="#EAE3D2">
     <meta property="og:title" content="Abidzar Algifary - Video Editor & Graphic Designer">
     <meta property="og:description" content="Typography, motion graphics, dan desain grafis pilihan oleh Abidzar Algifary.">
     <meta property="og:image" content="Asset/IMG_4270.jpeg">
@@ -25,7 +25,7 @@
         var theme = stored || (sysDark ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', theme);
         var meta = document.querySelector('meta[name="theme-color"]');
-        if(meta) meta.setAttribute('content', theme === 'dark' ? '#1A1814' : '#EFE1C2');
+        if(meta) meta.setAttribute('content', theme === 'dark' ? '#1A1815' : '#EAE3D2');
       }catch(e){}
     })();
     </script>
@@ -63,18 +63,55 @@
     <!-- HERO -->
     <section class="hero" id="hero" aria-labelledby="heroTitle">
         <div class="hero-bg-text" aria-hidden="true"></div>
+        <div class="hero-bg-glow" aria-hidden="true"></div>
         <div class="hero-spotlight" aria-hidden="true"></div>
+        <div class="hero-grain" aria-hidden="true"></div>
         <div class="hero-glow" aria-hidden="true"></div>
+        <div class="hero-particles" aria-hidden="true">
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+        </div>
+
         <span class="deco-star deco-star-a" aria-hidden="true"></span>
         <span class="deco-star deco-star-a2" aria-hidden="true"></span>
         <span class="deco-star deco-star-a3" aria-hidden="true"></span>
+        <span class="deco-star deco-star-a4" aria-hidden="true"></span>
         <span class="deco-star deco-star-hero" aria-hidden="true"></span>
+        <span class="deco-star deco-star-c" aria-hidden="true"></span>
+        <span class="deco-star deco-star-d" aria-hidden="true"></span>
+        <span class="deco-star deco-star-e" aria-hidden="true"></span>
+
+        <span class="deco-sparkle deco-sparkle-a" aria-hidden="true">✦</span>
+        <span class="deco-sparkle deco-sparkle-b" aria-hidden="true">✧</span>
+        <span class="deco-sparkle deco-sparkle-c" aria-hidden="true">✦</span>
+        <span class="deco-sparkle deco-sparkle-d" aria-hidden="true">✧</span>
+
+        <svg class="deco-squiggle deco-squiggle-a" viewBox="0 0 140 44" aria-hidden="true">
+            <path d="M6 26 Q 24 4, 46 24 T 88 22 T 134 20" />
+        </svg>
+        <svg class="deco-squiggle deco-squiggle-b" viewBox="0 0 110 54" aria-hidden="true">
+            <path d="M8 34 C 24 10, 48 8, 56 26 C 64 44, 88 46, 100 24" />
+        </svg>
 
         <div class="hero-inner">
             <div class="profile-card">
                 <i class="ph-fill ph-paperclip deco-paperclip" aria-hidden="true"></i>
+                <span class="corner-tape corner-tape-tl" aria-hidden="true"></span>
                 <div class="photo-layers">
                     <div class="photo-frame frame-1" aria-hidden="true"></div>
+                    <div class="photo-frame frame-2" aria-hidden="true"></div>
                     <div class="photo-frame frame-3">
                         <img src="Asset/IMG_4270.jpeg" alt="Abidzar Algifary, Video Editor dan Graphic Designer" width="208" height="224" fetchpriority="high" decoding="async">
                     </div>
@@ -84,6 +121,7 @@
                     <p class="profile-role">Video Editor & Graphic Designer</p>
                 </div>
                 <div class="tape-deco" aria-hidden="true"></div>
+                <span class="card-doodle card-doodle-heart" aria-hidden="true">♡</span>
             </div>
 
             <div class="portfolio-card">
@@ -94,20 +132,18 @@
                     <span class="line1">PORT</span>
                     <span class="line2">FOLIO</span>
                 </h1>
-                <svg class="title-underline" viewBox="0 0 320 24" preserveAspectRatio="none" aria-hidden="true">
-                    <path d="M4 14 Q 40 4, 80 13 T 156 12 T 232 14 T 316 10" />
-                </svg>
                 <div class="hero-ctas">
                     <a href="#work" class="btn btn-primary">Lihat Karya</a>
                     <a href="https://wa.me/6285137071956" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Hubungi Saya</a>
                 </div>
                 <span class="corner-fold" aria-hidden="true"></span>
                 <div class="tape-deco portfolio-tape" aria-hidden="true"></div>
+                <span class="card-doodle card-doodle-sparkle" aria-hidden="true">✦</span>
             </div>
         </div>
     </section>
 
-    <!-- SKILL MARQUEE - lives UNDER hero, not inside (pre-flight compliant) -->
+    <!-- SKILL MARQUEE -->
     <div class="hero-marquee" aria-label="Daftar keahlian" role="region">
         <div class="marquee-track" aria-hidden="true">
             <span>Video Editing</span><span class="dot">✦</span>
@@ -127,15 +163,14 @@
 
     <div class="torn-divider" aria-hidden="true"></div>
 
-    <!-- LINED PAPER CONTENT - single continuous paper wrap (no seam) -->
     <div class="paper-wrap">
     <section class="lined-paper" aria-label="Portfolio content">
     <main id="main" class="main-grid">
-        <!-- KOLOM KIRI -->
         <div class="left-col">
             <section class="about-section" id="about" aria-labelledby="aboutHeading">
                 <div class="about-paper">
                     <span class="corner-fold" aria-hidden="true"></span>
+                    <span class="corner-tape corner-tape-tr" aria-hidden="true"></span>
                     <h2 class="about-heading" id="aboutHeading">About Me <i class="ph-fill ph-pencil-simple" aria-hidden="true"></i></h2>
                     <div class="about-bio">
                         <p>Kenalin, aku biasa dipanggil <strong>Abijay</strong>. Saat ini aku adalah seorang pelajar di Al-Azhar 44. Di luar jam sekolah, aku punya ketertarikan yang cukup besar di dunia kreatif, khususnya <strong>desain grafis</strong> dan <strong>video editing</strong>.</p>
@@ -146,6 +181,7 @@
                         <span class="sticker">Curious</span>
                         <span class="sticker">Detail oriented</span>
                     </div>
+                    <span class="card-doodle card-doodle-arrow" aria-hidden="true">↝</span>
                 </div>
             </section>
 
@@ -164,7 +200,6 @@
             </section>
         </div>
 
-        <!-- KOLOM KANAN -->
         <div class="right-col">
             <section class="skills-section" id="skills" aria-labelledby="skillsHeading">
                 <svg class="doodle-arrow-skills" viewBox="0 0 90 110" aria-hidden="true">
@@ -174,6 +209,7 @@
                 <h2 class="section-title" id="skillsHeading">Software & Skills</h2>
                 <div class="skills-bubbles">
                     <span class="washi-strip washi-strip-skills" aria-hidden="true"></span>
+                    <span class="deco-sparkle deco-sparkle-skills" aria-hidden="true">✦</span>
                     <div class="bubble bubble-software">
                         <div class="soft-item">
                             <div class="soft-icon"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/8c/3b/7c/8c3b7ce9-68ef-ca83-9be6-8a4d3a54fbd3/AppIcon-0-0-1x_U007emarketing-0-5-0-0-0-0-85-220.png/512x512bb.jpg" alt="Alight Motion" width="28" height="28" loading="lazy" decoding="async"></div>
@@ -203,6 +239,7 @@
 
             <section class="experience-section" id="experience" aria-labelledby="expHeading">
                 <div class="clipboard">
+                    <span class="clipboard-clip" aria-hidden="true"></span>
                     <div class="board-inner">
                         <h2 class="board-heading" id="expHeading">Experience</h2>
                         <div class="experience-list">
@@ -227,7 +264,9 @@
 
             <section class="work-section" id="work" aria-labelledby="workHeading">
                 <span class="deco-star deco-star-b" aria-hidden="true"></span>
+                <span class="deco-sparkle deco-sparkle-work" aria-hidden="true">✧</span>
                 <div class="work-stack">
+                    <span class="washi-strip washi-strip-work" aria-hidden="true"></span>
                     <h2 class="section-title" id="workHeading">My Project</h2>
                     <p class="work-sub">Beberapa karya Typography dan Mograph pilihan.</p>
 
@@ -310,7 +349,6 @@
     </main>
     </section>
 
-    <!-- CONTACT - second-last, WhatsApp handoff -->
     <section class="contact-section" id="contact" aria-labelledby="contactHeading">
         <div class="contact-card">
             <span class="corner-fold" aria-hidden="true"></span>
