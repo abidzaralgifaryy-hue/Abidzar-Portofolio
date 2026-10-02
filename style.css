@@ -1,6 +1,7 @@
 /* ==================================================================
-   ADIZAREL - PORTFOLIO v17.1
-   v17.1: rapikan star cluster + perbaiki paperclip.
+   ADIZAREL - PORTFOLIO v17.2
+   v17.2: mobile-specific - cards diperkecil, particles lebih visible,
+          tambah ambient drift blob (auto bergerak tanpa interaksi).
    ================================================================== */
 :root {
     --kraft: #E9E1CE;
@@ -157,9 +158,7 @@ html.lenis, html.lenis body { height: auto; }
 #navSentinel { position: absolute; top: 80px; height: 1px; width: 100%; pointer-events: none; }
 
 /* ================================================================
-   DECO STARS - v17.1: cluster dirapikan jadi satu gugusan rapi.
-   Empat bintang tersusun diagonal: besar di kiri-bawah, makin
-   kecil ke kanan-atas. Rasanya kayak konstelasi, bukan scattered.
+   DECO STARS
    ================================================================ */
 .deco-star {
     position: absolute;
@@ -167,38 +166,16 @@ html.lenis, html.lenis body { height: auto; }
     filter: drop-shadow(1px 2px 0 rgba(42, 36, 28, .2));
     pointer-events: none; z-index: 2;
 }
-/* Gugusan kiri-atas: menyusun diagonal rapi dari kiri-bawah ke kanan-atas */
-.deco-star-a  {
-    width: 26px; height: 26px; background: var(--accent);
-    top: 13%; left: 5.5%;
-    transform: rotate(-14deg) translate3d(calc(var(--pmx, 0) * 14px), calc(var(--pmy, 0) * 14px), 0);
-    opacity: .88;
-}
-.deco-star-a2 {
-    width: 14px; height: 14px; background: var(--lime-dark);
-    top: 10%; left: 9%;
-    transform: rotate(22deg) translate3d(calc(var(--pmx, 0) * 9px), calc(var(--pmy, 0) * 9px), 0);
-    opacity: .8;
-}
-.deco-star-a3 {
-    width: 11px; height: 11px; background: var(--teal);
-    top: 15.5%; left: 8.5%;
-    transform: rotate(28deg) translate3d(calc(var(--pmx, 0) * 16px), calc(var(--pmy, 0) * 16px), 0);
-    opacity: .78;
-}
-.deco-star-a4 {
-    width: 8px; height: 8px; background: var(--accent-bright);
-    top: 7.5%; left: 3.5%;
-    transform: rotate(-8deg) translate3d(calc(var(--pmx, 0) * 12px), calc(var(--pmy, 0) * 12px), 0);
-    opacity: .72;
-}
+.deco-star-a  { width: 26px; height: 26px; background: var(--accent); top: 13%; left: 5.5%; transform: rotate(-14deg) translate3d(calc(var(--pmx, 0) * 14px), calc(var(--pmy, 0) * 14px), 0); opacity: .88; }
+.deco-star-a2 { width: 14px; height: 14px; background: var(--lime-dark); top: 10%; left: 9%; transform: rotate(22deg) translate3d(calc(var(--pmx, 0) * 9px), calc(var(--pmy, 0) * 9px), 0); opacity: .8; }
+.deco-star-a3 { width: 11px; height: 11px; background: var(--teal); top: 15.5%; left: 8.5%; transform: rotate(28deg) translate3d(calc(var(--pmx, 0) * 16px), calc(var(--pmy, 0) * 16px), 0); opacity: .78; }
+.deco-star-a4 { width: 8px; height: 8px; background: var(--accent-bright); top: 7.5%; left: 3.5%; transform: rotate(-8deg) translate3d(calc(var(--pmx, 0) * 12px), calc(var(--pmy, 0) * 12px), 0); opacity: .72; }
 .deco-star-b { width: 16px; height: 16px; background: var(--lime-dark); top: 38%; right: 6%; transform: rotate(18deg); opacity: .8; }
 .deco-star-hero { width: 15px; height: 15px; background: var(--peach); top: 18%; right: 12%; transform: rotate(14deg) translate3d(calc(var(--pmx, 0) * -20px), calc(var(--pmy, 0) * -20px), 0); opacity: .65; }
 .deco-star-c { width: 11px; height: 11px; background: var(--teal); top: 30%; right: 5%; transform: rotate(24deg) translate3d(calc(var(--pmx, 0) * -14px), calc(var(--pmy, 0) * -14px), 0); opacity: .7; }
 .deco-star-d { width: 9px; height: 9px; background: var(--accent-bright); top: 72%; left: 4%; transform: rotate(-18deg) translate3d(calc(var(--pmx, 0) * 10px), calc(var(--pmy, 0) * 10px), 0); opacity: .7; }
 .deco-star-e { width: 13px; height: 13px; background: var(--sage-dark); bottom: 16%; right: 8%; transform: rotate(12deg) translate3d(calc(var(--pmx, 0) * -12px), calc(var(--pmy, 0) * -12px), 0); opacity: .75; }
 
-/* SPARKLES - geser sedikit supaya tidak menumpuk bintang */
 .deco-sparkle {
     position: absolute;
     font-family: var(--font-display);
@@ -254,11 +231,6 @@ html.lenis, html.lenis body { height: auto; }
     background: rgba(42,36,28,.45); border-radius: 2px;
 }
 
-/* ================================================================
-   PAPERCLIP - v17.1: diperbesar & dipertegas supaya jelas keliatan
-   sebagai klip kertas, bukan sekadar titik. Ditaruh sedikit keluar
-   dari sudut biar kelihatan "menjepit" kartu.
-   ================================================================ */
 .deco-paperclip {
     position: absolute;
     top: -18px;
@@ -313,7 +285,9 @@ html.lenis, html.lenis body { height: auto; }
 }
 .torn-divider-flip { transform: scaleY(-1); margin-top: -1px; }
 
-/* HERO MOTION BACKGROUND */
+/* ================================================================
+   HERO MOTION BACKGROUND - v17.2: tambah ambient drift (auto gerak)
+   ================================================================ */
 .hero::before, .hero::after {
     content: ''; position: absolute; border-radius: 50%;
     filter: blur(80px); z-index: -2; pointer-events: none;
@@ -335,6 +309,7 @@ html.lenis, html.lenis body { height: auto; }
     will-change: transform, opacity;
     animation: glowPulse 20s ease-in-out infinite;
 }
+/* aurora conic rotating */
 .hero-bg-glow::before {
     content: '';
     position: absolute;
@@ -354,8 +329,31 @@ html.lenis, html.lenis body { height: auto; }
     animation: auroraSpin 50s linear infinite;
     opacity: .55;
 }
+/* v17.2: ambient drifting blob - gerak sendiri tanpa interaksi */
+.hero-bg-glow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 480px 360px at 50% 62%, rgba(204,122,33,.16), transparent 62%),
+        radial-gradient(ellipse 420px 320px at 40% 30%, rgba(74,118,118,.13), transparent 60%);
+    animation: ambientDrift 22s ease-in-out infinite;
+    will-change: transform, opacity;
+    opacity: .7;
+}
+[data-theme="dark"] .hero-bg-glow::after {
+    background:
+        radial-gradient(ellipse 480px 360px at 50% 62%, rgba(204,122,33,.22), transparent 62%),
+        radial-gradient(ellipse 420px 320px at 40% 30%, rgba(74,118,118,.20), transparent 60%);
+}
 @keyframes glowPulse { 0%, 100% { opacity: .65; } 50% { opacity: .82; } }
 @keyframes auroraSpin { from { transform: rotate(0deg) scale(1); } to { transform: rotate(360deg) scale(1); } }
+@keyframes ambientDrift {
+    0%, 100% { transform: translate(-7%, -5%) scale(1);    opacity: .5; }
+    33%      { transform: translate(6%, 4%) scale(1.08);   opacity: .95; }
+    66%      { transform: translate(-3%, 7%) scale(1.03);  opacity: .7; }
+}
 [data-theme="dark"] .hero-bg-glow {
     opacity: .78;
     background:
@@ -377,6 +375,11 @@ html.lenis, html.lenis body { height: auto; }
         filter: blur(60px);
     }
     :root:not([data-theme]) .hero-bg-glow::before { opacity: .42; }
+    :root:not([data-theme]) .hero-bg-glow::after {
+        background:
+            radial-gradient(ellipse 480px 360px at 50% 62%, rgba(204,122,33,.22), transparent 62%),
+            radial-gradient(ellipse 420px 320px at 40% 30%, rgba(74,118,118,.20), transparent 60%);
+    }
 }
 
 .hero-grain {
@@ -440,6 +443,13 @@ html.lenis, html.lenis body { height: auto; }
     82%  { opacity: .42; }
     100% { transform: translate3d(20px, -220px, 0) scale(1.15); opacity: 0; }
 }
+/* v17.2: versi mobile - naik lebih jauh + opacity lebih tinggi supaya terlihat */
+@keyframes particleFloatMobile {
+    0%   { transform: translate3d(0, 40px, 0) scale(.6); opacity: 0; }
+    12%  { opacity: .95; }
+    78%  { opacity: .7; }
+    100% { transform: translate3d(24px, -300px, 0) scale(1.15); opacity: 0; }
+}
 
 .hero-spotlight {
     position: absolute;
@@ -495,13 +505,13 @@ html.lenis, html.lenis body { height: auto; }
   .hero-spotlight {
     background: radial-gradient(
         ellipse 380px 340px at var(--mx, 50%) var(--my, 50%),
-        rgba(255, 250, 235, .28) 0%,
-        rgba(255, 245, 222, .22) 12%,
-        rgba(255, 235, 205, .15) 24%,
-        rgba(255, 224, 190, .09) 36%,
-        rgba(250, 214, 185, .05) 48%,
-        rgba(240, 205, 190, .025) 62%,
-        rgba(200, 195, 190, .01) 76%,
+        rgba(255, 250, 235, .34) 0%,
+        rgba(255, 245, 222, .26) 12%,
+        rgba(255, 235, 205, .17) 24%,
+        rgba(255, 224, 190, .10) 36%,
+        rgba(250, 214, 185, .055) 48%,
+        rgba(240, 205, 190, .028) 62%,
+        rgba(200, 195, 190, .012) 76%,
         rgba(42, 36, 28, 0) 90%,
         rgba(42, 36, 28, .028) 100%
     );
@@ -509,12 +519,12 @@ html.lenis, html.lenis body { height: auto; }
   [data-theme="dark"] .hero-spotlight {
     background: radial-gradient(
         ellipse 400px 360px at var(--mx, 50%) var(--my, 50%),
-        rgba(255, 240, 210, .12) 0%,
-        rgba(255, 224, 185, .095) 14%,
-        rgba(250, 205, 160, .065) 28%,
-        rgba(240, 190, 150, .04) 42%,
-        rgba(220, 175, 145, .025) 56%,
-        rgba(160, 150, 150, .012) 70%,
+        rgba(255, 240, 210, .16) 0%,
+        rgba(255, 224, 185, .12) 14%,
+        rgba(250, 205, 160, .08) 28%,
+        rgba(240, 190, 150, .05) 42%,
+        rgba(220, 175, 145, .03) 56%,
+        rgba(160, 150, 150, .015) 70%,
         rgba(60, 70, 70, .05) 84%,
         rgba(0, 0, 0, .24) 100%
     );
@@ -1401,7 +1411,9 @@ body.lightbox-lock { overflow: hidden; }
     max-width: 52ch; margin: 0 auto; padding: 0 5%;
 }
 
-/* RESPONSIVE */
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
 @media(min-width:1280px) {
     .nav-inner, .main-grid { max-width: 1120px; }
     .hero-inner, .hero-marquee { max-width: 880px; }
@@ -1461,12 +1473,17 @@ body.lightbox-lock { overflow: hidden; }
     .deco-star-b, .deco-star-hero, .deco-star-c, .deco-star-e, .deco-squiggle-b, .deco-sparkle-b, .deco-sparkle-c, .deco-sparkle-d { display: none; }
     .hero-bg-text { font-size: clamp(4rem, 20vw, 7rem); }
 }
+
+/* ================================================================
+   MOBILE - v17.2: cards diperkecil, particles lebih kelihatan,
+   motion bg lebih terasa. Semua ukuran diturunkan ~15-20%.
+   ================================================================ */
 @media(max-width:640px) {
     .site-nav { background: transparent; border-bottom: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
     .site-nav.scrolled { box-shadow: none; }
     .nav-inner {
-        width: fit-content; max-width: calc(100% - 24px); margin: 12px auto 0;
-        padding: 8px 10px; gap: 8px; min-height: 0; max-height: none;
+        width: fit-content; max-width: calc(100% - 24px); margin: 10px auto 0;
+        padding: 7px 9px; gap: 8px; min-height: 0; max-height: none;
         background: var(--paper-white); border: 1.5px solid rgba(42,36,28,.16);
         border-radius: 999px; box-shadow: 3px 3px 0 rgba(42,36,28,.12);
         animation: heroFadeUp .6s var(--ease) both;
@@ -1486,93 +1503,207 @@ body.lightbox-lock { overflow: hidden; }
         transition: opacity .22s var(--ease), transform .22s var(--ease);
     }
     .nav-links.open { opacity: 1; transform: none; pointer-events: auto; }
-    .nav-link { font-size: .8rem; white-space: nowrap; flex: none; text-align: left; padding: 14px; border-bottom: none; border-radius: 10px; }
+    .nav-link { font-size: .8rem; white-space: nowrap; flex: none; text-align: left; padding: 13px; border-bottom: none; border-radius: 10px; }
     .nav-link::before { display: none; }
     .nav-link.active { background: var(--accent-soft); color: var(--accent-dark); }
     [data-theme="dark"] .nav-links { border-color: rgba(235,230,214,.16); }
     [data-theme="dark"] .nav-link.active { background: #3A2C18; color: #FFFFFF; }
-    #about, #skills, #experience, #work, #contact { scroll-margin-top: 80px; }
+    #about, #skills, #experience, #work, #contact { scroll-margin-top: 76px; }
     .site-footer { padding-bottom: 24px; }
-    .nav-contact-btn { width: 44px; height: 44px; font-size: 1.15rem; }
-    .theme-toggle { width: 44px; height: 44px; font-size: 1.1rem; }
-    .nav-actions { gap: 8px; }
-    .nav-logo img { height: 30px; }
-    .footer-stamp img { height: 30px; }
-    .hero { padding: 84px 4% 24px; }
-    .hero-inner { max-width: 380px; gap: 18px; }
-    .hero-badge-inline { padding: 7px 14px; font-size: .6rem; max-width: 100%; white-space: normal; text-align: center; line-height: 1.4; }
-    .profile-card, .portfolio-card { padding: 22px 18px; max-width: 360px; }
-    .photo-layers { max-width: 200px; aspect-ratio: 4 / 4.5; height: auto; }
-    .profile-name { font-size: 1.4rem; }
-    .hero-title { font-size: clamp(4.4rem, 15vw, 5.6rem); line-height: .9; }
-    .about-paper { padding: 34px 20px 24px 50px; }
-    .about-paper::before { left: 38px; }
-    .about-paper::after { left: 16px; }
-    .edu-card { padding-left: 32px; }
-    .clipboard { padding: 24px 16px 22px; }
-    .work-stack { padding: 24px 14px 20px; }
-    .work-stack::before { right: 24px; width: 24px; height: 38px; }
-    .work-entry { grid-template-columns: 52px 1fr auto; gap: 10px; padding: 10px; }
-    .work-thumb { width: 52px; height: 52px; }
-    .poster-card { flex-basis: 160px; }
-    .marquee-track span { font-size: .7rem; }
-    .title-tape, .doodle-arrow-skills, .deco-squiggle-a, .corner-tape { display: none; }
-    .about-heading, .edu-heading, .board-heading { font-size: 1.12rem; padding: 6px 15px 8px; }
-    .section-title { font-size: 1.3rem; padding: 6px 18px 8px; }
-    .hero-ctas { gap: 10px; flex-wrap: wrap; }
-    .btn { padding: 12px 20px; font-size: .8rem; min-height: 46px; }
-    .about-bio { font-size: .96rem; }
-    .deco-star-a4, .deco-sparkle-a { display: none; }
-    .hero-bg-glow { filter: blur(40px); opacity: .7; }
-}
-@media(max-width:480px) {
-    .hero { padding: 80px 4% 20px; gap: 0; }
-    .hero-inner { max-width: 100%; gap: 16px; }
-    .hero-badge-inline { font-size: .58rem; padding: 7px 12px; letter-spacing: .02em; margin-bottom: 12px; }
-    .profile-card, .portfolio-card { max-width: min(90vw, 360px); padding: 20px 16px; }
-    .photo-layers { max-width: 180px; aspect-ratio: 4 / 4.5; height: auto; }
-    .hero-title { font-size: clamp(4.2rem, 17vw, 5.6rem); line-height: .88; }
-    .hero-ctas { flex-direction: column; align-items: stretch; width: 100%; max-width: 290px; }
-    .hero-ctas .btn { width: 100%; justify-content: center; }
-    .profile-role { white-space: normal; font-size: .62rem; }
-    .main-grid { padding: 28px 4% 48px; gap: 24px; }
-    .about-paper { padding: 32px 16px 22px 44px; }
-    .about-paper::before { left: 32px; }
-    .about-paper::after { left: 12px; background-size: 100% 24px; }
-    .edu-card { padding: 30px 14px 22px 28px; }
-    .edu-card::before { left: 10px; }
-    .about-heading, .edu-heading, .board-heading { font-size: 1.05rem; padding: 6px 14px 7px; left: 14px; }
-    .section-title { font-size: 1.15rem; padding: 5px 14px 7px; }
-    .bubble { padding: 14px; }
-    .soft-item { min-width: 68px; padding: 8px 10px; }
-    .soft-icon { width: 32px; height: 32px; }
-    .skill-tag { font-size: .66rem; padding: 6px 12px; }
-    .work-stack { padding: 22px 12px 18px; }
-    .work-stack::before { right: 20px; width: 22px; height: 34px; }
-    .work-entry { grid-template-columns: 46px 1fr auto; }
-    .work-thumb { width: 46px; height: 46px; border-radius: 8px; }
-    .work-info h5 { font-size: .9rem; }
-    .work-info p { font-size: .76rem; }
-    .poster-gallery { gap: 12px; padding: 10px 2px 14px; }
+    .nav-contact-btn { width: 42px; height: 42px; font-size: 1.05rem; }
+    .theme-toggle { width: 42px; height: 42px; font-size: 1rem; }
+    .nav-menu-btn { width: 42px; height: 42px; font-size: 1.05rem; }
+    .nav-actions { gap: 7px; }
     .nav-logo img { height: 28px; }
-    .footer-stamp { padding: 8px 16px; }
-    .footer-stamp img { height: 27px; }
-    .poster-card { flex-basis: 140px; padding: 12px 8px 12px; }
-    .poster-card .work-thumb { border-radius: 6px; }
+    .footer-stamp img { height: 28px; }
+
+    /* HERO - diperkecil & tighter */
+    .hero { padding: 72px 4% 22px; }
+    .hero-inner { max-width: 320px; gap: 14px; }
+
+    /* BG - lebih terasa di mobile: blur dikurangi, opacity dinaikkan */
+    .hero-bg-glow { filter: blur(32px); opacity: .95; }
+    .hero-bg-glow::after { opacity: 1; }
+
+    /* Particles - versi mobile: lebih besar + lebih terang + animasi naik lebih jauh */
+    .hero-particle {
+        box-shadow: 0 0 8px rgba(204,122,33,.7), 0 0 16px rgba(204,122,33,.35);
+        animation-name: particleFloatMobile;
+        animation-duration: 11s;
+    }
+    .hero-particle:nth-child(1),
+    .hero-particle:nth-child(4),
+    .hero-particle:nth-child(7),
+    .hero-particle:nth-child(9),
+    .hero-particle:nth-child(12) { width: 6px; height: 6px; }
+    .hero-particle:nth-child(2),
+    .hero-particle:nth-child(5),
+    .hero-particle:nth-child(8),
+    .hero-particle:nth-child(10),
+    .hero-particle:nth-child(13) { width: 4px; height: 4px; }
+    .hero-particle:nth-child(3),
+    .hero-particle:nth-child(6),
+    .hero-particle:nth-child(11),
+    .hero-particle:nth-child(14) { width: 5px; height: 5px; }
+    /* Geser sebagian ke tepi kiri/kanan supaya tidak ketutup card */
+    .hero-particle:nth-child(1) { left: 3%; }
+    .hero-particle:nth-child(2) { left: 7%; }
+    .hero-particle:nth-child(3) { left: 91%; }
+    .hero-particle:nth-child(4) { left: 96%; }
+    .hero-particle:nth-child(7) { left: 4%; }
+    .hero-particle:nth-child(8) { left: 95%; }
+    .hero-particle:nth-child(9) { left: 92%; }
+    .hero-particle:nth-child(10) { left: 6%; }
+    .hero-particle:nth-child(13) { left: 5%; }
+    .hero-particle:nth-child(14) { left: 94%; }
+
+    /* CARDS - diperkecil ~20% */
+    .profile-card, .portfolio-card { padding: 18px 16px 16px; max-width: min(84vw, 310px); }
+    .photo-layers { max-width: 165px; margin-bottom: 12px; }
+    .profile-name { font-size: 1.25rem; }
+    .profile-role { font-size: .6rem; padding: 7px 14px; letter-spacing: .07em; }
+    .hero-title { font-size: clamp(3.4rem, 12vw, 4.4rem); line-height: .9; }
+    .hero-badge-inline { padding: 6px 12px; font-size: .55rem; margin-bottom: 10px; letter-spacing: .03em; }
+    .hero-ctas { gap: 8px; margin-top: 18px; }
+    .btn { padding: 10px 18px; font-size: .76rem; min-height: 42px; }
+    .hero-bg-text { font-size: clamp(3.2rem, 16vw, 5rem); }
+    .title-tape, .doodle-arrow-skills, .deco-squiggle-a, .corner-tape { display: none; }
+    .deco-paperclip { font-size: 2rem; top: -14px; right: 14px; }
+    .deco-pushpin { font-size: 1.6rem; top: -12px; left: 18px; }
+    .tape-deco { width: 52px; height: 17px; top: -10px; left: 22px; }
+    .portfolio-tape { width: 48px; height: 17px; bottom: -9px; right: 24px; }
+    .card-doodle-heart { font-size: 1.2rem; bottom: 12px; right: 14px; }
+    .card-doodle-arrow { font-size: 1.25rem; bottom: 10px; right: 16px; }
+
+    /* MAIN GRID - tighter */
+    .main-grid { padding: 28px 4% 52px; gap: 22px; }
+
+    /* ABOUT - margin line tetap, padding dikurangi */
+    .about-paper { padding: 30px 18px 22px 46px; }
+    .about-paper::before { left: 34px; }
+    .about-paper::after { left: 14px; background-size: 100% 24px; }
+    .about-bio { font-size: .93rem; line-height: 1.75; }
+    .sticker-rail { margin-top: 18px; gap: 8px; }
+    .sticker { font-size: .6rem; padding: 6px 12px; }
+
+    .edu-card { padding: 28px 18px 22px 32px; }
+    .edu-card::before { left: 12px; width: 8px; background-size: 100% 22px; }
+    .edu-item h5 { font-size: .95rem; }
+    .edu-item p { font-size: .87rem; }
+
+    .about-heading, .edu-heading, .board-heading { font-size: 1.1rem; padding: 6px 15px 8px; }
+    .about-heading { left: 20px; top: -15px; }
+    .edu-heading { left: 16px; top: -14px; }
+
+    .section-title { font-size: 1.2rem; padding: 6px 16px 8px; margin-bottom: 16px; }
+
+    .bubble { padding: 15px; }
+    .skills-bubbles { gap: 14px; }
+    .soft-item { min-width: 68px; padding: 8px 10px; gap: 5px; }
+    .soft-icon { width: 32px; height: 32px; }
+    .soft-icon img { width: 24px; height: 24px; border-radius: 6px; }
+    .soft-item span { font-size: .55rem; }
+    .skill-tag { font-size: .66rem; padding: 7px 14px; }
+
+    .clipboard { padding: 22px 16px 18px; }
+    .clipboard-clip { width: 54px; height: 18px; top: -10px; }
+    .clipboard-clip::after { top: 4px; width: 24px; height: 2.5px; }
+    .exp-desc h5 { font-size: .94rem; }
+    .exp-desc p { font-size: .87rem; }
+    .exp-year { font-size: .66rem; padding: 3px 7px; }
+    .exp-year::after { inset: -5px -8px; }
+    .exp-item::before { width: 11px; height: 11px; left: -25px; }
+
+    .work-stack { padding: 22px 14px 18px; }
+    .work-stack::before { right: 22px; width: 24px; height: 38px; }
+    .work-sub { font-size: .88rem; margin-bottom: 14px; }
+    .work-entry { grid-template-columns: 48px 1fr auto; gap: 10px; padding: 10px; margin-bottom: 10px; }
+    .work-thumb { width: 48px; height: 48px; }
+    .work-info h5 { font-size: .92rem; }
+    .work-info p { font-size: .76rem; }
+    .work-go { width: 28px; height: 28px; font-size: .82rem; }
+    .stack-divider { font-size: .62rem; margin: 18px 0 12px; }
+    .poster-card { flex-basis: 150px; padding: 12px 10px 11px; }
+    .poster-card .work-info h5 { font-size: .9rem; }
+    .poster-card .work-info p { font-size: .74rem; }
+    .gallery-arrow { width: 40px; height: 40px; font-size: .95rem; }
+
+    /* CONTACT */
+    .contact-section { padding: 30px 4% 22px; }
+    .contact-card { padding: 28px 16px 14px; }
+    .contact-heading { font-size: 1.2rem; padding: 6px 18px 8px; top: -15px; left: 18px; }
+    .contact-sub { font-size: .9rem; margin: 6px 0 14px; }
+    .form-field { font-size: .68rem; }
+    .form-field input, .form-field select, .form-field textarea { font-size: .92rem; padding: 9px 11px; }
+    .contact-submit { min-height: 44px; font-size: .78rem; }
+
+    /* Footer */
+    .footer-stamp { margin: 28px auto 12px; padding: 10px 20px; }
     .footer-copy { font-size: .66rem; }
+}
+
+@media(max-width:480px) {
+    .hero { padding: 68px 4% 18px; gap: 0; }
+    .hero-inner { max-width: 300px; gap: 12px; }
+    .hero-badge-inline { font-size: .54rem; padding: 6px 11px; margin-bottom: 9px; }
+
+    .profile-card, .portfolio-card { max-width: min(86vw, 300px); padding: 16px 14px; }
+    .photo-layers { max-width: 150px; margin-bottom: 10px; }
+    .profile-name { font-size: 1.18rem; }
+    .profile-role { font-size: .56rem; padding: 6px 12px; letter-spacing: .06em; }
+    .hero-title { font-size: clamp(3rem, 14vw, 3.9rem); line-height: .9; }
+
+    .hero-ctas { flex-direction: column; align-items: stretch; width: 100%; max-width: 240px; gap: 8px; margin-top: 16px; }
+    .hero-ctas .btn { width: 100%; justify-content: center; padding: 10px 16px; font-size: .74rem; min-height: 40px; }
+
+    .main-grid { padding: 24px 4% 44px; gap: 20px; }
+    .about-paper { padding: 28px 14px 20px 42px; }
+    .about-paper::before { left: 30px; }
+    .about-paper::after { left: 12px; }
+    .about-bio { font-size: .9rem; line-height: 1.7; }
+    .edu-card { padding: 26px 14px 20px 28px; }
+    .edu-card::before { left: 10px; }
+    .about-heading, .edu-heading, .board-heading { font-size: 1rem; padding: 6px 13px 7px; left: 12px; }
+    .section-title { font-size: 1.1rem; padding: 5px 14px 7px; }
+
+    .bubble { padding: 13px; }
+    .soft-item { min-width: 62px; padding: 7px 9px; }
+    .soft-icon { width: 28px; height: 28px; }
+    .soft-icon img { width: 22px; height: 22px; }
+    .soft-item span { font-size: .52rem; }
+    .skill-tag { font-size: .62rem; padding: 6px 12px; }
+
+    .clipboard { padding: 20px 14px 16px; }
+    .work-stack { padding: 20px 12px 16px; }
+    .work-stack::before { right: 18px; width: 22px; height: 34px; }
+    .work-entry { grid-template-columns: 42px 1fr auto; }
+    .work-thumb { width: 42px; height: 42px; border-radius: 7px; }
+    .work-info h5 { font-size: .88rem; }
+    .work-info p { font-size: .72rem; }
+    .poster-card { flex-basis: 132px; padding: 10px 8px 10px; }
+    .poster-card .work-thumb { border-radius: 6px; }
+
+    .contact-heading { font-size: 1.1rem; padding: 5px 14px 7px; left: 14px; }
+    .footer-stamp { padding: 8px 16px; }
+    .footer-stamp img { height: 26px; }
+
     .card-doodle-heart, .card-doodle-sparkle, .card-doodle-arrow { display: none; }
 }
+
 @media(max-width:359px) {
     .nav-link { font-size: .68rem; }
-    .hero { padding: 76px 4% 18px; }
-    .hero-title { font-size: clamp(3.9rem, 17vw, 4.8rem); line-height: .88; }
-    .photo-layers { max-width: 160px; aspect-ratio: 4 / 4.5; height: auto; }
-    .profile-name { font-size: 1.2rem; }
-    .hero-badge-inline { font-size: .55rem; }
+    .hero { padding: 64px 4% 16px; }
+    .hero-inner { max-width: 270px; }
+    .hero-title { font-size: clamp(2.8rem, 14vw, 3.5rem); line-height: .9; }
+    .profile-card, .portfolio-card { max-width: min(88vw, 280px); padding: 14px 12px; }
+    .photo-layers { max-width: 135px; }
+    .profile-name { font-size: 1.08rem; }
+    .hero-badge-inline { font-size: .5rem; padding: 5px 10px; }
+    .btn { padding: 9px 14px; font-size: .7rem; min-height: 38px; }
     .about-paper, .edu-card, .clipboard, .work-stack { border-radius: 10px; }
     .deco-star, .deco-sparkle { display: none; }
-    .about-paper { padding-left: 40px; }
-    .about-paper::before { left: 28px; }
+    .about-paper { padding-left: 38px; }
+    .about-paper::before { left: 26px; }
     .about-paper::after { left: 10px; }
 }
 
@@ -1619,6 +1750,7 @@ body.lightbox-lock { overflow: hidden; }
     .hero-particle, .hero-grain, .deco-sparkle { animation: none !important; }
     .hero-spotlight { display: none !important; }
     .hero-bg-glow::before { animation: none !important; opacity: .35 !important; }
+    .hero-bg-glow::after { animation: none !important; opacity: .45 !important; }
     .hero-bg-glow { animation: none !important; }
 }
 
