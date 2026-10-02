@@ -1832,56 +1832,41 @@ body.lightbox-lock { overflow: hidden; }
     .btn-primary, .btn-ghost { border: 1px solid CanvasText; }
 }
 /* ================================================================
-   FIX FINAL: portfolio card — jarak & tinggi
+   FIX FINAL: portfolio card — tombol lebih dekat + card tidak tinggi
    ================================================================ */
 
-/* 1. Card tidak meninggi — natural mengikuti konten */
+/* 1. Lepas stretch — tiap card tinggi mengikuti kontennya sendiri */
 .profile-card,
 .portfolio-card {
     min-height: 0;
     height: auto;
-    justify-content: center;
     align-self: center;
+    justify-content: center;
 }
 
-/* 2. Padding seimbang atas-bawah */
-.profile-card { padding: 26px 24px 24px; }
-.portfolio-card { padding: 30px 26px 32px; }
+/* 2. Padding dipersempit, seimbang atas-bawah */
+.profile-card { padding: 24px 24px 22px; }
+.portfolio-card { padding: 26px 26px; }
 
-/* 3. Jarak antar elemen dalam portfolio card */
-.portfolio-card .hero-badge-inline { margin-bottom: 24px; }
-.portfolio-card .hero-title { margin-bottom: 32px; }
+/* 3. Jarak antar elemen di portfolio card */
+.portfolio-card .hero-badge-inline { margin-bottom: 18px; }
+.portfolio-card .hero-title { margin-bottom: 20px; }
 .portfolio-card .hero-ctas { margin-top: 0; padding-top: 0; }
 
-/* 4. Judul tidak punya wrapper (yang ada cuma .hero-title) */
-.hero-title-wrap { margin: 0; padding: 0; }
-
-/* 5. Desktop: card kiri & kanan tinggi seimbang otomatis */
+/* 4. Hero-inner: align center (bukan stretch) biar tiap card natural */
 @media (min-width: 769px) {
-    .hero-inner {
-        align-items: stretch;
-    }
-    .profile-card,
-    .portfolio-card {
-        align-self: stretch;
-        justify-content: center;
-    }
+    .hero-inner { align-items: center; }
 }
 
-/* 6. Mobile & tablet — tetap natural */
-@media (max-width: 768px) {
-    .hero-inner { align-items: center; }
-    .profile-card,
-    .portfolio-card { align-self: center; }
-}
+/* 5. Mobile */
 @media (max-width: 640px) {
-    .profile-card { padding: 22px 18px 22px; }
-    .portfolio-card { padding: 26px 20px 28px; }
-    .portfolio-card .hero-badge-inline { margin-bottom: 20px; }
-    .portfolio-card .hero-title { margin-bottom: 26px; }
+    .profile-card { padding: 22px 18px 20px; }
+    .portfolio-card { padding: 22px 18px 24px; }
+    .portfolio-card .hero-badge-inline { margin-bottom: 16px; }
+    .portfolio-card .hero-title { margin-bottom: 18px; }
 }
 @media (max-width: 480px) {
-    .portfolio-card { padding: 24px 16px 26px; }
-    .portfolio-card .hero-badge-inline { margin-bottom: 18px; }
-    .portfolio-card .hero-title { margin-bottom: 22px; }
+    .portfolio-card { padding: 20px 16px 22px; }
+    .portfolio-card .hero-badge-inline { margin-bottom: 14px; }
+    .portfolio-card .hero-title { margin-bottom: 16px; }
 }
