@@ -1831,3 +1831,54 @@ body.lightbox-lock { overflow: hidden; }
     .site-nav { border-bottom: 1px solid CanvasText; }
     .btn-primary, .btn-ghost { border: 1px solid CanvasText; }
 }
+/* ================================================================
+   v18.4 — perbaiki jarak judul & tombol di portfolio card
+   ================================================================ */
+
+/* Jarak judul → tombol */
+.hero-title-wrap {
+    margin: 0 0 24px;
+}
+.hero-title {
+    margin-bottom: 0;
+}
+.hero-ctas {
+    margin-top: 0;
+    padding-top: 0;
+    gap: 12px;
+}
+
+/* Jarak badge → judul biar seimbang */
+.hero-badge-inline {
+    margin: 0 0 20px;
+}
+
+/* Card dipadding seimbang atas-bawah */
+.portfolio-card {
+    padding: 30px 26px 32px;
+}
+
+/* Desktop: samakan tinggi card kiri-kanan secara natural */
+@media (min-width: 769px) {
+    .profile-card,
+    .portfolio-card {
+        align-self: stretch;
+    }
+    .profile-card {
+        justify-content: center;
+    }
+    .portfolio-card {
+        justify-content: center;
+    }
+}
+
+/* Mobile: proporsional */
+@media (max-width: 640px) {
+    .hero-title-wrap { margin: 0 0 20px; }
+    .hero-badge-inline { margin: 0 0 16px; }
+    .portfolio-card { padding: 26px 20px 28px; }
+}
+@media (max-width: 480px) {
+    .hero-title-wrap { margin: 0 0 18px; }
+    .hero-ctas { gap: 10px; }
+}
