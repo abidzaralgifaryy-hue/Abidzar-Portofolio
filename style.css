@@ -1699,3 +1699,114 @@ body.lightbox-lock { overflow: hidden; }
     .site-nav { border-bottom: 1px solid CanvasText; }
     .btn-primary, .btn-ghost { border: 1px solid CanvasText; }
 }
+/* ================================================================
+   POLISH v17.5 - hasil kritik desain
+   Tempel di paling bawah style.css. Override otomatis.
+   ================================================================ */
+
+/* ── 1. HERO breathing room ───────────────────────────── */
+.hero { padding: 88px 5% 56px; }
+.hero-inner { gap: 40px; }
+
+/* ── 2. PORTFOLIO CARD: balance tinggi + bottom anchor ── */
+.portfolio-card { padding: 28px 26px 30px; gap: 6px; }
+.portfolio-card .hero-badge-inline { margin-bottom: 18px; }
+.portfolio-card .hero-ctas { margin-top: 24px; }
+.hero-title { margin-bottom: 8px; }
+/* tiga titik kecil sebagai penutup bawah (bukan garis bawah) */
+.portfolio-card::after {
+    content: '';
+    display: block;
+    margin-top: 22px;
+    width: 44px;
+    height: 3px;
+    background-image: radial-gradient(circle, var(--muted-strong) 1.2px, transparent 1.6px);
+    background-size: 14px 3px;
+    background-repeat: repeat-x;
+    opacity: .55;
+}
+
+/* ── 3. ROLE PILL proporsi lebih baik ────────────────── */
+.profile-role {
+    font-size: .72rem;
+    padding: 7px 16px;
+    letter-spacing: .085em;
+}
+
+/* ── 4. STAR CLUSTER: cukup 2 bintang, rapikan ───────── */
+.deco-star-a2,
+.deco-star-a3 { display: none; }
+
+.deco-star-a {
+    width: 30px; height: 30px;
+    top: 15%; left: 7%;
+    transform: rotate(-14deg) translate3d(calc(var(--pmx, 0) * 14px), calc(var(--pmy, 0) * 14px), 0);
+    opacity: .9;
+}
+.deco-star-a4 {
+    width: 12px; height: 12px;
+    top: 9%; left: 12%;
+    transform: rotate(-8deg) translate3d(calc(var(--pmx, 0) * 12px), calc(var(--pmy, 0) * 12px), 0);
+    opacity: .75;
+}
+
+/* ── 5. HAPUS squiggle kanan (yang invisible) ────────── */
+.deco-squiggle-a { display: none; }
+
+/* ── 6. MARQUEE breathing room ───────────────────────── */
+.hero-marquee {
+    padding: 16px 0;
+    margin-bottom: 28px;
+}
+
+/* ── 7. TITLE-TAPE dipertegas (biar berasa tape tebal) ─ */
+.title-tape {
+    width: 88px;
+    height: 22px;
+    background: var(--teal);
+    opacity: .9;
+    box-shadow: 0 2px 6px rgba(42,36,28,.28), inset 0 1px 0 rgba(255,255,255,.22);
+}
+
+/* ── 8. NAV LOGO sedikit weight ──────────────────────── */
+.nav-logo img {
+    height: 38px;
+    filter: contrast(1.15) saturate(1.05);
+}
+
+/* ── 9. MARQUEE TEXT sedikit lebih tegas ─────────────── */
+.marquee-track span {
+    color: var(--emerald-dark);
+    letter-spacing: 0.14em;
+}
+
+/* ── 10. Hapus sparkle kecil yang masih mengganggu ───── */
+.deco-sparkle-b { display: none; }
+.card-doodle-arrow { display: none; }
+
+/* ── 11. Dark mode override untuk title-tape ─────────── */
+[data-theme="dark"] .title-tape {
+    background: #3F6E6E;
+    box-shadow: 0 2px 6px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.15);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .title-tape {
+        background: #3F6E6E;
+        box-shadow: 0 2px 6px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.15);
+    }
+}
+
+/* ── 12. Mobile: kecilkan efek fix yang berlebihan ───── */
+@media (max-width: 640px) {
+    .hero { padding: 76px 4% 42px; }
+    .hero-inner { gap: 20px; }
+    .portfolio-card { padding: 22px 18px 24px; }
+    .portfolio-card::after { margin-top: 16px; width: 36px; }
+    .profile-role { font-size: .66rem; padding: 6px 13px; }
+    .hero-marquee { padding: 14px 0; margin-bottom: 20px; }
+}
+@media (max-width: 480px) {
+    .hero { padding: 72px 4% 34px; }
+    .deco-star-a { width: 24px; height: 24px; }
+    .deco-star-a4 { width: 10px; height: 10px; }
+}
